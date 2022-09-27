@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>常用集合算法 | Hexo</title>
+  <meta name="keywords" content=" STL ">
+  <meta name="description" content="常用集合算法 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="页面未找到！">
+<meta property="og:type" content="website">
+<meta property="og:title" content="404">
+<meta property="og:url" content="http://example.com/404/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="页面未找到！">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-09-27T03:31:01.000Z">
+<meta property="article:modified_time" content="2022-09-13T11:24:43.803Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>John Doe</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/whl963854"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:3366576307@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=3366576307&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+    <a class="more-menus">更多菜单</a>
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(72)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="华为可信课程">
+                        
+                        华为可信课程
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="计算机通信与网络">
+                        
+                        计算机通信与网络
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="设计模式">
+                        
+                        设计模式
+                        <small>(10)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="算法">
+                        
+                        算法
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="题解">
+                        
+                        题解
+                        <small>(15)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="cpp">
+                        
+                        cpp
+                        <small>(8)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="csp">
+                        
+                        csp
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Database">
+                        
+                        Database
+                        <small>(11)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Git">
+                        
+                        Git
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="STL">
+                        
+                        STL
+                        <small>(13)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+                <a class="dynamic-menu "
+                   target="_blank"
+                        
+                   href="https://github.com/whl963854">github</a>
+        
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  "
+               target="_blank"
+                    
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="72">
+<input type="hidden" id="yelog_site_word_count" value="74.7k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>创建型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态规划</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>结构型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>行为型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>字节</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>组件协作模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cpp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>leetcode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>math</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>STL</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All Database "
+           href="/2022/09/27/DataBase/MySQL/%E8%A7%A6%E5%8F%91%E5%99%A8/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="触发器">触发器</span>
+            <span class="post-date" title="2022-09-27 16:04:13">2022/09/27</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/2022/09/23/DataBase/MySQL/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="存储过程">存储过程</span>
+            <span class="post-date" title="2022-09-23 12:44:39">2022/09/23</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/2022/09/23/DataBase/MySQL/%E8%A7%86%E5%9B%BE/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="视图">视图</span>
+            <span class="post-date" title="2022-09-23 11:04:20">2022/09/23</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/2022/09/22/DesignMode/%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="模板模式">模板模式</span>
+            <span class="post-date" title="2022-09-22 19:52:54">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/2022/09/22/DesignMode/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="适配器模式">适配器模式</span>
+            <span class="post-date" title="2022-09-22 19:31:55">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/2022/09/22/DesignMode/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="建造者模式">建造者模式</span>
+            <span class="post-date" title="2022-09-22 19:20:40">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/2022/09/22/DesignMode/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="代理模式">代理模式</span>
+            <span class="post-date" title="2022-09-22 18:57:19">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/2022/09/22/DesignMode/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="原型模式">原型模式</span>
+            <span class="post-date" title="2022-09-22 18:35:08">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/2022/09/22/DesignMode/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="观察者模式">观察者模式</span>
+            <span class="post-date" title="2022-09-22 16:22:50">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/2022/09/21/DataBase/MySQL/%E4%BC%98%E5%8C%96/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="函数">函数</span>
+            <span class="post-date" title="2022-09-21 19:27:54">2022/09/21</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/2022/09/20/DataBase/MySQL/%E7%B4%A2%E5%BC%95/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="索引">索引</span>
+            <span class="post-date" title="2022-09-20 19:41:27">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/2022/09/20/DataBase/MySQL/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="存储引擎">存储引擎</span>
+            <span class="post-date" title="2022-09-20 19:14:39">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/2022/09/20/DataBase/MySQL/%E4%BA%8B%E5%8A%A1/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="事务">事务</span>
+            <span class="post-date" title="2022-09-20 18:37:59">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/2022/09/20/DataBase/MySQL/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="多表查询">多表查询</span>
+            <span class="post-date" title="2022-09-20 15:09:37">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/2022/09/20/DataBase/MySQL/%E7%BA%A6%E6%9D%9F/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="约束">约束</span>
+            <span class="post-date" title="2022-09-20 14:27:02">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/2022/09/20/DataBase/MySQL/%E5%87%BD%E6%95%B0/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="函数">函数</span>
+            <span class="post-date" title="2022-09-20 13:07:32">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/2022/09/20/DataBase/MySQL/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL">SQL</span>
+            <span class="post-date" title="2022-09-20 10:02:57">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/09/18/QT/SignalAndSlot/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-09-18 12:23:56">2022/09/18</span>
+        </a>
+        
+        
+        <a  class="All STL "
+           href="/2022/09/16/zSTL/CommonSetAlgorithms/"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用集合算法">常用集合算法</span>
+            <span class="post-date" title="2022-09-16 20:39:48">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All STL "
+           href="/2022/09/16/zSTL/CommonFunctionGenerationAlgorithms/"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用算术生成算法">常用算术生成算法</span>
+            <span class="post-date" title="2022-09-16 20:38:46">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All STL "
+           href="/2022/09/16/zSTL/CopyAndReplace/"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用拷贝和替换算法">常用拷贝和替换算法</span>
+            <span class="post-date" title="2022-09-16 20:25:30">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All STL "
+           href="/2022/09/16/zSTL/CommonSortAlgorithm/"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用排序算法">常用排序算法</span>
+            <span class="post-date" title="2022-09-16 19:53:06">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All STL "
+           href="/2022/09/16/zSTL/CommomAlgorithm/"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="STL常用算法">STL常用算法</span>
+            <span class="post-date" title="2022-09-16 13:06:00">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/2022/09/16/cpp/%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="内建函数对象">内建函数对象</span>
+            <span class="post-date" title="2022-09-16 12:35:16">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All STL "
+           href="/2022/09/15/zSTL/map/"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="map/multimap">map/multimap</span>
+            <span class="post-date" title="2022-09-15 21:12:00">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All STL "
+           href="/2022/09/15/zSTL/set/"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="set/multiset">set/multiset</span>
+            <span class="post-date" title="2022-09-15 21:07:26">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All STL "
+           href="/2022/09/15/zSTL/list/"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="List">List</span>
+            <span class="post-date" title="2022-09-15 20:34:58">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All STL "
+           href="/2022/09/15/zSTL/queue/"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="queue">queue</span>
+            <span class="post-date" title="2022-09-15 20:33:56">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All STL "
+           href="/2022/09/15/zSTL/stack/"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="stack">stack</span>
+            <span class="post-date" title="2022-09-15 20:25:14">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All STL "
+           href="/2022/09/15/zSTL/deque/"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="deque">deque</span>
+            <span class="post-date" title="2022-09-15 20:06:02">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All STL "
+           href="/2022/09/15/zSTL/vector/"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="vector">vector</span>
+            <span class="post-date" title="2022-09-15 19:33:36">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All STL "
+           href="/2022/09/15/zSTL/string/"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="string">string</span>
+            <span class="post-date" title="2022-09-15 16:29:29">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/2022/09/15/cpp/%E8%B0%93%E8%AF%8D/"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="谓词">谓词</span>
+            <span class="post-date" title="2022-09-15 16:19:03">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/2022/09/15/DesignMode/Singleton/"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="单例模式">单例模式</span>
+            <span class="post-date" title="2022-09-15 16:04:46">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/2022/09/15/DesignMode/Factory/"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="factory模式">factory模式</span>
+            <span class="post-date" title="2022-09-15 16:04:46">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/09/13/Linux/vim/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-09-13 20:45:30">2022/09/13</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/09/13/%E9%A2%98%E8%A7%A3/%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="括号生成">括号生成</span>
+            <span class="post-date" title="2022-09-13 16:21:25">2022/09/13</span>
+        </a>
+        
+        
+        <a  class="All csp "
+           href="/2022/09/11/csp/2022_06_2/"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="寻宝大作战">寻宝大作战</span>
+            <span class="post-date" title="2022-09-11 16:31:29">2022/09/11</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/09/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="二叉树的遍历">二叉树的遍历</span>
+            <span class="post-date" title="2022-09-11 14:35:39">2022/09/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/2022/09/09/cpp/WPSlesson1/"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="金山训练营第一周">金山训练营第一周</span>
+            <span class="post-date" title="2022-09-09 19:46:09">2022/09/09</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/09/08/%E9%A2%98%E8%A7%A3/%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="把数组排成最小的数">把数组排成最小的数</span>
+            <span class="post-date" title="2022-09-08 14:13:19">2022/09/08</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/09/08/%E9%A2%98%E8%A7%A3/%E5%90%8C%E6%9E%84%E5%AD%97%E7%AC%A6%E4%B8%B2/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="同构字符串">同构字符串</span>
+            <span class="post-date" title="2022-09-08 12:31:34">2022/09/08</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/09/07/%E9%A2%98%E8%A7%A3/%E6%95%B0%E7%BB%84%E6%B8%B8%E6%88%8F/"
+           data-tag="字节"
+           data-author="" >
+            <span class="post-title" title="数组游戏">数组游戏</span>
+            <span class="post-date" title="2022-09-07 16:57:46">2022/09/07</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/09/07/%E9%A2%98%E8%A7%A3/%E5%85%A8%E6%8E%92%E5%88%97/"
+           data-tag="math"
+           data-author="" >
+            <span class="post-title" title="全排列">全排列</span>
+            <span class="post-date" title="2022-09-07 13:01:27">2022/09/07</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/09/06/%E9%A2%98%E8%A7%A3/%E6%97%A5%E6%9C%9F%E5%B7%AE%E5%80%BC/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="日期差值">日期差值</span>
+            <span class="post-date" title="2022-09-06 16:14:24">2022/09/06</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/2022/09/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E4%BF%A1%E4%B8%8E%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络边缘">网络边缘</span>
+            <span class="post-date" title="2022-09-06 11:20:02">2022/09/06</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/09/04/%E9%A2%98%E8%A7%A3/%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2/"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="零钱兑换">零钱兑换</span>
+            <span class="post-date" title="2022-09-04 12:13:58">2022/09/04</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/2022/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E4%BF%A1%E4%B8%8E%E7%BD%91%E7%BB%9C/%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="通信的三种方式">通信的三种方式</span>
+            <span class="post-date" title="2022-09-01 14:22:27">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/2022/09/01/DesignMode/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"
+           data-tag="组件协作模式"
+           data-author="" >
+            <span class="post-title" title="策略模式">策略模式</span>
+            <span class="post-date" title="2022-09-01 10:25:44">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/2022/08/30/cpp/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="智能指针">智能指针</span>
+            <span class="post-date" title="2022-08-30 20:56:50">2022/08/30</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/2022/08/30/cpp/nullptr/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="nullptr">nullptr</span>
+            <span class="post-date" title="2022-08-30 20:41:05">2022/08/30</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/08/30/%E9%A2%98%E8%A7%A3/%E5%89%8Dk%E4%B8%AA%E9%AB%98%E9%A2%91%E8%AF%8D/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="前k个高频词">前k个高频词</span>
+            <span class="post-date" title="2022-08-30 20:09:01">2022/08/30</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/2022/08/30/DesignMode/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="设计模式简介">设计模式简介</span>
+            <span class="post-date" title="2022-08-30 19:44:16">2022/08/30</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/08/12/%E9%A2%98%E8%A7%A3/%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="无重复字符的最长子串">无重复字符的最长子串</span>
+            <span class="post-date" title="2022-08-12 10:09:13">2022/08/12</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/08/10/%E9%A2%98%E8%A7%A3/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="反转链表">反转链表</span>
+            <span class="post-date" title="2022-08-10 11:41:17">2022/08/10</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/2022/08/10/cpp/sort/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="排序">排序</span>
+            <span class="post-date" title="2022-08-10 10:04:24">2022/08/10</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/2022/08/08/cpp/%E9%93%BE%E6%8E%A5%E7%BC%96%E8%AF%91%E8%BF%9E%E7%BC%96/"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="链接编译联编">链接编译联编</span>
+            <span class="post-date" title="2022-08-08 11:21:41">2022/08/08</span>
+        </a>
+        
+        
+        <a  class="All Git "
+           href="/2022/08/05/git/git/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git常用方法">git常用方法</span>
+            <span class="post-date" title="2022-08-05 09:44:12">2022/08/05</span>
+        </a>
+        
+        
+        <a  class="All 华为可信课程 "
+           href="/2022/07/30/%E5%8D%8E%E4%B8%BA%E5%8F%AF%E4%BF%A1/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E8%A7%84%E5%AE%9A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="代码风格规定">代码风格规定</span>
+            <span class="post-date" title="2022-07-30 10:52:08">2022/07/30</span>
+        </a>
+        
+        
+        <a  class="All 华为可信课程 "
+           href="/2022/07/29/%E5%8D%8E%E4%B8%BA%E5%8F%AF%E4%BF%A1/lambda%E3%80%81%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E4%B8%8E%E6%9D%82%E9%A1%B9/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="lambda、资源管理与杂项">lambda、资源管理与杂项</span>
+            <span class="post-date" title="2022-07-29 19:01:40">2022/07/29</span>
+        </a>
+        
+        
+        <a  class="All 华为可信课程 "
+           href="/2022/07/29/%E5%8D%8E%E4%B8%BA%E5%8F%AF%E4%BF%A1/%E5%87%BD%E6%95%B0%E4%B8%8E%E7%B1%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="类与函数">类与函数</span>
+            <span class="post-date" title="2022-07-29 18:01:02">2022/07/29</span>
+        </a>
+        
+        
+        <a  class="All 华为可信课程 "
+           href="/2022/07/15/%E5%8D%8E%E4%B8%BA%E5%8F%AF%E4%BF%A1/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E5%8F%98%E9%87%8F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="表达式与变量">表达式与变量</span>
+            <span class="post-date" title="2022-07-15 09:50:49">2022/07/15</span>
+        </a>
+        
+        
+        <a  class="All 华为可信课程 "
+           href="/2022/07/15/%E5%8D%8E%E4%B8%BA%E5%8F%AF%E4%BF%A1/%E5%AE%89%E5%85%A8%E7%BC%96%E7%A0%81%E4%B8%8E%E6%9C%AA%E5%AE%9A%E4%B9%89%E8%A1%8C%E4%B8%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安全编码与未定义行为">安全编码与未定义行为</span>
+            <span class="post-date" title="2022-07-15 09:07:10">2022/07/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/2022/07/13/cpp/define,const/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="define、const、typedef、inline">define、const、typedef、inline</span>
+            <span class="post-date" title="2022-07-13 10:19:04">2022/07/13</span>
+        </a>
+        
+        
+        <a  class="All csp "
+           href="/2022/06/06/csp/2021_09_2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="非零段划分">非零段划分</span>
+            <span class="post-date" title="2022-06-06 21:12:44">2022/06/06</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/03/26/%E9%A2%98%E8%A7%A3/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A82/"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="买卖股票1">买卖股票1</span>
+            <span class="post-date" title="2022-03-26 20:36:28">2022/03/26</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/03/26/%E9%A2%98%E8%A7%A3/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A81/"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="买卖股票1">买卖股票1</span>
+            <span class="post-date" title="2022-03-26 20:08:12">2022/03/26</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/03/23/%E9%A2%98%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%BA%8F%E7%9A%84%E7%AC%ACk%E5%A4%A7%E6%95%B0%E5%AD%97/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="字典序的第k大数字">字典序的第k大数字</span>
+            <span class="post-date" title="2022-03-23 20:26:38">2022/03/23</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/03/03/%E9%A2%98%E8%A7%A3/EasyStrings/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Easy Strings Merging">Easy Strings Merging</span>
+            <span class="post-date" title="2022-03-03 19:29:40">2022/03/03</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/2022/03/03/%E9%A2%98%E8%A7%A3/%E7%AC%ACk%E4%B8%AA%E6%95%B0%E5%AD%97/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="779 第k个语法符号">779 第k个语法符号</span>
+            <span class="post-date" title="2022-03-03 15:13:51">2022/03/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2022/03/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B9%B6%E6%9F%A5%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="并查集">并查集</span>
+            <span class="post-date" title="2022-03-01 20:50:48">2022/03/01</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2022/03/01/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2022-03-01 19:26:09">2022/03/01</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-zSTL/CommonSetAlgorithms" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">常用集合算法</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="STL">STL</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">STL</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-09-16 20:40:20'>2022-09-16 20:39</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:967</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E9%9B%86%E5%90%88%E7%AE%97%E6%B3%95"><span class="toc-text">常用集合算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="toc-text">算法简介：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set-intersection"><span class="toc-text">set_intersection</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%EF%BC%9A"><span class="toc-text">函数原型：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="toc-text">示例：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">总结：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set-union"><span class="toc-text">set_union</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B1%82%E4%B8%A4%E4%B8%AA%E9%9B%86%E5%90%88%E7%9A%84%E5%B9%B6%E9%9B%86"><span class="toc-text">求两个集合的并集</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%EF%BC%9A-1"><span class="toc-text">函数原型：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-1"><span class="toc-text">示例：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-1"><span class="toc-text">总结：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set-difference"><span class="toc-text">set_difference</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B1%82%E4%B8%A4%E4%B8%AA%E9%9B%86%E5%90%88%E7%9A%84%E5%B7%AE%E9%9B%86"><span class="toc-text">求两个集合的差集</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%EF%BC%9A-2"><span class="toc-text">函数原型：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-2"><span class="toc-text">示例：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-2"><span class="toc-text">总结：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-5 i,
+    .toc-level-5 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="常用集合算法"><a href="#常用集合算法" class="headerlink" title="常用集合算法"></a>常用集合算法</h1><h5 id="算法简介："><a href="#算法简介：" class="headerlink" title="算法简介："></a>算法简介：</h5><ul>
+<li>set_intersection &#x2F;&#x2F; 求两个容器的交集</li>
+<li>set_union &#x2F;&#x2F; 求两个容器的并集</li>
+<li>set_difference &#x2F;&#x2F; 求两个容器的差集</li>
+</ul>
+<h2 id="set-intersection"><a href="#set-intersection" class="headerlink" title="set_intersection"></a>set_intersection</h2><ul>
+<li>求两个容器的交集</li>
+</ul>
+<h5 id="函数原型："><a href="#函数原型：" class="headerlink" title="函数原型："></a>函数原型：</h5><pre><code>set_intersection(iterator beg1, iterator end1, iterator beg2, iterator end2, iterator dest);
+</code></pre>
+<ul>
+<li>求两个集合的交集</li>
+<li>注意:两个集合必须是有序序列</li>
+<li>beg1 容器 1 开始迭代器 </li>
+<li>end1 容器 1 结束迭代器 </li>
+<li>beg2 容器 2 开始迭代器</li>
+<li>end2 容器 2 结束迭代器 </li>
+<li>dest 目标容器开始迭代器</li>
+</ul>
+<h5 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h5><pre><code>#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+class myPrint
+&#123;
+public:
+    void operator()(int val)
+    &#123;
+        cout &lt;&lt; val &lt;&lt; &quot; &quot;;
+    &#125;
+&#125;;
+void test01()
+&#123;
+    vector&lt;int&gt; v1;
+    vector&lt;int&gt; v2;
+    for (int i = 0 ; i &lt; 10 ; i++)
+    &#123;
+        v1.push_back(i);
+        v2.push_back(i+ 5 );
+    &#125;
+    vector&lt;int&gt; vTarget;
+    //取两个里面较小的值给目标容器开辟空间
+    vTarget.resize(min(v1.size(), v2.size()));
+    vector&lt;int&gt;::iterator itEnd =
+    set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), vTarget.begin());
+    for_each(vTarget.begin(), itEnd, myPrint());
+    cout &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0 ;
+&#125;
+</code></pre>
+<h5 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h5><ul>
+<li>求交集的两个集合必须的有序序列</li>
+<li>目标容器开辟空间需要从两个容器中取小值</li>
+<li>set_intersection返回值既是交集中最后一个元素的位置</li>
+</ul>
+<h2 id="set-union"><a href="#set-union" class="headerlink" title="set_union"></a>set_union</h2><h5 id="求两个集合的并集"><a href="#求两个集合的并集" class="headerlink" title="求两个集合的并集"></a>求两个集合的并集</h5><h5 id="函数原型：-1"><a href="#函数原型：-1" class="headerlink" title="函数原型："></a>函数原型：</h5><pre><code>set_union(iterator beg1, iterator end1, iterator beg2, iterator end2, iterator dest);
+</code></pre>
+<ul>
+<li>求两个集合的并集</li>
+<li>注意:两个集合必须是有序序列</li>
+<li>beg1 容器 1 开始迭代器 </li>
+<li>end1 容器 1 结束迭代器 </li>
+<li>beg2 容器 2 开始迭代器 </li>
+<li>end2 容器 2 结束迭代器 </li>
+<li>dest 目标容器开始迭代器</li>
+<li>返回目标容器的最后一个元素的迭代器地址</li>
+</ul>
+<h5 id="示例：-1"><a href="#示例：-1" class="headerlink" title="示例："></a>示例：</h5><pre><code>#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+class myPrint
+&#123;
+public:
+    void operator()(int val)
+    &#123;
+        cout &lt;&lt; val &lt;&lt; &quot; &quot;;
+    &#125;
+&#125;;
+void test01()
+&#123;
+    vector&lt;int&gt; v1;
+    vector&lt;int&gt; v2;
+    for (int i = 0 ; i &lt; 10 ; i++) &#123;
+        v1.push_back(i);
+        v2.push_back(i+ 5 );
+    &#125;
+    vector&lt;int&gt; vTarget;
+    //取两个容器的和给目标容器开辟空间
+    vTarget.resize(v1.size() + v2.size());
+    //返回目标容器的最后一个元素的迭代器地址
+    vector&lt;int&gt;::iterator itEnd =
+    set_union(v1.begin(), v1.end(), v2.begin(), v2.end(), vTarget.begin());
+    for_each(vTarget.begin(), itEnd, myPrint());
+    cout &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0 ;
+&#125;
+</code></pre>
+<h5 id="总结：-1"><a href="#总结：-1" class="headerlink" title="总结："></a>总结：</h5><ul>
+<li>求并集的两个集合必须的有序序列</li>
+<li>目标容器开辟空间需要两个容器相加</li>
+<li>set_union返回值既是并集中最后一个元素的位置</li>
+</ul>
+<h2 id="set-difference"><a href="#set-difference" class="headerlink" title="set_difference"></a>set_difference</h2><h5 id="求两个集合的差集"><a href="#求两个集合的差集" class="headerlink" title="求两个集合的差集"></a>求两个集合的差集</h5><h5 id="函数原型：-2"><a href="#函数原型：-2" class="headerlink" title="函数原型："></a>函数原型：</h5><pre><code>set_difference(iterator beg1, iterator end1, iterator beg2, iterator end2, iterator dest);
+</code></pre>
+<ul>
+<li>求两个集合的差集</li>
+<li>注意:两个集合必须是有序序列</li>
+<li>beg1 容器 1 开始迭代器 &#x2F;&#x2F; </li>
+<li>end1 容器 1 结束迭代器 &#x2F;&#x2F; </li>
+<li>beg2 容器 2 开始迭代器 &#x2F;&#x2F; </li>
+<li>end2 容器 2 结束迭代器 &#x2F;&#x2F;</li>
+<li>dest 目标容器开始迭代器</li>
+</ul>
+<h5 id="示例：-2"><a href="#示例：-2" class="headerlink" title="示例："></a>示例：</h5><pre><code>#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+class myPrint
+&#123;
+public:
+    void operator()(int val)
+    &#123;
+        cout &lt;&lt; val &lt;&lt; &quot; &quot;;
+    &#125;
+&#125;;
+void test01()
+&#123;
+    vector&lt;int&gt; v1;
+    vector&lt;int&gt; v2;
+    for (int i = 0 ; i &lt; 10 ; i++) &#123;
+        v1.push_back(i);
+        v2.push_back(i+ 5 );
+    &#125;
+    vector&lt;int&gt; vTarget;
+    //取两个里面较大的值给目标容器开辟空间
+    vTarget.resize( max(v1.size() , v2.size()));
+    //返回目标容器的最后一个元素的迭代器地址
+    cout &lt;&lt; &quot;v1与v2的差集为： &quot; &lt;&lt; endl;
+    vector&lt;int&gt;::iterator itEnd =
+    set_difference(v1.begin(), v1.end(), v2.begin(), v2.end(), vTarget.begin());
+    for_each(vTarget.begin(), itEnd, myPrint());
+    cout &lt;&lt; endl;
+    cout &lt;&lt; &quot;v2与v1的差集为： &quot; &lt;&lt; endl;
+    itEnd = set_difference(v2.begin(), v2.end(), v1.begin(), v1.end(), vTarget.begin());
+    for_each(vTarget.begin(), itEnd, myPrint());
+    cout &lt;&lt; endl;
+&#125;
+int main() &#123;
+    test01();
+    system(&quot;pause&quot;);
+    return 0 ;
+&#125;
+</code></pre>
+<h5 id="总结：-2"><a href="#总结：-2" class="headerlink" title="总结："></a>总结：</h5><ul>
+<li>求差集的两个集合必须的有序序列</li>
+<li>目标容器开辟空间需要从两个容器取较大值</li>
+<li>set_difference返回值既是差集中最后一个元素的位置</li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3366576307@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2022 whl
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #c1bfc1;
+    }
+    
+    
+    .nav-right nav a.hover > span{
+        color: #ffffff !important;
+    }
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div class="mobile-menus-out" >
+
+</div>
+<div class="mobile-menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/whl963854">github</a>
+    
+</div>
+
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 0;">
+<div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483671599&auto=1&height=66"></iframe>
+</div>
+
+
+
+
+<!--以下代码是为了支持随时拖动音乐控件的位置，如没有需求，可去掉下面代码-->
+<script>
+var $DOC = $(document)
+$('#musicMouseDrag').on('mousedown', function (e) {
+// 阻止文本选中
+$DOC.bind("selectstart", function () {
+return false;
+});
+$('#musicDragArea').css('height', '100%');
+var $moveTarget = $('#musicMouseDrag');
+$moveTarget.css('border', '1px dashed grey')
+var div_x = e.pageX - $moveTarget.offset().left;
+var div_y = e.pageY - $moveTarget.offset().top;
+$DOC.on('mousemove', function (e) {
+var targetX = e.pageX - div_x;
+var targetY = e.pageY - div_y;
+targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+$moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+}).on('mouseup', function () {
+$DOC.unbind("selectstart");
+$DOC.off('mousemove')
+$DOC.off('mouseup')
+$moveTarget.css('border', 'none')
+$('#musicDragArea').css('height', '10px');
+})
+})
+</script>
+</html>
