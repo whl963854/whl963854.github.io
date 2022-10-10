@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>Initialization</title>
+      <link href="/2022/10/10/cpp/Initialization/"/>
+      <url>/2022/10/10/cpp/Initialization/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Initialization"><a href="#Initialization" class="headerlink" title="Initialization"></a>Initialization</h1><pre><code>int    values[ ] &#123;1, 2, 3&#125;;vector&lt;int&gt; v&#123; 2, 3, 5, 7, 11, 13, 17  &#125;;  </code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c++11 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Variadic Templates</title>
+      <link href="/2022/10/10/cpp/Variadic_Templates/"/>
+      <url>/2022/10/10/cpp/Variadic_Templates/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Variadic-Templates"><a href="#Variadic-Templates" class="headerlink" title="Variadic Templates"></a>Variadic Templates</h1><h2 id="数量不定的模板参数："><a href="#数量不定的模板参数：" class="headerlink" title="数量不定的模板参数："></a>数量不定的模板参数：</h2><p>Variadic Template是C++11的一个很重要的特性；</p><p>变体现在两个方面：</p><ul><li>参数个数：利用参数个数逐一递减的特性，实现递归调用；</li><li>参数类型：参数个数逐一递减导致参数类型也逐一递减；</li></ul><p>两个注意点</p><ul><li>递归调用</li><li>递归终止：使用重载的办法终止递归调用；</li></ul><p><img src="https://i.imgur.com/PheGO3f.png"></p><h2 id="递归函数方式展开参数包"><a href="#递归函数方式展开参数包" class="headerlink" title="递归函数方式展开参数包"></a>递归函数方式展开参数包</h2><h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><p>以print函数为例，该模板参数将可以把参数不断地递归分解参数，不断递归调用print本身将参数打印出来了，但是最后一个打印完后没有参数了，所以还需要写一个参数为零的print()。 </p><pre><code>void print() &#123;&#125;template&lt;typename T,typename...Types&gt;void print(const T&amp; firstArg, const Types&amp;...args) &#123;    cout &lt;&lt; firstArg &lt;&lt; endl;    printX(args...);&#125;</code></pre><h3 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h3><pre><code>int maximun(int n)&#123;    return n;&#125;template&lt;typename...Args&gt;int maximun(int n,Args...args)&#123;    return std::max(n,maximun(args...));&#125;</code></pre><h2 id="逗号表达式展开参数包"><a href="#逗号表达式展开参数包" class="headerlink" title="逗号表达式展开参数包"></a>逗号表达式展开参数包</h2><pre><code>template &lt;class T&gt;void printarg(T t)&#123;cout &lt;&lt; t &lt;&lt; endl;&#125;template &lt;class ...Args&gt;void expand(Args... args)&#123;int arr[] = &#123;(printarg(args), 0)...&#125;;&#125;expand(1,2,3,4);</code></pre><p>这个例子将分别打印出1,2,3,4四个数字。这种展开参数包的方式，不需要通过递归终止函数，是直接在expand函数体中展开的, printarg不是一个递归终止函数，只是一个处理参数包中每一个参数的函数。这种就地展开参数包的方式实现的关键是逗号表达式。我们知道逗号表达式会按顺序执行逗号前面的表达式，比如：</p><pre><code>d = (a = b, c); </code></pre><p>这个表达式会按顺序执行：b会先赋值给a，接着括号中的逗号表达式返回c的值，因此d将等于c。</p><p>expand函数中的逗号表达式：(printarg(args), 0)，也是按照这个执行顺序，先执行printarg(args)，再得到逗号表达式的结果0。同时还用到了C++11的另外一个特性——初始化列表，通过初始化列表来初始化一个变长数组, {(printarg(args), 0)…}将会展开成((printarg(arg1),0), (printarg(arg2),0), (printarg(arg3),0),  etc… )，最终会创建一个元素值都为0的数组int arr[sizeof…(Args)]。由于是逗号表达式，在创建数组的过程中会先执行逗号表达式前面的部分printarg(args)打印出参数，也就是说在构造int数组的过程中就将参数包展开了，这个数组的目的纯粹是为了在数组构造的过程展开参数包。我们可以把上面的例子再进一步改进一下，将函数作为参数，就可以支持lambda表达式了，从而可以少写一个递归终止函数了，具体代码如下：</p><pre><code>template&lt;class F, class... Args&gt;void expand(const F&amp; f, Args&amp;&amp;...args) &#123;    initializer_list&lt;int&gt;&#123;(f(std::forward&lt; Args&gt;(args)),0)...&#125;;&#125;expand([](int i)&#123;cout&lt;&lt;i&lt;&lt;endl;&#125;, 1,2,3);</code></pre><p>上面的例子将打印出每个参数，这里如果再使用C++14的新特性泛型lambda表达式的话，可以写更泛化的lambda表达式了：</p><pre><code>expand([](auto i)&#123;cout&lt;&lt;i&lt;&lt;endl;&#125;, 1,2.0,”test”);</code></pre><p>主要内容摘自<a href="https://www.cnblogs.com/qicosmos/p/4325949.html">https://www.cnblogs.com/qicosmos/p/4325949.html</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c++11 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>STL</title>
       <link href="/2022/10/07/zSTL/STL/"/>
       <url>/2022/10/07/zSTL/STL/</url>
