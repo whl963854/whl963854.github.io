@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>全排列 | Hexo</title>
-  <meta name="keywords" content=" math ">
-  <meta name="description" content="全排列 | Hexo">
+  <title>某些小项目 | Hexo</title>
+  <meta name="keywords" content=" 软工 ">
+  <meta name="description" content="某些小项目 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到！">
 <meta property="og:type" content="website">
@@ -1379,9 +1379,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-题解/全排列" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-soft" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">全排列</h1>
+        <h1 class="article-title">某些小项目</h1>
     
     <div class="article-meta">
         
@@ -1391,7 +1391,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="题解">题解</a>
+            <a  data-rel="软工">软工</a>
             
         </span>
         
@@ -1399,19 +1399,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">math</a>
+            <a class="color3">软工</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-09-07 13:20:22'>2022-09-07 13:01</time>
+            Created At : <time class="date" title='Updated At: 2022-11-23 16:14:08'>2022-11-23 16:13</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:621</span>
+        <span>Count:12</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1441,7 +1441,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E6%8E%92%E5%88%97"><span class="toc-text">全排列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">代码实现</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B1%A1%E6%A3%8B%E6%96%B9%E5%9D%97"><span class="toc-text">象棋方块</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1457,35 +1457,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h2><p>全排列 一般把1~ n 这 n 个整数按某个顺序摆放的结果称为这 n 个整数的一个排列，而全排列指这 n 个整数能形成的所有排列。<br>例如对1、2、3这三个整数来说，(1,2,3)、(1,3,2)、(2,1,3)、(2,3,1 、(3,1,2)、(3,2, I ）就是1<del>3的全排列。<br>从递归的角度去考虑，如果把问题描述成“输出1</del> n 这 n 个整数的全排列”，那么它就可以被分为若干个子问题：“输出以1开头的全排列”“输出以2开头的全排列”…“输出以 n 开头的全排列”。于是不妨设定一个数组 P ，用来存放当前的排列；再设定一个散列数组 hash Table ，其中 hashTable [ x ］当整数 x 已经在数组 P 中时为 true 。<br>现在按顺序往 P 的第1位到第 n 位中填入数字。不妨假设当前已经填好了 P [1]~ P [ index -1]，正准备填 P [ index ]。显然需要枚举1~ n ，如果当前枚举的数字 x 还没有在 P [1]~ P [ index -1］中（即 hashTable [ x ]&#x3D; false )，那么就把它填入 P [ index ]，同时将 hashTable [ x ］置为 true ,然后去处理 P 的第 Tndex +1位（即进行递归）；而当递归完成时，再将 hashTable [ x ］还原为 false ,以便让 P [ index ］填下一个数字。<br>当 index 达到 n +1时，说明 P 的第1~ n 位都已经填好了，此时可以把数组 P 输出，表示生成了一个排列，然后直接 return 即可。</p>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>    # include &lt; cstdio &gt;
-    const int maxn =1l;
-    //P为当前排列， hashTable 记录整数 x 是否已经在 P 中 
-    int n , P [maxn], hashTable[maxn]=&#123;false&#125;;
-    //当前处理排列的第 index 号位
-    void generateP ( int index )&#123;
-        if ( index = n +1)&#123;//递归边界，已经处理完排列的1~ n 位
-            for ( int i = 1 ; i &lt;= n ; i ++)&#123;
-                printf (&quot;%d&quot;, P [ i ]);//输出当前排列
-            &#125;
-            printf (&quot;\n &quot;);
-            return ;
-        &#125;
-        for ( int ×=1;×&lt;= n ;×++)&#123;//枚举1~ n ，试图将×填入 P [ index ]
-            if ( hashTable [ x ]== false )&#123;//如果×不在P[0]~P [index-1］中 
-            P [ index ]= X ;//令 P 的第 index 位为×，即把×加入当前排列 
-            hashTable [ x ]= true ;//记 x 已在 P 中
-            generateP ( index +1);//处理排列的第 index +1号位
-            hashTable [ x ]= false ;//已处理完 P [ index ］为×的子问题，还原状态
-            &#125;
-        &#125;
-    &#125;
-    int main ()&#123;
-        n =3;//欲输出1~3的全排列
-        generateP (1);//从 P [1］开始填 
-        return 0;
-    &#125;
-</code></pre>
+        <h2 id="象棋方块"><a href="#象棋方块" class="headerlink" title="象棋方块"></a>象棋方块</h2><p><a target="_blank" rel="noopener" href="http://wang-ziminghhh.gitee.io/last-chess-blocks/">http://wang-ziminghhh.gitee.io/last-chess-blocks/</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3366576307@qq.com </span>
