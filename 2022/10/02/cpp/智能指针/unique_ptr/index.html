@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>智能指针 | Hexo</title>
-  <meta name="keywords" content=" cpp ">
-  <meta name="description" content="智能指针 | Hexo">
+  <title>unique_ptr | Hexo</title>
+  <meta name="keywords" content=" 智能指针 ">
+  <meta name="description" content="unique_ptr | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到！">
 <meta property="og:type" content="website">
@@ -154,7 +154,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(105)</small>
+                <small>(106)</small>
             
         </div>
     </li>
@@ -179,7 +179,7 @@
                     <div data-rel="计算机通信与网络">
                         
                         计算机通信与网络
-                        <small>(2)</small>
+                        <small>(3)</small>
                         
                     </div>
                     
@@ -339,8 +339,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="105">
-<input type="hidden" id="yelog_site_word_count" value="114.7k">
+<input type="hidden" id="yelog_site_posts_number" value="106">
+<input type="hidden" id="yelog_site_word_count" value="120.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -465,6 +465,15 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/2022/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E4%BF%A1%E4%B8%8E%E7%BD%91%E7%BB%9C/windows_sockets/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="套接字编程">套接字编程</span>
+            <span class="post-date" title="2022-11-26 19:20:05">2022/11/26</span>
+        </a>
         
         
         <a  class="All 设计模式 "
@@ -712,9 +721,9 @@
         
         <a  class="All cpp "
            href="/2022/10/02/cpp/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/unique_ptr/"
-           data-tag="cpp"
+           data-tag="智能指针"
            data-author="" >
-            <span class="post-title" title="智能指针">智能指针</span>
+            <span class="post-title" title="unique_ptr">unique_ptr</span>
             <span class="post-date" title="2022-10-02 19:53:58">2022/10/02</span>
         </a>
         
@@ -1431,7 +1440,7 @@
     <div class="pjax">
         <article id="post-cpp/智能指针/unique_ptr" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">智能指针</h1>
+        <h1 class="article-title">unique_ptr</h1>
     
     <div class="article-meta">
         
@@ -1449,19 +1458,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">cpp</a>
+            <a class="color5">智能指针</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-10-08 19:27:46'>2022-10-02 19:53</time>
+            Created At : <time class="date" title='Updated At: 2022-11-27 10:26:01'>2022-10-02 19:53</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:563</span>
+        <span>Count:843</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1491,7 +1500,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#unique-ptr"><span class="toc-text">unique_ptr</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA"><span class="toc-text">创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unique-ptr%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">unique_ptr的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unique-ptr%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-text">unique_ptr的基本使用</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#unique-ptr"><span class="toc-text">unique_ptr</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unique-ptr%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">unique_ptr的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unique-ptr%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-text">unique_ptr的基本使用</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1511,7 +1520,7 @@
 <pre><code>#include &lt;memory&gt;
 using namespace std;
 </code></pre>
-<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>通过以下  2 种方式，可以创建出空的 unique_ptr 指针：</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>通过以下  2 种方式，可以创建出空的 unique_ptr 指针：</p>
 <pre><code>std::unique_ptr&lt;int&gt; p1();
 std::unique_ptr&lt;int&gt; p2(nullptr);
 </code></pre>
@@ -1519,6 +1528,38 @@ std::unique_ptr&lt;int&gt; p2(nullptr);
 <pre><code>std::unique_ptr&lt;int&gt; p3(new int);
 </code></pre>
 <p>由此就创建出了一个 p3 智能指针，其指向的是可容纳 1 个整数的堆存储空间。和可以用 make_shared<T>() 模板函数初始化 shared_ptr 指针不同，C++11 标准中并没有为 unique_ptr 类型指针添加类似的模板函数。</T></p>
+<p>std::unique_ptr 不允许复制，但是可以通过函数返回给其他的 std::unique_ptr，还可以通过 std::move 来转译给其他的 std::unique_ptr，这样原始指针的所有权就被转移了，这个原始指针还是被独占的。</p>
+<p>unique_ptr 独占智能指针类也有一个 reset 方法，函数原型如下：</p>
+<pre><code>void reset( pointer ptr = pointer() ) noexcept;
+</code></pre>
+<p>使用 reset 方法可以让 unique_ptr 解除对原始内存的管理，也可以用来初始化一个独占的智能指针。</p>
+<pre><code>int main()
+&#123;
+    unique_ptr&lt;int&gt; ptr1(new int(10));
+    unique_ptr&lt;int&gt; ptr2 = move(ptr1);
+
+    ptr1.reset();
+    ptr2.reset(new int(250));
+
+    return 0;
+&#125;
+</code></pre>
+<p>ptr1.reset(); 解除对原始内存的管理<br>ptr2.reset(new int(250)); 重新指定智能指针管理的原始内存</p>
+<p>如果想要获取独占智能指针管理的原始地址，可以调用 get () 方法，<br>函数原型如下：</p>
+<pre><code>pointer get() const noexcept;
+</code></pre>
+<p>函数用法示例</p>
+<pre><code>int main()
+&#123;
+    unique_ptr&lt;int&gt; ptr1(new int(10));
+    unique_ptr&lt;int&gt; ptr2 = move(ptr1);
+
+    ptr2.reset(new int(250));
+    cout &lt;&lt; *ptr2.get() &lt;&lt; endl;    // 得到内存地址中存储的实际数值 250
+
+    return 0;
+&#125;
+</code></pre>
 <h2 id="unique-ptr的实现"><a href="#unique-ptr的实现" class="headerlink" title="unique_ptr的实现"></a>unique_ptr的实现</h2><pre><code>template&lt;typename T&gt;
 struct AutoPtr4
 &#123;
