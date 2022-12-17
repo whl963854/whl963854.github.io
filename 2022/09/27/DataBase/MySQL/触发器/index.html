@@ -154,7 +154,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(107)</small>
+                <small>(111)</small>
             
         </div>
     </li>
@@ -263,7 +263,7 @@
                     <div data-rel="Database">
                         
                         Database
-                        <small>(13)</small>
+                        <small>(17)</small>
                         
                     </div>
                     
@@ -339,8 +339,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="107">
-<input type="hidden" id="yelog_site_word_count" value="123.2k">
+<input type="hidden" id="yelog_site_posts_number" value="111">
+<input type="hidden" id="yelog_site_word_count" value="130.5k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -448,6 +448,14 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NoSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Redis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>STL</a>
             </li>
         
@@ -467,6 +475,42 @@
     <nav id="title-list-nav">
         
         
+        <a  class="All Database "
+           href="/2022/12/16/DataBase/Redis/SpringDataRedis/"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="SpringDataRedis">SpringDataRedis</span>
+            <span class="post-date" title="2022-12-16 19:23:43">2022/12/16</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/2022/12/16/DataBase/Redis/Jedis/"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="Jedis">Jedis</span>
+            <span class="post-date" title="2022-12-16 19:14:50">2022/12/16</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/2022/12/16/DataBase/Redis/%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="Redis常见命令">Redis常见命令</span>
+            <span class="post-date" title="2022-12-16 17:09:34">2022/12/16</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/2022/12/16/DataBase/Redis/NoSQL/"
+           data-tag="NoSQL"
+           data-author="" >
+            <span class="post-title" title="NoSQL">NoSQL</span>
+            <span class="post-date" title="2022-12-16 17:03:38">2022/12/16</span>
+        </a>
+        
+        
         <a  class="All cpp "
            href="/2022/11/27/cpp/%E5%A4%9A%E7%BA%BF%E7%A8%8B%C2%B7/"
            data-tag="cpp"
@@ -477,7 +521,7 @@
         
         
         <a  class="All 计算机通信与网络 "
-           href="/2022/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E4%BF%A1%E4%B8%8E%E7%BD%91%E7%BB%9C/windows_sockets/"
+           href="/2022/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E4%BF%A1%E4%B8%8E%E7%BD%91%E7%BB%9C/%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B/"
            data-tag=""
            data-author="" >
             <span class="post-title" title="套接字编程">套接字编程</span>
@@ -1474,7 +1518,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-09-27 16:19:48'>2022-09-27 16:04</time>
+            Created At : <time class="date" title='Updated At: 2022-12-05 19:10:41'>2022-09-27 16:04</time>
         
     </div>
     <div class="article-meta">
@@ -1531,7 +1575,7 @@
 <li>UPDATE 型触发器   OLD   表示修改之前的数据 , NEW 表示将要或已经修改后的数据</li>
 <li>DELETE 型触发器   OLD   表示将要或者已经删除的数据</li>
 </ul>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>创建 </p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>创建</p>
 <pre><code>CREATE TRIGGER trigger_name
 BEFORE/AFTER INSERT/UPDATE/DELETE
 ON tbl_name FOR EACH ROW -- 行级触发器
@@ -1543,7 +1587,8 @@ END;
 <pre><code>SHOW TRIGGERS ;
 </code></pre>
 <p>删除</p>
-<pre><code>DROP TRIGGER [schema_name.]trigger_name ; -- 如果没有指定 schema_name，默认为当前数据库 。
+<pre><code>DROP TRIGGER [schema_name]trigger_name ; 
+-- 如果没有指定 schema_name，默认为当前数据库 。
 </code></pre>
 <h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>通过触发器记录 tb_user 表的数据变更日志，将变更日志插入到日志表user_logs中, 包含增加, 修改 , 删除 ;<br>创建表结构：</p>
 <pre><code>create table user_logs(
@@ -1559,19 +1604,23 @@ END;
 <pre><code>create trigger tb_user_insert_trigger
 after insert on tb_user for each row
 begin
-    insert into user_logs(id, operation, operate_time, operate_id, operate_params) VALUES
-    (null, &#39;insert&#39;, now(), new.id, concat(&#39;插入的数据内容为:
-    id=&#39;,new.id,&#39;,name=&#39;,new.name, &#39;, phone=&#39;, NEW.phone, &#39;, email=&#39;, NEW.email, &#39;,
-    profession=&#39;, NEW.profession));
+    insert into user_logs(id, operation, operate_time, operate_id, operate_params) 
+    VALUES(
+        null, &#39;insert&#39;, now(), new.id, concat(&#39;插入的数据内容为:
+        id=&#39;,new.id,&#39;,name=&#39;,new.name, &#39;, phone=&#39;, NEW.phone, &#39;, email=&#39;, NEW.email, &#39;,
+        profession=&#39;, NEW.profession)
+    );
 end;
 </code></pre>
 <p>定义更新触发器：</p>
 <pre><code>create trigger tb_user_update_trigger
 after update on tb_user for each row
 begin
-    insert into user_logs(id, operation, operate_time, operate_id, operate_params) VALUES
-    (null, &#39;update&#39;, now(), new.id,
-    concat(&#39;更新之前的数据: id=&#39;,old.id,&#39;,name=&#39;,old.name, &#39;, phone=&#39;,old.phone, &#39;, email=&#39;, old.email, &#39;, profession=&#39;, old.profession,&#39; | 更新之后的数据: id=&#39;,new.id,&#39;,name=&#39;,new.name, &#39;, phone=&#39;,NEW.phone, &#39;, email=&#39;, NEW.email, &#39;, profession=&#39;, NEW.profession));
+    insert into user_logs(id, operation, operate_time, operate_id, operate_params) 
+    VALUES(
+        null, &#39;update&#39;, now(), new.id,
+        concat(&#39;更新之前的数据: id=&#39;,old.id,&#39;,name=&#39;,old.name, &#39;, phone=&#39;,old.phone, &#39;, email=&#39;, old.email, &#39;, profession=&#39;, old.profession,&#39; | 更新之后的数据: id=&#39;,new.id,&#39;,name=&#39;,new.name, &#39;, phone=&#39;,NEW.phone, &#39;, email=&#39;, NEW.email, &#39;, profession=&#39;, NEW.profession)
+    );
 end; 
 </code></pre>
 <p>定义删除触发器：</p>
