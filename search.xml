@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2023/01/11/git/git%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87/"/>
+      <url>/2023/01/11/git/git%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）"><a href="#1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）" class="headerlink" title="1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）"></a>1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）</h2><h3 id="问题1-根据下面的图片，回答问题"><a href="#问题1-根据下面的图片，回答问题" class="headerlink" title="问题1 : 根据下面的图片，回答问题"></a>问题1 : 根据下面的图片，回答问题</h3><p><img src="/2023/01/11/git/git%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87/Areas.png"></p><h5 id="解释下面概念"><a href="#解释下面概念" class="headerlink" title="解释下面概念"></a>解释下面概念</h5><pre><code>◦ workspace : 工作区，平时存放项目代码的地方◦ staging area :暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息,一般存放在 .git 目录下的 index 文件◦ local repository : 仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本;◦ remote repository : 远程仓库，托管代码的服务器</code></pre><h3 id="问题2-：-如何解决-git-冲突"><a href="#问题2-：-如何解决-git-冲突" class="headerlink" title="问题2 ： 如何解决 git 冲突?"></a>问题2 ： 如何解决 git 冲突?</h3><p>删除代码中矛盾的代码或者恢复到以前版本</p><h3 id="问题3-出现下面问题的原因与解决方案是什么"><a href="#问题3-出现下面问题的原因与解决方案是什么" class="headerlink" title="问题3 : 出现下面问题的原因与解决方案是什么?"></a>问题3 : 出现下面问题的原因与解决方案是什么?</h3><pre><code>◦ 更新代码后显示： unable to unlink old ‘xxx/xxx/xx’ : invalid argument    ▪ 原因:因为XXX正在被运行，        ▪ 解决方案:先把它的进程关闭，重试一下就好了。    ◦ 更新代码后显示 :  the following untracked working tree files would be overwritten by checkout    ▪ 原因:        ▪ 解决方案:git clean -d -fx</code></pre><p>删除当前目录及子文件夹下的未 track 的文件及文件夹</p><pre><code>◦ 更新代码后显示 : your local changes to the following files would be overwritten by merge…please move or remove them before you merge    ▪ 原因:        ▪ 解决方案:◦ 版本回退git reset --hard &#123;hash&#125;后提示：fatal: could not parse object “hash id”    ▪ 原因:        ▪ 解决方案:◦ git push后提示:to https://.git![rejected] localRepo-&gt;remoteRepo(fetch first)error: failed to push some refs to ‘https://.git’Updates were rejected because the remote contain work that you do not have locally.    ▪ 原因:    ▪ 解决方案:</code></pre><h2 id="2-完成下列操作"><a href="#2-完成下列操作" class="headerlink" title="2. 完成下列操作"></a>2. 完成下列操作</h2><h5 id="下面的操作完成后，"><a href="#下面的操作完成后，" class="headerlink" title="下面的操作完成后，"></a>下面的操作完成后，</h5><pre><code>a. 克隆仓库b. 提交修改到暂存区c. 提交修改到远程仓库d. 从远程仓库下载代码e. 查看仓库状态f. 比较文件的不同,即暂存区与工作区的差别g. 创建分支/切换分支/查看分支列表h. 上传代码到分支上i. 合并分支到主分支j. 删除分支k. 回退到某个版本</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>棘手怀念摧毁</title>
+      <link href="/2022/12/25/%E9%A2%98%E8%A7%A3/%E6%A3%98%E6%89%8B%E6%80%80%E5%BF%B5%E6%91%A7%E6%AF%81/"/>
+      <url>/2022/12/25/%E9%A2%98%E8%A7%A3/%E6%A3%98%E6%89%8B%E6%80%80%E5%BF%B5%E6%91%A7%E6%AF%81/</url>
+      
+        <content type="html"><![CDATA[<h1 id="棘手怀念摧毁"><a href="#棘手怀念摧毁" class="headerlink" title="棘手怀念摧毁"></a>棘手怀念摧毁</h1><h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><p><img src="/2022/12/25/%E9%A2%98%E8%A7%A3/%E6%A3%98%E6%89%8B%E6%80%80%E5%BF%B5%E6%91%A7%E6%AF%81/%E6%A3%98%E6%89%8B%E6%80%80%E5%BF%B5%E6%91%A7%E6%AF%81.png"></p><h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><p>输入格式:第一行有三个整数n,m，A ;<br>第二行有n个数ai，表示每头大象的愤怒值。<br>输出格式:一个整数表示新大象住下后象棚最大的愤怒值。</p><h2 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h2><p>样例1</p><pre><code>输入:   3 2 50        60 100 70输出:270</code></pre><p>备注<br>其中:1≤m≤n ≤5* 106，0 ≤ai, A ≤100。【样例解释】<br>1.当新大象在第一个位置时(50,60,100,70 )，整个象棚的愤怒值的最大值为max 60,50 + max 60,100 + max 100,70，即60＋100＋100&#x3D;260。<br>2.当新大象在第二个位置时( 60,50,100,70 )，整个象棚的愤怒值的最大值为max 60,50 + max 50,100 + max 100,70，即60＋100+100&#x3D; 260。<br>3.当新大象在第三个位置时( 60,100,50,70 )，整个象棚的愤怒值的最大值为max 60,100 + max 100,50 + max 50,70，即100＋100＋70 &#x3D; 270。<br>4.当新大象在第四个位置时( 60,100,70,50 )，整个象棚的愤怒值的最大值为max 60,100 + max 100,70 + max 70,50，即70＋100＋100 &#x3D; 270。<br>整个象棚的愤怒值的最大值为max 260,260,270,270 &#x3D; 270。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 码题集 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SpringDataRedis</title>
       <link href="/2022/12/16/DataBase/Redis/SpringDataRedis/"/>
       <url>/2022/12/16/DataBase/Redis/SpringDataRedis/</url>
@@ -790,7 +828,7 @@
       <link href="/2022/10/07/zSTL/STL/"/>
       <url>/2022/10/07/zSTL/STL/</url>
       
-        <content type="html"><![CDATA[<h1 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>六大部件</strong></p><ul><li>分配器</li><li>容器</li><li>迭代器</li><li>算法</li><li>仿函数</li><li>适配器</li></ul><h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><p>分为</p><ul><li>Sequence Containers<ul><li>Array</li><li>Vector</li><li>Deque</li><li>List</li><li>Forward-List</li></ul></li><li>Associative Containers<ul><li>Set&#x2F;Multiset</li><li>Map&#x2F;Multimap</li><li>Unordered Set&#x2F;Multiset</li><li>Unordered Map&#x2F;Multimap</li></ul></li></ul><h2 id="顺序容器"><a href="#顺序容器" class="headerlink" title="顺序容器"></a>顺序容器</h2><table><thead><tr><th>容器类型</th><th>介绍</th></tr></thead><tbody><tr><td><code>vector</code></td><td>可变大小数组。支持快速随机访问。在尾部之外的位置插入或删除元素可能很慢。</td></tr><tr><td><code>deque</code></td><td>双端队列。支持快速随机访问。在头尾位置插入&#x2F;删除速度很快。</td></tr><tr><td><code>list</code></td><td>双向链表。只支持双向顺序访问。在<code>list</code>中任何位置进行插入&#x2F;删除操作速度都很快。</td></tr><tr><td><code>forward_list</code></td><td>单向链表。只支持单向顺序访问。在链表任何位置进行插入&#x2F;删除操作速度都很快。</td></tr><tr><td><code>array</code></td><td>固定大小数组。支持快速随机访问。不能添加或者删除元素。</td></tr><tr><td><code>string</code></td><td>与<code>vector</code>相似的容器，但专门用于保存字符。随机访问块。在尾部插入&#x2F;删除速度快。</td></tr></tbody></table><ul><li><p>除了固定大小的<code>array</code>外，其他容器都提供高效、灵活的内存管理。</p></li><li><p><code>forward_list</code>和<code>array</code>是新C++标准增加的类型。</p></li><li><p>通常使用<code>vector</code>是最好的选择，除非你有很好的理由选择其他容器。</p></li><li><p>新标准库的容器比旧版的快得多。</p></li><li><p><code>forward_list</code>没有<code>size</code>操作，对其他容器而言，<code>size</code>保证是一个快速的常量时间的操作。</p></li><li><p>除了固定大小的<code>array</code>外，其他容器都提供高效、灵活的内存管理。</p></li><li><p><code>forward_list</code>和<code>array</code>是新C++标准增加的类型。</p></li><li><p>通常使用<code>vector</code>是最好的选择，除非你有很好的理由选择其他容器。</p></li><li><p>新标准库的容器比旧版的快得多。</p></li><li><p><code>forward_list</code>没有<code>size</code>操作，对其他容器而言，<code>size</code>保证是一个快速的常量时间的操作。</p></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>六大部件</strong></p><ul><li>分配器</li><li>容器</li><li>迭代器</li><li>算法</li><li>仿函数</li><li>适配器</li></ul><p><img src="/2022/10/07/zSTL/STL/Components.png"></p><h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><p>分为</p><ul><li>Sequence Containers<ul><li>Array</li><li>Vector</li><li>Deque</li><li>List</li><li>Forward-List</li></ul></li><li>Associative Containers<ul><li>Set&#x2F;Multiset</li><li>Map&#x2F;Multimap</li><li>Unordered Set&#x2F;Multiset</li><li>Unordered Map&#x2F;Multimap</li></ul></li></ul><h2 id="顺序容器"><a href="#顺序容器" class="headerlink" title="顺序容器"></a>顺序容器</h2><table><thead><tr><th>容器类型</th><th>介绍</th></tr></thead><tbody><tr><td><code>vector</code></td><td>可变大小数组。支持快速随机访问。在尾部之外的位置插入或删除元素可能很慢。</td></tr><tr><td><code>deque</code></td><td>双端队列。支持快速随机访问。在头尾位置插入&#x2F;删除速度很快。</td></tr><tr><td><code>list</code></td><td>双向链表。只支持双向顺序访问。在<code>list</code>中任何位置进行插入&#x2F;删除操作速度都很快。</td></tr><tr><td><code>forward_list</code></td><td>单向链表。只支持单向顺序访问。在链表任何位置进行插入&#x2F;删除操作速度都很快。</td></tr><tr><td><code>array</code></td><td>固定大小数组。支持快速随机访问。不能添加或者删除元素。</td></tr><tr><td><code>string</code></td><td>与<code>vector</code>相似的容器，但专门用于保存字符。随机访问块。在尾部插入&#x2F;删除速度快。</td></tr></tbody></table><ul><li><p>除了固定大小的<code>array</code>外，其他容器都提供高效、灵活的内存管理。</p></li><li><p><code>forwa‘rd_list</code>和<code>array</code>是新C++标准增加的类型。</p></li><li><p>通常使用<code>vector</code>是最好的选择，除非你有很好的理由选择其他容器。</p></li><li><p>新标准库的容器比旧版的快得多。</p></li><li><p><code>forward_list</code>没有<code>size</code>操作，对其他容器而言，<code>size</code>保证是一个快速的常量时间的操作。</p></li><li><p>除了固定大小的<code>array</code>外，其他容器都提供高效、灵活的内存管理。</p></li><li><p><code>forward_list</code>和<code>array</code>是新C++标准增加的类型。</p></li><li><p>通常使用<code>vector</code>是最好的选择，除非你有很好的理由选择其他容器。</p></li><li><p>新标准库的容器比旧版的快得多。</p></li><li><p><code>forward_list</code>没有<code>size</code>操作，对其他容器而言，<code>size</code>保证是一个快速的常量时间的操作。</p></li></ul>]]></content>
       
       
       <categories>
