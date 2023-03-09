@@ -154,7 +154,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(116)</small>
+                <small>(117)</small>
             
         </div>
     </li>
@@ -235,7 +235,7 @@
                     <div data-rel="cpp">
                         
                         cpp
-                        <small>(38)</small>
+                        <small>(39)</small>
                         
                     </div>
                     
@@ -311,8 +311,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="116">
-<input type="hidden" id="yelog_site_word_count" value="134.7k">
+<input type="hidden" id="yelog_site_posts_number" value="117">
+<input type="hidden" id="yelog_site_word_count" value="135.2k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -396,6 +396,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>现代cpp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>行为型模式</a>
             </li>
         
@@ -457,6 +461,15 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All cpp "
+           href="/2023/03/09/cpp/%E7%8E%B0%E4%BB%A3cpp/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%98%E9%87%8F/"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="初始化变量">初始化变量</span>
+            <span class="post-date" title="2023-03-09 13:45:00">2023/03/09</span>
+        </a>
         
         
         <a  class="All cpp "
@@ -1530,12 +1543,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-01-11 16:27:40'>2023-01-11 15:05</time>
+            Created At : <time class="date" title='Updated At: 2023-02-27 20:22:00'>2023-01-11 15:05</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:538</span>
+        <span>Count:774</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1594,42 +1607,51 @@
     ▪ 解决方案:先把它的进程关闭，重试一下就好了。
     
 ◦ 更新代码后显示 :  the following untracked working tree files would be overwritten by checkout
-    ▪ 原因:
+    ▪ 原因: Error 所列出的文件在本地的当前分支下未授权给 git 追踪，但同样命名的文件，也即出现在另一个（远程）分支下的同一文件却正在远程仓库或其它分支被 git 进行追踪
     
-    ▪ 解决方案:git clean -d -fx
-</code></pre>
-<p>删除当前目录及子文件夹下的未 track 的文件及文件夹</p>
-<pre><code>◦ 更新代码后显示 : your local changes to the following files would be overwritten by merge…please move or remove them before you merge
-    ▪ 原因:
+    ▪ 解决方案: git clean -d -fx 删除当前目录及子文件夹下的未 track 的文件及文件夹
+
+◦ 更新代码后显示 : your local changes to the following files would be overwritten by merge…please move or remove them before you merge
+    ▪ 原因:git merge时本地分支的更改没有保存下来
     
-    ▪ 解决方案:
+    ▪ 解决方案:暂存到堆栈区
 
 ◦ 版本回退git reset --hard &#123;hash&#125;后提示：fatal: could not parse object “hash id”
-    ▪ 原因:
+    ▪ 原因:切换到master分支后没有更新最新代码
     
-    ▪ 解决方案:
+    ▪ 解决方案:先通过git pull --rebase更新当前分支代码，然后再执行git reset
 
 ◦ git push后提示:
 to https://.git
 ![rejected] localRepo-&gt;remoteRepo(fetch first)
 error: failed to push some refs to ‘https://.git’
 Updates were rejected because the remote contain work that you do not have locally.
-    ▪ 原因:
+    ▪ 原因:远程包含的事务不在你的本地，在push前需要整合远端，
 
 
-    ▪ 解决方案:
+    ▪ 解决方案:拉取远端的代码然后进行整合到本地，再push到远端即可
 </code></pre>
-<h2 id="2-完成下列操作"><a href="#2-完成下列操作" class="headerlink" title="2. 完成下列操作"></a>2. 完成下列操作</h2><h5 id="下面的操作完成后，"><a href="#下面的操作完成后，" class="headerlink" title="下面的操作完成后，"></a>下面的操作完成后，</h5><pre><code>a. 克隆仓库
-b. 提交修改到暂存区
-c. 提交修改到远程仓库
-d. 从远程仓库下载代码
-e. 查看仓库状态
-f. 比较文件的不同,即暂存区与工作区的差别
-g. 创建分支/切换分支/查看分支列表
-h. 上传代码到分支上
-i. 合并分支到主分支
-j. 删除分支
-k. 回退到某个版本
+<h2 id="2-完成下列操作"><a href="#2-完成下列操作" class="headerlink" title="2. 完成下列操作"></a>2. 完成下列操作</h2><h5 id="下面的操作完成后，"><a href="#下面的操作完成后，" class="headerlink" title="下面的操作完成后，"></a>下面的操作完成后，</h5><pre><code>a. 克隆仓库 git clone + url
+
+b. 提交修改到暂存区 git add .
+
+c. 提交修改到远程仓库 git push commit -m &quot;xxxx&quot;
+
+d. 从远程仓库下载代码 git pull
+
+e. 查看仓库状态 git status
+
+f. 比较文件的不同,即暂存区与工作区的差别 git  diff
+
+g. 创建分支/切换分支/查看分支列表 git branch xxx /git check out /git branch -v
+
+h. 上传代码到分支上 git push -u origin xxx
+
+i. 合并分支到主分支 git merge xxx
+
+j. 删除分支 删除远程分支xxx git push origin --delete xxx /删除本地分支xxx  git branch -d xxx
+
+k. 回退到某个版本 git reset --hard 版本库地址
 </code></pre>
 
       

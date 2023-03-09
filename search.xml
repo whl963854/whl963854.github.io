@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>初始化变量</title>
+      <link href="/2023/03/09/cpp/%E7%8E%B0%E4%BB%A3cpp/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%98%E9%87%8F/"/>
+      <url>/2023/03/09/cpp/%E7%8E%B0%E4%BB%A3cpp/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%98%E9%87%8F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="初始化变量"><a href="#初始化变量" class="headerlink" title="初始化变量"></a>初始化变量</h1><p>统一初始化是c++11的一个重要特性<br>例如：</p><pre><code>class MyClass&#123;&#125;int main()&#123;    MyClass a;    MyClass b(MyClass());    return 0;&#125;</code></pre><p>c++编译器不会把<code>MyClass b(MyClass());</code>看作是定义了一个类型为MyClass且名称为b的变量，它调用了一个构造函数并且接收MyClass产生的对象，实际上，编译器会认为这是一个函数声明，声明一个b的函数，返回MyClass，有一个未命名的函数指针指向返回MyClass对象的函数。</p><pre><code>class MyClass&#123;&#125;int main()&#123;    MyClass a;    MyClass b&#123; MyClass&#123;&#125; &#125;;    return 0;&#125;</code></pre><p>统一初始化几乎可以初始化所有变量，他的另一个好处就是可以防止变量缩窄</p><pre><code>char a=&#123;512&#125;;</code></pre><p>除非强制类型转换告诉编译器我要允许缩窄，否则编译器不会编译此代码。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 现代cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>委派构造函数</title>
       <link href="/2023/02/19/cpp/cpp11/%E5%A7%94%E6%B4%BE%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
       <url>/2023/02/19/cpp/cpp11/%E5%A7%94%E6%B4%BE%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</url>
@@ -83,7 +108,7 @@
       <link href="/2023/01/11/git/git%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87/"/>
       <url>/2023/01/11/git/git%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87/</url>
       
-        <content type="html"><![CDATA[<h2 id="1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）"><a href="#1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）" class="headerlink" title="1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）"></a>1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）</h2><h3 id="问题1-根据下面的图片，回答问题"><a href="#问题1-根据下面的图片，回答问题" class="headerlink" title="问题1 : 根据下面的图片，回答问题"></a>问题1 : 根据下面的图片，回答问题</h3><p><img src="/2023/01/11/git/git%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87/Areas.png"></p><h5 id="解释下面概念"><a href="#解释下面概念" class="headerlink" title="解释下面概念"></a>解释下面概念</h5><pre><code>◦ workspace : 工作区，平时存放项目代码的地方◦ staging area :暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息,一般存放在 .git 目录下的 index 文件◦ local repository : 仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本;◦ remote repository : 远程仓库，托管代码的服务器</code></pre><h3 id="问题2-：-如何解决-git-冲突"><a href="#问题2-：-如何解决-git-冲突" class="headerlink" title="问题2 ： 如何解决 git 冲突?"></a>问题2 ： 如何解决 git 冲突?</h3><p>删除代码中矛盾的代码或者恢复到以前版本</p><h3 id="问题3-出现下面问题的原因与解决方案是什么"><a href="#问题3-出现下面问题的原因与解决方案是什么" class="headerlink" title="问题3 : 出现下面问题的原因与解决方案是什么?"></a>问题3 : 出现下面问题的原因与解决方案是什么?</h3><pre><code>◦ 更新代码后显示： unable to unlink old ‘xxx/xxx/xx’ : invalid argument    ▪ 原因:因为XXX正在被运行，        ▪ 解决方案:先把它的进程关闭，重试一下就好了。    ◦ 更新代码后显示 :  the following untracked working tree files would be overwritten by checkout    ▪ 原因:        ▪ 解决方案:git clean -d -fx</code></pre><p>删除当前目录及子文件夹下的未 track 的文件及文件夹</p><pre><code>◦ 更新代码后显示 : your local changes to the following files would be overwritten by merge…please move or remove them before you merge    ▪ 原因:        ▪ 解决方案:◦ 版本回退git reset --hard &#123;hash&#125;后提示：fatal: could not parse object “hash id”    ▪ 原因:        ▪ 解决方案:◦ git push后提示:to https://.git![rejected] localRepo-&gt;remoteRepo(fetch first)error: failed to push some refs to ‘https://.git’Updates were rejected because the remote contain work that you do not have locally.    ▪ 原因:    ▪ 解决方案:</code></pre><h2 id="2-完成下列操作"><a href="#2-完成下列操作" class="headerlink" title="2. 完成下列操作"></a>2. 完成下列操作</h2><h5 id="下面的操作完成后，"><a href="#下面的操作完成后，" class="headerlink" title="下面的操作完成后，"></a>下面的操作完成后，</h5><pre><code>a. 克隆仓库b. 提交修改到暂存区c. 提交修改到远程仓库d. 从远程仓库下载代码e. 查看仓库状态f. 比较文件的不同,即暂存区与工作区的差别g. 创建分支/切换分支/查看分支列表h. 上传代码到分支上i. 合并分支到主分支j. 删除分支k. 回退到某个版本</code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）"><a href="#1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）" class="headerlink" title="1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）"></a>1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）</h2><h3 id="问题1-根据下面的图片，回答问题"><a href="#问题1-根据下面的图片，回答问题" class="headerlink" title="问题1 : 根据下面的图片，回答问题"></a>问题1 : 根据下面的图片，回答问题</h3><p><img src="/2023/01/11/git/git%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87/Areas.png"></p><h5 id="解释下面概念"><a href="#解释下面概念" class="headerlink" title="解释下面概念"></a>解释下面概念</h5><pre><code>◦ workspace : 工作区，平时存放项目代码的地方◦ staging area :暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息,一般存放在 .git 目录下的 index 文件◦ local repository : 仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本;◦ remote repository : 远程仓库，托管代码的服务器</code></pre><h3 id="问题2-：-如何解决-git-冲突"><a href="#问题2-：-如何解决-git-冲突" class="headerlink" title="问题2 ： 如何解决 git 冲突?"></a>问题2 ： 如何解决 git 冲突?</h3><p>删除代码中矛盾的代码或者恢复到以前版本</p><h3 id="问题3-出现下面问题的原因与解决方案是什么"><a href="#问题3-出现下面问题的原因与解决方案是什么" class="headerlink" title="问题3 : 出现下面问题的原因与解决方案是什么?"></a>问题3 : 出现下面问题的原因与解决方案是什么?</h3><pre><code>◦ 更新代码后显示： unable to unlink old ‘xxx/xxx/xx’ : invalid argument    ▪ 原因:因为XXX正在被运行，        ▪ 解决方案:先把它的进程关闭，重试一下就好了。    ◦ 更新代码后显示 :  the following untracked working tree files would be overwritten by checkout    ▪ 原因: Error 所列出的文件在本地的当前分支下未授权给 git 追踪，但同样命名的文件，也即出现在另一个（远程）分支下的同一文件却正在远程仓库或其它分支被 git 进行追踪        ▪ 解决方案: git clean -d -fx 删除当前目录及子文件夹下的未 track 的文件及文件夹◦ 更新代码后显示 : your local changes to the following files would be overwritten by merge…please move or remove them before you merge    ▪ 原因:git merge时本地分支的更改没有保存下来        ▪ 解决方案:暂存到堆栈区◦ 版本回退git reset --hard &#123;hash&#125;后提示：fatal: could not parse object “hash id”    ▪ 原因:切换到master分支后没有更新最新代码        ▪ 解决方案:先通过git pull --rebase更新当前分支代码，然后再执行git reset◦ git push后提示:to https://.git![rejected] localRepo-&gt;remoteRepo(fetch first)error: failed to push some refs to ‘https://.git’Updates were rejected because the remote contain work that you do not have locally.    ▪ 原因:远程包含的事务不在你的本地，在push前需要整合远端，    ▪ 解决方案:拉取远端的代码然后进行整合到本地，再push到远端即可</code></pre><h2 id="2-完成下列操作"><a href="#2-完成下列操作" class="headerlink" title="2. 完成下列操作"></a>2. 完成下列操作</h2><h5 id="下面的操作完成后，"><a href="#下面的操作完成后，" class="headerlink" title="下面的操作完成后，"></a>下面的操作完成后，</h5><pre><code>a. 克隆仓库 git clone + urlb. 提交修改到暂存区 git add .c. 提交修改到远程仓库 git push commit -m &quot;xxxx&quot;d. 从远程仓库下载代码 git pulle. 查看仓库状态 git statusf. 比较文件的不同,即暂存区与工作区的差别 git  diffg. 创建分支/切换分支/查看分支列表 git branch xxx /git check out /git branch -vh. 上传代码到分支上 git push -u origin xxxi. 合并分支到主分支 git merge xxxj. 删除分支 删除远程分支xxx git push origin --delete xxx /删除本地分支xxx  git branch -d xxxk. 回退到某个版本 git reset --hard 版本库地址</code></pre>]]></content>
       
       
       
