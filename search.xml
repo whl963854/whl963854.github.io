@@ -54,6 +54,31 @@
     
     
     <entry>
+      <title>统计子矩阵</title>
+      <link href="/2023/02/15/%E9%A2%98%E8%A7%A3/%E7%BB%9F%E8%AE%A1%E5%AD%90%E7%9F%A9%E9%98%B5/"/>
+      <url>/2023/02/15/%E9%A2%98%E8%A7%A3/%E7%BB%9F%E8%AE%A1%E5%AD%90%E7%9F%A9%E9%98%B5/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><p>给定一个 N × M 的矩阵 A , 请你统计有多少个子矩阵 (最小 1 × 1, 最大 N × M ) 满足子矩阵中所有数的和不超过给定的整数 K  ?</p><p>输入格式<br>第一行包含三个整数 N , M 和 K .</p><p>之后 N行每行包含 M 个整数, 代表矩阵 A.</p><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><p>示例 1:</p><pre><code>输入：    3 4 10    1 2 3 4    5 6 7 8    9 10 11 12输出：19</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>首先，求取一个矩阵的和可以采用二维前缀和简化计算，降低复杂度。其次，不难想到，我们可以枚举左上角坐标以及右下角坐标求出所有满足条件的矩阵，但是这样复杂度就是n^4，时间复杂度相对难以接受。所以我们应该想办法降低复杂度，根据题目要求，不大于k,那么一个矩阵的子矩阵大于k则该矩阵就无需判断，这样利用双指针，我们可以在O(n)的时间求出这一行的矩阵。</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>#include &lt;iostream&gt;using namespace std;int a[510][510];int sum1(int x1,int y1,int x2,int y2)&#123;    return a[x2][y2]-a[x1-1][y2]-a[x2][y1-1]+a[x1-1][y1-1];&#125;int main()&#123;    int n,m,k;    scanf(&quot;%d %d %d&quot;,&amp;n,&amp;m,&amp;k);    long long int ans=0;    int temp;    for(int i=1;i&lt;=n;i++)    &#123;        for(int j=1;j&lt;=m;j++)        &#123;        scanf(&quot;%d&quot;,&amp;temp);        a[i][j]=a[i-1][j]+a[i][j-1]+temp-a[i-1][j-1];        &#125;    &#125;    for (int i = 1; i &lt;= n; ++i) &#123;            for (int j = i; j &lt;= n; ++j) &#123;                for (int l = 1, r = 1; r &lt;= m; ++r) &#123;                    while (l &lt;= r &amp;&amp; sum1(i, l, j, r) &gt; k) l++;                    ans += r - l + 1;                &#125;            &#125;        &#125;    cout &lt;&lt; ans;    return 0;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 蓝桥 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hashtable</title>
       <link href="/2023/02/15/cpp/zSTL/hashtable/"/>
       <url>/2023/02/15/cpp/zSTL/hashtable/</url>
@@ -86,6 +111,31 @@
         <content type="html"><![CDATA[<h2 id="1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）"><a href="#1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）" class="headerlink" title="1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）"></a>1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）</h2><h3 id="问题1-根据下面的图片，回答问题"><a href="#问题1-根据下面的图片，回答问题" class="headerlink" title="问题1 : 根据下面的图片，回答问题"></a>问题1 : 根据下面的图片，回答问题</h3><p><img src="/2023/01/11/git/git%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87/Areas.png"></p><h5 id="解释下面概念"><a href="#解释下面概念" class="headerlink" title="解释下面概念"></a>解释下面概念</h5><pre><code>◦ workspace : 工作区，平时存放项目代码的地方◦ staging area :暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息,一般存放在 .git 目录下的 index 文件◦ local repository : 仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本;◦ remote repository : 远程仓库，托管代码的服务器</code></pre><h3 id="问题2-：-如何解决-git-冲突"><a href="#问题2-：-如何解决-git-冲突" class="headerlink" title="问题2 ： 如何解决 git 冲突?"></a>问题2 ： 如何解决 git 冲突?</h3><p>删除代码中矛盾的代码或者恢复到以前版本</p><h3 id="问题3-出现下面问题的原因与解决方案是什么"><a href="#问题3-出现下面问题的原因与解决方案是什么" class="headerlink" title="问题3 : 出现下面问题的原因与解决方案是什么?"></a>问题3 : 出现下面问题的原因与解决方案是什么?</h3><pre><code>◦ 更新代码后显示： unable to unlink old ‘xxx/xxx/xx’ : invalid argument    ▪ 原因:因为XXX正在被运行，        ▪ 解决方案:先把它的进程关闭，重试一下就好了。    ◦ 更新代码后显示 :  the following untracked working tree files would be overwritten by checkout    ▪ 原因: Error 所列出的文件在本地的当前分支下未授权给 git 追踪，但同样命名的文件，也即出现在另一个（远程）分支下的同一文件却正在远程仓库或其它分支被 git 进行追踪        ▪ 解决方案: git clean -d -fx 删除当前目录及子文件夹下的未 track 的文件及文件夹◦ 更新代码后显示 : your local changes to the following files would be overwritten by merge…please move or remove them before you merge    ▪ 原因:git merge时本地分支的更改没有保存下来        ▪ 解决方案:暂存到堆栈区◦ 版本回退git reset --hard &#123;hash&#125;后提示：fatal: could not parse object “hash id”    ▪ 原因:切换到master分支后没有更新最新代码        ▪ 解决方案:先通过git pull --rebase更新当前分支代码，然后再执行git reset◦ git push后提示:to https://.git![rejected] localRepo-&gt;remoteRepo(fetch first)error: failed to push some refs to ‘https://.git’Updates were rejected because the remote contain work that you do not have locally.    ▪ 原因:远程包含的事务不在你的本地，在push前需要整合远端，    ▪ 解决方案:拉取远端的代码然后进行整合到本地，再push到远端即可</code></pre><h2 id="2-完成下列操作"><a href="#2-完成下列操作" class="headerlink" title="2. 完成下列操作"></a>2. 完成下列操作</h2><h5 id="下面的操作完成后，"><a href="#下面的操作完成后，" class="headerlink" title="下面的操作完成后，"></a>下面的操作完成后，</h5><pre><code>a. 克隆仓库 git clone + urlb. 提交修改到暂存区 git add .c. 提交修改到远程仓库 git push commit -m &quot;xxxx&quot;d. 从远程仓库下载代码 git pulle. 查看仓库状态 git statusf. 比较文件的不同,即暂存区与工作区的差别 git  diffg. 创建分支/切换分支/查看分支列表 git branch xxx /git check out /git branch -vh. 上传代码到分支上 git push -u origin xxxi. 合并分支到主分支 git merge xxxj. 删除分支 删除远程分支xxx git push origin --delete xxx /删除本地分支xxx  git branch -d xxxk. 回退到某个版本 git reset --hard 版本库地址</code></pre>]]></content>
       
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>棘手怀念摧毁</title>
+      <link href="/2022/12/25/%E9%A2%98%E8%A7%A3/%E6%A3%98%E6%89%8B%E6%80%80%E5%BF%B5%E6%91%A7%E6%AF%81/"/>
+      <url>/2022/12/25/%E9%A2%98%E8%A7%A3/%E6%A3%98%E6%89%8B%E6%80%80%E5%BF%B5%E6%91%A7%E6%AF%81/</url>
+      
+        <content type="html"><![CDATA[<h1 id="棘手怀念摧毁"><a href="#棘手怀念摧毁" class="headerlink" title="棘手怀念摧毁"></a>棘手怀念摧毁</h1><h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><p><img src="/2022/12/25/%E9%A2%98%E8%A7%A3/%E6%A3%98%E6%89%8B%E6%80%80%E5%BF%B5%E6%91%A7%E6%AF%81/%E6%A3%98%E6%89%8B%E6%80%80%E5%BF%B5%E6%91%A7%E6%AF%81.png"></p><h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><p>输入格式:第一行有三个整数n,m，A ;<br>第二行有n个数ai，表示每头大象的愤怒值。<br>输出格式:一个整数表示新大象住下后象棚最大的愤怒值。</p><h2 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h2><p>样例1</p><pre><code>输入:   3 2 50        60 100 70输出:270</code></pre><p>备注<br>其中:1≤m≤n ≤5* 106，0 ≤ai, A ≤100。【样例解释】<br>1.当新大象在第一个位置时(50,60,100,70 )，整个象棚的愤怒值的最大值为max 60,50 + max 60,100 + max 100,70，即60＋100＋100&#x3D;260。<br>2.当新大象在第二个位置时( 60,50,100,70 )，整个象棚的愤怒值的最大值为max 60,50 + max 50,100 + max 100,70，即60＋100+100&#x3D; 260。<br>3.当新大象在第三个位置时( 60,100,50,70 )，整个象棚的愤怒值的最大值为max 60,100 + max 100,50 + max 50,70，即100＋100＋70 &#x3D; 270。<br>4.当新大象在第四个位置时( 60,100,70,50 )，整个象棚的愤怒值的最大值为max 60,100 + max 100,70 + max 70,50，即70＋100＋100 &#x3D; 270。<br>整个象棚的愤怒值的最大值为max 260,260,270,270 &#x3D; 270。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 码题集 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -517,6 +567,81 @@
     
     
     <entry>
+      <title>香槟塔</title>
+      <link href="/2022/11/20/%E9%A2%98%E8%A7%A3/%E9%A6%99%E6%A7%9F%E5%A1%94/"/>
+      <url>/2022/11/20/%E9%A2%98%E8%A7%A3/%E9%A6%99%E6%A7%9F%E5%A1%94/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code>我们把玻璃杯摆成金字塔的形状，其中 第一层 有 1 个玻璃杯， 第二层 有 2 个，依次类推到第 100 层，每个玻璃杯 (250ml) 将盛有香槟。</code></pre><p>从顶层的第一个玻璃杯开始倾倒一些香槟，当顶层的杯子满了，任何溢出的香槟都会立刻等流量的流向左右两侧的玻璃杯。当左右两边的杯子也满了，就会等流量的流向它们左右两边的杯子，依次类推。（当最底层的玻璃杯满了，香槟会流到地板上）</p><p>例如，在倾倒一杯香槟后，最顶层的玻璃杯满了。倾倒了两杯香槟后，第二层的两个玻璃杯各自盛放一半的香槟。在倒三杯香槟后，第二层的香槟满了 - 此时总共有三个满的玻璃杯。在倒第四杯后，第三层中间的玻璃杯盛放了一半的香槟，他两边的玻璃杯各自盛放了四分之一的香槟，</p><p>我们把玻璃杯摆成金字塔的形状，其中 第一层 有 1 个玻璃杯， 第二层 有 2 个，依次类推到第 100 层，每个玻璃杯 (250ml) 将盛有香槟。</p><p>从顶层的第一个玻璃杯开始倾倒一些香槟，当顶层的杯子满了，任何溢出的香槟都会立刻等流量的流向左右两侧的玻璃杯。当左右两边的杯子也满了，就会等流量的流向它们左右两边的杯子，依次类推。（当最底层的玻璃杯满了，香槟会流到地板上）</p><p>例如，在倾倒一杯香槟后，最顶层的玻璃杯满了。倾倒了两杯香槟后，第二层的两个玻璃杯各自盛放一半的香槟。在倒三杯香槟后，第二层的香槟满了 - 此时总共有三个满的玻璃杯。在倒第四杯后，第三层中间的玻璃杯盛放了一半的香槟，他两边的玻璃杯各自盛放了四分之一的香槟，</p><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><p>示例 1:</p><pre><code>输入: poured(倾倒香槟总杯数) = 1, query_glass(杯子的位置数) = 1, query_row(行数) = 1输出: 0.00000解释: 我们在顶层（下标是（0，0））倒了一杯香槟后，没有溢出，因此所有在顶层以下的玻璃杯都是空的。</code></pre><p>示例 2:</p><pre><code>输入: poured(倾倒香槟总杯数) = 2, query_glass(杯子的位置数) = 1, query_row(行数) = 1输出: 0.50000解释: 我们在顶层（下标是（0，0）倒了两杯香槟后，有一杯量的香槟将从顶层溢出，位于（1，0）的玻璃杯和（1，1）的玻璃杯平分了这一杯香槟，所以每个玻璃杯有一半的香槟。</code></pre><p>示例 3:</p><pre><code>输入: poured = 100000009, query_row = 33, query_glass = 17输出: 1.00000</code></pre><p>提示：</p><pre><code>0 &lt;= poured &lt;= 1090 &lt;= query_glass &lt;= query_row &lt; 100</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>本弱鸡一直在纠结是不是数学问题，暴力的话poured是不是够用，每层减少对应数目，但是最后还是算不出来，最终也没有做出来。贴一个官方题解。</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>class Solution &#123;</code></pre><p>public:<br>    double champagneTower(int poured, int query_row, int query_glass) {<br>        vector<double> row &#x3D; {(double)poured};<br>        for (int i &#x3D; 1; i &lt;&#x3D; query_row; i++) {<br>            vector<double> nextRow(i + 1, 0.0);<br>            for (int j &#x3D; 0; j &lt; row.size(); j++) {<br>                double volume &#x3D; row[j];<br>                if (volume &gt; 1) {<br>                    nextRow[j] +&#x3D; (volume - 1) &#x2F; 2;<br>                    nextRow[j + 1] +&#x3D; (volume - 1) &#x2F; 2;<br>                }<br>            }<br>            row &#x3D; nextRow;<br>        }<br>        return min(1.0, row[query_glass]);<br>    }<br>};</double></double></p><p>作者：LeetCode-Solution<br>链接：<a href="https://leetcode.cn/problems/champagne-tower/solution/xiang-bin-ta-by-leetcode-solution-y87c/">https://leetcode.cn/problems/champagne-tower/solution/xiang-bin-ta-by-leetcode-solution-y87c/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>匹配子序列的单词数</title>
+      <link href="/2022/11/19/%E9%A2%98%E8%A7%A3/%E5%8C%B9%E9%85%8D%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E5%8D%95%E8%AF%8D%E6%95%B0/"/>
+      <url>/2022/11/19/%E9%A2%98%E8%A7%A3/%E5%8C%B9%E9%85%8D%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E5%8D%95%E8%AF%8D%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code>给定字符串 s 和字符串数组 words, 返回  words[i] 中是s的子序列的单词个数 。字符串的 子序列 是从原始字符串中生成的新字符串，可以从中删去一些字符(可以是none)，而不改变其余字符的相对顺序。例如， “ace” 是 “abcde” 的子序列。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code>略</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>采用桶的思想，预先将对应字符下一次出现的位置保存下来，避免一次又一次遍历造成的重复时间损失。看大神的做法桶的基础上还可以采用二分查找，奈何本弱鸡不会stl的二分查找，把官方题解粘下来以供学习。以及通过多指针的方式来进行求解，这也是难以想到的方式，同样官方题解粘下来以供学习。</code></pre><h3 id="代码实现1"><a href="#代码实现1" class="headerlink" title="代码实现1"></a>代码实现1</h3><pre><code>class Solution &#123;public:int numMatchingSubseq(string s, vector&lt;string&gt;&amp; words) &#123;    vector&lt;int&gt; temp[27];    int len[27];    int ans=0;    int length=s.size();    for(int i=0;i&lt;length;i++)    &#123;        temp[s[i]-&#39;a&#39;].push_back(i);    &#125;    for(auto word:words)    &#123;        for(int i=0;i&lt;27;i++)        &#123;            len[i]=0;        &#125;        int wordlen=word.size();        int curpos=0;        int i=0;        for(;i&lt;wordlen;i++)        &#123;            int pos=word[i]-&#39;a&#39;;            while(len[pos]&lt;temp[pos].size()&amp;&amp;curpos&gt;temp[pos][len[pos]])len[pos]++;            if(len[pos]&lt;temp[pos].size())            &#123;                curpos=temp[pos][len[pos]];                len[pos]++;            &#125;            else            &#123;                break;            &#125;        &#125;        if(i==wordlen)        &#123;            ans++;        &#125;     &#125;    return ans;&#125;</code></pre><p>};</p><h3 id="代码实现2"><a href="#代码实现2" class="headerlink" title="代码实现2"></a>代码实现2</h3><pre><code>class Solution &#123;public:    int numMatchingSubseq(string s, vector&lt;string&gt; &amp;words) &#123;        vector&lt;vector&lt;int&gt;&gt; pos(26);        for (int i = 0; i &lt; s.size(); ++i) &#123;            pos[s[i] - &#39;a&#39;].push_back(i);        &#125;        int res = words.size();        for (auto &amp;w : words) &#123;            if (w.size() &gt; s.size()) &#123;                --res;                continue;            &#125;            int p = -1;            for (char c : w) &#123;                auto &amp;ps = pos[c - &#39;a&#39;];                auto it = upper_bound(ps.begin(), ps.end(), p);                if (it == ps.end()) &#123;                    --res;                    break;                &#125;                p = *it;            &#125;        &#125;        return res;    &#125;&#125;;作者：LeetCode-Solution链接：https://leetcode.cn/problems/number-of-matching-subsequences/solution/pi-pei-zi-xu-lie-de-dan-ci-shu-by-leetco-vki7/来源：力扣（LeetCode）著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</code></pre><h3 id="代码实现3"><a href="#代码实现3" class="headerlink" title="代码实现3"></a>代码实现3</h3><pre><code>class Solution &#123;public:    int numMatchingSubseq(string s, vector&lt;string&gt; &amp;words) &#123;        vector&lt;queue&lt;pair&lt;int, int&gt;&gt;&gt; queues(26);        for (int i = 0; i &lt; words.size(); ++i) &#123;            queues[words[i][0] - &#39;a&#39;].emplace(i, 0);        &#125;        int res = 0;        for (char c : s) &#123;            auto &amp;q = queues[c - &#39;a&#39;];            int size = q.size();            while (size--) &#123;                auto [i, j] = q.front();                q.pop();                ++j;                if (j == words[i].size()) &#123;                    ++res;                &#125; else &#123;                    queues[words[i][j] - &#39;a&#39;].emplace(i, j);                &#125;            &#125;        &#125;        return res;    &#125;&#125;;作者：LeetCode-Solution链接：https://leetcode.cn/problems/number-of-matching-subsequences/solution/pi-pei-zi-xu-lie-de-dan-ci-shu-by-leetco-vki7/来源：力扣（LeetCode）著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>防疫大数据</title>
+      <link href="/2022/10/20/%E9%A2%98%E8%A7%A3/csp/2022_09_3/"/>
+      <url>/2022/10/20/%E9%A2%98%E8%A7%A3/csp/2022_09_3/</url>
+      
+        <content type="html"><![CDATA[<h1 id="防疫大数据"><a href="#防疫大数据" class="headerlink" title="防疫大数据"></a>防疫大数据</h1><h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p>近期，国内 COVID-19 疫情多点散发，西西艾弗岛的防疫形势也异常严峻。西西艾弗岛疫情防控指挥部决定在岛上建立一套疫情风险监测系统。这套风险监测系统的主要功能是，收集手机用户到访地区的信息，根据用户的到访地区，判断用户的疫情风险。具体而言，在每天夜里，西西艾弗岛大数据运行管理中心都会收到一批手机用户到访地区的信息，以及当天疫情风险地区的信息。数据中心需要根据这些信息，生成一份存在风险的手机用户的名单，提供给疫情防控指挥部，以便进行后续的疫情防控工作。</p><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p><a href="https://imgse.com/i/x6kjot"><img src="https://s1.ax1x.com/2022/10/20/x6kjot.png" alt="x6kjot.png"></a></p><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>输出到标准输出。<br>输出 n 行，自第 0 天起，按顺序输出各日运算产生的疫情风险名单。每行包含空格分隔的若干整数。其中第一个整数表示当天的日期，接下来的各个整数为按从小到大排序的存在风险的用户列表。</p><p><strong>样例 1 输入</strong></p><pre><code>91 4 10 1 1-1 1 1-1 2 10 2 20 30 3 11 2 21 3 20 00 00 00 00 00 15 4 11 0 1</code></pre><p><strong>样例 1 输出</strong></p><pre><code>0 11 1 32 1 33 1 34 1 35 1 36 1 378</code></pre><h3 id="本弱鸡解题思路"><a href="#本弱鸡解题思路" class="headerlink" title="本弱鸡解题思路"></a>本弱鸡解题思路</h3><p>无脑做，不知道哪里有问题，只有20分，哭死（）</p><p> <strong>代码实现</strong></p><pre><code>？？？忘保存了！！！</code></pre><h3 id="大佬解法"><a href="#大佬解法" class="headerlink" title="大佬解法"></a>大佬解法</h3><p><strong>代码实现</strong></p><pre><code>#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;set&gt;using namespace std;typedef long long LL;set&lt;LL&gt; sd[1050], su;struct node&#123;    LL d, u, r;&#125;a;vector&lt;node&gt; v[1050];LL n, ri, mi, d, u, r, pi;int main()&#123;    cin &gt;&gt; n;    for (int i = 0; i &lt; n; i ++ ) // i:生成名单这一天    &#123;        cin &gt;&gt; ri &gt;&gt; mi;                for (int j = 0; j &lt; ri; j ++ ) // ri个风险地区        &#123;            cin &gt;&gt; pi;            for (int k = i; k &lt; i + 7; k ++ ) sd[k].insert(pi); // pi地区i ~ i+6天都是风险地区        &#125;                for (int j = 0; j &lt; mi; j ++ ) //         &#123;            cin &gt;&gt; d &gt;&gt; u &gt;&gt; r;            if (d &lt; 0) continue;            if (!sd[d].count(r)) continue; // 到访的地区在到访的那一日不处于风险状态,肯定无风险            v[i].push_back(&#123;d, u, r&#125;); // 存储第i天的漫游数据        &#125;                // 对漫游信息进行判断,从第i-6天开始.因为7天前的用户漫游数据有可能到现在还是风险的        for (int j = max(0, i - 6); j &lt;= i; j ++ )        &#123;            for (int k = 0; k &lt; v[j].size(); k ++ )            &#123;                d = v[j][k].d;                u = v[j][k].u;                r = v[j][k].r;                                // 1.该用户的d要在7日内                // 2.该用户在近7日内到访的地区在到访的那一日处于风险状态                // 3.上述存在风险的地区自到访日(d)至生成名单当日(i)持续处于风险状态                bool flag = 1;                if (d &lt;= i - 7) continue; // 要求1                for (int l = d; l &lt;= i; l ++ ) // 要一直持续到当前i这一天 要求2&amp;3                    flag = flag &amp; sd[l].count(r);                if (flag) su.insert(u);            &#125;        &#125;                cout &lt;&lt; i &lt;&lt; &quot; &quot;;        for (auto it : su) cout &lt;&lt; it &lt;&lt; &quot; &quot;;        cout &lt;&lt; endl;        su.clear();    &#125;        return 0;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> csp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>RvalueReference</title>
       <link href="/2022/10/18/cpp/hj/RvalueReferences/"/>
       <url>/2022/10/18/cpp/hj/RvalueReferences/</url>
@@ -549,6 +674,31 @@
         <content type="html"><![CDATA[<p>stoi()，atoi() ，to_string 这三个函数都是对字符串处理的函数，前两者是将字符串转化为十进制 int 类型，最后一个是将十进制类型 int、double 等转化为string，头文件都是：#include<cstring><br>stoi 的参数是 const string* 类型<br>atoi 的参数是 const char* 类型</cstring></p><p>stoi() 会对转化后的数进行检查，判断是否会超出 int 范围，如果超出范围就会报错；<br>atoi() 不会对转化后的数进行检查，超出上界，输出上界，超出下界，输出下界；</p><p>反转数字自动去除前导零</p><pre><code>int countDistinctIntegers(vector&lt;int&gt;&amp; nums) &#123;    map&lt;int,int&gt; m;    for(int x:nums)&#123;      m[x]++;      string s=to_string(x);      reverse(s.begin(),s.end());      m[stoi(s)]++;    &#125;    return m.size();&#125;</code></pre>]]></content>
       
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>最长回文子串</title>
+      <link href="/2022/10/16/%E9%A2%98%E8%A7%A3/%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/"/>
+      <url>/2022/10/16/%E9%A2%98%E8%A7%A3/%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/</url>
+      
+        <content type="html"><![CDATA[<h1 id="最长回文子串"><a href="#最长回文子串" class="headerlink" title="最长回文子串"></a>最长回文子串</h1><h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><p>给定一个字符串求他的最长回文子串</p><h2 id="方法1-暴力法"><a href="#方法1-暴力法" class="headerlink" title="方法1 暴力法"></a>方法1 暴力法</h2><p>略；</p><h2 id="方法2-动态规划"><a href="#方法2-动态规划" class="headerlink" title="方法2 动态规划"></a>方法2 动态规划</h2><p>给定一个字符串s，设[p,q]是他的一个从p到q的回文字串，那么当p+1&lt;&#x3D;q-1的时候，[p+1，q-1]必定也是s的一个子串；<br>由此我们可以找到动态规划的递推表达式：</p><p>设：</p><pre><code>dp[i][i]=1; //单个字符是回文串dp[i][i+1]=1 if s[i]=s[i+1]; //连续两个相同字符是回文串</code></pre><p>思考状态转移方程：</p><pre><code>根据头尾字符是否相等，需要分类讨论：dp[i][j] = (s[i] == s[j]) and dp[i + 1][j - 1]</code></pre><p>最终代码如下：</p><pre><code>string longestPalindrome(string s) &#123;    int slen=s.size();    vector&lt;vector&lt;bool&gt;&gt; dp(slen, vector&lt;bool&gt;(slen, 0));    int maxlenth = 0;    int left = 0;    int right = 0;    for (int i = slen - 1; i &gt;= 0; i--) &#123;        for (int j = i; j &lt; slen; j++) &#123;            if (s[i] == s[j]) &#123;                if (j - i &lt;= 1) &#123;                    dp[i][j] = true;                &#125;                 else if (dp[i + 1][j - 1]) &#123;                     dp[i][j] = true;                &#125;            &#125;            if (dp[i][j] &amp;&amp; j - i + 1 &gt; maxlenth) &#123;                maxlenth = j - i + 1;                left = i;                right = j;            &#125;        &#125;    &#125;    return s.substr(left, maxlenth);&#125;</code></pre><h2 id="方法三-中心拓展法"><a href="#方法三-中心拓展法" class="headerlink" title="方法三 中心拓展法"></a>方法三 中心拓展法</h2><p>我们枚举每一种边界情况，并从对应的子串开始不断地向两边扩展。如果两边的字母相同，我们就可以继续扩展，例如从 P(i+1,j-1)P(i+1,j−1) 扩展到 P(i,j)P(i,j)；如果两边的字母不同，我们就可以停止扩展，因为在这之后的子串都不能是回文串了。<br>官方用的stl，本弱鸡不会呜呜呜，只能硬着头皮写喽；</p><pre><code>class Solution &#123;public:    string longestPalindrome(string s) &#123;        int lans=0;        int length=s.size();        int left=0;        string ans=&quot;&quot;;        for(int i=0;i&lt;length;i++)&#123;            int j=1;            int tans=0;            while(i-j&gt;=0&amp;&amp;i+j&lt;length&amp;&amp;s[i-j]==s[i+j])&#123;                tans++;                j++;            &#125;            if(lans&lt;tans*2+1)&#123;                lans=tans*2+1;                left=i-tans;            &#125;            j=0;            tans=0;            while(i-j&gt;=0&amp;&amp;i+j+1&lt;length&amp;&amp;s[i-j]==s[i+j+1])&#123;                    tans++;                    j++;            &#125;            if(lans&lt;tans&lt;&lt;1)&#123;                lans=tans&lt;&lt;1;                left=i-tans+1;            &#125;            if(lans&gt;(length-i)*2)break;        &#125;        ans=s.substr(left,lans);        return ans;    &#125;&#125;;</code></pre><h2 id="马拉车算法"><a href="#马拉车算法" class="headerlink" title="马拉车算法"></a>马拉车算法</h2><p>class Solution {<br>public:<br>    int expand(const string&amp; s, int left, int right) {<br>        while (left &gt;&#x3D; 0 &amp;&amp; right &lt; s.size() &amp;&amp; s[left] &#x3D;&#x3D; s[right]) {<br>            –left;<br>            ++right;<br>        }<br>        return (right - left - 2) &#x2F; 2;<br>    }</p><pre><code>string longestPalindrome(string s) &#123;    int start = 0, end = -1;    string t = &quot;#&quot;;    for (char c: s) &#123;        t += c;        t += &#39;#&#39;;    &#125;    t += &#39;#&#39;;    s = t;    vector&lt;int&gt; arm_len;    int right = -1, j = -1;    for (int i = 0; i &lt; s.size(); ++i) &#123;        int cur_arm_len;        if (right &gt;= i) &#123;            int i_sym = j * 2 - i;            int min_arm_len = min(arm_len[i_sym], right - i);            cur_arm_len = expand(s, i - min_arm_len, i + min_arm_len);        &#125; else &#123;            cur_arm_len = expand(s, i, i);        &#125;        arm_len.push_back(cur_arm_len);        if (i + cur_arm_len &gt; right) &#123;            j = i;            right = i + cur_arm_len;        &#125;        if (cur_arm_len * 2 + 1 &gt; end - start) &#123;            start = i - cur_arm_len;            end = i + cur_arm_len;        &#125;    &#125;    string ans;    for (int i = start; i &lt;= end; ++i) &#123;        if (s[i] != &#39;#&#39;) &#123;            ans += s[i];        &#125;    &#125;    return ans;&#125;</code></pre><p>};</p><p>作者：LeetCode-Solution<br>链接：<a href="https://leetcode.cn/problems/longest-palindromic-substring/solution/zui-chang-hui-wen-zi-chuan-by-leetcode-solution/">https://leetcode.cn/problems/longest-palindromic-substring/solution/zui-chang-hui-wen-zi-chuan-by-leetcode-solution/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
       
     </entry>
     
@@ -597,6 +747,31 @@
         <tags>
             
             <tag> wps </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>最长字符串链</title>
+      <link href="/2022/10/13/%E9%A2%98%E8%A7%A3/%E6%9C%80%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%93%BE/"/>
+      <url>/2022/10/13/%E9%A2%98%E8%A7%A3/%E6%9C%80%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%93%BE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="最长字符串链"><a href="#最长字符串链" class="headerlink" title="最长字符串链"></a>最长字符串链</h1><h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><p>给出一个单词数组 words ，其中每个单词都由小写英文字母组成。</p><p>如果我们可以 不改变其他字符的顺序 ，在 wordA 的任何地方添加 恰好一个 字母使其变成 wordB ，那么我们认为 wordA 是 wordB 的 前身 。</p><p>例如，”abc” 是 “abac” 的 前身 ，而 “cba” 不是 “bcad” 的 前身<br>词链是单词 [word_1, word_2, …, word_k] 组成的序列，k &gt;&#x3D; 1，其中 word1 是 word2 的前身，word2 是 word3 的前身，依此类推。一个单词通常是 k &#x3D;&#x3D; 1 的 单词链 。</p><p>从给定单词列表 words 中选择单词组成词链，返回 词链的 最长可能长度 。 </p><h2 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h2><p>示例 1：</p><pre><code>输入：words = [&quot;a&quot;,&quot;b&quot;,&quot;ba&quot;,&quot;bca&quot;,&quot;bda&quot;,&quot;bdca&quot;]输出：4解释：最长单词链之一为 [&quot;a&quot;,&quot;ba&quot;,&quot;bda&quot;,&quot;bdca&quot;]</code></pre><p>示例 2:</p><pre><code>输入：words = [&quot;xbc&quot;,&quot;pcxbcf&quot;,&quot;xb&quot;,&quot;cxbc&quot;,&quot;pcxbc&quot;]输出：5解释：所有的单词都可以放入单词链 [&quot;xb&quot;, &quot;xbc&quot;, &quot;cxbc&quot;, &quot;pcxbc&quot;, &quot;pcxbcf&quot;].</code></pre><p>示例 3:</p><pre><code>输入：words = [&quot;abcd&quot;,&quot;dbqca&quot;]输出：1解释：字链[&quot;abcd&quot;]是最长的字链之一。[&quot;abcd&quot;，&quot;dbqca&quot;]不是一个有效的单词链，因为字母的顺序被改变了。</code></pre><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><pre><code>1 &lt;= words.length &lt;= 10001 &lt;= words[i].length &lt;= 16words[i] 仅由小写英文字母组成。</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>首先我们将问题分解成几个子问题，我们先来看单词链的判断，单词链相邻单词必然满足长度相差一且长度较长的单词&#x3D;长度短的单词+任意位置插入一个字母，也就是说如果没有插入字母两个字符串是完全相同的，插入一个字母以后，除了那一个位置以外的所有字母都是一一对应的。那么我们可以根据这个对短单词进行遍历，一一与长单词进行对应，如果不相同则跳过这个字母，比对后面的字母，如果跳过次数不等于1，则两个单词不能组成单词链。<br>接下来我们分析题目，需要求最长单词链，我们仔细观察可以发现最长单词链是满足最优子结构性的，例如长度为最大为m的单词组成的最长链必须由单词+最长的单词长度最大为m-1的单词链组成。<br>定义</p><pre><code>dp[i]表示以单词i为结尾的最长的单词链长度</code></pre><p>初始化</p><pre><code>至少一个单词，初始化为1</code></pre><p>计算</p><pre><code>预处理先按照字符串长度升序排列从短到长来计算, 对于当前单词去找序号比它小的 j 情况： 如果相等，则 max(d[i], d[j]+1)</code></pre><p>代码 </p><pre><code>class Solution &#123;    // a是否是b的前身    bool isFor(string&amp; a, string&amp; b) &#123;        int asize=a.size();        int bsize=b.size();        if(bsize - asize== 1) &#123;            int i = 0, j = 0;            while(i &lt; asize &amp;&amp; j &lt; bsize) &#123;                if(a[i] == b[j]) i++;                j++;            &#125;            if(i == asize) return true;        &#125;        return false;    &#125;public:    int longestStrChain(vector&lt;string&gt;&amp; words) &#123;        if(words.size() &lt; 2)            return words.size();                vector&lt;int&gt; dp(words.size(), 1);        int res = 1;                // 按字符串长度递增排序        sort(words.begin(), words.end(),             [](string a, string b) &#123;return a.size() &lt; b.size();&#125;);                for(int i = 0; i &lt; words.size(); i++) &#123;            for(int j = i - 1; j &gt;= 0; j--) &#123;                if(isFor(words[j], words[i])) &#123;                    dp[i] = max(dp[i], dp[j] + 1);                &#125;            &#125;            res = max(res, dp[i]);        &#125;        return res;    &#125;&#125;;</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/longest-string-chain">https://leetcode.cn/problems/longest-string-chain</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -891,6 +1066,50 @@
         <tags>
             
             <tag> 结构型模式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>超过一半的数字</title>
+      <link href="/2022/09/28/%E9%A2%98%E8%A7%A3/%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/"/>
+      <url>/2022/09/28/%E9%A2%98%E8%A7%A3/%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数组中数字出现的个数</title>
+      <link href="/2022/09/27/%E9%A2%98%E8%A7%A3/%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0/"/>
+      <url>/2022/09/27/%E9%A2%98%E8%A7%A3/%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="数组中数字出现的个数"><a href="#数组中数字出现的个数" class="headerlink" title="数组中数字出现的个数"></a>数组中数字出现的个数</h1><h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><p>一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。</p><h2 id="用例："><a href="#用例：" class="headerlink" title="用例："></a>用例：</h2><p>输入：</p><pre><code>1 2 3 4 4 2</code></pre><p>输出：</p><pre><code>1 3</code></pre><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><pre><code>这里只想到了如何快速获得一个只出现一次的数字，没有想到分组异或相同的数异或为0，不同的异或为1。0和任何数异或等于这个数本身。所以，数组里面所有数异或 = 目标两个数异或 。 由于这两个数不同，所以异或结果必然不为0。假设数组异或的二进制结果为10010，那么说明这两个数从右向左数第2位是不同的那么可以根据数组里面所有数的第二位为0或者1将数组划分为2个。这样做可以将目标数必然分散在不同的数组中，而且相同的数必然落在同一个数组中。这两个数组里面的数各自进行异或，得到的结果就是答案</code></pre><h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>class Solution &#123;public:    vector&lt;int&gt; singleNumbers(vector&lt;int&gt;&amp; nums) &#123;        int ret = 0;        for (int n : nums)            ret ^= n;        int div = 1;        while ((div &amp; ret) == 0)            div &lt;&lt;= 1;        int a = 0, b = 0;        for (int n : nums)            if (div &amp; n)                a ^= n;            else                b ^= n;        return vector&lt;int&gt;&#123;a, b&#125;;    &#125;&#125;;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 剑指offer </tag>
             
         </tags>
       
@@ -1749,6 +1968,56 @@
     
     
     <entry>
+      <title>括号生成</title>
+      <link href="/2022/09/13/%E9%A2%98%E8%A7%A3/%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/"/>
+      <url>/2022/09/13/%E9%A2%98%E8%A7%A3/%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/</url>
+      
+        <content type="html"><![CDATA[<h2 id="零钱兑换"><a href="#零钱兑换" class="headerlink" title="零钱兑换"></a>零钱兑换</h2><h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code>数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><p>示例 1：</p><pre><code>输入：n = 3输出：[&quot;((()))&quot;,&quot;(()())&quot;,&quot;(())()&quot;,&quot;()(())&quot;,&quot;()()()&quot;]</code></pre><p>示例 2：</p><pre><code>输入：n = 1输出：[&quot;()&quot;]</code></pre><p> </p><p>提示：</p><pre><code>1 &lt;= n &lt;= 8</code></pre><h3 id="dfs"><a href="#dfs" class="headerlink" title="dfs"></a>dfs</h3><p><strong>本弱鸡的解题思路</strong><br>暴力枚举加剪枝，如果右括号数量比左括号数量多，则进行剪枝，否则依次枚举添加左括号和添加右括号，如果左右括号数量相等，则只能添加左括号。当左括号数目为n，停止添加左括号，只添加右括号。当左右括号数量都为n，将其填入结果vector当中。</p><p><strong>代码如下</strong></p><pre><code>class Solution &#123;public:    vector&lt;string&gt;ans;    vector&lt;string&gt; generateParenthesis(int n) &#123;        dfs(&quot;&quot;,n,n);        return ans;    &#125;    void dfs(string temp,int left,int right)&#123;        if(left==0&amp;&amp;right==0)&#123;            ans.push_back(temp);        &#125;        else&#123;            if(left!=0)&#123;                dfs(temp+&#39;(&#39;,left-1,right);            &#125;            if(left&lt;right)&#123;                dfs(temp+&#39;)&#39;,left,right-1);            &#125;        &#125;    &#125;&#125;;</code></pre><p>不论是时间还是空间花费都比较多<br><strong>执行用时：4 ms, 在所有 C++ 提交中击败了65.31%的用户<br>内存消耗：13.5 MB, 在所有 C++ 提交中击败了35.99%的用户</strong></p><h3 id="dfs（大佬做法）"><a href="#dfs（大佬做法）" class="headerlink" title="dfs（大佬做法）"></a>dfs（大佬做法）</h3><p><strong>代码如下</strong></p><pre><code>class Solution &#123;public:    vector&lt;string&gt; generateParenthesis(int n) &#123;        vector&lt;string&gt; res;        func(res, &quot;&quot;, 0, 0, n);        return res;    &#125;        void func(vector&lt;string&gt; &amp;res, string str, int l, int r, int n)&#123;        if(l &gt; n || r &gt; n || r &gt; l) return ;        if(l == n &amp;&amp; r == n) &#123;res.push_back(str); return;&#125;        func(res, str + &#39;(&#39;, l+1, r, n);        func(res, str + &#39;)&#39;, l, r+1, n);        return;    &#125;&#125;;</code></pre><p><strong>执行用时：0 ms, 在所有 C++ 提交中击败了100.00%的用户<br>内存消耗：14.6 MB, 在所有 C++ 提交中击败了22.09%的用户</strong></p><p>不清楚为什么时间效率会差这么多，感觉都要遍历同样多的节点数。</p><h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p><strong>解题思路</strong><br>可以把一个（）看作最小单位元进行处理，每次在最后一个（后面开始加入（），一直加到末尾，例如：<br>【（）】<br>【（（））】 【（）（）】<br>【（（（））） 】【（（）（））】 【（（））（）】 【（）（）（）】 【（）（（））】<br><strong>……</strong></p><p>10<br>1100 1010<br>111000 110100 110010 101100 101010<br>……</p><pre><code>class Solution &#123;public:    vector&lt;string&gt; generateParenthesis(int n) &#123;        if(n == 1) return &#123;&quot;()&quot;&#125;;        vector&lt;string&gt; tmp = generateParenthesis(n - 1);        vector&lt;string&gt; res;        for(int i = 0; i &lt; tmp.size(); i ++)&#123;            int last = tmp[i].size() - 1;            while(tmp[i][last - 1] != &#39;(&#39;) last --;            for(int j = last; j &lt;= tmp[i].size(); j++)&#123;                res.push_back(&quot;&quot; + tmp[i]);                res.back().insert(j, &quot;()&quot;);            &#125;        &#125;                return res;    &#125;&#125;;</code></pre><p><strong>执行用时：0 ms, 在所有 C++ 提交中击败了100.00%的用户<br>内存消耗：7 MB, 在所有 C++ 提交中击败了98.07%的用户</strong></p><h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><p>作者<a href="https://leetcode.cn/u/yuyu-13/">：yuyu-13</a><br>题解链接：<a href="https://leetcode.cn/problems/generate-parentheses/solution/zui-jian-dan-yi-dong-de-dong-tai-gui-hua-bu-lun-da/">https://leetcode.cn/problems/generate-parentheses/solution/zui-jian-dan-yi-dong-de-dong-tai-gui-hua-bu-lun-da/</a><br><strong>解题思路</strong></p><p>当我们清楚所有 i&lt;n 时括号的可能生成排列后，对与 i&#x3D;n 的情况，我们考虑整个括号排列中最左边的括号。<br>它一定是一个左括号，那么它可以和它对应的右括号组成一组完整的括号 “( )”，我们认为这一组是相比 n-1 增加进来的括号。</p><p>那么，剩下 n-1 组括号有可能在哪呢？</p><p><strong>【这里是重点，请着重理解】</strong></p><p>剩下的括号要么在这一组新增的括号内部，要么在这一组新增括号的外部（右侧）。</p><p>既然知道了 i&lt;n 的情况，那我们就可以对所有情况进行遍历：</p><p>“(“ + 【i&#x3D;p时所有括号的排列组合】 + “)” + 【i&#x3D;q时所有括号的排列组合】</p><p>其中 p + q &#x3D; n-1，且 p q 均为非负整数。</p><p>事实上，当上述 p 从 0 取到 n-1，q 从 n-1 取到 0 后，所有情况就遍历完了。</p><p><em>注：上述遍历是没有重复情况出现的，即当 (p1,q1)≠(p2,q2) 时，按上述方式取的括号组合一定不同。</em></p><p><strong>代码：</strong><br><strong>具体代码如下：</strong>（<strong>时间击败百分之 95，内存击败百分之 99.65）</strong></p><pre><code>class Solution &#123;public:    vector&lt;string&gt; generateParenthesis(int n) &#123;        if (n == 0) return &#123;&#125;;        if (n == 1) return &#123; &quot;()&quot; &#125;;        vector&lt;vector&lt;string&gt;&gt; dp(n+1);        dp[0] = &#123; &quot;&quot; &#125;;        dp[1] = &#123; &quot;()&quot; &#125;;        for (int i = 2; i &lt;= n; i++) &#123;            for (int j = 0; j &lt;i; j++) &#123;                for (string p : dp[j])                    for (string q : dp[i - j - 1]) &#123;                        string str = &quot;(&quot; + p + &quot;)&quot; + q;                        dp[i].push_back(str);                    &#125;            &#125;        &#125;        return dp[n];    &#125;&#125;;</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/generate-parentheses">https://leetcode.cn/problems/generate-parentheses</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>寻宝大作战</title>
+      <link href="/2022/09/11/%E9%A2%98%E8%A7%A3/csp/2022_06_2/"/>
+      <url>/2022/09/11/%E9%A2%98%E8%A7%A3/csp/2022_06_2/</url>
+      
+        <content type="html"><![CDATA[<h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><h3 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h3><p>暑假要到了。可惜由于种种原因，小 P 原本的出游计划取消。失望的小 P 只能留在西西艾弗岛上度过一个略显单调的假期……直到……</p><p>某天，小 P 获得了一张神秘的藏宝图。</p><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>西西艾弗岛上种有 n 棵树，这些树的具体位置记录在一张绿化图上。<br>简单地说，西西艾弗岛绿化图可以视作一个大小为 (L+1)×(L+1) 的 01 矩阵 A，<br>地图左下角（坐标 (0,0)）和右上角（坐标 (L,L)）分别对应 A[0][0] 和 A[L][L]。<br>其中 A[i][j]&#x3D;1 表示坐标 (i,j) 处种有一棵树，A[i][j]&#x3D;0 则表示坐标 (i,j) 处没有树。<br>换言之，矩阵 A 中有且仅有的 n 个 1 展示了西西艾弗岛上 n 棵树的具体位置。</p><p>传说，大冒险家顿顿的宝藏就埋藏在某棵树下。<br>并且，顿顿还从西西艾弗岛的绿化图上剪下了一小块，制作成藏宝图指示其位置。<br>具体来说，藏宝图可以看作一个大小为 (S+1)×(S+1) 的 01 矩阵 B（S 远小于 L），对应着 A 中的某一部分。<br>理论上，绿化图 A 中存在着一处坐标 (x,y)（0≤x,y≤L−S）与藏宝图 B 左下角 (0,0) 相对应，即满足：<br>对 B 上任意一处坐标 (i,j)（0≤i,j≤S），都有 A[x+i][y+j]&#x3D;B[i][j]。<br>当上述条件满足时，我们就认为藏宝图 B 对应着绿化图 A 中左下角为 (x,y)、右上角为 (x+S,y+S) 的区域。</p><p>实际上，考虑到藏宝图仅描绘了很小的一个范围，满足上述条件的坐标 (x,y) 很可能存在多个。<br>请结合西西艾弗岛绿化图中 n 棵树的位置，以及小 P 手中的藏宝图，判断绿化图中有多少处坐标满足条件。</p><p>特别地，藏宝图左下角位置一定是一棵树，即 A[x][y]&#x3D;B[0][0]&#x3D;1，表示了宝藏埋藏的位置。</p><h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>从标准输入读入数据。</p><p>输入的第一行包含空格分隔的三个正整数 n、L 和 S，分别表示西西艾弗岛上树的棵数、绿化图和藏宝图的大小。</p><p>由于绿化图尺寸过大，输入数据中仅包含 n 棵树的坐标而非完整的地图；即接下来 n 行每行包含空格分隔的两个整数 x 和 y，表示一棵树的坐标，满足 0≤x,y≤L 且同一坐标不会重复出现。</p><p>最后 (S+1) 行输入小 P 手中完整的藏宝图，其中第 i 行（0≤i≤S）包含空格分隔的 (S+1) 个 0 和 1，表示 B[S−i][0]⋯B[S−i][S]。<br>需要注意，最先输入的是 B[S][0]⋯B[S][S] 一行，B[0][0]⋯B[0][S] 一行最后输入。</p><p><strong>样例 1 输入</strong></p><pre><code>5 100 20 01 12 23 34 40 0 10 1 01 0 0</code></pre><p><strong>样例 1 输出</strong></p><pre><code>3</code></pre><h3 id="本弱鸡解题思路"><a href="#本弱鸡解题思路" class="headerlink" title="本弱鸡解题思路"></a>本弱鸡解题思路</h3><p>对stl掌握的不好，只能用数组碰运气来做。浪费很多时间，最后只拿了200分，第三题本来可以骗几个用例分数的，，，，，我采用的是记录稀疏矩阵，然后根据横坐标纵坐标排序，最后采用O(n)枚举的暴力做法。代码又臭又长，如下所示（不看也罢）：</p><p> <strong>代码实现</strong></p><pre><code>#include &lt;bits/stdc++.h&gt;using namespace std;/* run this program using the console pauser or add your own getch, system(&quot;pause&quot;) or input loop */struct Zb&#123;    int x;    int y;&#125;zb[1050],cbt[60];int ss[60][60];int cmp(struct Zb a,struct Zb b)&#123;    if(a.x==b.x)&#123;        return a.y&lt;b.y;    &#125;    else return a.x&lt;b.x;    &#125;int main(int argc, char** argv) &#123;    int n,L,s ;    scanf(&quot;%d %d %d&quot;,&amp;n,&amp;L,&amp;s);    for(int i=0;i&lt;n;i++)&#123;        scanf(&quot;%d %d&quot;,&amp;zb[i].x,&amp;zb[i].y);        &#125;        sort(zb,zb+n,cmp);        int t,count=0;        for(int i=s;i&gt;=0;i--)&#123;            for(int j=0;j&lt;=s;j++)&#123;                scanf(&quot;%d&quot;,&amp;ss[i][j]);                if(ss[i][j]==1)&#123;                    cbt[count].y=j;                    cbt[count].x=i;                    count++;                &#125;            &#125;        &#125;        sort(cbt,cbt+count,cmp);        int vcount =0;        for(int i=0;i&lt;n;i++)&#123;            int flag=0;            int k=i+1;            int countzb=0;            if(zb[i].x&gt;L-s||zb[i].y&gt;L-s)flag=1;            while(zb[k].x-zb[i].x&lt;=s&amp;&amp;k&lt;n)&#123;                if(abs(zb[k].x-zb[i].x)&lt;=s&amp;&amp;zb[k].y-zb[i].y&lt;=s&amp;&amp;zb[k].y-zb[i].y&gt;=0)&#123;                    if(ss[abs(zb[k].x-zb[i].x)][abs(zb[k].y-zb[i].y)]!=1)&#123;                        flag=1;                        break;                    &#125;                     countzb++;                &#125;                k++;            &#125;            if(countzb+1!=count)flag=1;            if(flag==0)&#123;                    vcount++;            &#125;        &#125;        printf(&quot;%d&quot;,vcount);     return 0;&#125;</code></pre><h3 id="大佬解法"><a href="#大佬解法" class="headerlink" title="大佬解法"></a>大佬解法</h3><p>对于较大数据10^9，如果用二维数组vector的话无法开辟那么大空间，换成二维map来存储可以解决较大数据问题。解决好两个图的存储问题之后，接下来就是找到符合要求的可能埋有宝藏地点个数，无非就是两个条件：一是满足藏宝图可以在绿化图某块区域完美对上，二是满足藏宝图在绿化图中不出界。可以利用这两个条件去判断每一个符合条件的绿树点。如果两个条件都满足即有可能此处为藏宝点。<br><strong>代码实现</strong></p><pre><code>#include&lt;iostream&gt; #include&lt;map&gt;#include&lt;cmath&gt;using namespace std;//pair&lt;int ,int&gt;和int对应map&lt;int,map&lt;int,int&gt; &gt;mp;struct node&#123;    int x,y;&#125;point[1001];int g[51][51];//地图int main()&#123;    int n,L,S;    cin&gt;&gt;n&gt;&gt;L&gt;&gt;S;    for(int i=0;i&lt;n;i++)&#123;        cin&gt;&gt;point[i].x&gt;&gt;point[i].y;        mp[point[i].x][point[i].y]=1;    &#125;    //输入也是一个坑    for(int i=S;i&gt;=0;i--)&#123;        for(int j=0;j&lt;=S;j++)&#123;            cin&gt;&gt;g[i][j];        &#125;    &#125;    int cnt=0;    for(int i=0;i&lt;n;i++)&#123;        int flag=1;        int x=point[i].x,y=point[i].y;        for(int j=0;j&lt;=S;j++)&#123;            for(int k=0;k&lt;=S;k++)&#123;                if(x+S&gt;L||y+S&gt;L||mp[x+j][y+k]!=g[j][k])&#123;                    flag=0;                    break;                &#125;            &#125;            if(!flag) break;        &#125;        if(flag) cnt++;    &#125;    cout&lt;&lt;cnt&lt;&lt;endl;    return 0;&#125;</code></pre><p><a href="https://blog.csdn.net/victory066/article/details/125819918">作者原文</a><br><a href="https://blog.csdn.net/victory066/article/details/125819918">https://blog.csdn.net/victory066/article/details/125819918</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> csp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>金山训练营第一周</title>
       <link href="/2022/09/09/cpp/%E7%9F%A5%E8%AF%86%E7%82%B9/WPSlesson1/"/>
       <url>/2022/09/09/cpp/%E7%9F%A5%E8%AF%86%E7%82%B9/WPSlesson1/</url>
@@ -1766,6 +2035,156 @@
         <tags>
             
             <tag> cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>把数组排成最小的数</title>
+      <link href="/2022/09/08/%E9%A2%98%E8%A7%A3/%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/"/>
+      <url>/2022/09/08/%E9%A2%98%E8%A7%A3/%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code>输入一个非负整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><p>示例 1:</p><pre><code>输入: [10,2]输出: &quot;102&quot;</code></pre><p>示例 2:</p><pre><code>输入: [3,30,34,5,9]输出: &quot;3033459&quot;</code></pre><p> </p><p>提示:</p><pre><code>0 &lt; nums.length &lt;= 100</code></pre><p>说明:</p><pre><code>输出结果可能非常大，所以你需要返回一个字符串而不是整数拼接起来的数字可能会有前导 0，最后结果不需要去掉前导 0</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>这里的神来之笔是return a+b&lt;b+a这个操作，巧妙的对数组进行排列。</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>class Solution &#123;public:    string minNumber(vector&lt;int&gt;&amp; nums) &#123;        vector&lt;string&gt;snum;        string res;        for(auto num:nums)&#123;            snum.push_back(to_string(num));        &#125;        sort(snum.begin(),snum.end(),cmp);        for(auto s:snum)&#123;            res+=s;        &#125;        return res;    &#125;    static bool cmp(const string&amp;a,const string b)&#123;        return a+b&lt;b+a;    &#125;&#125;;</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof">https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>同构字符串</title>
+      <link href="/2022/09/08/%E9%A2%98%E8%A7%A3/%E5%90%8C%E6%9E%84%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+      <url>/2022/09/08/%E9%A2%98%E8%A7%A3/%E5%90%8C%E6%9E%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code>给定两个字符串 s 和 t ，判断它们是否是同构的。如果 s 中的字符可以按某种映射关系替换得到 t ，那么这两个字符串是同构的。每个出现的字符都应当映射到另一个字符，同时不改变字符的顺序。不同字符不能映射到同一个字符上，相同字符只能映射到同一个字符上，字符可以映射到自己本身。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><p>示例 1:</p><pre><code>输入：s = &quot;egg&quot;, t = &quot;add&quot;输出：true</code></pre><p>示例 2：</p><pre><code>输入：s = &quot;foo&quot;, t = &quot;bar&quot;输出：false</code></pre><p>示例 3：</p><pre><code>输入：s = &quot;paper&quot;, t = &quot;title&quot;输出：true</code></pre><p>提示：</p><pre><code>1 &lt;= s.length &lt;= 5 * 104t.length == s.lengths 和 t 由任意有效的 ASCII 字符组成</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>创建两个桶数组，然后分别存放该字符出现的位置，如果产生冲突就返回false。</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>class Solution &#123;public:    int lengthOfLongestSubstring(string s) &#123;        // 记录字符上一次出现的位置        int last[128];        for(int i = 0; i &lt; 128; i++) &#123;            last[i] = -1;        &#125;        int n = s.length();        int res = 0;        int start = 0; // 窗口开始位置        for(int i = 0; i &lt; n; i++) &#123;            int index = s[i];            start = max(start, last[index] + 1);            res   = max(res, i - start + 1);            last[index] = i;        &#125;        return res;    &#125;&#125;;</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/isomorphic-strings">https://leetcode.cn/problems/isomorphic-strings</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数组游戏</title>
+      <link href="/2022/09/07/%E9%A2%98%E8%A7%A3/%E6%95%B0%E7%BB%84%E6%B8%B8%E6%88%8F/"/>
+      <url>/2022/09/07/%E9%A2%98%E8%A7%A3/%E6%95%B0%E7%BB%84%E6%B8%B8%E6%88%8F/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code>双休在家的凯凯真的是太无聊了，他准备和他家的猫玩一个游戏。凯凯在小黑板上写下一串有正有负的数列，猫咪从左到右，每碰到一个数，可以选择选取或者不选取。在选取过程中，要保证所有选取的数的和始终为非负。在这个限制条件下求最多可以选取多少个数。小猫咪表示“我太难了”你能帮帮它么?</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><p>输入说明：</p><pre><code>会有多组询问首先输入一个数字t (1&lt;=t&lt;=10)接下来有t组数据每组数据里，首先会有一个数n，表示接下来这个数列的长度为n然后接下来一行会有n个数字，从左到右表示题目所说的数列，每个数字a (-10^9&lt;=a&lt;=10^9)(1&lt;=n&lt;=2000)</code></pre><p>输出描述:</p><pre><code>对于每一个提问，请依次输出最多可以选取多少个数</code></pre><p>备注:</p><pre><code>每个数字a (-10^9&lt;=a&lt;=10^9)(1&lt;=n&lt;=2000)</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>其实题目相对比较简单，注意从左到右依次取，并且取的过程中sum一直非负，而不是最后sum非负，<br>思路:</p><pre><code>从左到右依次遍历，遇到正数或者零直接选，遇到负数则分两种情况，情况1:选了之后sum &gt;= 0，那么直接选。情况2︰选了之后sum &lt; ，那么从已经选择的负数中置换出一个最小的。</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>include&lt;bits/stdc++.h&gt;using namespace std;typedef long long LL;int main() &#123;    int t;cin &gt; t;    while(t--)&#123;        int n;        while (cin &gt;&gt;n) &#123;            vector&lt;int&gt; nums(n);            for(auto &amp;e : nums) cin &gt;&gt; e;            LL sum = e, cnt = e;            priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;            for(auto &amp;e : nums)&#123;                if(e &gt;= e) &#123;//遥到正数直接选                    sum += e;                    cnt+t;                &#125;                else &#123;                    if(sum + e &gt;= e)&#123;//情况                        sum += e;                        pq.push(e);cnt++;                    &#125;                    else &#123; //情况                        pq. push(e);                        sum += e;                        sum -= pq.top();                        pq. pop();                    &#125;                &#125;            &#125;        &#125;        cout &lt;&lt; cnt &lt;&lt; endl;    &#125;    return e;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 字节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>全排列</title>
+      <link href="/2022/09/07/%E9%A2%98%E8%A7%A3/%E5%85%A8%E6%8E%92%E5%88%97/"/>
+      <url>/2022/09/07/%E9%A2%98%E8%A7%A3/%E5%85%A8%E6%8E%92%E5%88%97/</url>
+      
+        <content type="html"><![CDATA[<h2 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h2><p>全排列 一般把1~ n 这 n 个整数按某个顺序摆放的结果称为这 n 个整数的一个排列，而全排列指这 n 个整数能形成的所有排列。<br>例如对1、2、3这三个整数来说，(1,2,3)、(1,3,2)、(2,1,3)、(2,3,1 、(3,1,2)、(3,2, I ）就是1<del>3的全排列。<br>从递归的角度去考虑，如果把问题描述成“输出1</del> n 这 n 个整数的全排列”，那么它就可以被分为若干个子问题：“输出以1开头的全排列”“输出以2开头的全排列”…“输出以 n 开头的全排列”。于是不妨设定一个数组 P ，用来存放当前的排列；再设定一个散列数组 hash Table ，其中 hashTable [ x ］当整数 x 已经在数组 P 中时为 true 。<br>现在按顺序往 P 的第1位到第 n 位中填入数字。不妨假设当前已经填好了 P [1]~ P [ index -1]，正准备填 P [ index ]。显然需要枚举1~ n ，如果当前枚举的数字 x 还没有在 P [1]~ P [ index -1］中（即 hashTable [ x ]&#x3D; false )，那么就把它填入 P [ index ]，同时将 hashTable [ x ］置为 true ,然后去处理 P 的第 Tndex +1位（即进行递归）；而当递归完成时，再将 hashTable [ x ］还原为 false ,以便让 P [ index ］填下一个数字。<br>当 index 达到 n +1时，说明 P 的第1~ n 位都已经填好了，此时可以把数组 P 输出，表示生成了一个排列，然后直接 return 即可。</p><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>    # include &lt; cstdio &gt;    const int maxn =1l;    //P为当前排列， hashTable 记录整数 x 是否已经在 P 中     int n , P [maxn], hashTable[maxn]=&#123;false&#125;;    //当前处理排列的第 index 号位    void generateP ( int index )&#123;        if ( index = n +1)&#123;//递归边界，已经处理完排列的1~ n 位            for ( int i = 1 ; i &lt;= n ; i ++)&#123;                printf (&quot;%d&quot;, P [ i ]);//输出当前排列            &#125;            printf (&quot;\n &quot;);            return ;        &#125;        for ( int ×=1;×&lt;= n ;×++)&#123;//枚举1~ n ，试图将×填入 P [ index ]            if ( hashTable [ x ]== false )&#123;//如果×不在P[0]~P [index-1］中             P [ index ]= X ;//令 P 的第 index 位为×，即把×加入当前排列             hashTable [ x ]= true ;//记 x 已在 P 中            generateP ( index +1);//处理排列的第 index +1号位            hashTable [ x ]= false ;//已处理完 P [ index ］为×的子问题，还原状态            &#125;        &#125;    &#125;    int main ()&#123;        n =3;//欲输出1~3的全排列        generateP (1);//从 P [1］开始填         return 0;    &#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> math </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>日期差值</title>
+      <link href="/2022/09/06/%E9%A2%98%E8%A7%A3/%E6%97%A5%E6%9C%9F%E5%B7%AE%E5%80%BC/"/>
+      <url>/2022/09/06/%E9%A2%98%E8%A7%A3/%E6%97%A5%E6%9C%9F%E5%B7%AE%E5%80%BC/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code>求出两个日期之间的相差的天数，相邻日期算两天</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code>示例 1:    输入: 20200111         20200112    输出: 2 </code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>这是一道比较简单的题，只要月份天数闰年平年，注重细节就好了，记录这道题仅仅是熟悉一个思路比较清晰的方法。</p><p>不妨假设第一个日期早于第二个日期（否则交换即可)。<br>这种求日期之间相差天数的题目有一个很直接的思路，即令日期不断加1天，直到第一个日期等于第二个日期为止，即可统计出答案。具体处理时，如果当加了一天之后天数d等于当前月份m所拥有的天数加1，那么就令月份m加1、同时置天数d为1号（即把日期变为下一个月的1号);如果此时月份m变为了13，那么就令年份y加1、同时置月份m为1月（即把日期变为下一年的1月)。<br>为了方便直接取出每个月的天数，不妨给定一个二维数组int month[13][2]，用来存放每个月的天数，其中第二维为0时表示平年，为1时表示闰年。<br>注意:如果想要加快速度，只需要先把第一个日期的年份不断加1，直到与第二个日期的年份相差1为止，期间根据平年或是闰年来累加365天或者366天即可。之后再进行不断令天数加1的操作。</p><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>    #include &lt;cstdio&gt;    int month[13][2] =&#123; //平年和闰年的每个月的天数    &#123;0,0&#125;,&#123;31,31&#125;,&#123;28,29&#125;,&#123;31,31&#125;,&#123;30,30&#125;,&#123;31,31&#125;,&#123;30,30&#125;,    &#123;31, 31&#125;,&#123;31,31&#125;, &#123;30,30&#125;,&#123;31,31&#125;,&#123;30,30&#125;,&#123;31,31&#125;    &#125;    bool isLeap(int year) &#123;//判断是否是闰年        return (year % 4== 0 &amp;&amp; year % 100 = 0) &amp;&amp;(year % 400== 0);    &#125;    int main() &#123;        int timel, yl,ml,dl;        int time2, y2,m2,d2;        while(scanf( &quot;%d%d&quot;,&amp;timel,&amp;time2) !=EOF)&#123;            if(time1 &gt;time2)&#123; 1/第一个日期晚于第二个日期,则交换                int temp=timel;                timel = time2;                time2 = temp;            &#125;            y1 = time1 / 10000, ml = time1 % 10000 / 100,d1 = timel % 100;            y2 = time2 / 10000, m2 = time2 % 10000 / 100,d2 = time2 % 100;            int ans =1;//记录结果            //第一个日期没有达到第二个日期时进行循环            //即!((y1 == y2) &amp;&amp; (ml == m2) &amp;&amp;(d1 == d2))            while(yl&lt; y2 || ml&lt; m2 || d1&lt;d2)&#123;                d1++;//天数加1                if(d1 == month [m1] [isLeap(y1)] +1)&#123;//满当月天数                    m1++;//日期变为下个月的1号                    dl =1;                &#125;                if(m1 ==13) &#123; //月份满12个月                    y1++;//日期变为下一年的1月m1=1;                &#125;                ans++;//累计            &#125;        &#125;    return 0;    &#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>零钱兑换</title>
+      <link href="/2022/09/04/%E9%A2%98%E8%A7%A3/%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2/"/>
+      <url>/2022/09/04/%E9%A2%98%E8%A7%A3/%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。你可以认为每种硬币的数量是无限的。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code>输入：coins = [1, 2, 5], amount = 11输出：3 解释：11 = 5 + 5 + 1</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><h4 id="一-暴力法"><a href="#一-暴力法" class="headerlink" title="一 暴力法"></a>一 暴力法</h4><pre><code>—略—</code></pre><h4 id="二-动态规划"><a href="#二-动态规划" class="headerlink" title="二 动态规划"></a>二 动态规划</h4><pre><code>其实这道题很明显就满足最优子结构性，如果想用最少的硬币兑换money，这对硬币的子集的总金额所需硬币数一定是最少的，否则用更少的硬币替换这个子集的硬币，则总money所需硬币数一定比原来少。现在的问题是如何获得状态方程。假设硬币的金额有m1,m2...mx,需要兑换的总金额为money，金额为money的硬币数存在f[money]中，那么f[money]一定可以由f[money-m1]+1,f[money-m2]+1...f[money-mx]+1中的一个或者多个组成，上面已经说明最优子结构，这样，我们只需要找f[money-m1],f[money-m2]...f[money-mx]中的最小值。问题不断分解，分解到f[m1],f[m2]...f[mx]这些确定值上面（都为1）。按照这个思路，我们反向进行迭代最终就可以求得f[money];    </code></pre><h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><pre><code>class Solution &#123;public:    int coinChange(vector&lt;int&gt;&amp; coins, int amount) &#123;        int Max = amount + 1;        vector&lt;int&gt; dp(amount + 1, Max);        dp[0] = 0;        for (int i = 1; i &lt;= amount; ++i) &#123;            for (int j = 0; j &lt; (int)coins.size(); ++j) &#123;                if (coins[j] &lt;= i) &#123;                    dp[i] = min(dp[i], dp[i - coins[j]] + 1);                &#125;            &#125;        &#125;        return dp[amount] &gt; amount ? -1 : dp[amount];    &#125;&#125;;</code></pre><p>作者：LeetCode-Solution<br>链接：<a href="https://leetcode.cn/problems/coin-change/solution/322-ling-qian-dui-huan-by-leetcode-solution/">https://leetcode.cn/problems/coin-change/solution/322-ling-qian-dui-huan-by-leetcode-solution/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 动态规划 </tag>
             
         </tags>
       
@@ -1849,6 +2268,31 @@
     
     
     <entry>
+      <title>前k个高频词</title>
+      <link href="/2022/08/30/%E9%A2%98%E8%A7%A3/%E5%89%8Dk%E4%B8%AA%E9%AB%98%E9%A2%91%E8%AF%8D/"/>
+      <url>/2022/08/30/%E9%A2%98%E8%A7%A3/%E5%89%8Dk%E4%B8%AA%E9%AB%98%E9%A2%91%E8%AF%8D/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前k个高频词"><a href="#前k个高频词" class="headerlink" title="前k个高频词"></a>前k个高频词</h1><h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><pre><code> 给你一个整数数组nums和一个整数k ，请你返回其中出现频率前k高的元素。 你可以按任意顺序返回答案。 </code></pre><h2 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h2><pre><code>输入: nums = [1,1,1,2,2,3], k = 2输出: [1,2]</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>topk （前k大）用小根堆，维护堆大小不超过 k 即可。每次压入堆前和堆顶元素比较，如果比堆顶元素还小，直接扔掉，否则压入堆。检查堆大小是否超过 k，如果超过，弹出堆顶。复杂度是 nlogk避免使用大根堆，因为你得把所有元素压入堆，复杂度是 nlogn，而且还浪费内存。如果是海量元素，那就挂了。</code></pre><p>注意：</p><pre><code>求前 k 大，用小根堆，求前 k 小，用大根堆。</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p><strong>方法一：桶+快排</strong></p><p>思路与算法：<br>本弱鸡的思路是先用桶把每个数字出现的次数记录下来，然后通过快排按照桶的大小将高频词前k排序出来。</p><p>代码略</p><p>复杂度分析</p><p><strong>时间复杂度：</strong>O(NlogN)，其中 N 为数组的长度。我们首先遍历原数组，并使用桶记录出现次数，每个元素需要 O(1) 的时间，共需 O(N) 的时间。随后，我们遍历「出现次数数组」，取出不为0的数组范围O(N),然后采取快排取出前n大数组，总复杂度 O(NlogN)。<br><strong>空间复杂度</strong> 随着数据范围改变而改变</p><p><strong>方法二：堆</strong></p><p>思路与算法：<br>首先遍历整个数组，并使用哈希表记录每个数字出现的次数，并形成一个「出现次数数组」。找出原数组的前 k 个高频元素，就相当于找出「出现次数数组」的前 k 大的值。</p><p>最简单的做法是给「出现次数数组」排序。但由于可能有 O(N) 个不同的出现次数（其中 N 为原数组长度），故总的算法复杂度会达到 O(NlogN)，不满足题目的要求。</p><p>在这里，我们可以利用堆的思想：建立一个小顶堆，然后遍历「出现次数数组」：</p><p>如果堆的元素个数小于 k，就可以直接插入堆中。<br>如果堆的元素个数等于 k，则检查堆顶与当前出现次数的大小。如果堆顶更大，说明至少有 k 个数字的出现次数比当前值大，故舍弃当前值；否则，就弹出堆顶，并将当前值插入堆中。<br>遍历完成后，堆中的元素就代表了「出现次数数组」中前 kk 大的值。</p><pre><code>class Solution &#123;public:    static bool cmp(pair&lt;int, int&gt;&amp; m, pair&lt;int, int&gt;&amp; n) &#123;        return m.second &gt; n.second;    &#125;    vector&lt;int&gt; topKFrequent(vector&lt;int&gt;&amp; nums, int k) &#123;        unordered_map&lt;int, int&gt; occurrences;        for (auto&amp; v : nums) &#123;            occurrences[v]++;        &#125;        // pair 的第一个元素代表数组的值，第二个元素代表了该值出现的次数        priority_queue&lt;pair&lt;int, int&gt;, vector&lt;pair&lt;int, int&gt;&gt;, decltype(&amp;cmp)&gt; q(cmp);        for (auto&amp; [num, count] : occurrences) &#123;            if (q.size() == k) &#123;                if (q.top().second &lt; count) &#123;                    q.pop();                    q.emplace(num, count);                &#125;            &#125; else &#123;                q.emplace(num, count);            &#125;        &#125;        vector&lt;int&gt; ret;        while (!q.empty()) &#123;            ret.emplace_back(q.top().first);            q.pop();        &#125;        return ret;    &#125;&#125;;</code></pre><h4 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><p><strong>时间复杂度：</strong>O(Nlogk)，其中 N 为数组的长度。我们首先遍历原数组，并使用哈希表记录出现次数，每个元素需要 O(1) 的时间，共需 O(N) 的时间。随后，我们遍历「出现次数数组」，由于堆的大小至多为 k，因此每次堆操作需要 O(logk) 的时间，共需 O(Nlogk) 的时间。二者之和为 O(Nlogk)。<br><strong>空间复杂度：</strong>O(N)。哈希表的大小为 O(N)，而堆的大小为 O(k)，共计为 O(N)。</p><p><strong>方法三：快排</strong></p><p>我们可以使用基于快速排序的方法，求出「出现次数数组」的前 k 大的值。<br>在对数组 arr[l…r] 做快速排序的过程中，我们首先将数组划分为两个部分 arr[i…q−1] 与 arr[q+1…j]，并使得 arr[i…q−1] 中的每一个值都不超过 arr[q]，且arr[q+1…j] 中的每一个值都大于 arr[q]。<br>于是，我们根据 k 与左侧子数组 arr[i…q−1] 的长度（为 q-iq−i）的大小关系：<br>如果k≤q−i，则数组 arr[l…r]前k大的值，就等于子数组arr[i…q−1]前k大的值。<br>否则，数组 arr[l…r] 前 k 大的值，就等于左侧子数组全部元素，加上右侧子数组 arr[q+1…j] 中前 k−(q−i) 大的值。<br>原版的快速排序算法的平均时间复杂度为O(NlogN)。我们的算法中，每次只需在其中的一个分支递归即可，因此算法的平均时间复杂度降为 O(N)O(N)。</p><pre><code>class Solution &#123;public:    void qsort(vector&lt;pair&lt;int, int&gt;&gt;&amp; v, int start, int end, vector&lt;int&gt;&amp; ret, int k) &#123;        int picked = rand() % (end - start + 1) + start;        swap(v[picked], v[start]);        int pivot = v[start].second;        int index = start;        for (int i = start + 1; i &lt;= end; i++) &#123;            if (v[i].second &gt;= pivot) &#123;                swap(v[index + 1], v[i]);                index++;            &#125;        &#125;        swap(v[start], v[index]);        if (k &lt;= index - start) &#123;            qsort(v, start, index - 1, ret, k);        &#125; else &#123;            for (int i = start; i &lt;= index; i++) &#123;                ret.push_back(v[i].first);            &#125;            if (k &gt; index - start + 1) &#123;                qsort(v, index + 1, end, ret, k - (index - start + 1));            &#125;        &#125;    &#125;    vector&lt;int&gt; topKFrequent(vector&lt;int&gt;&amp; nums, int k) &#123;        unordered_map&lt;int, int&gt; occurrences;        for (auto&amp; v: nums) &#123;            occurrences[v]++;        &#125;        vector&lt;pair&lt;int, int&gt;&gt; values;        for (auto&amp; kv: occurrences) &#123;            values.push_back(kv);        &#125;        vector&lt;int&gt; ret;        qsort(values, 0, values.size() - 1, ret, k);        return ret;    &#125;&#125;;</code></pre><h4 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><p><strong>时间复杂度：O(N^2)</strong><br>设处理长度为N的数组的时间复杂度为f(N)。由于处理的过程包括一次遍历和一次子分支的递归，最好情况下，有 f(N)&#x3D;O(N)+f(N&#x2F;2)，根据主定理，能够得到f(N)&#x3D;O(N)。<br>最坏情况下，每次取的中枢数组的元素都位于数组的两端，时间复杂度退化为O(N^2)。但由于我们在每次递归的开始会先随机选取中枢元素，故出现最坏情况的概率很低。<br><em>平均情况下，时间复杂度为 O(N)。</em><br><strong>空间复杂度：O(N)</strong><br>哈希表的大小为O(N)，用于排序的数组的大小也为 O(N)，快速排序的空间复杂度最好情况为 O(logN)，最坏情况为 O(N)。</p><p>作者：LeetCode-Solution<br>链接：<a href="https://leetcode.cn/problems/top-k-frequent-elements/solution/qian-k-ge-gao-pin-yuan-su-by-leetcode-solution/">https://leetcode.cn/problems/top-k-frequent-elements/solution/qian-k-ge-gao-pin-yuan-su-by-leetcode-solution/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>设计模式简介</title>
       <link href="/2022/08/30/DesignMode/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
       <url>/2022/08/30/DesignMode/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
@@ -1866,6 +2310,56 @@
         <tags>
             
             <tag> cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>无重复字符的最长子串</title>
+      <link href="/2022/08/12/%E9%A2%98%E8%A7%A3/%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/"/>
+      <url>/2022/08/12/%E9%A2%98%E8%A7%A3/%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code class="bash">     给定一个字符串 s ，请你找出其中不含有重复字符的最长子串的长度。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code class="bash">    示例 1:        输入: s = &quot;abcabcbb&quot;        输出: 3         解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。    示例 2:        输入: s = &quot;bbbbb&quot;        输出: 1        解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。    示例 3:        输入: s = &quot;pwwkew&quot;        输出: 3        解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。             请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>    采用双指针的做法，通过一个桶记录字符是否出现过以及出现的位置，在O(n)的时间内解决问题</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>class Solution &#123;public:    int lengthOfLongestSubstring(string s) &#123;        // 记录字符上一次出现的位置        int last[128];        for(int i = 0; i &lt; 128; i++) &#123;            last[i] = -1;        &#125;        int n = s.length();        int res = 0;        int start = 0; // 窗口开始位置        for(int i = 0; i &lt; n; i++) &#123;            int index = s[i];            start = max(start, last[index] + 1);            res   = max(res, i - start + 1);            last[index] = i;        &#125;        return res;    &#125;&#125;;</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters">https://leetcode.cn/problems/longest-substring-without-repeating-characters</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>反转链表</title>
+      <link href="/2022/08/10/%E9%A2%98%E8%A7%A3/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
+      <url>/2022/08/10/%E9%A2%98%E8%A7%A3/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code class="bash">    给你单链表的头节点 head ，请你反转链表，并返回反转后的链表</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code>输入: head = [1,2,3,4,5]输出: [5,4,3,2,1]</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>    有迭代和递归两种做法</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p><strong>迭代做法</strong></p><pre><code>class Solution &#123;    public ListNode reverseList(ListNode head) &#123;        ListNode prev = nullptr;        ListNode curr = head;        while (curr != null) &#123;            ListNode next = curr.next;            curr.next = prev;            prev = curr;            curr = next;        &#125;        return prev;    &#125;&#125;</code></pre><p><strong>递归做法</strong></p><pre><code>class Solution &#123;public:    ListNode* reverseList(ListNode* head) &#123;        if (head == NULL || head-&gt;next == NULL) &#123;            return head;        &#125;        ListNode* ret = reverseList(head-&gt;next);        head-&gt;next-&gt;next = head;        head-&gt;next = NULL;        return ret;    &#125;&#125;;</code></pre><p>作者：LeetCode-Solution<br>链接：<a href="https://leetcode.cn/problems/reverse-linked-list/solution/fan-zhuan-lian-biao-by-leetcode-solution-d1k2/">https://leetcode.cn/problems/reverse-linked-list/solution/fan-zhuan-lian-biao-by-leetcode-solution-d1k2/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -2077,6 +2571,150 @@
           
       </categories>
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>非零段划分</title>
+      <link href="/2022/06/06/%E9%A2%98%E8%A7%A3/csp/2021_09_2/"/>
+      <url>/2022/06/06/%E9%A2%98%E8%A7%A3/csp/2021_09_2/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code class="bash">     A1,A2,…,An是一个由 n 个自然数（非负整数）组成的数组。我们称其中 Ai,…,Aj 是一个非零段     当且仅当以下条件同时满足：    ·1≤i≤j≤n；    ·对于任意的整数 k，若 i≤k≤j，则 Ak＞0；    ·i=1 或 Ai-1=0；    ·j=n 或 Aj+1=0。    下面展示了几个简单的例子：    ·A = [3,1,2,0,0,2,0,4,5,0,2]中的4个非零段依次为[3, 1, 2],[2],[4, 5]和[2]；    ·A = [2, 3, 1, 4, 5] 仅有 1 个非零段；    ·A = [0, 0, 0] 则不含非零段（即非零段个数为 0）。    现在我们可以对数组 A 进行如下操作：任选一个正整数 p，然后将 A 中所有小于 p 的数都变为 0。    试选取一个合适的 p，使得数组 A 中的非零段个数达到最大。若输入的 A 所含非零段数已达最大值，    可取 p = 1，即不对 A 做任何修改。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code class="bash">    输入格式    从标准输入读入数据。    输入的第一行包含一个正整数 n。    输入的第二行包含 n 个用空格分隔的自然数 A1, A2, … , An。    输出格式    输出到标准输出。    仅输出一个整数，表示对数组 A 进行操作后，其非零段个数能达到的最大值。</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>借用岛屿情况来分析这个题。考虑p足够大的情况，所有的数都被海水淹没了，只有0个岛屿。然后，海平面逐渐下降，岛屿数量出现变化。每当一个凸峰出现，岛屿数就会多一个；每当一个凹谷出现，原本相邻的两个岛屿就被这个凹谷连在一起了，岛屿数减少一个。使用数组cnt[]，cnt[i] 表示海平面下降到i时，岛屿数量的变化。差分法是最简洁的解题程序。数组元素d[i]中存储该元素被替换为0时，划分数变化的差分值。最大值则只需要从其前缀和（程序中为后缀和）中找出最大值就是所要的结果。程序代码中，STL算法函数unique()用来去除相邻重复的元素。语句“a[0] = a[n + 1] = 0;”用来设置边界值，起辅助计算作用，可以简化程序代码。</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>/* CCF202109-2 非零段划分 */#include &lt;bits/stdc++.h&gt;using namespace std;const int N = 500000;const int M = 10000;int a[N + 2], d[M + 1];int main()&#123;    int n;    scanf(&quot;%d&quot;, &amp;n);    for (int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]);    a[0] = a[n + 1] = 0;    n = unique(a, a + n + 2) - a - 1;    memset(d, 0, sizeof d);    for (int i = 1; i &lt; n; i++)        if (a[i - 1] &lt; a[i] &amp;&amp; a[i] &gt; a[i + 1]) d[a[i]]++;        else if (a[i - 1] &gt; a[i] &amp;&amp; a[i] &lt;a[i + 1]) d[a[i]]--;    int ans = 0, sum = 0;   // 差分前缀和即为答案    for (int i = M; i &gt;= 1; i--)        sum += d[i], ans = max(ans, sum);    printf(&quot;%d\n&quot;, ans);    return 0;&#125;&#125;</code></pre><p>来源：<a href="https://blog.csdn.net/tigerisland45/article/details/120598581">https://blog.csdn.net/tigerisland45/article/details/120598581</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> csp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>买卖股票1</title>
+      <link href="/2022/03/26/%E9%A2%98%E8%A7%A3/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A82/"/>
+      <url>/2022/03/26/%E9%A2%98%E8%A7%A3/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A82/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code class="bash">    给定一个数组 prices ，其中 prices[i] 表示股票第 i 天的价格。在每一天，你可能会决定购买      或出售股票。你在任何时候最多只能持有一股股票。你也可以购买它，然后在同一天出售。返回你能获      得的最大利润。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code class="bash">    输入: prices = [7,1,5,3,6,4]    输出: 7    解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5的时候卖出,       这笔交易所能获得利润 = 5-1 = 4 。    随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6） 的时候卖出,       这笔交易所能获得利润 = 6-3 = 3 </code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><h4 id="一，动态规划"><a href="#一，动态规划" class="headerlink" title="一，动态规划"></a>一，动态规划</h4><pre><code>    考虑到「不能同时参与多笔交易」，因此每天交易结束后只可能存在手里有一支股票或者没有股票的状态。    定义状态 dp[i][0] 表示第i天交易完后手里没有股票的最大利润，dp[i][1] 表示第i天交易完后手里      持有一支股票的最大利润（i 从 0 开始）。    考虑 dp[i][0] 的转移方程，如果这一天交易完后手里没有股票，那么可能的转移状态为前一天已经没有      股票，即 dp[i−1][0]，或者前一天结束的时候手里持有一支股票，即 dp[i−1][1]，这时候我们要将      其卖出，并获得prices[i] 的收益。因此为了收益最大化，我们列出如下的转移方程：                dp[i][0]=max(dp[i-1][0],dp[i-1][1]+prices[i])    再来考虑dp[i][1]，按照同样的方式考虑转移状态，那么可能的转移状态为前一天已经持有一支股票，即      dp[i−1][1]，或者前一天结束时还没有股票，即dp[i−1][0]，这时候我们要将其买入，并减少prices[i]      的收益。可以列出如下的转移方程：                dp[i][1]=max&#123;dp[i−1][1],dp[i−1][0]−prices[i]&#125;    对于初始状态，根据状态定义我们可以知道第 0 天交易结束的时候 0dp[0][0]=0，dp[0][1]=−prices[0]。    因此，我们只要从前往后依次计算状态即可。由于全部交易结束后，持有股票的收益一定低于不持有股票的收      益，因此这时候 dp[n−1][0]的收益必然是大于dp[n−1][1] 的，最后的答案即为dp[n−1][0]。    </code></pre><h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><pre><code>class Solution &#123;public:    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;        int n = prices.size();        int dp[n][2];        dp[0][0] = 0, dp[0][1] = -prices[0];        for (int i = 1; i &lt; n; ++i) &#123;            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i]);            dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] - prices[i]);        &#125;        return dp[n - 1][0];    &#125;&#125;;</code></pre><h4 id="二，（贪心算法）本弱鸡的解法"><a href="#二，（贪心算法）本弱鸡的解法" class="headerlink" title="二，（贪心算法）本弱鸡的解法"></a>二，（贪心算法）本弱鸡的解法</h4><pre><code>    因为可以不限制购买，所以只要是顺序对就把他加入。同时要注意的是，连续的顺序对，比如&#123;1，2，3，4&#125;，      实际购买情况是第一天买入第四天卖出，做题顺序不等于实际购买顺序。</code></pre><h6 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h6><pre><code>class Solution &#123;public:    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;        int sum=0;        for(int i=1;i&lt;prices.size();i++)&#123;            if(prices[i]&gt;prices[i-1])sum+=prices[i]-prices[i-1];        &#125;        return sum;    &#125;    &#125;;</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii">https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>买卖股票1</title>
+      <link href="/2022/03/26/%E9%A2%98%E8%A7%A3/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A81/"/>
+      <url>/2022/03/26/%E9%A2%98%E8%A7%A3/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A81/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code class="bash">    给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。    你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子 卖出该股票。    设计一个算法来计算你所能获取的最大利润。    返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code class="bash">    输入：[7,1,5,3,6,4]    输出：5    解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><h4 id="一，暴力法"><a href="#一，暴力法" class="headerlink" title="一，暴力法"></a>一，暴力法</h4><pre><code>—略—</code></pre><h4 id="二，一次遍历"><a href="#二，一次遍历" class="headerlink" title="二，一次遍历"></a>二，一次遍历</h4><pre><code>    如果我们真的在买卖股票，我们肯定会想：如果我是在历史最低点买的股票就好了！太好了，在题目中，      我们只要用一个变量记录一个历史最低价格 minprice，我们就可以假设自己的股票是在那天买的。那么，      我们在第 i 天卖出股票能得到的利润就是 prices[i] - minprice。因此，我们只需要遍历价格数组      一遍，记录历史最低点，然后在每一天考虑这么一个问题：如果我是在历史最低点买进的，那么我今天卖      出能赚多少钱？当考虑完所有天数之时，我们就得到了最好的答案。    </code></pre><h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><pre><code>long long int min(long long int a,long long int b)&#123;    return a&gt;b?b:a;    &#125;int findKthNumber(int n, int k)&#123;        int cur = 1;        --k;//初始化为cur = 1，k需要自减1        while (k &gt; 0) &#123;            long long step = 0, first = cur, last = cur + 1;            //统计这棵子树下所有节点数（step）            while (first &lt;= n) &#123;                //不能超过n的值，并不是所有节点都有十个子节点                step += min((long long)n + 1, last) - first;                first *= 10;                last *= 10;            &#125;            if (step &lt;= k) &#123;//不在子树中                ++cur;                k -= step;            &#125;             else &#123;//在子树中，进入子树                cur *= 10;                --k;             &#125;        &#125;        return cur;&#125;</code></pre><h4 id="三，本弱鸡的解法"><a href="#三，本弱鸡的解法" class="headerlink" title="三，本弱鸡的解法"></a>三，本弱鸡的解法</h4><pre><code>    最近算法课刚刚学习了最大子数组和，所以本弱鸡依葫芦画瓢，从最后一项向前遍历，每一项都等于      减去前一项以后的值。这样就将某两点的最大差值问题变成了该数组之间的最大子数组和问题。注意，      计算子数组和时忽略掉第零项。</code></pre><h6 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h6><pre><code>class Solution &#123;public:    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;        for(int i=prices.size()-1;i&gt;0;i--)&#123;            prices[i]=prices[i]-prices[i-1];        &#125;        int sum=0,maxProfit=0;        for(int i=1;i&lt;prices.size();i++)&#123;            sum+=prices[i];            if(sum&gt;maxProfit)maxProfit=sum;            if(sum&lt;0)sum=0;        &#125;        return maxProfit;    &#125;&#125;;</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock">https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>字典序的第k大数字</title>
+      <link href="/2022/03/23/%E9%A2%98%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%BA%8F%E7%9A%84%E7%AC%ACk%E5%A4%A7%E6%95%B0%E5%AD%97/"/>
+      <url>/2022/03/23/%E9%A2%98%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%BA%8F%E7%9A%84%E7%AC%ACk%E5%A4%A7%E6%95%B0%E5%AD%97/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code class="bash">     给定整数 n 和 k，返回  [1, n] 中字典序第 k 小的数字。  </code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code class="bash">    输入: n = 13, k = 2    输出: 10    解释: 字典序的排列是 [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9]，所以第二小的数字是 10。</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>    这里的字典树其实就是一个十叉树，我们只需要构建一个十叉树，然后进行先序遍历就好了。但是      仔细想一下，n的范围一旦很大，对于空间的开销是难以想象的。所以我们要根据十叉树的思想，来      模拟遍历。根据十叉树的性质，每一层中的个数十上一层树的十倍，比如1000~9999就是100~999的      十倍，那么以100~199为前缀的第四层结点个数等于第三层节点个数。也就是说如果从某一棵树第n层      的节点总和大于k的话，那么第k大的元数必定在n-1层。根据这个性质，我们从1为根节点的子树开始      遍历，如果第一层中的结点数大于k，那么第k大的数在第一棵子树上，否则在剩下子树中。遍历下去，      直到找到结果。</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>long long int min(long long int a,long long int b)&#123;    return a&gt;b?b:a;    &#125;int findKthNumber(int n, int k)&#123;        int cur = 1;        --k;//初始化为cur = 1，k需要自减1        while (k &gt; 0) &#123;            long long step = 0, first = cur, last = cur + 1;            //统计这棵子树下所有节点数（step）            while (first &lt;= n) &#123;                step += min((long long)n + 1, last) - first;//不能超过n的值，并不是所有节点都有十个子节点                first *= 10;                last *= 10;            &#125;            if (step &lt;= k) &#123;//不在子树中                ++cur;                k -= step;            &#125;             else &#123;//在子树中，进入子树                cur *= 10;                --k;             &#125;        &#125;        return cur;&#125;</code></pre><p>来源：力扣（LeetCode）<br>    链接：<a href="https://leetcode-cn.com/problems/k-th-smallest-in-lexicographical-order">https://leetcode-cn.com/problems/k-th-smallest-in-lexicographical-order</a><br>    著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Easy Strings Merging</title>
+      <link href="/2022/03/03/%E9%A2%98%E8%A7%A3/EasyStrings/"/>
+      <url>/2022/03/03/%E9%A2%98%E8%A7%A3/EasyStrings/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目介绍"><a href="#题目介绍" class="headerlink" title="题目介绍"></a>题目介绍</h3><pre><code>给定 nn 个 01 串，每次你可以从某个串开头移除一个字符并把它加入一个新串 SS 的末尾。最大化 SS 中相邻两个字符相同的对数。(P8001)</code></pre><h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><pre><code>第一行一个正整数 nn 表示串的个数。接下来 nn 行，每行一个 01 字符串。</code></pre><h5 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h5><pre><code>一行一个整数表示答案。</code></pre><h5 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h5><pre><code>    输入 ：                                  输出：9    3    0011    0110    1100</code></pre><h3 id="本弱鸡解法"><a href="#本弱鸡解法" class="headerlink" title="本弱鸡解法"></a>本弱鸡解法</h3><pre><code class="bash">    暴力模拟！！！！！！！！！！用的c语言，没有用String类，只能拿到75分。暂未解决空间溢出问题。</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>    #pragma warning(disable:4996)    #include&lt;stdio.h&gt;    #include&lt;string.h&gt;    char a[10001][10001];    int b[1001];    int c[1001];    int check[1001];    int main() &#123;        int sum1 = 0, sum2 = 0,flag=0;        int n, i, temp;        scanf(&quot;%d&quot;, &amp;n);        temp = n;        for (i = 0; i &lt; n; i++) &#123;            scanf(&quot;%s&quot;, a[i]);            c[i] = strlen(a[i]);        &#125;        while (temp) &#123;            for (i = 0; i &lt; n; i++) &#123;                while (!check[i]&amp;&amp;b[i] &lt; c[i] &amp;&amp; a[i][b[i]] == &#39;0&#39;)flag=1,b[i]++,sum1++;                if (b[i] == c[i])check[i] = 1;            &#125;            if(flag)sum1--;            flag = 0;            if (b[i] == c[i])temp--;            for (i = 0; i &lt; n; i++) &#123;                while (b[i] &lt; c[i] &amp;&amp; a[i][b[i]] == &#39;1&#39;)flag=1,b[i]++,sum1++;                if (b[i] == c[i])check[i] = 1;            &#125;            if (flag)sum1--;            flag = 0;            temp = n;            for (i = 0; i &lt; n; i++) &#123;                if (check[i] == 1)temp--;            &#125;        &#125;        temp = n;        for (i = 0; i &lt; n; i++) &#123;            b[i] = 0;            check[i] = 0;        &#125;        while (temp) &#123;            for (i = 0; i &lt; n; i++) &#123;                while (b[i] &lt; c[i] &amp;&amp; a[i][b[i]] == &#39;1&#39;)flag=1,b[i]++, sum2++;                if (b[i] == c[i])check[i] = 1;            &#125;            if(flag)sum2--;            flag = 0;            if (b[i] == c[i])temp--;            for (i = 0; i &lt; n; i++) &#123;                while (b[i] &lt; c[i] &amp;&amp; a[i][b[i]] == &#39;0&#39;)flag=1,b[i]++, sum2++;                if (b[i] == c[i])check[i] = 1;            &#125;            if (flag)sum2--;            flag = 0;            temp = n;            for (i = 0; i &lt; n; i++) &#123;                if (check[i] == 1)temp--;            &#125;        &#125;        if (sum1 &gt; sum2)printf(&quot;%d&quot;, sum1);        else printf(&quot;%d&quot;, sum2);        return 0;    &#125;                                                                                 </code></pre><h3 id="大佬做法"><a href="#大佬做法" class="headerlink" title="大佬做法"></a>大佬做法</h3><pre><code>    暂时无</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>779 第k个语法符号</title>
+      <link href="/2022/03/03/%E9%A2%98%E8%A7%A3/%E7%AC%ACk%E4%B8%AA%E6%95%B0%E5%AD%97/"/>
+      <url>/2022/03/03/%E9%A2%98%E8%A7%A3/%E7%AC%ACk%E4%B8%AA%E6%95%B0%E5%AD%97/</url>
+      
+        <content type="html"><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><pre><code>在第一行我们写上一个 0。接下来的每一行，将前一行中的0替换为01，1替换为10。给定行数 N 和序数 K，返回第 N 行中第 K个字符。（K从1开始）例子:输入: N = 1, K = 1输出: 0输入: N = 2, K = 1输出: 0输入: N = 2, K = 2输出: 1输入: N = 4, K = 5输出: 1解释:第一行: 0第二行: 01第三行: 0110第四行: 01101001来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems/k-th-symbol-in-grammar</code></pre><h3 id="本弱鸡解法"><a href="#本弱鸡解法" class="headerlink" title="本弱鸡解法"></a>本弱鸡解法</h3><pre><code class="bash">    可以将第n个数字串平均分两部分，前半部分和第n-1数字串相同，后半部分则是第n-1数字串按位取反    那么我们可以判断k的位置，从而不断缩小数字串的长度，最终到第一个字符串；</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>    int kthGrammar(int n, int k)&#123;    int sign=1;    while(1)&#123;        if(k&lt;=(1&lt;&lt;(n-1)))&#123;            n--;        &#125;        if(n&amp;&amp;k&gt;(1&lt;&lt;(n-1)))&#123;            k=k-(1&lt;&lt;(n-1));            sign*=-1;        &#125;        if(k==1)&#123;            return sign&gt;0?0:1;        &#125;    &#125;&#125;                                                                                      </code></pre><h3 id="大佬做法"><a href="#大佬做法" class="headerlink" title="大佬做法"></a>大佬做法</h3><p>经过观察发现这道题的解其实就是对K-1进行了一个奇偶校验，因此连N这个参数都用不着，O(1)时间空间复杂度求解</p><pre><code>    int kthGrammar(int N, unsigned int K) &#123;        K -= 1;        K ^= K &gt;&gt; 1;        K ^= K &gt;&gt; 2;        K = (K &amp; 0x11111111U) * 0x11111111U;        return (K &gt;&gt; 28) &amp; 1;    &#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
       
     </entry>
     
