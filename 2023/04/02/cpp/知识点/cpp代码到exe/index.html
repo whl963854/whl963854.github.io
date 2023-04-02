@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>观察者模式 | Hexo</title>
-  <meta name="keywords" content=" 行为型模式 ">
-  <meta name="description" content="观察者模式 | Hexo">
+  <title>cpp代码到exe | Hexo</title>
+  <meta name="keywords" content=" cpp ">
+  <meta name="description" content="cpp代码到exe | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到！">
 <meta property="og:type" content="website">
@@ -1582,9 +1582,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-DesignMode/Behavioral Pattern/观察者模式" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-cpp/知识点/cpp代码到exe" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">观察者模式</h1>
+        <h1 class="article-title">cpp代码到exe</h1>
     
     <div class="article-meta">
         
@@ -1594,7 +1594,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="设计模式">设计模式</a>
+            <a  data-rel="cpp">cpp</a>
             
         </span>
         
@@ -1602,19 +1602,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">行为型模式</a>
+            <a class="color4">cpp</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-11-26 19:04:04'>2022-09-22 16:22</time>
+            Created At : <time class="date" title='Updated At: 2023-04-02 20:36:30'>2023-04-02 20:20</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:667</span>
+        <span>Count:1.1k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1644,7 +1644,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-text">观察者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A6%81%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-text">要点总结</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E4%BB%8E%E4%BB%A3%E7%A0%81%E5%88%B0%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6"><span class="toc-text">C++从代码到可执行二进制文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E7%BC%96%E8%AF%91"><span class="toc-text">预编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-text">编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E7%BC%96"><span class="toc-text">汇编</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-text">链接</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1660,145 +1660,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><p>当一个对象的状态发生改变的时候，如何让依赖他的所有对象得到通知并进行相应的处理。</p>
-<ul>
-<li>稳定点 一对多的依赖关系（一变化 多跟着变化）</li>
-<li>变化点 <ul>
-<li>‘多’增加</li>
-<li>‘多’减少</li>
-</ul>
-</li>
-</ul>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>丈夫下班的时候会告诉孩子和老婆，老公开车要往回走了</p>
-<ul>
-<li>孩子妈收到消息后开始做饭</li>
-<li>孩子收到消息后，就赶紧收起手机，怕挨揍</li>
-</ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>观察者模式的核心思想是 1对多</p>
-<p>传统写法：</p>
-<pre><code>#include &lt;iostream&gt;
-class Son&#123;
-public:
-    void DoSomething()&#123;
-        std::cout&lt;&lt;&quot;爸爸回来了，赶紧去写作业&quot;&lt;&lt;std::endl;
-    &#125;
-&#125;;
-
-class Wife&#123;
-public:
-    void DoSomething()&#123;
-        std::cout&lt;&lt;&quot;老公回来了，去做饭&quot;&lt;&lt;std::endl;
-    &#125;
-&#125;;
-
-class Husband&#123;
-public:
-    void Gohome()&#123;
-        wife.DoSomething();
-        son.DoSomething();
-    &#125;
-private:
-    Wife wife;
-    Son son;
-&#125;;
-
-int main()&#123;
-    Husband husband;
-    husband.Gohome();
-    return 0;
-&#125;
+        <h1 id="C-从代码到可执行二进制文件"><a href="#C-从代码到可执行二进制文件" class="headerlink" title="C++从代码到可执行二进制文件"></a>C++从代码到可执行二进制文件</h1><p>test.cpp–test.i–test.s–test.o</p>
+<h2 id="预编译"><a href="#预编译" class="headerlink" title="预编译"></a>预编译</h2><p>预处理用于将所有的#include头文件以及宏定义替换成其真正的内容，预处理之后得到的仍然是文本文件，但文件体积会大很多。gcc的预处理是预处理器cpp来完成的，你可以通过如下命令对test.c进行预处理：</p>
+<pre><code>gcc -E -I./inc main.cpp -o main.i
 </code></pre>
-<p>这样写的不足如下：</p>
-<p>如果关心丈夫的人变多了，比如老妈、老爸 ，这时候我们不得不去修改Husband的类</p>
-<pre><code>class Husband&#123;
-public:
-    void Gohome()&#123;
-        wife.DoSomething();
-        son.DoSomething();
-        mom.DoSomething();
-        ba.DoSomething();
-    &#125;
-private:
-    Wife wife;
-    Son son;
-    Mother mom;
-    Father ba;
-&#125;;
+<p>或者直接调用cpp命令</p>
+<pre><code>$ cpp main.cpp -I./inc -o main.i
 </code></pre>
-<p>人数少的时候，还可以应付，假如关心我的人有1000人，那这时候我们该怎么办</p>
-<p><strong>开始重构，简单观察者模式，面向抽象编程</strong><br>观察者接口</p>
-<pre><code>class ObserverInterface&#123;
-public:
-    virtual void dosomething()=0;
-    virtual ~ObserverInterface()&#123;&#125;
-&#125;;
+<p>上述命令中-E是让编译器在预处理之后就退出，不进行后续编译过程；-I指定头文件目录，这里指定的是我们自定义的头文件目录；-o指定输出文件名。<br>经过预处理之后代码体积会大很多,预处理之后的程序还是文本，可以用文本编辑器打开</p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>编译只是把我们写的代码转为汇编代码，它的工作是检查词法和语法规则，所以，如果程序没有词法或则语法错误，那么不管逻辑是怎样错误的，都不会报错。<br>编译不是指程序从源文件到二进制程序的全部过程，而是指将经过预处理之后的程序转换成特定汇编代码(assembly code)的过程。</p>
+<pre><code>$ gcc -S -I./inc main.cpp -o main.s
 </code></pre>
-<p>被观察者接口</p>
-<pre><code>class SubjectInterface&#123;
-public:
-    virtual void Add(ObserverInterface* obr)=0;
-    virtual void Remove(ObserverInterface* obr)=0;
-    virtual void Notify()=0;
-    virtual ~SubjectInterface()&#123;&#125;
-&#125;;
+<p>上述命令中-S让编译器在编译之后停止，不进行后续过程。编译过程完成后，将生成程序的汇编代码test.s，这也是文本文件</p>
+<h2 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h2><p>汇编过程将上一步的汇编代码(main.s)转换成机器码(machine code)，这一步产生的文件叫做目标文件(main.o)，是二进制格式。<br>gcc&#x2F;g++的汇编过程通过 as 命令完成，所以我们可以通过g++ -c或as命令完成汇编：</p>
+<pre><code>g++ -c -I include/ main.cpp -o main.o
 </code></pre>
-<p>丈夫</p>
-<pre><code>class Husband:public SubjectInterface&#123;
-public:
-    void Add(ObserverInterface* obr) override&#123;
-        observers.push_back(obr);
-    &#125;
-
-    void Remove(ObserverInterface* obr) override&#123;
-        auto pos=std::find(observers.begin(),observers.end(),obr);
-        if(pos!=observers.end())&#123;
-            observers.erase(pos);
-        &#125;
-    &#125;
-
-    void Notify() override&#123;
-        for(const auto&amp; obs:observers)&#123;
-            obs-&gt;dosomething();
-        &#125;
-    &#125;
-
-private:
-    std::vector&lt;ObserverInterface*&gt; observers;
-&#125;;
+<p>或者直接调用 as 命令</p>
+<pre><code>as main.s -o main.o
 </code></pre>
-<p>孩子妈</p>
-<pre><code>class Wife:public ObserverInterface&#123;
-public:
-    void dosomething() override&#123;
-        std::cout&lt;&lt;&quot;老公快回来了，开始做饭&quot;&lt;&lt;std::endl;
-    &#125;
-&#125;;
+<p>上述指令中： - g++ -c让编译器在汇编之后退出，等价于 as - -I include&#x2F;仍是用于指定头文件目录 - main.cpp是要汇编的源文件 - -o main.o用于指定生成的文件名<br>汇编这一步需要为每一个源文件（本文示例代码中为main.cpp、func.cpp）产生一个目标文件。因此func.cpp也需要执行一次这个汇编过程产生一个func.o文件:</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>C&#x2F;C++代码经过汇编之后生成的目标文件(*.o)并不是最终的可执行二进制文件，而仍是一种中间文件(或称临时文件)，目标文件仍然需要经过链接(Link)才能变成可执行文件。</p>
+<p>既然目标文件和可执行文件的格式是一样的（都是二进制格式），为什么还要再链接一次呢？<br>因为编译只是将我们自己写的代码变成了二进制形式，它还需要和系统组件（比如标准库、动态链接库等）结合起来，这些组件都是程序运行所必须的。<br>链接（Link）其实就是一个“打包”的过程，它将所有二进制形式的目标文件(.o)和系统组件组合成一个可执行文件。完成链接的过程也需要一个特殊的软件，叫做链接器（Linker）。<br>此外需要注意的是：C++程序编译的时候其实只识别.cpp文件，每个cpp文件都会分别编译一次，生成一个.o文件。这个时候，链接器除了将目标文件和系统组件组合起来，还需要将编译器生成的多个.o或者.obj文件组合起来，生成最终的可执行文件(Executable file)。<br>以本文中的代码为例，将func.o和main.o链接成可执行文件main.out，指令如下:</p>
+<pre><code>g++ src/func.o main.o -o main.out
 </code></pre>
-<p>孩子</p>
-<pre><code>class Son:public  ObserverInterface&#123;
-public:
-    void dosomething() override &#123;
-        std::cout&lt;&lt;&quot;爸爸快回来了，不能玩游戏了&quot;&lt;&lt;std::endl;
-    &#125;
-&#125;;
+<p>-o main.out用于指定生成的可执行二进制文件名<br>由于g++自动链接了系统组件，所以我们只需要把自定义函数的目标文件与main.o链接即可。<br>运行main.out，结果如下：</p>
+<pre><code>./main.out
+a + b = 3
 </code></pre>
-<p>main函数</p>
-<pre><code>int main()&#123;
-    Husband husband;
-    ObserverInterface* wife=new Wife;
-    ObserverInterface* son=new Son;
-    husband.Add(wife);
-    husband.Add(son);
-
-    //下班了 发消息
-    husband.Notify();
-
-    delete wife;
-    delete son;
-&#125;
-</code></pre>
-<p>这样的好处是：再增加新的观察者，我们就不用修改Husband的类了，只需要添加到vector中就可以<br>不足是：需要自己做内存管理 delete</p>
-<h2 id="要点总结"><a href="#要点总结" class="headerlink" title="要点总结"></a>要点总结</h2><p>使用面向对象的抽象，Observer模式使得我们可以独立的改变目标与观察者，从而使二者之间的依赖关系松耦合。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3366576307@qq.com </span>
