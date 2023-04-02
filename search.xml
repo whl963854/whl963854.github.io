@@ -4,6 +4,331 @@
   
     
     <entry>
+      <title>移动语义</title>
+      <link href="/2023/04/02/cpp/cpp11/%E7%A7%BB%E5%8A%A8%E8%AF%AD%E4%B9%89/"/>
+      <url>/2023/04/02/cpp/cpp11/%E7%A7%BB%E5%8A%A8%E8%AF%AD%E4%B9%89/</url>
+      
+        <content type="html"><![CDATA[<h1 id="移动语义"><a href="#移动语义" class="headerlink" title="移动语义"></a>移动语义</h1><p>对于移动语义，相关一个话题就是异常，对于移动构造函数来说，抛出异常有时候是个危险的事情，因为可能移动语义还没有完成一个异常就会抛出造成悬挂指针。因此移动构造函数应该为其添加一个noexception关键字，保证异常抛出以后直接调用terminate程序终止执行。</p><p>在标准库中，我们可以使用std::move_if_noexception来代替move函数，该函数在移动构造函数没有noexception关键字修饰的时候返回一个左值引用从而使变量使用拷贝语义。在移动构造函数有noexception关键字修饰的时候返回一个右值引用从而使变量使用移动语义。</p><p>与移动语义相关但是关联不多的一个话题是：RVO&#x2F;NRVO优化</p><pre><code>A returnRvalue()&#123;A a();return a;&#125;A b=returnRvalue();</code></pre><p>编译器优化后，从returnRvalue函数中a的变量拷贝  临时变量拷贝通通没有了，b变量实际上霸占了a变量。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c++11 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>move</title>
+      <link href="/2023/04/02/cpp/cpp11/move/"/>
+      <url>/2023/04/02/cpp/cpp11/move/</url>
+      
+        <content type="html"><![CDATA[<h1 id="move"><a href="#move" class="headerlink" title="move"></a>move</h1><p>为什么要引入move，我们来看一个例子</p><pre><code>class A &#123;    public:        A()&#123;            std::cout &lt;&lt; &quot;A construct...&quot; &lt;&lt; std::endl;            ptr_ = new int(100);        &#125;        A(const A &amp; a)&#123;            std::cout &lt;&lt; &quot;A copy construct ...&quot; &lt;&lt; std::endl;            ptr_ = new int();            memcpy(ptr_, a.ptr_, sizeof(int));        &#125;        ~A()&#123;            std::cout &lt;&lt; &quot;A deconstruct ...&quot; &lt;&lt; std::endl;            if(ptr_)&#123;                delete ptr_;            &#125;        &#125;        A&amp; operator=(const A &amp; a) &#123;            std::cout &lt;&lt; &quot; A operator= ....&quot; &lt;&lt; std::endl;            return *this;        &#125;        int * getVal()&#123;            return ptr_;        &#125;    private:        int *ptr_;&#125;;int main(int argc, char *argv[])&#123;    std::vector&lt;A&gt; vec;    vec.push_back(A());&#125;</code></pre><p>输出结果</p><pre><code>A construct...          //main中创建的A对象A copy construct ...    //vector内部创建的A对象A deconstruct ...       //vector内部创建的A对象被析构A deconstruct ...       //main中创建的A对象析构</code></pre><p>但是如果使用move：</p><pre><code>class A &#123;    public:        ...        A(A &amp;&amp; a)&#123;            std::cout &lt;&lt; &quot;A move construct ...&quot; &lt;&lt; std::endl;            ptr_ = a.ptr_;            a.ptr_ = nullptr;        &#125;        ...&#125;;int main()&#123;    std::vector&lt;A&gt; vec;    vec.push_back(std::move(A())); &#125;</code></pre><p>输出结果</p><pre><code>A construct...          //main中创建的A对象A move construct ...    //vector内部创建的A对象A deconstruct ...       //vector内部创建的A对象被析构A deconstruct ...       //main中创建的A对象析构</code></pre><p>可以看到td::move并不能移动任何东西，它唯一的功能是将一个左值强制转化为右值引用，继而可以通过右值引用使用该值，以用于移动语义。从实现上讲，std::move基本等同于一个类型转换：static_cast&lt;T&amp;&amp;&gt;(lvalue);</p><p>C++ 标准库使用比如vector::push_back 等这类函数时,会对参数的对象进行复制,连数据也会复制.这就会造成对象内存的额外创建, 本来原意是想把参数push_back进去就行了,通过std::move，可以避免不必要的拷贝操作。</p><p>std::move是为性能而生。std::move是将对象的状态或者所有权从一个对象转移到另一个对象，只是转移，没有内存的搬迁或者内存拷贝。</p><p>例如：</p><pre><code>#include &lt;iostream&gt;#include &lt;utility&gt;#include &lt;vector&gt;#include &lt;string&gt;int main()&#123;    std::string str = &quot;Hello&quot;;    std::vector&lt;std::string&gt; v;    //调用常规的拷贝构造函数，新建字符数组，拷贝数据    v.push_back(str);    std::cout &lt;&lt; &quot;After copy, str is \&quot;&quot; &lt;&lt; str &lt;&lt; &quot;\&quot;\n&quot;;    //调用移动构造函数，掏空str，掏空后，最好不要使用str    v.push_back(std::move(str));    std::cout &lt;&lt; &quot;After move, str is \&quot;&quot; &lt;&lt; str &lt;&lt; &quot;\&quot;\n&quot;;    std::cout &lt;&lt; &quot;The contents of the vector are \&quot;&quot; &lt;&lt; v[0]                                        &lt;&lt; &quot;\&quot;, \&quot;&quot; &lt;&lt; v[1] &lt;&lt; &quot;\&quot;\n&quot;;&#125;</code></pre><p>输出：</p><pre><code>After copy, str is &quot;Hello&quot;After move, str is &quot;&quot;The contents of the vector are &quot;Hello&quot;, &quot;Hello&quot;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c++11 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>左值右值</title>
+      <link href="/2023/04/02/cpp/cpp11/%E5%B7%A6%E5%80%BC%E5%8F%B3%E5%80%BC/"/>
+      <url>/2023/04/02/cpp/cpp11/%E5%B7%A6%E5%80%BC%E5%8F%B3%E5%80%BC/</url>
+      
+        <content type="html"><![CDATA[<h1 id="左值右值"><a href="#左值右值" class="headerlink" title="左值右值"></a>左值右值</h1><p>在 C++11 中，一共有 5 种 value：</p><p>lvalue (Left-hand-side value)<br>rvalue (Right-hand-side value)<br>xvalue (eXpiring value)<br>prvalue (Pure rvalue)<br>glvalue (Generalized lvalue)</p><p>他们的关系大致如下图所示：<br><a href="https://imgse.com/i/ppfUKTe"><img src="https://s1.ax1x.com/2023/04/02/ppfUKTe.png" alt="valueTyoe.png"></a></p><p>lvalue 和 xvalue 合称为 glvalue。<br>prvalue 和 xvalue 合称为 rvalue。</p><p>有”身份”[has identity]：能够确定某个表达式是否和另一个表达式指涉[refers to]同一个实体，例如，通过比较它们标识[identify]出来的函数或者对象的地址(直接或间接得到的)。<br>能被移动[can be moved from]：能够被移动构造函数、移动赋值操作符或者其它实现[implement]移动语义[move semantics]的重载函数绑定[bind to]。<br>根据上面两个属性，我们可以对表达式进行分类：</p><p>有”身份”但是不能”被移动”的表达式被称为左值表达式[lvalue expression];<br>有”身份”同时能”被移动”的表达式被称为 xvalue 表达式[xvalue expression];<br>没有”身份”但是能”被移动”的表达式被称为纯右值表达式[prvalue expression];<br>C++没有既没有”身份”也不能”被移动”的表达式；<br><a href="https://imgse.com/i/ppfUvhd"><img src="https://s1.ax1x.com/2023/04/02/ppfUvhd.png" alt="ppfUvhd.png"></a></p><h2 id="左值"><a href="#左值" class="headerlink" title="左值"></a>左值</h2><p>如果你可以对一个表达式取地址，那这个表达式就是个lvalue。<br>如果一个表达式的类型是一个lvalue reference (例如, T&amp; 或 const T&amp;, 等.)，那这个表达式就是一个lvalue。<br>一个 lvalue 是通常可以放在等号左边的表达式<br>左值 lvalue 是有标识符、可以取地址的表达式，最常见的情况有：<br>变量、函数或数据成员<br>返回左值引用的表达式如：</p><pre><code>++x、x = 1、cout &lt;&lt; &#39; &#39;int x = 0;cout &lt;&lt; &quot;(x).addr = &quot; &lt;&lt; &amp;x &lt;&lt; endl;cout &lt;&lt; &quot;(x = 1).addr = &quot; &lt;&lt; &amp;(x = 1) &lt;&lt; endl;cout &lt;&lt; &quot;(++x).addr = &quot; &lt;&lt; &amp;++x &lt;&lt; endl;//cout &lt;&lt; &quot;(x++).addr = &quot; &lt;&lt; &amp;x++ &lt;&lt; endl; // errorcout &lt;&lt; &quot;(cout &lt;&lt; &#39; &#39;).addr=&quot; &lt;&lt; &amp;(cout &lt;&lt; &#39; &#39;) &lt;&lt; endl;</code></pre><p>字符串字面量是左值，而且是不可被更改的左值。字符串字面量并不具名，但是可以用&amp;取地址所以也是左值。如：</p><pre><code>&quot;hello&quot;,在c++中是 char const [6] 类型，而在c中是 char [6] 类型cout &lt;&lt; &quot;(\&quot;hello\&quot;).addr=&quot; &lt;&lt; &amp;(&quot;hello&quot;) &lt;&lt; endl;</code></pre><p>如果一个表达式的类型是一个lvalue reference (例如, T&amp; 或 const T&amp;, 等.)，那这个表达式就是一个lvalue。</p><h2 id="右值"><a href="#右值" class="headerlink" title="右值"></a>右值</h2><h3 id="将亡值"><a href="#将亡值" class="headerlink" title="将亡值"></a>将亡值</h3><p>通常指代一个生存周期即将结束的值（因此其资源可以被转移）。是某些涉及到右值引用的表达式的值，根据C++11标准，以下四种情况属于xvalue：</p><ul><li>调用函数（无论是隐式还是显式）的结果，该函数的返回类型是对对象类型的右值引用，</li><li>对对象类型的右值引用的强制转换，</li><li>类成员访问表达式，指定非引用类型的非静态数据成员，其中对象表达式是xvalue，或</li><li>指向成员表达式的*指针，其中第一个操作数是xvalue，第二个操作数是指向数据成员的指针。</li></ul><h3 id="纯右值"><a href="#纯右值" class="headerlink" title="纯右值"></a>纯右值</h3><p>prvalue 是没有标识符、不可以取地址的表达式，一般也称之为“临时对象”。最常见的情况有：</p><p>返回非引用类型的表达式 如 x++、x + 1<br>除字符串字面量之外的字面量 如 42、true<br>隐式或显式调用函数的结果，该函数的返回类型是对所返回对象类型的右值引用</p><pre><code>int&amp;&amp; f()&#123;    return 3;&#125;int main()&#123;    f(); // The expression f() belongs to the xvalue category, because f() return type is an rvalue reference to object type.    return 0;&#125;</code></pre><p>类成员访问表达式，指定非引用类型的非静态数据成员，其中对象表达式是xvalue</p><pre><code>struct As&#123;    int i;&#125;;As&amp;&amp; f()&#123;    return As();&#125;int main()&#123;    f().i; // The expression f().i belongs to the xvalue category, because As::i is a non-static data member of non-reference type, and the subexpression f() belongs to the xvlaue category.    return 0;&#125;</code></pre><p>对对象类型右值引用的转换</p><pre><code>int main()&#123;    static_cast&lt;int&amp;&amp;&gt;(7); // The expression static_cast&lt;int&amp;&amp;&gt;(7) belongs to the xvalue category, because it is a cast to an rvalue reference to object type.    std::move(7); // std::move(7) is equivalent to static_cast&lt;int&amp;&amp;&gt;(7).    return 0;&#125;</code></pre><p>从语法上来看，声明右值引用看起来和声明”普通”的引用很像，只不过要用&amp;&amp;而不是&amp;。下面这个函数需要一个类型为rvalue-reference-to-Widget:的参数:</p><pre><code>void f(Widget&amp;&amp; param);</code></pre><p>假设右值引用是使用&amp;&amp;声明的，那么假设类型声明中出现&amp;&amp; 表示右值引用似乎是合理的。事实并非如此:</p><pre><code>Widget&amp;&amp; var1 = someWidget;      // here, “&amp;&amp;” means rvalue referenceauto&amp;&amp; var2 = var1;              // here, “&amp;&amp;” does not mean rvalue referencetemplate&lt;typename T&gt;void f(std::vector&lt;T&gt;&amp;&amp; param);  // here, “&amp;&amp;” means rvalue referencetemplate&lt;typename T&gt;void f(T&amp;&amp; param);               // here, “&amp;&amp;”does not mean rvalue reference</code></pre><p>因此正确的区分这两种含义非常重要，如果你看到“&amp;&amp;”就以为是右值引用的话，会误读很多c++11代码。</p><p>2.引入万能引用<br>这个问题的本质实际上是，类型声明当中的“&amp;&amp;”有的时候意味着rvalue reference，但有的时候意味着rvalue reference 或者 lvalue reference。因此，源代码当中出现的 “&amp;&amp;” 有可能是 “&amp;” 的意思，即是说，语法上看着像rvalue reference (“&amp;&amp;”)，但实际上却代表着一个lvalue reference (“&amp;”)。在这种情况下，此种引用比lvalue references 或者 rvalue references都要来的更灵活。<br>Rvalue references只能绑定到右值上，lvalue references除了可以绑定到左值上，在某些条件下还可以绑定到右值上。</p><p>例如：</p><pre><code>string &amp;s = &quot;asd&quot;;  // errorconst string &amp;s = &quot;asd&quot;;  // ok</code></pre><p>规则简化如下：</p><pre><code>左值引用   &#123;左值&#125;  右值引用   &#123;右值&#125;常左值引用  &#123;右值&#125;</code></pre><p>相比之下，声明中带 “&amp;&amp;” 的，可能是lvalue references 或者 rvalue references 的引用可以绑定到任何东西上。这种引用称它们为 universal references(万能引用或转发引用、通用引用)。</p><pre><code>string f() &#123; return &quot;abc&quot;; &#125;​void g() &#123;    const string &amp;s = f();       // still legal?    cout &lt;&lt; s &lt;&lt; endl;&#125;</code></pre><p>上面g函数中合法？</p><p>答案是合法的，原因是s是个左值，类型是常左值引用，而f()是个右值，前面提到常左值引用可以绑定到右值！所以合法，当然把const去掉，便是不合法！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c++11 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>完美转发</title>
+      <link href="/2023/04/02/cpp/cpp11/%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91/"/>
+      <url>/2023/04/02/cpp/cpp11/%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91/</url>
+      
+        <content type="html"><![CDATA[<h1 id="完美转发"><a href="#完美转发" class="headerlink" title="完美转发"></a>完美转发</h1><h2 id="引用折叠"><a href="#引用折叠" class="headerlink" title="引用折叠"></a>引用折叠</h2><p>在说明完美转发之前先来介绍一下引用折叠</p><pre><code>A&amp; &amp; 变成 A&amp;A&amp; &amp;&amp; 变成 A&amp;A&amp;&amp; &amp; 变成 A&amp;A&amp;&amp; &amp;&amp; 变成 A&amp;&amp;</code></pre><h2 id="完美转发-1"><a href="#完美转发-1" class="headerlink" title="完美转发"></a>完美转发</h2><p><strong>转发</strong>：函数将一个或多个实参传递给其他函数的过程<br><strong>完美转发（perfect forwarding）</strong>：转发过程中，保持被转发实参的所有原始性质，包括实参类型是否为const，左值 or 右值等</p><p>我们先来看一个例子</p><pre><code>void f(int v1, int v2);template&lt;typename F, typename T1, typename T2&gt;void test1(F f, T1 t1, T2 t2) &#123;     f(t2, t1);&#125;</code></pre><p>理论上我们完成了转发，但是这有很多问题，比如当我们希望它调用一个接受引用参数的函数时，会出现问题：</p><pre><code>void f(int v1, int&amp; v2) &#123; // v2是一个引用类型    cout &lt;&lt; v1 &lt;&lt; &quot; &quot; &lt;&lt; ++v2 &lt;&lt; endl;&#125;</code></pre><p>代码中，f改变了绑定到v2的实参值，但并不会影响test1的实参。因为实参传递给test1的形参，只是一个普通的int，而非引用（int&amp;），所以改变test1的形参并不会影响实参。<br>此外，采用拷贝而不是移动语义回导致效率造成损失。</p><p>为了让test函数传递一个引用，可以重写test函数，使其参数能保持给定实参的“左值性”，以及const属性（常量性）。</p><pre><code>template&lt;typename F, typename T1, typename T2&gt;void test2(F f, T1&amp;&amp; t1, T2&amp;&amp; t2) &#123;    f(t2, t1);&#125;</code></pre><p>如果t1或t2对应实参是左值（int&amp;），通过引用折叠，转换成int&amp;，继续保持左值属性；<br>如果实参是右值（int&amp;&amp;），同样地，转换成int&amp;&amp;，继续保持右值属性。</p><p>这个版本的翻转函数test2只解决了一半问题，对于接受一个左值引用的函数工作正常，但是对于接受右值引用的函数，却无法正常工作。</p><pre><code>// 接受一个右值引用和一个左值引用的函数void f(int&amp;&amp; i, int&amp;&amp; j) &#123;    cout &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; j &lt;&lt; endl;&#125;</code></pre><p>test2(f, i, 42); &#x2F;&#x2F; 错误：不能从一个左值实例化int&amp;&amp;<br>虽然test2的实参42是右值，但在test2内部调用f，传给f的实参将是test2的参数t2（值为42），而函数参数t2与其他任何变量一样，都是左值表达式。将左值实参直接传递给右值形参，将导致编译错误。</p><h2 id="std-forward"><a href="#std-forward" class="headerlink" title="std::forward"></a>std::forward</h2><p>C++11中，可以使用std::forward传递test2的参数，使它能保持原始实参的类型的所有细节。<br>当我们将一个右值引用传入函数时，他在实参中有了命名，所以继续往下传或者调用其他函数时，根据C++ 标准的定义，这个参数变成了一个左值。那么他永远不会调用接下来函数的右值版本，这可能在一些情况下造成拷贝。为了解决这个问题 C++ 11引入了完美转发，根据右值判断的推导，调用forward 传出的值，若原来是一个右值，那么他转出来就是一个右值，否则为一个左值。<br>这样的处理就完美的转发了原有参数的左右值属性，不会造成一些不必要的拷贝。</p><p>与move调用不同的是，forward必须通过显式模板实参来调用。forward返回该显式实参类型的右值引用，i.e. forward返回类型为T&amp;&amp;。</p><p>使用forward重写test函数：</p><pre><code>// OKtemplate&lt;typename F, typename T1, typename T2&gt;void test3(F f, T1&amp;&amp; t1, T2&amp;&amp; t2) &#123;    f(std::forward&lt;T2&gt;(t2), std::forward&lt;T1&gt;(t1));&#125;// 像这样调用不再有问题int i = 10, j = 20;test3(f, i, 20); // OK</code></pre><h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>c++中很多小巧的函数都通过完美转发实现了，比如make_pair,make_unique</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c++11 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>类型转换</title>
+      <link href="/2023/04/02/cpp/%E7%9F%A5%E8%AF%86%E7%82%B9/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"/>
+      <url>/2023/04/02/cpp/%E7%9F%A5%E8%AF%86%E7%82%B9/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</url>
+      
+        <content type="html"><![CDATA[<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><p>C++ 引入新的强制类型转换机制，主要是为了克服C语言强制类型转换的以下三个缺点。</p><ul><li>没有从形式上体现转换功能和风险的不同。</li><li>将多态基类指针转换成派生类指针时不检查安全性，即无法判断转换后的指针是否确实指向一个派生类对象。</li><li>难以在程序中寻找到底什么地方进行了强制类型转换。</li></ul><h2 id="static-cast"><a href="#static-cast" class="headerlink" title="static_cast"></a>static_cast</h2><blockquote><p>static_cast<type>(expression)</type></p></blockquote><p>static_cast 用于进行比较“自然”和低风险的转换，如整型和浮点型、字符型之间的互相转换。如果对象所属的类重载了强制类型转换运算符 T（如 T是 int、int* 或其他类型名），则 static_cast 也能用来进行对象到 T 类型的转换。</p><pre><code>uint x = 1;int y = static_cast&lt;int&gt;(x); // 转换正确int x = 1;double y = static_cast&lt;double&gt;(x); // 转换正确</code></pre><p>需要注意的是：static_cast 没有运行时类型检查来保证转换的安全性，需要程序员来判断转换是否安全。<br>static_cast 不能用于在不同类型的指针之间互相转换，也不能用于整型和指针之间的互相转换，当然也不能用于不同类型的引用之间的转换。空类型指针转换为任意基本类型的指针,空指针转换这里面很容易出错，因为有可能出现未知的转换结果，要保证转换的正确性就必须保证转换后所得的类型就是指针原先的类型。</p><pre><code>int x = -1;uint y = static_cast&lt;uint&gt;(x) // 转换错误double x = 1.23;int y = static_cast&lt;int&gt;(x) // 转换丢失精度</code></pre><p>static_cast 还可用于类层次结构中，基类和派生类之间指针或引用的转换，但也要注意：<br>static_cast 进行上行转换是安全的，即把派生类的指针转换为基类的；<br>static_cast 进行下行转换是不安全的，即把基类的指针转换为派生类的。</p><pre><code>// 上行转换，派生类→基类Derive* d = new Derive();Base* b = static_cast&lt;Base*&gt;(d);// 下行转换，基类→派生类Base* b = new Base();Derive* d = static_cast&lt;Derive*&gt;(b);</code></pre><p>这是因为派生类包含基类信息，所以上行转换（只能调用基类的方法和成员变量），一般是安全的；<br>而基类没有派生类的任何信息，而下行转换后会用到派生类的方法和成员变量，这些基类都没有，很容易”指鹿为马”，或指向不存在的空间。</p><h2 id="dynamic-cast"><a href="#dynamic-cast" class="headerlink" title="dynamic_cast"></a>dynamic_cast</h2><blockquote><p>dynamic_cast<type>(expression)</type></p></blockquote><p>dynamic_cast 主要用于类层次间的上行转换或下行转换。在进行上行转换时，dynamic_cast 和 static_cast 的效果是一样的，但在下行转换时，dynamic_cast 具有类型检查的功能，比 static_cast 更安全。</p><p>比如下面这段代码：</p><p>#include <iostream><br>using namespace std;</iostream></p><p>class Base {<br>public:<br>    virtual void Say() {<br>        cout &lt;&lt; “I am Base.” &lt;&lt; endl;<br>    }<br>};</p><p>class Derive : public Base {<br>public:<br>    virtual void Say() {<br>        cout &lt;&lt; “I am Derive.” &lt;&lt; endl;<br>    }<br>};</p><p>int main()<br>{<br>    &#x2F;&#x2F; 上行转换<br>    Derive* d1 &#x3D; new Derive();<br>    cout &lt;&lt; “d1: “ &lt;&lt; d1 &lt;&lt; endl;</p><pre><code>Base* b1 = dynamic_cast&lt;Base*&gt;(d1);cout &lt;&lt; &quot;b1: &quot; &lt;&lt; b1 &lt;&lt; endl;// 下行转换Base* b2 = new Base();cout &lt;&lt; &quot;b2: &quot; &lt;&lt; b2 &lt;&lt; endl;Derive* d2 = dynamic_cast&lt;Derive*&gt;(b2);cout &lt;&lt; &quot;d2: &quot; &lt;&lt; d2 &lt;&lt; endl;return 0;</code></pre><p>}<br>运行结果为：</p><p>在进行下行转换时，从基类 b2 到 d2 时，d2 会改为空指针（0x0），这正是 dynamic_cast 提升安全的功能。这个检查主要来自虚函数表。</p><p>在C++面向对象的思想中，虚函数是实现多态的关键机制。当一个类中有虚函数时，那么编译器就会构建出一个虚函数表来指示这些函数的地址。当用基类的指针指向派生类的对象，调用方法时就会根据虚函数表找到对应派生类的方法。<br>注意：B 要有虚函数，否则会编译出错；static_cast则没有这个限制。</p><p>这是由于运行时类型检查需要运行时类型信息，而这个信息存储在类的虚函数表，只有定义了虚函数的类才有虚函数表，没有定义虚函数的类是没有虚函数表的。</p><h2 id="const-cast"><a href="#const-cast" class="headerlink" title="const_cast"></a>const_cast</h2><p>const_cast<type>(expression)<br>该运算符用来修改 expression 的 const 或 volatile 属性。这里需要注意：expression 和 type 的类型一样的。</type></p><p>比如下面的代码，指针 px 由于有 const 修饰，无法直接通过其修改 x 的值，但又期望能修改 x 的值时，怎么办呢？这时就需要用到 const_cast。</p><p>int main()<br>{<br>    int x &#x3D; 1;<br>    cout &lt;&lt; “before: “ &lt;&lt; x &lt;&lt; endl;</p><pre><code>const int* px = &amp;x;// *px = 2; // 编译错误int* py = const_cast&lt;int*&gt;(px);*py = 2;cout &lt;&lt; &quot;px: &quot; &lt;&lt; px &lt;&lt; endl;cout &lt;&lt; &quot;py: &quot; &lt;&lt; py &lt;&lt; endl;cout &lt;&lt; &quot;after : &quot; &lt;&lt; x &lt;&lt; endl;return 0;</code></pre><p>}<br>运行结果为：</p><p>可以看出，px 和 py 指向同一个地址，但通过 py 就可以修改 x 的值了。</p><p>这是因为通过const_cast，就把 const 类型的指针 px 转换成非 const 类型的指针 py 了。</p><h2 id="reinterpret-cast"><a href="#reinterpret-cast" class="headerlink" title="reinterpret_cast"></a>reinterpret_cast</h2><p>reinterpret_cast<type>(expression)<br>该运算符可以把一个指针转换成一个整数，也可以把一个整数转换成一个指针。</type></p><p>int main()<br>{<br>    int* p &#x3D; new int(5);<br>    uint64_t p_val &#x3D; reinterpret_cast<uint64_t>(p);</uint64_t></p><pre><code>cout &lt;&lt; &quot;p    :&quot; &lt;&lt; p &lt;&lt; endl;cout &lt;&lt; &quot;p_val:&quot; &lt;&lt; hex &lt;&lt; p_val &lt;&lt; endl;return 0;</code></pre><p>}<br>上述代码把指针 p 的地址值转换成了 uint64_t 类型的整数值，运行结果为：</p><p>这个转换是“最不安全”的。不推荐使用。</p><p>综上，在使用强制类型转换时，需要首先考虑清楚使用目的，总结如下：</p><p>static_cast：基本类型转换，低风险；<br>dynamic_cast：类层次间的上行转换或下行转换，低风险；<br>const_cast：去 const 属性，低风险；<br>reinterpret_cast：转换不相关的类型，高风险。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>并发</title>
+      <link href="/2023/03/15/cpp/%E7%8E%B0%E4%BB%A3cpp/%E5%B9%B6%E5%8F%91/"/>
+      <url>/2023/03/15/cpp/%E7%8E%B0%E4%BB%A3cpp/%E5%B9%B6%E5%8F%91/</url>
+      
+        <content type="html"><![CDATA[<h1 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 现代cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>内存</title>
+      <link href="/2023/03/11/cpp/%E7%8E%B0%E4%BB%A3cpp/%E5%86%85%E5%AD%98/"/>
+      <url>/2023/03/11/cpp/%E7%8E%B0%E4%BB%A3cpp/%E5%86%85%E5%AD%98/</url>
+      
+        <content type="html"><![CDATA[<h1 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h1><h2 id="静态内存"><a href="#静态内存" class="headerlink" title="静态内存"></a>静态内存</h2><p>静态内存可以被看作全局变量，这些变量和他们的值可以在任何时候被任何程序的任何部分访问。</p><p>例如</p><pre><code>#include&lt;iostream&gt;using namespace std;unsigned int counter=0;void increaseCount()&#123;    counter+=10;    cout&lt;&lt;&quot;counter is&quot;&lt;&lt;counter&lt;&lt;endl;&#125;int main()&#123;    counter+=5;    cout&lt;&lt;&quot;counter is&quot;&lt;&lt;counter&lt;&lt;endl;    increaseCount();    return 0;&#125;</code></pre><p>结果：</p><pre><code>counter is 5counter is 15</code></pre><p>全局变量在某些确定的情况下有用，但是在很多情况下会导致问题。<br>静态成员变量也是全局变量的一种，他的一个普遍问题是创建顺序，c++标准不保证按照某种顺序初始化，这会导致许多相关全局变量的程序由于意外的初始化顺序而出现问题导致崩溃。全局变量在多线程也会产生问题。<br>通常建议将全局变量的使用限度降到最低，同时相同名称的局部变量会获取更高的优先权。</p><p>例如</p><pre><code>#include&lt;iostream&gt;using namespace std;unsigned int counter=0;void increaseCount()&#123;    counter+=10;    cout&lt;&lt;&quot;counter is &quot;&lt;&lt;counter&lt;&lt;endl;&#125;int main()&#123;    unsigned int counter=0;    counter+=5;    cout&lt;&lt;&quot;counter is &quot;&lt;&lt;counter&lt;&lt;endl;    increaseCount();    return 0;&#125;</code></pre><p>结果：</p><pre><code>counter is 5counter is 10</code></pre><h2 id="栈内存的使用"><a href="#栈内存的使用" class="headerlink" title="栈内存的使用"></a>栈内存的使用</h2><p>在函数工作时，需要内存来存储临时变量<br>c++通过栈来为局部变量分配空间，主要通过ebp，esp来完成。</p><h2 id="堆内存的使用"><a href="#堆内存的使用" class="headerlink" title="堆内存的使用"></a>堆内存的使用</h2><h2 id="自动共享内存的使用"><a href="#自动共享内存的使用" class="headerlink" title="自动共享内存的使用"></a>自动共享内存的使用</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 现代cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>智能指针</title>
+      <link href="/2023/03/11/cpp/%E7%8E%B0%E4%BB%A3cpp/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/"/>
+      <url>/2023/03/11/cpp/%E7%8E%B0%E4%BB%A3cpp/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</url>
+      
+        <content type="html"><![CDATA[<h1 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h1><h2 id="unique-ptr"><a href="#unique-ptr" class="headerlink" title="unique_ptr"></a>unique_ptr</h2><h2 id="share-ptr"><a href="#share-ptr" class="headerlink" title="share_ptr"></a>share_ptr</h2><h2 id="weak-ptr"><a href="#weak-ptr" class="headerlink" title="weak_ptr"></a>weak_ptr</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 现代cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>与时间有关的程序</title>
+      <link href="/2023/03/11/cpp/%E7%8E%B0%E4%BB%A3cpp/%E4%B8%8E%E6%97%B6%E9%97%B4%E6%9C%89%E5%85%B3%E7%9A%84%E7%A8%8B%E5%BA%8F/"/>
+      <url>/2023/03/11/cpp/%E7%8E%B0%E4%BB%A3cpp/%E4%B8%8E%E6%97%B6%E9%97%B4%E6%9C%89%E5%85%B3%E7%9A%84%E7%A8%8B%E5%BA%8F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="与时间有关的程序"><a href="#与时间有关的程序" class="headerlink" title="与时间有关的程序"></a>与时间有关的程序</h1><h2 id="获取当前时间"><a href="#获取当前时间" class="headerlink" title="获取当前时间"></a>获取当前时间</h2><pre><code>#include&lt;ctime&gt;#include&lt;chrono&gt;#include&lt;iostream&gt;using namespace chrono;int main()&#123;    auto currentTimePoint=system_clock::now();    auto currentTime = system_clock::to_time_t(currentTimePoint);    auto timeText=ctime(&amp;currentTime);    std::cout&lt;&lt;timeTixt&lt;&lt;std::endl;    return 0;&#125;</code></pre><p>system_clock::now()返回的对象是一个time_point类型，他表示从某一个时间点（epoch）开始的偏移，epoch是一个参考时间，系统用它来偏移其他时间。但是如果系统使用不同的epoch来计算时间，那么一台计算机上的时间可能不能够一直到另一条计算机上。<br>time_point结构不能直接输出，也无法转换成字符串，但是该类型能够转换成time_t，time_t可以通过ctime函数转换成字符串类型。</p><h2 id="比较时间"><a href="#比较时间" class="headerlink" title="比较时间"></a>比较时间</h2><pre><code>#include&lt;ctime&gt;#include&lt;chrono&gt;#include&lt;iostream&gt;#include&lt;thread&gt;using namespace literals;using namespace chrono;int main()&#123;    auto startTimePoint=system_clock::now();    this_thread::sleep(5s);    auto endTimePoint=system_clock::now();    auto timeTaken = duration_cast&lt;milliseconds&gt;(endTimeoint-startTimePoint);    std::cout&lt;&lt;&quot;time taken: &quot;timeTaken.count()&lt;&lt;std::endl;    return 0;&#125;</code></pre><p>duration_cast将减法的结果转换成一个具有特定时间类型的具体时间。<br>此外，sleep函数内采用了字面量，h，min，s，ms，us，ns这些字面量只能在c++14使用，c++11和c++98不支持。</p><h2 id="三种使用时钟类型"><a href="#三种使用时钟类型" class="headerlink" title="三种使用时钟类型"></a>三种使用时钟类型</h2><pre><code>#define _CRT_SECURE_NO_WARNINGS#include&lt;ctime&gt;//local_time#include&lt;chrono&gt;//time_futures#include&lt;iostream&gt;#include&lt;thread&gt;#include&lt;iomanip&gt;//put_timeusing namespace std;int main()&#123;    chrono::system_clock::time_point pc_clock = chrono::system_clock::now();    time_t pc_clock_time = chrono::system_clock::to_time_t(pc_clock);    cout &lt;&lt; &quot;The time according to the computer clock is:&quot; &lt;&lt; put_time(localtime(&amp;pc_clock_time), &quot;%T %p&quot;) &lt;&lt; endl;    chrono::steady_clock::time_point start = chrono::steady_clock::now();    //when we start    chrono::high_resolution_clock::time_point start2 = chrono::high_resolution_clock::now();//high res clock    chrono::system_clock::time_point now = chrono::system_clock::now();    //current time    time_t now_c = chrono::system_clock::to_time_t(now);    cout &lt;&lt; &quot;\n\nThe time now is: &quot; &lt;&lt; put_time(localtime(&amp;now_c), &quot;%F %T %b %I %p&quot;) &lt;&lt; endl;    time_t now_p = chrono::system_clock::to_time_t(now - chrono::hours(2));    cout &lt;&lt; &quot;The time 2 hours ago was: &quot; &lt;&lt; put_time(localtime(&amp;now_p), &quot;%F %T %B %A&quot;) &lt;&lt; &quot;\n\n&quot;;    chrono::steady_clock::time_point end = chrono::steady_clock::now();//it is over    chrono::high_resolution_clock::time_point end2 = chrono::high_resolution_clock::now();    cout &lt;&lt; &quot;computing lasted &quot; &lt;&lt; chrono::duration_cast&lt;chrono::microseconds&gt;(end - start).count() &lt;&lt; &quot;ms&quot; &lt;&lt; endl;    cout &lt;&lt; &quot;computing with high_resolution_clock yielded &quot; &lt;&lt; chrono::duration_cast&lt;chrono::nanoseconds&gt;(end2 - start2).count()        &lt;&lt; &quot;nanoseconds!&quot; &lt;&lt; endl;    return 0;&#125;</code></pre><p>结果如下</p><pre><code>The time according to the computer clock is:23:19:00 PMThe time now is: 2023-03-11 23:19:00 Mar 11 PMThe time 2 hours ago was: 2023-03-11 21:19:00 March Saturdaycomputing lasted 2311mscomputing with high_resolution_clock yielded 2311700nanoseconds!</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 现代cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>左值引用和右值引用</title>
+      <link href="/2023/03/11/cpp/%E7%8E%B0%E4%BB%A3cpp/%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8/"/>
+      <url>/2023/03/11/cpp/%E7%8E%B0%E4%BB%A3cpp/%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="左值引用和右值引用"><a href="#左值引用和右值引用" class="headerlink" title="左值引用和右值引用"></a>左值引用和右值引用</h1><p>移动语义是现代c++重要特性，移动语义不适用于通过const引用将传递参数替换为方法。移动操作可能比拷贝操作快，但最坏情况下，他可能比拷贝慢，并且总是比通过const引用传递慢。</p><pre><code>#include&lt;iostream&gt;using namespace std;class MyClass &#123;private:    static int s_Counter;    int* m_Member&#123; &amp;s_Counter &#125;;public:    MyClass()    &#123;        ++(*m_Member);    &#125;    ~MyClass()    &#123;        --(*m_Member);        m_Member = nullptr;    &#125;    int GetValue()const    &#123;        return *m_Member;    &#125;&#125;;int MyClass::s_Counter&#123; 0 &#125;;int main()&#123;    auto object1 = MyClass();    cout &lt;&lt; object1.GetValue()&lt;&lt;endl;    &#123;        auto object2 = MyClass();        cout &lt;&lt; object2.GetValue() &lt;&lt; endl;    &#125;    auto object3 = MyClass();    cout &lt;&lt; object3.GetValue() &lt;&lt; endl;    return 0;&#125;</code></pre><p>利用static成员统计内存中类的活动实例数<br>当MyClass包含拷贝构造函数后</p><pre><code>#define _CRT_SECURE_NO_WARNINGS#include&lt;iostream&gt;using namespace std;class MyClass &#123;private:    static int s_Counter;    int* m_Member&#123; &amp;s_Counter &#125;;public:    MyClass()    &#123;        ++(*m_Member);        cout &lt;&lt; &quot;Constructing: &quot; &lt;&lt; GetValue() &lt;&lt; endl;    &#125;    ~MyClass()    &#123;        --(*m_Member);        m_Member = nullptr;        cout &lt;&lt; &quot;Destructing: &quot; &lt;&lt; s_Counter &lt;&lt; endl;    &#125;    MyClass(const MyClass&amp; rhs)        : m_Member&#123; rhs.m_Member &#125;    &#123;        ++(*m_Member);        cout &lt;&lt; &quot;Copying: &quot; &lt;&lt; GetValue() &lt;&lt; endl;    &#125;    int GetValue()const    &#123;        return *m_Member;    &#125;&#125;;int MyClass::s_Counter&#123; 0 &#125;;MyClass CopyMyClass(MyClass parameter)&#123;    cout &lt;&lt; &quot;!!!!!!!!!!!!!!!!!&quot; &lt;&lt; endl;    return parameter;&#125;int main()&#123;    auto object1 = MyClass();    &#123;        auto object2 = MyClass();    &#125;    auto object3 = MyClass();    auto object4 = CopyMyClass(object3);    return 0;&#125;</code></pre><p>输出结果为：</p><pre><code>Constructing: 1Constructing: 2Destructing: 1Constructing: 2Copying: 3!!!!!!!!!!!!Copying: 4Destructing: 3Destructing: 2Destructing: 1Destructing: 0</code></pre><p>这里object3拷贝到参数中，然后返回值拷贝到object4中，之后调用析构函数析构这两个临时参数。<br>移动构造函数可以用来降低拷贝构造函数的复杂性，运行时将有同样多的对象，右值引用是编译器包中变量引用的对象是临时对象，所以可以随意拆解对象，可以进行更快的拷贝操作。</p><pre><code>#define _CRT_SECURE_NO_WARNINGS#include&lt;iostream&gt;using namespace std;class MyClass &#123;private:    static int s_Counter;    int* m_Member&#123; &amp;s_Counter &#125;;public:    MyClass()    &#123;        ++(*m_Member);        cout &lt;&lt; &quot;Constructing: &quot; &lt;&lt; GetValue() &lt;&lt; endl;    &#125;    ~MyClass()    &#123;        if (m_Member)        &#123;            --(*m_Member);            m_Member = nullptr;            cout &lt;&lt; &quot;Destructing: &quot; &lt;&lt; s_Counter &lt;&lt; endl;        &#125;        else        &#123;            cout &lt;&lt; &quot;Destroying a moved-from instance&quot; &lt;&lt; endl;        &#125;            &#125;    MyClass(const MyClass&amp; rhs)        : m_Member&#123; rhs.m_Member &#125;    &#123;        ++(*m_Member);        cout &lt;&lt; &quot;Copying: &quot; &lt;&lt; GetValue() &lt;&lt; endl;    &#125;    MyClass(MyClass&amp;&amp; rhs)        : m_Member&#123; rhs.m_Member &#125;    &#123;        cout &lt;&lt; hex &lt;&lt; showbase;        cout &lt;&lt; &quot;Moving: &quot; &lt;&lt; &amp;rhs &lt;&lt; &quot; to &quot; &lt;&lt; this &lt;&lt; endl;        cout &lt;&lt; noshowbase &lt;&lt;dec;        rhs.m_Member = nullptr;    &#125;    int GetValue()const    &#123;        return *m_Member;    &#125;&#125;;int MyClass::s_Counter&#123; 0 &#125;;MyClass CopyMyClass(MyClass parameter)&#123;    cout &lt;&lt; &quot;!!!!!!!!!!!!!!!!!&quot; &lt;&lt; endl;    return parameter;&#125;int main()&#123;    auto object1 = MyClass();    &#123;        auto object2 = MyClass();    &#125;    auto object3 = MyClass();    auto object4 = CopyMyClass(object3);    return 0;&#125;</code></pre><p>运行结果为：</p><pre><code>Constructing: 1Constructing: 2Destructing: 1Constructing: 2Copying: 3!!!!!!!!!!!!!!!!!Moving: 001CF894 to 001CF988Destroying a moved-from instanceDestructing: 2Destructing: 1Destructing: 0</code></pre><p>返回语句结束后，编译器不需要维护参数的状态，可以调用移动构造来创建object4</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 现代cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>lambda的使用</title>
+      <link href="/2023/03/11/cpp/%E7%8E%B0%E4%BB%A3cpp/lambda%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+      <url>/2023/03/11/cpp/%E7%8E%B0%E4%BB%A3cpp/lambda%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="lambda的使用"><a href="#lambda的使用" class="headerlink" title="lambda的使用"></a>lambda的使用</h1><p>c++ 引入了lambda，可以用来创建闭包并且在代码中传递</p><p>例如：</p><pre><code>int main()&#123;    std::array&lt;uint32_t,5&gt; myArray&#123;1,2,3,4,5&#125;;    std::for_each(myArray.begin(),myArray.end(),[](auto&amp;&amp; number)    &#123;        std::cout&lt;&lt;number&lt;&lt;std::endl;    &#125;);    return 0;&#125;</code></pre><p>lambda还可以通过变量来引用:</p><pre><code>int main()&#123;    std::array&lt;uint32_t,5&gt; myArray&#123;1,2,3,4,5&#125;;    auto func=[](auto&amp;&amp; number)    &#123;        std::cout&lt;&lt;number&lt;&lt;std::endl;    &#125;;    std::for_each(myArray.begin(),myArray.end(),func);    return 0;&#125;</code></pre><p>func存储了闭包类型，c++提供了一种方法来传递不同类型的对象，这些对象可以像函数一样调用</p><pre><code>void print(const std::function&lt;void(std::array&lt;uint32_t,5&gt;::value_type)&gt;&amp;func)&#123;    std::array&lt;uint32_t,5&gt; myArray&#123;1,2,3,4,5&#125;;    std::for_each(myArray.begin(),myArray.end(),func);&#125;int main()&#123;    auto func=[](auto&amp;&amp; number)    &#123;        std::cout&lt;&lt;number&lt;&lt;std::endl;    &#125;;    print(func);    return 0;&#125;</code></pre><p>同时，lambda表达式还可以通过引用捕获来共享变量来进行操作。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 现代cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>编译时常量的使用</title>
+      <link href="/2023/03/10/cpp/%E7%8E%B0%E4%BB%A3cpp/%E7%BC%96%E8%AF%91%E6%97%B6%E5%B8%B8%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+      <url>/2023/03/10/cpp/%E7%8E%B0%E4%BB%A3cpp/%E7%BC%96%E8%AF%91%E6%97%B6%E5%B8%B8%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="编译时常量的使用"><a href="#编译时常量的使用" class="headerlink" title="编译时常量的使用"></a>编译时常量的使用</h1><p>constexpr 关键字可以用于创建变量和函数，保证编译时对他们进行计算</p><p>例1：</p><pre><code>int main()&#123;    constexpr uint32_t ARRAY_SIZE&#123;5&#125;;    std::array&lt;uint32_t,ARRAY_SIZE&gt;myArray&#123;1,2,3,4,5&#125;;    for(auto&amp;&amp; num:myArray)    &#123;        std::cout&lt;&lt;num&lt;&lt;std::endl;    &#125;    return 0;&#125;</code></pre><p>constexpr 保证了在编译时可以计算值的大小，因为Array的大小必须在编译时确定。<br>此外，函数也可以使用constexpr</p><p>例2：</p><pre><code>constexpr uint32_t A(int a)&#123;    return a;&#125;</code></pre><p>constexpr还可以构建一个类<br>例3:</p><pre><code>class Test&#123;private:    uint32_t m_member;public:    constexpr Test(uint32_t a)        : m_member(a)    &#123;    &#125;    constexpr uint32_t getValue()&#123;        return m_member;    &#125;&#125;</code></pre><p>在c++11当中，constexpr不可以做c++代码的许多事情，比如创建变量和使用if语句循环语句<br>下面代码展示了c++14的constexpr用法<br>例4:</p><pre><code>constexpr uint32_t ArraySizeFunc(uint32_t para)&#123;    uint32_t value&#123;para&#125;;    if(value&gt;10)    &#123;        value=10;    &#125;    return value;&#125;</code></pre><p>实际上,constexpr返回的并不是常量<br>例5：</p><pre><code>constexpr int count()&#123;    return 99;&#125;int main()&#123;    int temp=count();    temp=2;    return 0;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 现代cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>类型推断</title>
+      <link href="/2023/03/10/cpp/%E7%8E%B0%E4%BB%A3cpp/%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD/"/>
+      <url>/2023/03/10/cpp/%E7%8E%B0%E4%BB%A3cpp/%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD/</url>
+      
+        <content type="html"><![CDATA[<h1 id="类型推断"><a href="#类型推断" class="headerlink" title="类型推断"></a>类型推断</h1><p>如果希望编写在更改类型时维护成本不高的可移植代码，可以使用auto和decltype。<br>例如：</p><pre><code>#include&lt;iostream&gt;#include&lt;typeinfo&gt;class MyClass&#123;&#125;int main()&#123;    auto a=MyClass();    std::cout&lt;&lt;&quot;type of variable: &quot;&lt;&lt; typeid(a).name()&lt;&lt;std::endl;    return 0;&#125;</code></pre><p>打印结果<code>type of variable: MyClass</code>,可以看到auto是很方便的</p><h2 id="auto-和统一初始化"><a href="#auto-和统一初始化" class="headerlink" title="auto 和统一初始化"></a>auto 和统一初始化</h2><p>但是如果把auto和统一初始化相结合会产生错误</p><pre><code>#include&lt;iostream&gt;#include&lt;typeinfo&gt;class MyClass&#123;&#125;int main()&#123;    auto a&#123; MyClass&#123;&#125; &#125;；    std::cout&lt;&lt;&quot;type of variable: &quot;&lt;&lt; typeid(a).name()&lt;&lt;std::endl;    return 0;&#125;</code></pre><p>再次执行上述代码，你可能认为结果和之前一样，但是事实上，他的返回结果是<code>type of variable: std::initializer_list&lt;MyClass&gt;</code>;<br>所以列表统一初始化的时候不要同时使用auto,哪怕你想要的类型就是std::initializer_list，这样有助于代码风格一致<br>最后，如果局部变量尽量使用auto，避免忘记初始化造成一些错误；</p><h2 id="auto-作为函数返回类型"><a href="#auto-作为函数返回类型" class="headerlink" title="auto 作为函数返回类型"></a>auto 作为函数返回类型</h2><p>c++处理函数时使用类型推断的情况有两种类型</p><ul><li>创建一个模板函数并在没有显式具体化的情况下调用该函数，可以推断函数参数的类型</li><li>代替函数的返回值类型</li></ul><p>例如：</p><pre><code>auto AutoFunction(int t)&#123;    return t;&#125;</code></pre><p>c++11 这里会出现错误，后续版本解决了这个问题。<br>c++11解决该问题的方法是指定函数返回类型：</p><pre><code>auto AutoFunction(int t)-&gt;int&#123;    return t;&#125;</code></pre><p>但是如果在模板函数中，返回类型不确定，这时候需要引入一个新的关键字来进行推导：<strong>decltype</strong></p><pre><code>template&lt;typename T&gt;auto AutoFunction(T t)-&gt;decltype(t)&#123;    return t;&#125;</code></pre><p>c++14 纠正了这一情况，即使是和模板一起使用auto推导返回值类型爷不需要后置返回值类型</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 现代cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>初始化变量</title>
       <link href="/2023/03/09/cpp/%E7%8E%B0%E4%BB%A3cpp/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%98%E9%87%8F/"/>
       <url>/2023/03/09/cpp/%E7%8E%B0%E4%BB%A3cpp/%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%98%E9%87%8F/</url>
@@ -108,7 +433,7 @@
       <link href="/2023/01/11/git/git%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87/"/>
       <url>/2023/01/11/git/git%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87/</url>
       
-        <content type="html"><![CDATA[<h2 id="1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）"><a href="#1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）" class="headerlink" title="1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）"></a>1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）</h2><h3 id="问题1-根据下面的图片，回答问题"><a href="#问题1-根据下面的图片，回答问题" class="headerlink" title="问题1 : 根据下面的图片，回答问题"></a>问题1 : 根据下面的图片，回答问题</h3><p><img src="/2023/01/11/git/git%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87/Areas.png"></p><h5 id="解释下面概念"><a href="#解释下面概念" class="headerlink" title="解释下面概念"></a>解释下面概念</h5><pre><code>◦ workspace : 工作区，平时存放项目代码的地方◦ staging area :暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息,一般存放在 .git 目录下的 index 文件◦ local repository : 仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本;◦ remote repository : 远程仓库，托管代码的服务器</code></pre><h3 id="问题2-：-如何解决-git-冲突"><a href="#问题2-：-如何解决-git-冲突" class="headerlink" title="问题2 ： 如何解决 git 冲突?"></a>问题2 ： 如何解决 git 冲突?</h3><p>删除代码中矛盾的代码或者恢复到以前版本</p><h3 id="问题3-出现下面问题的原因与解决方案是什么"><a href="#问题3-出现下面问题的原因与解决方案是什么" class="headerlink" title="问题3 : 出现下面问题的原因与解决方案是什么?"></a>问题3 : 出现下面问题的原因与解决方案是什么?</h3><pre><code>◦ 更新代码后显示： unable to unlink old ‘xxx/xxx/xx’ : invalid argument    ▪ 原因:因为XXX正在被运行，        ▪ 解决方案:先把它的进程关闭，重试一下就好了。    ◦ 更新代码后显示 :  the following untracked working tree files would be overwritten by checkout    ▪ 原因: Error 所列出的文件在本地的当前分支下未授权给 git 追踪，但同样命名的文件，也即出现在另一个（远程）分支下的同一文件却正在远程仓库或其它分支被 git 进行追踪        ▪ 解决方案: git clean -d -fx 删除当前目录及子文件夹下的未 track 的文件及文件夹◦ 更新代码后显示 : your local changes to the following files would be overwritten by merge…please move or remove them before you merge    ▪ 原因:git merge时本地分支的更改没有保存下来        ▪ 解决方案:暂存到堆栈区◦ 版本回退git reset --hard &#123;hash&#125;后提示：fatal: could not parse object “hash id”    ▪ 原因:切换到master分支后没有更新最新代码        ▪ 解决方案:先通过git pull --rebase更新当前分支代码，然后再执行git reset◦ git push后提示:to https://.git![rejected] localRepo-&gt;remoteRepo(fetch first)error: failed to push some refs to ‘https://.git’Updates were rejected because the remote contain work that you do not have locally.    ▪ 原因:远程包含的事务不在你的本地，在push前需要整合远端，    ▪ 解决方案:拉取远端的代码然后进行整合到本地，再push到远端即可</code></pre><h2 id="2-完成下列操作"><a href="#2-完成下列操作" class="headerlink" title="2. 完成下列操作"></a>2. 完成下列操作</h2><h5 id="下面的操作完成后，"><a href="#下面的操作完成后，" class="headerlink" title="下面的操作完成后，"></a>下面的操作完成后，</h5><pre><code>a. 克隆仓库 git clone + urlb. 提交修改到暂存区 git add .c. 提交修改到远程仓库 git push commit -m &quot;xxxx&quot;d. 从远程仓库下载代码 git pulle. 查看仓库状态 git statusf. 比较文件的不同,即暂存区与工作区的差别 git  diffg. 创建分支/切换分支/查看分支列表 git branch xxx /git check out /git branch -vh. 上传代码到分支上 git push -u origin xxxi. 合并分支到主分支 git merge xxxj. 删除分支 删除远程分支xxx git push origin --delete xxx /删除本地分支xxx  git branch -d xxxk. 回退到某个版本 git reset --hard 版本库地址</code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）"><a href="#1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）" class="headerlink" title="1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）"></a>1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）</h2><h3 id="问题1-根据下面的图片，回答问题"><a href="#问题1-根据下面的图片，回答问题" class="headerlink" title="问题1 : 根据下面的图片，回答问题"></a>问题1 : 根据下面的图片，回答问题</h3><p><a href="https://imgse.com/i/ppf2lbd"><img src="https://s1.ax1x.com/2023/04/02/ppf2lbd.png" alt="ppf2lbd.png"></a></p><h5 id="解释下面概念"><a href="#解释下面概念" class="headerlink" title="解释下面概念"></a>解释下面概念</h5><pre><code>◦ workspace : 工作区，平时存放项目代码的地方◦ staging area :暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息,一般存放在 .git 目录下的 index 文件◦ local repository : 仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本;◦ remote repository : 远程仓库，托管代码的服务器</code></pre><h3 id="问题2-：-如何解决-git-冲突"><a href="#问题2-：-如何解决-git-冲突" class="headerlink" title="问题2 ： 如何解决 git 冲突?"></a>问题2 ： 如何解决 git 冲突?</h3><p>删除代码中矛盾的代码或者恢复到以前版本</p><h3 id="问题3-出现下面问题的原因与解决方案是什么"><a href="#问题3-出现下面问题的原因与解决方案是什么" class="headerlink" title="问题3 : 出现下面问题的原因与解决方案是什么?"></a>问题3 : 出现下面问题的原因与解决方案是什么?</h3><pre><code>◦ 更新代码后显示： unable to unlink old ‘xxx/xxx/xx’ : invalid argument    ▪ 原因:因为XXX正在被运行，        ▪ 解决方案:先把它的进程关闭，重试一下就好了。    ◦ 更新代码后显示 :  the following untracked working tree files would be overwritten by checkout    ▪ 原因: Error 所列出的文件在本地的当前分支下未授权给 git 追踪，但同样命名的文件，也即出现在另一个（远程）分支下的同一文件却正在远程仓库或其它分支被 git 进行追踪        ▪ 解决方案: git clean -d -fx 删除当前目录及子文件夹下的未 track 的文件及文件夹◦ 更新代码后显示 : your local changes to the following files would be overwritten by merge…please move or remove them before you merge    ▪ 原因:git merge时本地分支的更改没有保存下来        ▪ 解决方案:暂存到堆栈区◦ 版本回退git reset --hard &#123;hash&#125;后提示：fatal: could not parse object “hash id”    ▪ 原因:切换到master分支后没有更新最新代码        ▪ 解决方案:先通过git pull --rebase更新当前分支代码，然后再执行git reset◦ git push后提示:to https://.git![rejected] localRepo-&gt;remoteRepo(fetch first)error: failed to push some refs to ‘https://.git’Updates were rejected because the remote contain work that you do not have locally.    ▪ 原因:远程包含的事务不在你的本地，在push前需要整合远端，    ▪ 解决方案:拉取远端的代码然后进行整合到本地，再push到远端即可</code></pre><h2 id="2-完成下列操作"><a href="#2-完成下列操作" class="headerlink" title="2. 完成下列操作"></a>2. 完成下列操作</h2><h5 id="下面的操作完成后，"><a href="#下面的操作完成后，" class="headerlink" title="下面的操作完成后，"></a>下面的操作完成后，</h5><pre><code>a. 克隆仓库 git clone + urlb. 提交修改到暂存区 git add .c. 提交修改到远程仓库 git push commit -m &quot;xxxx&quot;d. 从远程仓库下载代码 git pulle. 查看仓库状态 git statusf. 比较文件的不同,即暂存区与工作区的差别 git  diffg. 创建分支/切换分支/查看分支列表 git branch xxx /git check out /git branch -vh. 上传代码到分支上 git push -u origin xxxi. 合并分支到主分支 git merge xxxj. 删除分支 删除远程分支xxx git push origin --delete xxx /删除本地分支xxx  git branch -d xxxk. 回退到某个版本 git reset --hard 版本库地址</code></pre>]]></content>
       
       
       
@@ -2416,7 +2741,7 @@
       <link href="/2022/08/05/git/git/"/>
       <url>/2022/08/05/git/git/</url>
       
-        <content type="html"><![CDATA[<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a><p align="center"><font color="#ff00ff">Git</font></p></h1><h3 id="1-1-Git"><a href="#1-1-Git" class="headerlink" title="1.1 Git"></a>1.1 Git</h3><p>Git是一个版本管理控制系统（缩写VCS），它可以在任何时间点，<br>将文档的状态作为更新记录保存起来，也可以在任何时间点，<br>将更新记录恢复回来。</p><h3 id="1-2-查看Git的版本"><a href="#1-2-查看Git的版本" class="headerlink" title="1.2 查看Git的版本"></a>1.2 查看Git的版本</h3><pre><code>    git --verson</code></pre><h3 id="1-3-Git-基本工作流程"><a href="#1-3-Git-基本工作流程" class="headerlink" title="1.3 Git 基本工作流程"></a>1.3 Git 基本工作流程</h3><p><strong>工作区</strong> 就是你在电脑里能看到的目录。<br><strong>暂存区</strong> 英文叫 stage 或 index。一般存放在 .git 目录下的 index 文件<br>        （.git&#x2F;index）中，所以我们把暂存区有时也叫作索引（index）。<br><strong>版本库</strong> 工作区有一个隐藏目录 .git，这个不算工作区，而是 Git 的版本库。</p><h3 id="1-4-Git-使用前配置"><a href="#1-4-Git-使用前配置" class="headerlink" title="1.4 Git 使用前配置"></a>1.4 Git 使用前配置</h3><p>在使用 git 前，需要告诉 git 你是谁，在向 git 仓库中提交时需要用到。</p><ol><li>配置提交人姓名：git config –global user.name “提交人姓名” # (对当前系统用户有效)</li><li>配置提交人姓名：git config –global user.email  “提交人邮箱” # (对当前系统用户有效)<br>作用：识别开发人员，与登陆github的账户无关</li><li>查看git配置信息：git config –list</li></ol><p>注意</p><ol><li>如果要对配置信息进行修改，重复上述命令即可。</li><li>配置只需要执行一次。</li></ol><h3 id="1-5-常用提交步骤"><a href="#1-5-常用提交步骤" class="headerlink" title="1.5 常用提交步骤"></a>1.5 常用提交步骤</h3><ol><li><p>git init  # 初始化git仓库</p></li><li><p>git status  # 查看文件状态</p></li><li><p>git add 文件列表 # 追踪文件</p></li><li><p>git commit -m  “提交信息”  # 向仓库中提交代码(全部文件)<br>vs： git commit -m “提交信息”  文件  # 提交某个文件</p></li><li><p>git log # 显示所有提交记录<br>git log –pretty&#x3D;oneline   # 一行显示版本信息</p></li></ol><p>补充：</p><pre><code>    # 会显示所有关于这个id以及之前的修改记录    git log lfa380b5O2a0Ob82bfc8d84c5ab5el5b8fbf7dac     # 加上-1参数表示我们只想看到一行记录    git log lfa380b5O2a0Ob82bfc8d84c5ab5el5b8fbf7dac -1 </code></pre><p>而如果想要查看这条提交记录具体修改了什么内容，可以在命令中加入p参数，命令如下:</p><pre><code>    git log Ifa380b502a00b82bfc8d84c5ab5el5b8fbf7dac -1 -p</code></pre><ol start="6"><li><p>git reset  –hard 版本id  # 回退版本</p></li><li><p>git reflog   # 查看所有版本信息</p></li><li><p>git diff  # 表示未使用add命令时的修改</p></li></ol><p>这样可以查看到所有文件的更改内容，<br>如果你只想查看MainActivity.java这个文件的更改内容，可以使用如下命令：</p><pre><code>    git diff app/src/main/java/com/example/providertest/MainActivity.java</code></pre><p>vs：git log 表示最近的改变，git reflog可以看到所有的改变<br>如果文件未被跟踪,即没有使用git add这个命令时,文件为红色,如果使用这个命令,则文件变为绿色。<br>这里涉及到一个知识点，git的本地三个区域+远程仓库<br><img src="/2022/08/05/git/git/git%E4%B8%89%E5%8C%BA.png"></p><p><code>Workspace：</code>工作区，就是你平时存放项目代码的地方;</p><p><code>Index / Stage：</code>暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息,一般存放在 .git 目录下的 index 文件（.git&#x2F;index）中，所以我们把暂存区有时也叫作索引（index）;</p><p><code>Repository：</code>仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本;</p><p><code>Remote：</code>远程仓库，托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换;</p><ul><li>git add 是将代码从工作区加入到暂存区</li><li>git commit 是将代码从暂存区递交到本地仓库</li><li>git push则是由本地推送到远程仓库</li></ul><h3 id="1-6-远程仓库-Github"><a href="#1-6-远程仓库-Github" class="headerlink" title="1.6 远程仓库(Github)"></a>1.6 远程仓库(Github)</h3><p>新添加远程仓库</p><pre><code>    git remote add [shortname] [url]</code></pre><p>查看当前的远程库<br>要查看当前配置有哪些远程仓库，可以用命令：</p><pre><code>    git remote</code></pre><p>提取远程仓库<br>Git 有两个命令用来提取远程仓库的更新。</p><p>1、从远程仓库下载新分支与数据：</p><pre><code>    git fetch</code></pre><p>2、从远端仓库提取数据并尝试合并到当前分支：</p><p>git merg</p><p>删除远程仓库<br>删除远程仓库你可以使用命令：</p><pre><code>    git remote rm [别名]</code></pre><h3 id="1-7-创建分支"><a href="#1-7-创建分支" class="headerlink" title="1.7 创建分支"></a>1.7 创建分支</h3><p>多人协作完成一个项目的时候，不同的人需要完成不同的功能，这时候就需要创建分支。</p><pre><code># 列出所有本地分支git branch # 列出所有远程分支git branch -r # 新建一个分支，但依然停留在当前分支git branch [branchname] # 新建一个分支，并切换到该分支git checkout -b [branchname]# 切换到主分支$ git checkout master    # 合并指定分支到当前分支$ git merge [branchname] # 删除分支$ git branch -d [branchname] # 删除远程分支$ git push origin --delete [branchname]$ git branch -dr [remote/branch]</code></pre><h3 id="1-8-标签"><a href="#1-8-标签" class="headerlink" title="1.8 标签"></a>1.8 标签</h3><p>发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。<br>Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。<br>Git有commit，为什么还要引入tag？<br>“请把上周一的那个版本打包发布，commit号是6a5819e…”<br>“一串乱七八糟的数字不好找！”<br>如果换一个办法：<br>“请把上周一的那个版本打包发布，版本号是v1.2”<br>“好的，按照tag v1.2查找commit就行！”<br>所以，tag就是一个让人容易记住的有意义的名字，它跟某个commit绑在一起。</p><ul><li>命令git tag <tagname>用于新建一个标签，默认为HEAD，也可以指定一个commit id；</tagname></li><li>命令git tag -a <tagname> -m “blablabla…”可以指定标签信息；</tagname></li><li>命令git tag可以查看所有标签。</li><li>命令git push origin <tagname>可以推送一个本地标签；</tagname></li><li>命令git push origin –tags可以推送全部未推送过的本地标签；</li><li>命令git tag -d <tagname>可以删除一个本地标签；</tagname></li><li>命令git push origin :refs&#x2F;tags&#x2F;<tagname>可以删除一个远程标签。</tagname></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a><p align="center"><font color="#ff00ff">Git</font></p></h1><h3 id="1-1-Git"><a href="#1-1-Git" class="headerlink" title="1.1 Git"></a>1.1 Git</h3><p>Git是一个版本管理控制系统（缩写VCS），它可以在任何时间点，<br>将文档的状态作为更新记录保存起来，也可以在任何时间点，<br>将更新记录恢复回来。</p><h3 id="1-2-查看Git的版本"><a href="#1-2-查看Git的版本" class="headerlink" title="1.2 查看Git的版本"></a>1.2 查看Git的版本</h3><pre><code>    git --verson</code></pre><h3 id="1-3-Git-基本工作流程"><a href="#1-3-Git-基本工作流程" class="headerlink" title="1.3 Git 基本工作流程"></a>1.3 Git 基本工作流程</h3><p><strong>工作区</strong> 就是你在电脑里能看到的目录。<br><strong>暂存区</strong> 英文叫 stage 或 index。一般存放在 .git 目录下的 index 文件<br>        （.git&#x2F;index）中，所以我们把暂存区有时也叫作索引（index）。<br><strong>版本库</strong> 工作区有一个隐藏目录 .git，这个不算工作区，而是 Git 的版本库。</p><h3 id="1-4-Git-使用前配置"><a href="#1-4-Git-使用前配置" class="headerlink" title="1.4 Git 使用前配置"></a>1.4 Git 使用前配置</h3><p>在使用 git 前，需要告诉 git 你是谁，在向 git 仓库中提交时需要用到。</p><ol><li>配置提交人姓名：git config –global user.name “提交人姓名” # (对当前系统用户有效)</li><li>配置提交人姓名：git config –global user.email  “提交人邮箱” # (对当前系统用户有效)<br>作用：识别开发人员，与登陆github的账户无关</li><li>查看git配置信息：git config –list</li></ol><p>注意</p><ol><li>如果要对配置信息进行修改，重复上述命令即可。</li><li>配置只需要执行一次。</li></ol><h3 id="1-5-常用提交步骤"><a href="#1-5-常用提交步骤" class="headerlink" title="1.5 常用提交步骤"></a>1.5 常用提交步骤</h3><ol><li><p>git init  # 初始化git仓库</p></li><li><p>git status  # 查看文件状态</p></li><li><p>git add 文件列表 # 追踪文件</p></li><li><p>git commit -m  “提交信息”  # 向仓库中提交代码(全部文件)<br>vs： git commit -m “提交信息”  文件  # 提交某个文件</p></li><li><p>git log # 显示所有提交记录<br>git log –pretty&#x3D;oneline   # 一行显示版本信息</p></li></ol><p>补充：</p><pre><code>    # 会显示所有关于这个id以及之前的修改记录    git log lfa380b5O2a0Ob82bfc8d84c5ab5el5b8fbf7dac     # 加上-1参数表示我们只想看到一行记录    git log lfa380b5O2a0Ob82bfc8d84c5ab5el5b8fbf7dac -1 </code></pre><p>而如果想要查看这条提交记录具体修改了什么内容，可以在命令中加入p参数，命令如下:</p><pre><code>    git log Ifa380b502a00b82bfc8d84c5ab5el5b8fbf7dac -1 -p</code></pre><ol start="6"><li><p>git reset  –hard 版本id  # 回退版本</p></li><li><p>git reflog   # 查看所有版本信息</p></li><li><p>git diff  # 表示未使用add命令时的修改</p></li></ol><p>这样可以查看到所有文件的更改内容，<br>如果你只想查看MainActivity.java这个文件的更改内容，可以使用如下命令：</p><pre><code>    git diff app/src/main/java/com/example/providertest/MainActivity.java</code></pre><p>vs：git log 表示最近的改变，git reflog可以看到所有的改变<br>如果文件未被跟踪,即没有使用git add这个命令时,文件为红色,如果使用这个命令,则文件变为绿色。<br>这里涉及到一个知识点，git的本地三个区域+远程仓库<br><a href="https://imgse.com/i/ppf2YPP"><img src="https://s1.ax1x.com/2023/04/02/ppf2YPP.png" alt="ppf2YPP.png"></a></p><p><code>Workspace：</code>工作区，就是你平时存放项目代码的地方;</p><p><code>Index / Stage：</code>暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息,一般存放在 .git 目录下的 index 文件（.git&#x2F;index）中，所以我们把暂存区有时也叫作索引（index）;</p><p><code>Repository：</code>仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本;</p><p><code>Remote：</code>远程仓库，托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换;</p><ul><li>git add 是将代码从工作区加入到暂存区</li><li>git commit 是将代码从暂存区递交到本地仓库</li><li>git push则是由本地推送到远程仓库</li></ul><h3 id="1-6-远程仓库-Github"><a href="#1-6-远程仓库-Github" class="headerlink" title="1.6 远程仓库(Github)"></a>1.6 远程仓库(Github)</h3><p>新添加远程仓库</p><pre><code>    git remote add [shortname] [url]</code></pre><p>查看当前的远程库<br>要查看当前配置有哪些远程仓库，可以用命令：</p><pre><code>    git remote</code></pre><p>提取远程仓库<br>Git 有两个命令用来提取远程仓库的更新。</p><p>1、从远程仓库下载新分支与数据：</p><pre><code>    git fetch</code></pre><p>2、从远端仓库提取数据并尝试合并到当前分支：</p><p>git merg</p><p>删除远程仓库<br>删除远程仓库你可以使用命令：</p><pre><code>    git remote rm [别名]</code></pre><h3 id="1-7-创建分支"><a href="#1-7-创建分支" class="headerlink" title="1.7 创建分支"></a>1.7 创建分支</h3><p>多人协作完成一个项目的时候，不同的人需要完成不同的功能，这时候就需要创建分支。</p><pre><code># 列出所有本地分支git branch # 列出所有远程分支git branch -r # 新建一个分支，但依然停留在当前分支git branch [branchname] # 新建一个分支，并切换到该分支git checkout -b [branchname]# 切换到主分支$ git checkout master    # 合并指定分支到当前分支$ git merge [branchname] # 删除分支$ git branch -d [branchname] # 删除远程分支$ git push origin --delete [branchname]$ git branch -dr [remote/branch]</code></pre><h3 id="1-8-标签"><a href="#1-8-标签" class="headerlink" title="1.8 标签"></a>1.8 标签</h3><p>发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。<br>Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。<br>Git有commit，为什么还要引入tag？<br>“请把上周一的那个版本打包发布，commit号是6a5819e…”<br>“一串乱七八糟的数字不好找！”<br>如果换一个办法：<br>“请把上周一的那个版本打包发布，版本号是v1.2”<br>“好的，按照tag v1.2查找commit就行！”<br>所以，tag就是一个让人容易记住的有意义的名字，它跟某个commit绑在一起。</p><ul><li>命令git tag <tagname>用于新建一个标签，默认为HEAD，也可以指定一个commit id；</tagname></li><li>命令git tag -a <tagname> -m “blablabla…”可以指定标签信息；</tagname></li><li>命令git tag可以查看所有标签。</li><li>命令git push origin <tagname>可以推送一个本地标签；</tagname></li><li>命令git push origin –tags可以推送全部未推送过的本地标签；</li><li>命令git tag -d <tagname>可以删除一个本地标签；</tagname></li><li>命令git push origin :refs&#x2F;tags&#x2F;<tagname>可以删除一个远程标签。</tagname></li></ul>]]></content>
       
       
       <categories>
