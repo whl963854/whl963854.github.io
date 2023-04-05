@@ -154,7 +154,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(132)</small>
+                <small>(133)</small>
             
         </div>
     </li>
@@ -221,7 +221,7 @@
                     <div data-rel="cpp">
                         
                         cpp
-                        <small>(54)</small>
+                        <small>(55)</small>
                         
                     </div>
                     
@@ -297,8 +297,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="132">
-<input type="hidden" id="yelog_site_word_count" value="141.2k">
+<input type="hidden" id="yelog_site_posts_number" value="133">
+<input type="hidden" id="yelog_site_word_count" value="143k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -443,6 +443,15 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All cpp "
+           href="/2023/04/04/OS/%E6%AD%BB%E9%94%81/"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="死锁">死锁</span>
+            <span class="post-date" title="2023-04-04 22:56:12">2023/04/04</span>
+        </a>
         
         
         <a  class="All Database "
@@ -1677,12 +1686,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-09-29 23:18:09'>2022-09-20 19:41</time>
+            Created At : <time class="date" title='Updated At: 2023-04-04 21:31:20'>2022-09-20 19:41</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:3.9k</span>
+        <span>Count:4k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1836,6 +1845,8 @@
 <ul>
 <li>相对于二叉树，层级更少，搜索效率高</li>
 <li>对于 B-Tree，无论是叶子节点还是非叶子节点，都会保存数据，这样导致一页中存储的键值减少，指针也跟着减少，要同样保存大量数据，只能增加树的高度，导致性能降低</li>
+<li>B+Tree非叶子结点不存储data,只存储索引（冗余），可以在同一节点放更多索引，进而缩小树的高度</li>
+<li>叶子结点使用指针连接（B-tree没有），提高区间访问的性能</li>
 <li>相对于 Hash 索引，B+Tree 支持范围匹配及排序操作</li>
 </ul>
 <h2 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h2><table>
