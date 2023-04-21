@@ -1,0 +1,2185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>无重复字符的最长子串 | Hexo</title>
+  <meta name="keywords" content=" leetcode ">
+  <meta name="description" content="无重复字符的最长子串 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="页面未找到！">
+<meta property="og:type" content="website">
+<meta property="og:title" content="404">
+<meta property="og:url" content="http://example.com/404/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="页面未找到！">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-09-27T03:31:01.000Z">
+<meta property="article:modified_time" content="2022-09-13T11:24:43.803Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>John Doe</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/whl963854"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:3366576307@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=3366576307&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+    <a class="more-menus">更多菜单</a>
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(139)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="软工">
+                        
+                        软工
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="设计模式">
+                        
+                        设计模式
+                        <small>(24)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="算法">
+                        
+                        算法
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="题解">
+                        
+                        题解
+                        <small>(26)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="cpp">
+                        
+                        cpp
+                        <small>(56)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Database">
+                        
+                        Database
+                        <small>(21)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Git">
+                        
+                        Git
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Linux">
+                        
+                        Linux
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+                <a class="dynamic-menu "
+                   target="_blank"
+                        
+                   href="https://github.com/whl963854">github</a>
+        
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  "
+               target="_blank"
+                    
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="139">
+<input type="hidden" id="yelog_site_word_count" value="155.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>编码规范</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>创建型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态规划</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>华为可信课程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>剑指offer</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>结构型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>蓝桥</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>码题集</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>软工</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>现代cpp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>行为型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>字节</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>c++11</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cpp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>csp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>leetcode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>math</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NoSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Redis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>STL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>wps</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All Database "
+           href="/p/39914.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="B+树和B树的区别">B+树和B树的区别</span>
+            <span class="post-date" title="2023-04-15 15:16:30">2023/04/15</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/56191.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux用户和权限">Linux用户和权限</span>
+            <span class="post-date" title="2023-04-09 16:09:46">2023/04/09</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/13375.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux基本命令">Linux基本命令</span>
+            <span class="post-date" title="2023-04-09 15:43:31">2023/04/09</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/26649.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux文件管理">Linux文件管理</span>
+            <span class="post-date" title="2023-04-09 15:04:48">2023/04/09</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/226.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="线程池">线程池</span>
+            <span class="post-date" title="2023-04-06 21:15:15">2023/04/06</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-04-05 16:47:27">2023/04/05</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/28384.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="死锁">死锁</span>
+            <span class="post-date" title="2023-04-04 22:56:12">2023/04/04</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/41558.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="日志类型">日志类型</span>
+            <span class="post-date" title="2023-04-04 20:30:49">2023/04/04</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/33810.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="事务三种提交问题">事务三种提交问题</span>
+            <span class="post-date" title="2023-04-04 19:48:39">2023/04/04</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/14751.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="事务隔离级别">事务隔离级别</span>
+            <span class="post-date" title="2023-04-04 19:39:30">2023/04/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/p/61809.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="并查集">并查集</span>
+            <span class="post-date" title="2023-04-04 09:23:30">2023/04/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/p/56030.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="带权并查集">带权并查集</span>
+            <span class="post-date" title="2023-04-04 09:19:22">2023/04/04</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/14976.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="虚函数表">虚函数表</span>
+            <span class="post-date" title="2023-04-02 22:49:10">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/43341.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="cpp代码到exe">cpp代码到exe</span>
+            <span class="post-date" title="2023-04-02 20:20:53">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/63561.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="类型转换">类型转换</span>
+            <span class="post-date" title="2023-04-02 19:56:58">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/27999.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="移动语义">移动语义</span>
+            <span class="post-date" title="2023-04-02 19:27:59">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64202.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="move">move</span>
+            <span class="post-date" title="2023-04-02 16:52:48">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/3763.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="左值右值">左值右值</span>
+            <span class="post-date" title="2023-04-02 15:30:23">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/50074.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="完美转发">完美转发</span>
+            <span class="post-date" title="2023-04-02 15:24:52">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/52505.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="并发">并发</span>
+            <span class="post-date" title="2023-03-15 23:04:38">2023/03/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/10970.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="内存">内存</span>
+            <span class="post-date" title="2023-03-11 23:53:41">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/47719.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="智能指针">智能指针</span>
+            <span class="post-date" title="2023-03-11 23:49:23">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/6239.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="与时间有关的程序">与时间有关的程序</span>
+            <span class="post-date" title="2023-03-11 22:36:47">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64657.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="左值引用和右值引用">左值引用和右值引用</span>
+            <span class="post-date" title="2023-03-11 10:22:51">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/57725.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="lambda的使用">lambda的使用</span>
+            <span class="post-date" title="2023-03-11 09:58:25">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/28630.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="编译时常量的使用">编译时常量的使用</span>
+            <span class="post-date" title="2023-03-10 23:30:43">2023/03/10</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/5639.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="类型推断">类型推断</span>
+            <span class="post-date" title="2023-03-10 22:27:43">2023/03/10</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/54280.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="初始化变量">初始化变量</span>
+            <span class="post-date" title="2023-03-09 13:45:00">2023/03/09</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/19966.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="委派构造函数">委派构造函数</span>
+            <span class="post-date" title="2023-02-19 23:09:08">2023/02/19</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/35775.html"
+           data-tag="蓝桥"
+           data-author="" >
+            <span class="post-title" title="统计子矩阵">统计子矩阵</span>
+            <span class="post-date" title="2023-02-15 16:07:28">2023/02/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/51768.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="Hashtable">Hashtable</span>
+            <span class="post-date" title="2023-02-15 15:08:09">2023/02/15</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/1.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-01-11 15:05:36">2023/01/11</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/12758.html"
+           data-tag="码题集"
+           data-author="" >
+            <span class="post-title" title="棘手怀念摧毁">棘手怀念摧毁</span>
+            <span class="post-date" title="2022-12-25 19:40:47">2022/12/25</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/5455.html"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="SpringDataRedis">SpringDataRedis</span>
+            <span class="post-date" title="2022-12-16 19:23:43">2022/12/16</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/26793.html"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="Jedis">Jedis</span>
+            <span class="post-date" title="2022-12-16 19:14:50">2022/12/16</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/31805.html"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="Redis常见命令">Redis常见命令</span>
+            <span class="post-date" title="2022-12-16 17:09:34">2022/12/16</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/28345.html"
+           data-tag="NoSQL"
+           data-author="" >
+            <span class="post-title" title="NoSQL">NoSQL</span>
+            <span class="post-date" title="2022-12-16 17:03:38">2022/12/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/24227.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="多线程">多线程</span>
+            <span class="post-date" title="2022-11-27 17:02:58">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/50156.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="解析器模式">解析器模式</span>
+            <span class="post-date" title="2022-11-26 16:21:36">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/5265.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="访问器模式">访问器模式</span>
+            <span class="post-date" title="2022-11-26 16:06:00">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/52113.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="职责链模式">职责链模式</span>
+            <span class="post-date" title="2022-11-26 15:56:40">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/28241.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="迭代器模式">迭代器模式</span>
+            <span class="post-date" title="2022-11-26 15:42:22">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/55487.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="中介者模式">中介者模式</span>
+            <span class="post-date" title="2022-11-26 15:29:22">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/44993.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="组合模式">组合模式</span>
+            <span class="post-date" title="2022-11-26 15:22:50">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/58978.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="门面模式">门面模式</span>
+            <span class="post-date" title="2022-11-26 15:06:14">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/65163.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="享元模式">享元模式</span>
+            <span class="post-date" title="2022-11-26 14:51:16">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 软工 "
+           href="/p/55324.html"
+           data-tag="软工"
+           data-author="" >
+            <span class="post-title" title="某些小项目">某些小项目</span>
+            <span class="post-date" title="2022-11-23 16:13:10">2022/11/23</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/4551.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux简介">Linux简介</span>
+            <span class="post-date" title="2022-11-23 15:59:13">2022/11/23</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/56214.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="备忘录模式">备忘录模式</span>
+            <span class="post-date" title="2022-11-21 20:58:19">2022/11/21</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/39447.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="状态模式">状态模式</span>
+            <span class="post-date" title="2022-11-21 20:32:29">2022/11/21</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/52292.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="香槟塔">香槟塔</span>
+            <span class="post-date" title="2022-11-20 21:12:37">2022/11/20</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/39967.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="匹配子序列的单词数">匹配子序列的单词数</span>
+            <span class="post-date" title="2022-11-19 16:42:23">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/43256.html"
+           data-tag="csp"
+           data-author="" >
+            <span class="post-title" title="防疫大数据">防疫大数据</span>
+            <span class="post-date" title="2022-10-20 19:33:24">2022/10/20</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/57245.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="RvalueReference">RvalueReference</span>
+            <span class="post-date" title="2022-10-18 14:59:21">2022/10/18</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/2.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-10-16 15:25:47">2022/10/16</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/52608.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="最长回文子串">最长回文子串</span>
+            <span class="post-date" title="2022-10-16 13:32:46">2022/10/16</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/22977.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="命令模式">命令模式</span>
+            <span class="post-date" title="2022-10-15 15:32:21">2022/10/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64590.html"
+           data-tag="wps"
+           data-author="" >
+            <span class="post-title" title="c++编码规范">c++编码规范</span>
+            <span class="post-date" title="2022-10-15 15:26:48">2022/10/15</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/53127.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="最长字符串链">最长字符串链</span>
+            <span class="post-date" title="2022-10-13 13:59:07">2022/10/13</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/4097.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="Otherthings">Otherthings</span>
+            <span class="post-date" title="2022-10-11 19:24:37">2022/10/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/6511.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="Template Template Parameter">Template Template Parameter</span>
+            <span class="post-date" title="2022-10-11 19:04:35">2022/10/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/45839.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="Alias Template">Alias Template</span>
+            <span class="post-date" title="2022-10-11 18:45:06">2022/10/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/4260.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="Initialization">Initialization</span>
+            <span class="post-date" title="2022-10-10 16:54:01">2022/10/10</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64016.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="变参模板">变参模板</span>
+            <span class="post-date" title="2022-10-10 16:31:16">2022/10/10</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/9423.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="STL">STL</span>
+            <span class="post-date" title="2022-10-07 18:29:52">2022/10/07</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39842.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="unique_ptr">unique_ptr</span>
+            <span class="post-date" title="2022-10-02 19:53:58">2022/10/02</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/39856.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="构建器模式">构建器模式</span>
+            <span class="post-date" title="2022-10-02 19:01:32">2022/10/02</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/62812.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="InnoDB引擎">InnoDB引擎</span>
+            <span class="post-date" title="2022-10-02 15:15:37">2022/10/02</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/21631.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="锁">锁</span>
+            <span class="post-date" title="2022-09-29 23:16:11">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/3892.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="装饰者模式">装饰者模式</span>
+            <span class="post-date" title="2022-09-29 16:22:07">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/27560.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="桥模式">桥模式</span>
+            <span class="post-date" title="2022-09-29 15:51:18">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/61876.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="超过一半的数字">超过一半的数字</span>
+            <span class="post-date" title="2022-09-28 20:03:36">2022/09/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/34639.html"
+           data-tag="剑指offer"
+           data-author="" >
+            <span class="post-title" title="数组中数字出现的个数">数组中数字出现的个数</span>
+            <span class="post-date" title="2022-09-27 21:20:30">2022/09/27</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/40758.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="触发器">触发器</span>
+            <span class="post-date" title="2022-09-27 16:04:13">2022/09/27</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/64451.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="存储过程">存储过程</span>
+            <span class="post-date" title="2022-09-23 12:44:39">2022/09/23</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/3825.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="视图">视图</span>
+            <span class="post-date" title="2022-09-23 11:04:20">2022/09/23</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/14565.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="模板模式">模板模式</span>
+            <span class="post-date" title="2022-09-22 19:52:54">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/39554.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="适配器模式">适配器模式</span>
+            <span class="post-date" title="2022-09-22 19:31:55">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/29711.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="建造者模式">建造者模式</span>
+            <span class="post-date" title="2022-09-22 19:20:40">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/48003.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="代理模式">代理模式</span>
+            <span class="post-date" title="2022-09-22 18:57:19">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/22548.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="原型模式">原型模式</span>
+            <span class="post-date" title="2022-09-22 18:35:08">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/7738.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="观察者模式">观察者模式</span>
+            <span class="post-date" title="2022-09-22 16:22:50">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/1692.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="优化">优化</span>
+            <span class="post-date" title="2022-09-21 19:27:54">2022/09/21</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/11557.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="索引">索引</span>
+            <span class="post-date" title="2022-09-20 19:41:27">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/27905.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="存储引擎">存储引擎</span>
+            <span class="post-date" title="2022-09-20 19:14:39">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/62546.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="事务">事务</span>
+            <span class="post-date" title="2022-09-20 18:37:59">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/19503.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="多表查询">多表查询</span>
+            <span class="post-date" title="2022-09-20 15:09:37">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/35621.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="约束">约束</span>
+            <span class="post-date" title="2022-09-20 14:27:02">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/21513.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="函数">函数</span>
+            <span class="post-date" title="2022-09-20 13:07:32">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/29900.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL">SQL</span>
+            <span class="post-date" title="2022-09-20 10:02:57">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/35802.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用集合算法">常用集合算法</span>
+            <span class="post-date" title="2022-09-16 20:39:48">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/41195.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用算术生成算法">常用算术生成算法</span>
+            <span class="post-date" title="2022-09-16 20:38:46">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/20982.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用拷贝和替换算法">常用拷贝和替换算法</span>
+            <span class="post-date" title="2022-09-16 20:25:30">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/29759.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用排序算法">常用排序算法</span>
+            <span class="post-date" title="2022-09-16 19:53:06">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/31381.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="STL常用算法">STL常用算法</span>
+            <span class="post-date" title="2022-09-16 13:06:00">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/45788.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="内建函数对象">内建函数对象</span>
+            <span class="post-date" title="2022-09-16 12:35:16">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/37043.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="map/multimap">map/multimap</span>
+            <span class="post-date" title="2022-09-15 21:12:00">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/22700.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="set/multiset">set/multiset</span>
+            <span class="post-date" title="2022-09-15 21:07:26">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39907.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="List">List</span>
+            <span class="post-date" title="2022-09-15 20:34:58">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/41872.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="queue">queue</span>
+            <span class="post-date" title="2022-09-15 20:33:56">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64038.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="stack">stack</span>
+            <span class="post-date" title="2022-09-15 20:25:14">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/42201.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="deque">deque</span>
+            <span class="post-date" title="2022-09-15 20:06:02">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/54708.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="vector">vector</span>
+            <span class="post-date" title="2022-09-15 19:33:36">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/58909.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="string">string</span>
+            <span class="post-date" title="2022-09-15 16:29:29">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/5958.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="谓词">谓词</span>
+            <span class="post-date" title="2022-09-15 16:19:03">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/46132.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="单例模式">单例模式</span>
+            <span class="post-date" title="2022-09-15 16:04:46">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/59316.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="factory模式">factory模式</span>
+            <span class="post-date" title="2022-09-15 16:04:46">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/38710.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="括号生成">括号生成</span>
+            <span class="post-date" title="2022-09-13 16:21:25">2022/09/13</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/59129.html"
+           data-tag="csp"
+           data-author="" >
+            <span class="post-title" title="寻宝大作战">寻宝大作战</span>
+            <span class="post-date" title="2022-09-11 16:31:29">2022/09/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/23999.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="金山训练营第一周">金山训练营第一周</span>
+            <span class="post-date" title="2022-09-09 19:46:09">2022/09/09</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/59828.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="把数组排成最小的数">把数组排成最小的数</span>
+            <span class="post-date" title="2022-09-08 14:13:19">2022/09/08</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/20114.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="同构字符串">同构字符串</span>
+            <span class="post-date" title="2022-09-08 12:31:34">2022/09/08</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/64084.html"
+           data-tag="字节"
+           data-author="" >
+            <span class="post-title" title="数组游戏">数组游戏</span>
+            <span class="post-date" title="2022-09-07 16:57:46">2022/09/07</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/63859.html"
+           data-tag="math"
+           data-author="" >
+            <span class="post-title" title="全排列">全排列</span>
+            <span class="post-date" title="2022-09-07 13:01:27">2022/09/07</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/1868.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="日期差值">日期差值</span>
+            <span class="post-date" title="2022-09-06 16:14:24">2022/09/06</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/61401.html"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="零钱兑换">零钱兑换</span>
+            <span class="post-date" title="2022-09-04 12:13:58">2022/09/04</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/58639.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="策略模式">策略模式</span>
+            <span class="post-date" title="2022-09-01 10:25:44">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/47718.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="智能指针">智能指针</span>
+            <span class="post-date" title="2022-08-30 20:56:50">2022/08/30</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/1199.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="nullptr">nullptr</span>
+            <span class="post-date" title="2022-08-30 20:41:05">2022/08/30</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/49651.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="前k个高频词">前k个高频词</span>
+            <span class="post-date" title="2022-08-30 20:09:01">2022/08/30</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/50254.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="设计模式简介">设计模式简介</span>
+            <span class="post-date" title="2022-08-30 19:44:16">2022/08/30</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/14283.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="无重复字符的最长子串">无重复字符的最长子串</span>
+            <span class="post-date" title="2022-08-12 10:09:13">2022/08/12</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/967.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="反转链表">反转链表</span>
+            <span class="post-date" title="2022-08-10 11:41:17">2022/08/10</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/37489.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="排序">排序</span>
+            <span class="post-date" title="2022-08-10 10:04:24">2022/08/10</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/43574.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="链接编译联编">链接编译联编</span>
+            <span class="post-date" title="2022-08-08 11:21:41">2022/08/08</span>
+        </a>
+        
+        
+        <a  class="All Git "
+           href="/p/5226.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git常用方法">git常用方法</span>
+            <span class="post-date" title="2022-08-05 09:44:12">2022/08/05</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/41521.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="代码风格规定">代码风格规定</span>
+            <span class="post-date" title="2022-07-30 10:52:08">2022/07/30</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/46257.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="lambda、资源管理与杂项">lambda、资源管理与杂项</span>
+            <span class="post-date" title="2022-07-29 19:01:40">2022/07/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/29637.html"
+           data-tag="华为可信课程,编码规范"
+           data-author="" >
+            <span class="post-title" title="类与函数">类与函数</span>
+            <span class="post-date" title="2022-07-29 18:01:02">2022/07/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39885.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="表达式与变量">表达式与变量</span>
+            <span class="post-date" title="2022-07-15 09:50:49">2022/07/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/22884.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="安全编码与未定义行为">安全编码与未定义行为</span>
+            <span class="post-date" title="2022-07-15 09:07:10">2022/07/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/397.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="define、const、typedef、inline">define、const、typedef、inline</span>
+            <span class="post-date" title="2022-07-13 10:19:04">2022/07/13</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/40034.html"
+           data-tag="csp"
+           data-author="" >
+            <span class="post-title" title="非零段划分">非零段划分</span>
+            <span class="post-date" title="2022-06-06 21:12:44">2022/06/06</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/9616.html"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="买卖股票1">买卖股票1</span>
+            <span class="post-date" title="2022-03-26 20:36:28">2022/03/26</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/9615.html"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="买卖股票1">买卖股票1</span>
+            <span class="post-date" title="2022-03-26 20:08:12">2022/03/26</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/3457.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="字典序的第k大数字">字典序的第k大数字</span>
+            <span class="post-date" title="2022-03-23 20:26:38">2022/03/23</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/47143.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Easy Strings Merging">Easy Strings Merging</span>
+            <span class="post-date" title="2022-03-03 19:29:40">2022/03/03</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/65488.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="779 第k个语法符号">779 第k个语法符号</span>
+            <span class="post-date" title="2022-03-03 15:13:51">2022/03/03</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/16107.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2022-03-01 19:26:09">2022/03/01</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-题解/无重复字符的最长子串" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">无重复字符的最长子串</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="题解">题解</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">leetcode</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-04-21 22:30:06'>2022-08-12 10:09</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:357</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                Comment:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82"><span class="toc-text">题目要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E7%94%A8%E4%BE%8B"><span class="toc-text">输入用例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">代码实现</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-5 i,
+    .toc-level-5 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code class="bash">     给定一个字符串 s ，请你找出其中不含有重复字符的最长子串的长度。
+</code></pre>
+<h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code class="bash">    示例 1:
+
+        输入: s = &quot;abcabcbb&quot;
+        输出: 3 
+        解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。
+
+
+    示例 2:
+
+        输入: s = &quot;bbbbb&quot;
+        输出: 1
+        解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。
+
+
+    示例 3:
+
+        输入: s = &quot;pwwkew&quot;
+        输出: 3
+        解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。
+             请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。
+
+
+</code></pre>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>    采用双指针的做法，通过一个桶记录字符是否出现过以及出现的位置，在O(n)的时间内解决问题
+</code></pre>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>class Solution &#123;
+public:
+    int lengthOfLongestSubstring(string s) &#123;
+        // 记录字符上一次出现的位置
+        int last[128];
+        for(int i = 0; i &lt; 128; i++) &#123;
+            last[i] = -1;
+        &#125;
+        int n = s.length();
+
+        int res = 0;
+        int start = 0; // 窗口开始位置
+        for(int i = 0; i &lt; n; i++) &#123;
+            int index = s[i];
+            start = max(start, last[index] + 1);
+            res   = max(res, i - start + 1);
+            last[index] = i;
+        &#125;
+
+        return res;
+    &#125;
+&#125;;
+</code></pre>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-substring-without-repeating-characters">https://leetcode.cn/problems/longest-substring-without-repeating-characters</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3366576307@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '9863a58d805d69a19ec3',
+            clientSecret: 'eec6c8ede04bbc286f4410646f54282eafb3b33f',
+            repo: 'talkFile.github.io',
+            owner: 'whl963854',
+            admin: ['whl963854'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2022 whl
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #c1bfc1;
+    }
+    
+    
+    .nav-right nav a.hover > span{
+        color: #ffffff !important;
+    }
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div class="mobile-menus-out" >
+
+</div>
+<div class="mobile-menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/whl963854">github</a>
+    
+</div>
+
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 0;">
+<div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483671599&auto=1&height=66"></iframe>
+</div>
+
+
+
+
+<!--以下代码是为了支持随时拖动音乐控件的位置，如没有需求，可去掉下面代码-->
+<script>
+var $DOC = $(document)
+$('#musicMouseDrag').on('mousedown', function (e) {
+// 阻止文本选中
+$DOC.bind("selectstart", function () {
+return false;
+});
+$('#musicDragArea').css('height', '100%');
+var $moveTarget = $('#musicMouseDrag');
+$moveTarget.css('border', '1px dashed grey')
+var div_x = e.pageX - $moveTarget.offset().left;
+var div_y = e.pageY - $moveTarget.offset().top;
+$DOC.on('mousemove', function (e) {
+var targetX = e.pageX - div_x;
+var targetY = e.pageY - div_y;
+targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+$moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+}).on('mouseup', function () {
+$DOC.unbind("selectstart");
+$DOC.off('mousemove')
+$DOC.off('mouseup')
+$moveTarget.css('border', 'none')
+$('#musicDragArea').css('height', '10px');
+})
+})
+</script>
+</html>
