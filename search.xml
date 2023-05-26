@@ -4,6 +4,50 @@
   
     
     <entry>
+      <title>libevent可执行文件生成</title>
+      <link href="/p/789273fd.html"/>
+      <url>/p/789273fd.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="libevent可执行文件生成"><a href="#libevent可执行文件生成" class="headerlink" title="libevent可执行文件生成"></a>libevent可执行文件生成</h1><p>本来之前编译的32位已经足够用了，奈何后面程序需要用到protobuf，protobuf是64位编译的，联合使用几十行代码就能报了几百条错误，吓人！搞了好久终于把依赖的库文件重新编译完了。</p><h2 id="编译环境："><a href="#编译环境：" class="headerlink" title="编译环境："></a>编译环境：</h2><ul><li>win10 64位</li><li>vs2019 profession</li><li>libevent 2.1.11</li><li>libevent解压的文件夹目录为：D:\test\libevent-2.1.11-stable.tar\libevent-2.1.11-stable</li></ul><p>cmake之类的之前安装的，具体需要哪些也已经遗忘了，如果提示下载按需下载即可。（抱歉，我是菜狗）<br>其中libevent源代码在<a href="https://libevent.org/%E4%B8%8B%E8%BD%BD">https://libevent.org/下载</a><br><a href="https://imgse.com/i/p9TIbOP"><img src="https://s1.ax1x.com/2023/05/23/p9TIbOP.png" alt="libevent源代码"></a></p><h2 id="开始编译"><a href="#开始编译" class="headerlink" title="开始编译"></a>开始编译</h2><p>修改 libevent 目录下的 Makefile.nmake 文件：<br>找到 CFLAGS&#x3D;$(CFLAGS) &#x2F;Ox &#x2F;W3 &#x2F;wd4996 &#x2F;nologo，在后面加上 &#x2F;Zi<br>即改成 CFLAGS&#x3D;$(CFLAGS) &#x2F;Ox &#x2F;W3 &#x2F;wd4996 &#x2F;nologo &#x2F;Zi<br><a href="https://imgse.com/i/p9TIvFg"><img src="https://s1.ax1x.com/2023/05/23/p9TIvFg.png" alt="p9TIvFg.png"></a></p><p>因为我们要编译64位的lib库文件，所以还修改 libevent 目录下的 Makefile.nmake 文件<br>将 LIBFLAGS&#x3D;&#x2F;nologo<br>修改为：LIBFLAGS&#x3D;&#x2F;nologo &#x2F;MACHINE:X64<br><a href="https://imgse.com/i/p9ToFmV"><img src="https://s1.ax1x.com/2023/05/23/p9ToFmV.png" alt="p9ToFmV.png"></a></p><p>打开 libevent 目录下的 mm-internal.h 添加 #include &lt;stdint.h&gt;<br>注意：一定要添加到#ifndef MM_INTERNAL_H_INCLUDED_之前，否则会报错，一堆warning<br><a href="https://imgse.com/i/p9To4BV"><img src="https://s1.ax1x.com/2023/05/23/p9To4BV.png" alt="p9To4BV.png"></a></p><p>找到vs下的命令提示符 x64 Native Tools Command Prompt for VS 2019<br><a href="https://imgse.com/i/p9Tojnx"><img src="https://s1.ax1x.com/2023/05/23/p9Tojnx.png" alt="p9Tojnx.png"></a></p><p>使用控制台命令进入到 libevent 目录下：略<br>执行命令 nmake &#x2F;f Makefile.nmake，（成功的时候只有几行输出，如果有很多行输出，比如变量转换可能导致数据丢失，就说明编译失败了，就算生成了三个 lib 文件，也是失败的）</p><p>成功后，在 libevent 目录下会生成三个文件</p><ul><li>libevent.lib</li><li>libevent_core.lib</li><li>libevent_extras.lib</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境搭建 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>lambda表达式</title>
+      <link href="/p/330a6169.html"/>
+      <url>/p/330a6169.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h1><h2 id="避免默认的捕获模式"><a href="#避免默认的捕获模式" class="headerlink" title="避免默认的捕获模式"></a>避免默认的捕获模式</h2><p>在c++11中，有两种默认的捕获模式：值捕获和引用捕获。默认的引用捕获可能会造成悬挂引用现象。<br>按引用捕获会导致闭包包含涉及到局部变量的引用，或者涉及到定义lambda式子的作用域内形参的引用。</p><pre><code>using FilterContainer = std::vector&lt;std::function&lt;bool(int)&gt;&gt;;FilterContainer filters;void addDivisorFilter() &#123;    auto calc1 = computeSomeValue1();    auto calc2 = computeSomeValue2();        auto divisor = computeDivisor(calc1, calc2);            filters.emplace_back(                    // 危险，对divisor的指涉可能空悬！        [&amp;](int value)&#123; return value % divisor == 0;&#125;    );&#125;</code></pre><p>上述代码随时会出错，lambda式指涉到局部变量diviisor的引用，但该变量在addDivisorFilter返回时即不存在。<br>就算不这样做，换作以显示方式按引用捕获divisor，问题依旧。</p><pre><code>filters.emplace_back(                    // 危险，对divisor的指涉可能空悬！    [&amp;divisor](int value)&#123; return value % divisor == 0;&#125;</code></pre><p>解决这个问题的一个办法就是使用按值捕获的方式：</p><pre><code>filters.emplace_back(                        [=](int value)&#123; return value % divisor == 0;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c++11 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>特种成员函数的生成机制</title>
       <link href="/p/7296bf5f.html"/>
       <url>/p/7296bf5f.html</url>
@@ -29,18 +73,12 @@
     
     
     <entry>
-      <title>最短路径</title>
+      <title></title>
       <link href="/p/15bc60d8.html"/>
       <url>/p/15bc60d8.html</url>
       
-        <content type="html"><![CDATA[<hr><h1 id="单源最短路径"><a href="#单源最短路径" class="headerlink" title="单源最短路径"></a>单源最短路径</h1><h2 id="迪杰斯特拉"><a href="#迪杰斯特拉" class="headerlink" title="迪杰斯特拉"></a>迪杰斯特拉</h2><p>每次选取集合中距离最小的点进行拓展，贪心算法；<br>采用邻接矩阵：</p><pre><code>#include &lt;iostream&gt;#include&lt;fstream&gt;const int INF 0x7fffffff;const int N = 10010;using namespace std;int map[N][N], dis[N], mark[N]int main()&#123;    int i, j, n, m, t1, t2, t3, cur, v, min;    cin &gt;&gt; n &gt;&gt; m;    for (i = 1; i &lt;= n; i++) &#123;        for (j = 1; j &lt;= n; j++) &#123;            if (i == j) map[i][j] = 0;            else map[i][j] = INF;        &#125;    &#125;    for (i = 1; i &lt;= m; i++) &#123;        cin &gt;&gt; t1 &gt;&gt; t2 &gt;&gt; t3;        map[t1][t2] = t3;    &#125;    //初始化dis数组,代表源点到其他顶点的初始路程    for (i = 1; i &lt;= n; i++) &#123;        dis[i] = map[1][i];        mark[i] = 0;    &#125;    //从源点开始    mark[1] = 1;    //Dijkstra算法核心代码--贪心策略    for (i = 1; i &lt;= n - 1; i++) &#123; // 总共需要更新n-1次，对除去源点以外的n-1个点进行松弛        //寻找距离源点最近的顶点        min = INF;        for (j = 1; j &lt;= n; j++) &#123;            if (mark[j] == 0 &amp;&amp; dis[j] &lt; min) &#123;                min = dis[j];                cur = j;            &#125;        &#125;        //cur代表距离源点最近的        mark[cur] = 1;        for (v = 1; v &lt;= n; v++) &#123;            if (map[cur][v] &lt; INF) &#123;                if (dis[v] &gt; dis[cur] + map[cur][v]) &#123;                    dis[v] = dis[cur] + map[cur][v];                &#125;            &#125;        &#125;    &#125;    for (i = 1; i &lt;= n; i++) &#123;        cout &lt;&lt; dis[i];    &#125;    cout &lt;&lt; endl;    return 0;&#125;</code></pre><p>采用邻接表(链式向前星)：</p><pre><code>#include&lt;bits/stdc++.h&gt;#include&lt;cmath&gt;using namespace std;const int INF=2147483647;long long dis[10001];bool mark[100001];//STL优先队列（使用pair的情况下）的定义方法。由于要采用小根堆，所以需要这样定义。priority_queue&lt;pair&lt;int,int&gt;,vector&lt;pair&lt;int,int&gt;&gt;,greater&lt;pair&lt;int,int&gt;&gt;&gt;q;int fir[500001],to[500001],val[500001],nex[500001];    int cnt;void add_edge(int a,int b,int c)//链式前向星存图&#123;    to[++cnt]=b;    val[cnt]=c;    nex[cnt]=fir[a];    fir[a]=cnt;&#125;int main()&#123;    int n,m,s;    int u,v,w;    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;    for(int i=1; i&lt;=m; i++)    &#123;        cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;        add_edge(u,v,w);     &#125;    for(int i=1; i&lt;=n; i++)        dis[i]=inf;    dis[s]=0;//初始化dis数组     q.push(make_pair(0,s));//这里采用C++自带二元组编写    while(q.size())//当堆中还有元素     &#123;        int x=q.top().second;//q.top()取出堆顶，也就是当前距离起点最近的点。         q.pop();//取完就删         if(mark[x]) continue;//如果这个定点标记过了，就不用。        mark[x]=1;//标记一下         for(int i=fir[x]; i; i=nex[i])        &#123;            if(dis[to[i]]&gt;dis[x]+val[i])//dijkstra算法核心语句             &#123;                dis[to[i]]=dis[x]+val[i];                q.push(make_pair(dis[to[i]],to[i]));//每次松弛成功，把关于当前点的信息压入堆。             &#125;        &#125;    &#125;    for(int i=1;i&lt;=n;i++)        cout&lt;&lt;dis[i]&lt;&lt;&quot; &quot;;     return 0;&#125;</code></pre>]]></content>
+        <content type="html"><![CDATA[<hr><p>title: 最短路径<br>categories: 算法与数据结构</p><hr><h1 id="单源最短路径"><a href="#单源最短路径" class="headerlink" title="单源最短路径"></a>单源最短路径</h1><h2 id="迪杰斯特拉"><a href="#迪杰斯特拉" class="headerlink" title="迪杰斯特拉"></a>迪杰斯特拉</h2><p>每次选取集合中距离最小的点进行拓展，贪心算法；<br>采用邻接矩阵：</p><pre><code>#include &lt;iostream&gt;#include&lt;fstream&gt;const int INF 0x7fffffff;const int N = 10010;using namespace std;int map[N][N], dis[N], mark[N]int main()&#123;    int i, j, n, m, t1, t2, t3, cur, v, min;    cin &gt;&gt; n &gt;&gt; m;    for (i = 1; i &lt;= n; i++) &#123;        for (j = 1; j &lt;= n; j++) &#123;            if (i == j) map[i][j] = 0;            else map[i][j] = INF;        &#125;    &#125;    for (i = 1; i &lt;= m; i++) &#123;        cin &gt;&gt; t1 &gt;&gt; t2 &gt;&gt; t3;        map[t1][t2] = t3;    &#125;    //初始化dis数组,代表源点到其他顶点的初始路程    for (i = 1; i &lt;= n; i++) &#123;        dis[i] = map[1][i];        mark[i] = 0;    &#125;    //从源点开始    mark[1] = 1;    //Dijkstra算法核心代码--贪心策略    for (i = 1; i &lt;= n - 1; i++) &#123; // 总共需要更新n-1次，对除去源点以外的n-1个点进行松弛        //寻找距离源点最近的顶点        min = INF;        for (j = 1; j &lt;= n; j++) &#123;            if (mark[j] == 0 &amp;&amp; dis[j] &lt; min) &#123;                min = dis[j];                cur = j;            &#125;        &#125;        //cur代表距离源点最近的        mark[cur] = 1;        for (v = 1; v &lt;= n; v++) &#123;            if (map[cur][v] &lt; INF) &#123;                if (dis[v] &gt; dis[cur] + map[cur][v]) &#123;                    dis[v] = dis[cur] + map[cur][v];                &#125;            &#125;        &#125;    &#125;    for (i = 1; i &lt;= n; i++) &#123;        cout &lt;&lt; dis[i];    &#125;    cout &lt;&lt; endl;    return 0;&#125;</code></pre><p>采用邻接表(链式向前星)：</p><pre><code>#include&lt;bits/stdc++.h&gt;#include&lt;cmath&gt;using namespace std;const int INF=2147483647;long long dis[10001];bool mark[100001];//STL优先队列（使用pair的情况下）的定义方法。由于要采用小根堆，所以需要这样定义。priority_queue&lt;pair&lt;int,int&gt;,vector&lt;pair&lt;int,int&gt;&gt;,greater&lt;pair&lt;int,int&gt;&gt;&gt;q;int fir[500001],to[500001],val[500001],nex[500001];    int cnt;void add_edge(int a,int b,int c)//链式前向星存图&#123;    to[++cnt]=b;    val[cnt]=c;    nex[cnt]=fir[a];    fir[a]=cnt;&#125;int main()&#123;    int n,m,s;    int u,v,w;    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;    for(int i=1; i&lt;=m; i++)    &#123;        cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;        add_edge(u,v,w);     &#125;    for(int i=1; i&lt;=n; i++)        dis[i]=inf;    dis[s]=0;//初始化dis数组     q.push(make_pair(0,s));//这里采用C++自带二元组编写    while(q.size())//当堆中还有元素     &#123;        int x=q.top().second;//q.top()取出堆顶，也就是当前距离起点最近的点。         q.pop();//取完就删         if(mark[x]) continue;//如果这个定点标记过了，就不用。        mark[x]=1;//标记一下         for(int i=fir[x]; i; i=nex[i])        &#123;            if(dis[to[i]]&gt;dis[x]+val[i])//dijkstra算法核心语句             &#123;                dis[to[i]]=dis[x]+val[i];                q.push(make_pair(dis[to[i]],to[i]));//每次松弛成功，把关于当前点的信息压入堆。             &#125;        &#125;    &#125;    for(int i=1;i&lt;=n;i++)        cout&lt;&lt;dis[i]&lt;&lt;&quot; &quot;;     return 0;&#125;</code></pre>]]></content>
       
-      
-      <categories>
-          
-          <category> 算法与数据结构 </category>
-          
-      </categories>
       
       
     </entry>
@@ -1025,12 +1063,18 @@
     
     
     <entry>
-      <title></title>
+      <title>git学习</title>
       <link href="/p/1.html"/>
       <url>/p/1.html</url>
       
         <content type="html"><![CDATA[<h2 id="1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）"><a href="#1-回答下面的问题（请编写-Markdown-文档一并上传到仓库）" class="headerlink" title="1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）"></a>1. 回答下面的问题（请编写 Markdown 文档一并上传到仓库）</h2><h3 id="问题1-根据下面的图片，回答问题"><a href="#问题1-根据下面的图片，回答问题" class="headerlink" title="问题1 : 根据下面的图片，回答问题"></a>问题1 : 根据下面的图片，回答问题</h3><p><a href="https://imgse.com/i/ppf2lbd"><img src="https://s1.ax1x.com/2023/04/02/ppf2lbd.png" alt="ppf2lbd.png"></a></p><h5 id="解释下面概念"><a href="#解释下面概念" class="headerlink" title="解释下面概念"></a>解释下面概念</h5><pre><code>◦ workspace : 工作区，平时存放项目代码的地方◦ staging area :暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息,一般存放在 .git 目录下的 index 文件◦ local repository : 仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本;◦ remote repository : 远程仓库，托管代码的服务器</code></pre><h3 id="问题2-：-如何解决-git-冲突"><a href="#问题2-：-如何解决-git-冲突" class="headerlink" title="问题2 ： 如何解决 git 冲突?"></a>问题2 ： 如何解决 git 冲突?</h3><p>删除代码中矛盾的代码或者恢复到以前版本</p><h3 id="问题3-出现下面问题的原因与解决方案是什么"><a href="#问题3-出现下面问题的原因与解决方案是什么" class="headerlink" title="问题3 : 出现下面问题的原因与解决方案是什么?"></a>问题3 : 出现下面问题的原因与解决方案是什么?</h3><pre><code>◦ 更新代码后显示： unable to unlink old ‘xxx/xxx/xx’ : invalid argument    ▪ 原因:因为XXX正在被运行，        ▪ 解决方案:先把它的进程关闭，重试一下就好了。    ◦ 更新代码后显示 :  the following untracked working tree files would be overwritten by checkout    ▪ 原因: Error 所列出的文件在本地的当前分支下未授权给 git 追踪，但同样命名的文件，也即出现在另一个（远程）分支下的同一文件却正在远程仓库或其它分支被 git 进行追踪        ▪ 解决方案: git clean -d -fx 删除当前目录及子文件夹下的未 track 的文件及文件夹◦ 更新代码后显示 : your local changes to the following files would be overwritten by merge…please move or remove them before you merge    ▪ 原因:git merge时本地分支的更改没有保存下来        ▪ 解决方案:暂存到堆栈区◦ 版本回退git reset --hard &#123;hash&#125;后提示：fatal: could not parse object “hash id”    ▪ 原因:切换到master分支后没有更新最新代码        ▪ 解决方案:先通过git pull --rebase更新当前分支代码，然后再执行git reset◦ git push后提示:to https://.git![rejected] localRepo-&gt;remoteRepo(fetch first)error: failed to push some refs to ‘https://.git’Updates were rejected because the remote contain work that you do not have locally.    ▪ 原因:远程包含的事务不在你的本地，在push前需要整合远端，    ▪ 解决方案:拉取远端的代码然后进行整合到本地，再push到远端即可</code></pre><h2 id="2-完成下列操作"><a href="#2-完成下列操作" class="headerlink" title="2. 完成下列操作"></a>2. 完成下列操作</h2><h5 id="下面的操作完成后，"><a href="#下面的操作完成后，" class="headerlink" title="下面的操作完成后，"></a>下面的操作完成后，</h5><pre><code>a. 克隆仓库 git clone + urlb. 提交修改到暂存区 git add .c. 提交修改到远程仓库 git push commit -m &quot;xxxx&quot;d. 从远程仓库下载代码 git pulle. 查看仓库状态 git statusf. 比较文件的不同,即暂存区与工作区的差别 git  diffg. 创建分支/切换分支/查看分支列表 git branch xxx /git check out /git branch -vh. 上传代码到分支上 git push -u origin xxxi. 合并分支到主分支 git merge xxxj. 删除分支 删除远程分支xxx git push origin --delete xxx /删除本地分支xxx  git branch -d xxxk. 回退到某个版本 git reset --hard 版本库地址</code></pre>]]></content>
       
+      
+      <categories>
+          
+          <category> Git </category>
+          
+      </categories>
       
       
     </entry>
