@@ -154,7 +154,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(153)</small>
+                <small>(155)</small>
             
         </div>
     </li>
@@ -221,7 +221,7 @@
                     <div data-rel="设计模式">
                         
                         设计模式
-                        <small>(24)</small>
+                        <small>(25)</small>
                         
                     </div>
                     
@@ -353,8 +353,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="153">
-<input type="hidden" id="yelog_site_word_count" value="178k">
+<input type="hidden" id="yelog_site_posts_number" value="155">
+<input type="hidden" id="yelog_site_word_count" value="181.1k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -507,6 +507,24 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/p/0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-06-03 21:27:27">2023/06/03</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/122fc4b2.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="UML类图">UML类图</span>
+            <span class="post-date" title="2023-06-03 13:19:25">2023/06/03</span>
+        </a>
         
         
         <a  class="All 环境搭建 "
@@ -1923,7 +1941,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-05-26 22:56:04'>2023-05-23 22:13</time>
+            Created At : <time class="date" title='Updated At: 2023-06-03 14:52:21'>2023-05-23 22:13</time>
         
     </div>
     <div class="article-meta">
@@ -1986,8 +2004,7 @@
 <p>因为我们要编译64位的lib库文件，所以还修改 libevent 目录下的 Makefile.nmake 文件<br>将 LIBFLAGS&#x3D;&#x2F;nologo<br>修改为：LIBFLAGS&#x3D;&#x2F;nologo &#x2F;MACHINE:X64<br><a target="_blank" rel="noopener" href="https://imgse.com/i/p9ToFmV"><img src="https://s1.ax1x.com/2023/05/23/p9ToFmV.png" alt="p9ToFmV.png"></a></p>
 <p>打开 libevent 目录下的 mm-internal.h 添加 #include &lt;stdint.h&gt;<br>注意：一定要添加到#ifndef MM_INTERNAL_H_INCLUDED_之前，否则会报错，一堆warning<br><a target="_blank" rel="noopener" href="https://imgse.com/i/p9To4BV"><img src="https://s1.ax1x.com/2023/05/23/p9To4BV.png" alt="p9To4BV.png"></a></p>
 <p>找到vs下的命令提示符 x64 Native Tools Command Prompt for VS 2019<br><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Tojnx"><img src="https://s1.ax1x.com/2023/05/23/p9Tojnx.png" alt="p9Tojnx.png"></a></p>
-<p>使用控制台命令进入到 libevent 目录下：略<br>执行命令 nmake &#x2F;f Makefile.nmake，（成功的时候只有几行输出，如果有很多行输出，比如变量转换可能导致数据丢失，就说明编译失败了，就算生成了三个 lib 文件，也是失败的）</p>
-<p>成功后，在 libevent 目录下会生成三个文件</p>
+<p>使用控制台命令进入到 libevent 目录下：略<br>执行命令 nmake &#x2F;f Makefile.nmake，（成功的时候只有几行输出，如果有很多行输出，比如变量转换可能导致数据丢失，就说明编译失败了，就算生成了三个 lib 文件，也是失败的）<br><a target="_blank" rel="noopener" href="https://imgse.com/i/pCp48wF"><img src="https://s1.ax1x.com/2023/06/03/pCp48wF.png" alt="成功输出"></a><br>成功后，在 libevent 目录下会生成三个文件</p>
 <ul>
 <li>libevent.lib</li>
 <li>libevent_core.lib</li>
