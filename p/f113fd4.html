@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>谓词 | Hexo</title>
-  <meta name="keywords" content=" cpp ">
-  <meta name="description" content="谓词 | Hexo">
+  <title>WebAssembly与Go实践 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="WebAssembly与Go实践 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="UML类图 用于描述系统中的类(对象)本身的组成和类(对象)之间的各种静态关系。 一个设计良好的类，应该是兼顾信息和行为并且高内聚。而不同的类之间，应该做到松耦合 类之间的关系： 泛化关系 实现关系 依赖关系 关联关系 聚合关系 组合关系    对于继承、实现这两种关系比较简单，它们体现的是一种类与类、或者类与接口之间的纵向关系。 其他的四种关系则体现的是类与类、或者类与接口之间的引用&#x2F;">
 <meta property="og:type" content="article">
@@ -1924,39 +1924,24 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-cpp/知识点/谓词" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-WPS/wasm和go" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">谓词</h1>
+        <h1 class="article-title">WebAssembly与Go实践</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="cpp">cpp</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color4">cpp</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-04-21 22:30:06'>2022-09-15 16:19</time>
+            Created At : <time class="date" title='Updated At: 2023-06-03 21:36:19'>2023-06-03 21:27</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:449</span>
+        <span>Count:0</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1986,7 +1971,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B0%93%E8%AF%8D"><span class="toc-text">谓词</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1"><span class="toc-text">函数对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%85%83%E8%B0%93%E8%AF%8D"><span class="toc-text">一元谓词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%85%83%E8%B0%93%E8%AF%8D"><span class="toc-text">二元谓词</span></a></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -2002,91 +1987,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="谓词"><a href="#谓词" class="headerlink" title="谓词"></a>谓词</h1><ul>
-<li>返回bool类型的仿函数称为谓词</li>
-<li>如果operator()接受一个参数，那么叫做一元谓词</li>
-<li>如果operator()接受两个参数，那么叫做二元谓词<h2 id="函数对象"><a href="#函数对象" class="headerlink" title="函数对象"></a>函数对象</h2></li>
-<li>重载函数调用操作符的类，其对象常称为函数对象</li>
-<li>函数对象使用重载的()时，行为类似函数调用，也叫仿函数</li>
-<li>函数对象在使用时，可以像普通函数那样调用, 可以有参数，可以有返回值</li>
-<li>函数对象超出普通函数的概念，函数对象可以有自己的状态</li>
-<li>函数对象可以作为参数传递</li>
-</ul>
-<h2 id="一元谓词"><a href="#一元谓词" class="headerlink" title="一元谓词"></a>一元谓词</h2><ul>
-<li>一个参数的谓词</li>
-</ul>
-<p>示例：</p>
-<pre><code>#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-//1.一元谓词
-struct GreaterFive&#123;
-    bool operator()(int val) &#123;
-        return val &gt; 5 ;
-    &#125;
-&#125;;
-void test01() &#123;
-    vector&lt;int&gt; v;
-    for (int i = 0 ; i &lt; 10 ; i++)
-    &#123;
-        v.push_back(i);
-    &#125;
-    vector&lt;int&gt;::iterator it = find_if(v.begin(), v.end(), GreaterFive());
-    if (it == v.end()) &#123;
-        cout &lt;&lt; &quot;没找到!&quot; &lt;&lt; endl;
-    else &#123;
-        cout &lt;&lt; &quot;找到:&quot; &lt;&lt; *it &lt;&lt; endl;
-    &#125;
-&#125;
-int main() &#123;
-    test01();
-    system(&quot;pause&quot;);
-    return 0 ;
-&#125;
-</code></pre>
-<h2 id="二元谓词"><a href="#二元谓词" class="headerlink" title="二元谓词"></a>二元谓词</h2><ul>
-<li>两个参数的谓词</li>
-</ul>
-<p>示例：</p>
-<pre><code>#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-//二元谓词
-class MyCompare
-&#123;
-public:
-    bool operator()(int num1, int num2)
-    &#123;
-        return num1 &gt; num2;
-    &#125;
-&#125;;
-void test01()
-&#123;
-    vector&lt;int&gt; v;
-    v.push_back( 10 );
-    v.push_back( 40 );
-    v.push_back( 20 );
-    v.push_back( 30 );
-    v.push_back( 50 );
-    sort(v.begin(), v.end());
-    for (vector&lt;int&gt;::iterator it = v.begin(); it != v.end(); it++)
-    &#123;
-        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
-    &#125;
-    cout &lt;&lt; endl;
-    cout &lt;&lt; &quot;----------------------------&quot; &lt;&lt; endl;
-    //使用函数对象改变算法策略，排序从大到小
-    sort(v.begin(), v.end(), MyCompare());
-    for (vector&lt;int&gt;::iterator it = v.begin(); it != v.end(); it++)
-    &#123;
-        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
-    &#125;
-    cout &lt;&lt; endl;
-&#125;
-int main() &#123;
-    test01();
-    system(&quot;pause&quot;);
-    return 0 ;
-&#125;
-</code></pre>
+        
+
+	<div class="row">
+    <embed src="..\..\WebAssembly与Go实践.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3366576307@qq.com </span>
