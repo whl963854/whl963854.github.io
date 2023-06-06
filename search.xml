@@ -4,11 +4,36 @@
   
     
     <entry>
+      <title>unique_ptr</title>
+      <link href="/p/39842.html"/>
+      <url>/p/39842.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="libevent"><a href="#libevent" class="headerlink" title="libevent"></a>libevent</h1><p>Libevent 是一个用C语言编写的、轻量级的开源高性能事件通知库，主要有以下几个亮点：事件驱动（ event-driven），高性能;轻量级，专注于网络，不如 ACE 那么臃肿庞大；源代码相当精炼、易读；跨平台，支持 Windows、 Linux、 *BSD 和 Mac Os；支持多种 I&#x2F;O 多路复用技术， epoll、 poll、 dev&#x2F;poll、 select 和 kqueue 等；支持 I&#x2F;O，定时器和信号等事件；注册事件优先级。<br>Libevent 已经被广泛的应用，作为底层的网络库；比如 memcached、 Vomit、 Nylon、 Netchat等等。</p><h2 id="libevent的特点和优势"><a href="#libevent的特点和优势" class="headerlink" title="libevent的特点和优势"></a>libevent的特点和优势</h2><ul><li>事件驱动，高性能；</li><li>轻量级，专注于网络；</li><li>跨平台，支持 Windows、Linux、Mac Os等；</li><li>支持多种 I&#x2F;O多路复用技术， epoll、poll、dev&#x2F;poll、select 和kqueue 等；</li><li>支持 I&#x2F;O，定时器和信号等事件；</li></ul><p>libevent的组成：</p><ul><li>事件管理包括各种IO（socket）、定时器、信号等事件，也是libevent应用最广的模块；</li><li>缓存管理是指evbuffer功能；</li><li>DNS是libevent提供的一个异步DNS查询功能；</li><li>HTTP是libevent的一个轻量级http实现，包括服务器和客户端</li></ul><h2 id="第一个libevent应用"><a href="#第一个libevent应用" class="headerlink" title="第一个libevent应用"></a>第一个libevent应用</h2><pre><code>#include &lt;event2/event.h&gt;#include &lt;event2/listener.h&gt;#include &lt;string.h&gt;#include &lt;iostream&gt;using namespace std;#define SPORT 5001void listen_cb(struct evconnlistener * e, evutil_socket_t s, struct sockaddr *a, int socklen, void *arg)&#123;    cout &lt;&lt; &quot;listen_cb&quot; &lt;&lt; endl;&#125;int main()&#123;    //初始化socket库    WSADATA wsa;    WSAStartup(MAKEWORD(2,2),&amp;wsa);    std::cout &lt;&lt; &quot;test server!\n&quot;;     //创建libevent的上下文    event_base * base = event_base_new();    if (base)    &#123;        cout &lt;&lt; &quot;event_base_new success!&quot; &lt;&lt; endl;    &#125;    //监听端口    //socket ，bind，listen 绑定事件    sockaddr_in sin;    memset(&amp;sin, 0, sizeof(sin));    sin.sin_family = AF_INET;    sin.sin_port = htons(SPORT);    evconnlistener *ev = evconnlistener_new_bind(        base,                        // libevent的上下文        listen_cb,                    //接收到连接的回调函数        base,                        //回调函数获取的参数 arg        LEV_OPT_REUSEABLE|LEV_OPT_CLOSE_ON_FREE,    //地址重用，evconnlistener关闭同时关闭socket        10,                            //连接队列大小，对应listen函数        (sockaddr*)&amp;sin,            //绑定的地址和端口        sizeof(sin)    );    //事件分发处理    if(base)        event_base_dispatch(base);    //资源清理    if(ev)        evconnlistener_free(ev);    if(base)        event_base_free(base);#ifdef _WIN32    WSACleanup();#endif    return 0;&#125;</code></pre><p>TODO…</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> cpp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c++11 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>WebAssembly与Go实践</title>
       <link href="/p/f113fd4.html"/>
       <url>/p/f113fd4.html</url>
       
-        <content type="html"><![CDATA[<h1 id="WebAssembly与Go实践"><a href="#WebAssembly与Go实践" class="headerlink" title="WebAssembly与Go实践"></a>WebAssembly与Go实践</h1><p>注：pdf为本人编写，金山轻文档写东西实在是太香了，只可惜不支持导出为markdown</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="WebAssembly与Go实践"><a href="#WebAssembly与Go实践" class="headerlink" title="WebAssembly与Go实践"></a>WebAssembly与Go实践</h1><div class="row">    <embed src="../../../pdf/WebAssembly与Go实践.pdf" width="100%" height="550" type="application/pdf"></div><p>注：pdf为本人编写，金山轻文档写东西实在是太香了，只可惜不支持导出为markdown</p>]]></content>
       
       
       
