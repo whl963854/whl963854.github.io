@@ -1,0 +1,3385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Linux线程同步对象 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Linux线程同步对象 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="页面未找到！">
+<meta property="og:type" content="website">
+<meta property="og:title" content="404">
+<meta property="og:url" content="http://example.com/404/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="页面未找到！">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-09-27T03:31:01.000Z">
+<meta property="article:modified_time" content="2022-09-13T11:24:43.803Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>John Doe</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/whl963854"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:3366576307@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=3366576307&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+    <a class="more-menus">更多菜单</a>
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(177)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="操作系统">
+                        
+                        操作系统
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="环境搭建">
+                        
+                        环境搭建
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="计算机通信与网络">
+                        
+                        计算机通信与网络
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="框架">
+                        
+                        框架
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="面经">
+                        
+                        面经
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="软工">
+                        
+                        软工
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="设计模式">
+                        
+                        设计模式
+                        <small>(25)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="算法">
+                        
+                        算法
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="算法与数据结构">
+                        
+                        算法与数据结构
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="题解">
+                        
+                        题解
+                        <small>(26)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="cpp">
+                        
+                        cpp
+                        <small>(70)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Database">
+                        
+                        Database
+                        <small>(21)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Git">
+                        
+                        Git
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Linux">
+                        
+                        Linux
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+                <a class="dynamic-menu "
+                   target="_blank"
+                        
+                   href="https://github.com/whl963854">github</a>
+        
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  "
+               target="_blank"
+                    
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="177">
+<input type="hidden" id="yelog_site_word_count" value="251.6k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>编码规范</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>创建型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态规划</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>华为可信课程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>剑指offer</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>结构型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>蓝桥</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>码题集</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>软工</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>实习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>现代cpp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>行为型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>字节</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>c++11</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>c++17</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cpp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cpp17</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>csp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>leetcode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>math</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NoSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Redis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>STL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>wps</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/ea0da367.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="理解HTTP">理解HTTP</span>
+            <span class="post-date" title="2023-06-17 00:07:26">2023/06/17</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/485abdb0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络通信协议设计">网络通信协议设计</span>
+            <span class="post-date" title="2023-06-16 21:41:30">2023/06/16</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/8f29bb10.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络编程应该掌握的socket函数">网络编程应该掌握的socket函数</span>
+            <span class="post-date" title="2023-06-13 23:09:57">2023/06/13</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/932d7faf.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="纤程（Fiber）与协程（Routine）">纤程（Fiber）与协程（Routine）</span>
+            <span class="post-date" title="2023-06-13 21:21:04">2023/06/13</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/af951d26.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="线程局部存储">线程局部存储</span>
+            <span class="post-date" title="2023-06-13 20:57:32">2023/06/13</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/f7f57f41.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="多线程使用锁经验总结">多线程使用锁经验总结</span>
+            <span class="post-date" title="2023-06-13 20:36:17">2023/06/13</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/4071de72.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++11/14/17线程同步对象">C++11/14/17线程同步对象</span>
+            <span class="post-date" title="2023-06-13 20:11:25">2023/06/13</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/9ee71673.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Linux线程同步对象">Linux线程同步对象</span>
+            <span class="post-date" title="2023-06-11 18:09:26">2023/06/11</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/9ee71673.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Linux线程同步对象">Linux线程同步对象</span>
+            <span class="post-date" title="2023-06-11 16:03:00">2023/06/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/aebf582b.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="整型变量的原子操作">整型变量的原子操作</span>
+            <span class="post-date" title="2023-06-10 20:51:05">2023/06/10</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/b21cb050.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络通信故障排查常用命令">网络通信故障排查常用命令</span>
+            <span class="post-date" title="2023-06-10 18:19:53">2023/06/10</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/b2513043.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="线程的基本操作">线程的基本操作</span>
+            <span class="post-date" title="2023-06-08 17:13:47">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/e1bf1f97.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="多线程与资源同步">多线程与资源同步</span>
+            <span class="post-date" title="2023-06-08 16:50:54">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/5b46547.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="weak_ptr">weak_ptr</span>
+            <span class="post-date" title="2023-06-08 16:14:34">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/78b58054.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="shared_ptr">shared_ptr</span>
+            <span class="post-date" title="2023-06-08 15:49:09">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/53866983.html"
+           data-tag="cpp17"
+           data-author="" >
+            <span class="post-title" title="结构化绑定">结构化绑定</span>
+            <span class="post-date" title="2023-06-08 14:17:33">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/2cf69f40.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="迭代器">迭代器</span>
+            <span class="post-date" title="2023-06-08 14:11:17">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/814162d0.html"
+           data-tag="c++17"
+           data-author="" >
+            <span class="post-title" title="注解标签">注解标签</span>
+            <span class="post-date" title="2023-06-08 13:52:10">2023/06/08</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/3a9ea38.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腾讯天美">腾讯天美</span>
+            <span class="post-date" title="2023-06-07 22:40:47">2023/06/07</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/b21cb050.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="IO多路复用">IO多路复用</span>
+            <span class="post-date" title="2023-06-07 22:03:26">2023/06/07</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/410e30c.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腾讯安全">腾讯安全</span>
+            <span class="post-date" title="2023-06-07 21:55:06">2023/06/07</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/c2f2ffeb.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="快手">快手</span>
+            <span class="post-date" title="2023-06-06 19:18:07">2023/06/06</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/bccf711e.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="滴滴秋储">滴滴秋储</span>
+            <span class="post-date" title="2023-06-06 16:27:59">2023/06/06</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/d809ecd7.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腾讯云智">腾讯云智</span>
+            <span class="post-date" title="2023-06-06 15:11:55">2023/06/06</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39842.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="unique_ptr">unique_ptr</span>
+            <span class="post-date" title="2023-06-04 15:08:07">2023/06/04</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/f113fd4.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebAssembly与Go实践">WebAssembly与Go实践</span>
+            <span class="post-date" title="2023-06-03 21:27:27">2023/06/03</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/122fc4b2.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="UML类图">UML类图</span>
+            <span class="post-date" title="2023-06-03 13:19:25">2023/06/03</span>
+        </a>
+        
+        
+        <a  class="All 环境搭建 "
+           href="/p/789273fd.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="libevent可执行文件生成">libevent可执行文件生成</span>
+            <span class="post-date" title="2023-05-23 22:13:36">2023/05/23</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/330a6169.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="lambda表达式">lambda表达式</span>
+            <span class="post-date" title="2023-05-22 21:10:56">2023/05/22</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/7296bf5f.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="特种成员函数的生成机制">特种成员函数的生成机制</span>
+            <span class="post-date" title="2023-05-05 21:14:31">2023/05/05</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/15bc60d.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="最短路径">最短路径</span>
+            <span class="post-date" title="2023-05-02 18:33:03">2023/05/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39842.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="std::move和std::forword">std::move和std::forword</span>
+            <span class="post-date" title="2023-04-24 20:28:22">2023/04/24</span>
+        </a>
+        
+        
+        <a  class="All 框架 "
+           href="/p/a9a8d1fe.html"
+           data-tag="实习"
+           data-author="" >
+            <span class="post-title" title="wasm">wasm</span>
+            <span class="post-date" title="2023-04-24 20:20:11">2023/04/24</span>
+        </a>
+        
+        
+        <a  class="All 框架 "
+           href="/p/2ecd4e0f.html"
+           data-tag="实习"
+           data-author="" >
+            <span class="post-title" title="基于xfx torm的学习开发和容器化打包部署">基于xfx torm的学习开发和容器化打包部署</span>
+            <span class="post-date" title="2023-04-24 20:20:10">2023/04/24</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/d0681926.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="通信的三种方式">通信的三种方式</span>
+            <span class="post-date" title="2023-04-23 21:13:21">2023/04/23</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/2f9ed4ad.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络边缘">网络边缘</span>
+            <span class="post-date" title="2023-04-23 21:13:21">2023/04/23</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/1bcba982.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="套接字编程">套接字编程</span>
+            <span class="post-date" title="2023-04-23 21:13:21">2023/04/23</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/c517589e.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="并查集">并查集</span>
+            <span class="post-date" title="2023-04-23 21:12:38">2023/04/23</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/ea4681d0.html"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="二叉树的遍历">二叉树的遍历</span>
+            <span class="post-date" title="2023-04-23 21:12:38">2023/04/23</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/8398734e.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="枚举类">枚举类</span>
+            <span class="post-date" title="2023-04-22 15:32:16">2023/04/22</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/814162d0.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="初始化方式">初始化方式</span>
+            <span class="post-date" title="2023-04-22 14:45:44">2023/04/22</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/39914.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="B+树和B树的区别">B+树和B树的区别</span>
+            <span class="post-date" title="2023-04-15 15:16:30">2023/04/15</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/56191.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux用户和权限">Linux用户和权限</span>
+            <span class="post-date" title="2023-04-09 16:09:46">2023/04/09</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/13375.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux基本命令">Linux基本命令</span>
+            <span class="post-date" title="2023-04-09 15:43:31">2023/04/09</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/26649.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux文件管理">Linux文件管理</span>
+            <span class="post-date" title="2023-04-09 15:04:48">2023/04/09</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/226.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="线程池">线程池</span>
+            <span class="post-date" title="2023-04-06 21:15:15">2023/04/06</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-04-05 16:47:27">2023/04/05</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/28384.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="死锁">死锁</span>
+            <span class="post-date" title="2023-04-04 22:56:12">2023/04/04</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/41558.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="日志类型">日志类型</span>
+            <span class="post-date" title="2023-04-04 20:30:49">2023/04/04</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/33810.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="事务三种提交问题">事务三种提交问题</span>
+            <span class="post-date" title="2023-04-04 19:48:39">2023/04/04</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/14751.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="事务隔离级别">事务隔离级别</span>
+            <span class="post-date" title="2023-04-04 19:39:30">2023/04/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/p/56030.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="带权并查集">带权并查集</span>
+            <span class="post-date" title="2023-04-04 09:19:22">2023/04/04</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/14976.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="虚函数表">虚函数表</span>
+            <span class="post-date" title="2023-04-02 22:49:10">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/43341.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="cpp代码到exe">cpp代码到exe</span>
+            <span class="post-date" title="2023-04-02 20:20:53">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/63561.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="类型转换">类型转换</span>
+            <span class="post-date" title="2023-04-02 19:56:58">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/27999.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="移动语义">移动语义</span>
+            <span class="post-date" title="2023-04-02 19:27:59">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64202.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="move">move</span>
+            <span class="post-date" title="2023-04-02 16:52:48">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/3763.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="左值右值">左值右值</span>
+            <span class="post-date" title="2023-04-02 15:30:23">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/50074.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="完美转发">完美转发</span>
+            <span class="post-date" title="2023-04-02 15:24:52">2023/04/02</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/52505.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="并发">并发</span>
+            <span class="post-date" title="2023-03-15 23:04:38">2023/03/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/10970.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="内存">内存</span>
+            <span class="post-date" title="2023-03-11 23:53:41">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/6239.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="与时间有关的程序">与时间有关的程序</span>
+            <span class="post-date" title="2023-03-11 22:36:47">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64657.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="左值引用和右值引用">左值引用和右值引用</span>
+            <span class="post-date" title="2023-03-11 10:22:51">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/57725.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="lambda的使用">lambda的使用</span>
+            <span class="post-date" title="2023-03-11 09:58:25">2023/03/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/28630.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="编译时常量的使用">编译时常量的使用</span>
+            <span class="post-date" title="2023-03-10 23:30:43">2023/03/10</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/5639.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="类型推断">类型推断</span>
+            <span class="post-date" title="2023-03-10 22:27:43">2023/03/10</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/54280.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="初始化变量">初始化变量</span>
+            <span class="post-date" title="2023-03-09 13:45:00">2023/03/09</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/19966.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="委派构造函数">委派构造函数</span>
+            <span class="post-date" title="2023-02-19 23:09:08">2023/02/19</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/35775.html"
+           data-tag="蓝桥"
+           data-author="" >
+            <span class="post-title" title="统计子矩阵">统计子矩阵</span>
+            <span class="post-date" title="2023-02-15 16:07:28">2023/02/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/51768.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="Hashtable">Hashtable</span>
+            <span class="post-date" title="2023-02-15 15:08:09">2023/02/15</span>
+        </a>
+        
+        
+        <a  class="All Git "
+           href="/p/1.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git学习">git学习</span>
+            <span class="post-date" title="2023-01-11 15:05:36">2023/01/11</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/12758.html"
+           data-tag="码题集"
+           data-author="" >
+            <span class="post-title" title="棘手怀念摧毁">棘手怀念摧毁</span>
+            <span class="post-date" title="2022-12-25 19:40:47">2022/12/25</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/5455.html"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="SpringDataRedis">SpringDataRedis</span>
+            <span class="post-date" title="2022-12-16 19:23:43">2022/12/16</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/26793.html"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="Jedis">Jedis</span>
+            <span class="post-date" title="2022-12-16 19:14:50">2022/12/16</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/31805.html"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="Redis常见命令">Redis常见命令</span>
+            <span class="post-date" title="2022-12-16 17:09:34">2022/12/16</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/28345.html"
+           data-tag="NoSQL"
+           data-author="" >
+            <span class="post-title" title="NoSQL">NoSQL</span>
+            <span class="post-date" title="2022-12-16 17:03:38">2022/12/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/24227.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="多线程">多线程</span>
+            <span class="post-date" title="2022-11-27 17:02:58">2022/11/27</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/50156.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="解析器模式">解析器模式</span>
+            <span class="post-date" title="2022-11-26 16:21:36">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/5265.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="访问器模式">访问器模式</span>
+            <span class="post-date" title="2022-11-26 16:06:00">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/52113.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="职责链模式">职责链模式</span>
+            <span class="post-date" title="2022-11-26 15:56:40">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/28241.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="迭代器模式">迭代器模式</span>
+            <span class="post-date" title="2022-11-26 15:42:22">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/55487.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="中介者模式">中介者模式</span>
+            <span class="post-date" title="2022-11-26 15:29:22">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/44993.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="组合模式">组合模式</span>
+            <span class="post-date" title="2022-11-26 15:22:50">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/58978.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="门面模式">门面模式</span>
+            <span class="post-date" title="2022-11-26 15:06:14">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/65163.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="享元模式">享元模式</span>
+            <span class="post-date" title="2022-11-26 14:51:16">2022/11/26</span>
+        </a>
+        
+        
+        <a  class="All 软工 "
+           href="/p/55324.html"
+           data-tag="软工"
+           data-author="" >
+            <span class="post-title" title="某些小项目">某些小项目</span>
+            <span class="post-date" title="2022-11-23 16:13:10">2022/11/23</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/4551.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux简介">Linux简介</span>
+            <span class="post-date" title="2022-11-23 15:59:13">2022/11/23</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/56214.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="备忘录模式">备忘录模式</span>
+            <span class="post-date" title="2022-11-21 20:58:19">2022/11/21</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/39447.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="状态模式">状态模式</span>
+            <span class="post-date" title="2022-11-21 20:32:29">2022/11/21</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/52292.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="香槟塔">香槟塔</span>
+            <span class="post-date" title="2022-11-20 21:12:37">2022/11/20</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/39967.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="匹配子序列的单词数">匹配子序列的单词数</span>
+            <span class="post-date" title="2022-11-19 16:42:23">2022/11/19</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/43256.html"
+           data-tag="csp"
+           data-author="" >
+            <span class="post-title" title="防疫大数据">防疫大数据</span>
+            <span class="post-date" title="2022-10-20 19:33:24">2022/10/20</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/57245.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="RvalueReference">RvalueReference</span>
+            <span class="post-date" title="2022-10-18 14:59:21">2022/10/18</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/2.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-10-16 15:25:47">2022/10/16</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/52608.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="最长回文子串">最长回文子串</span>
+            <span class="post-date" title="2022-10-16 13:32:46">2022/10/16</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/22977.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="命令模式">命令模式</span>
+            <span class="post-date" title="2022-10-15 15:32:21">2022/10/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64590.html"
+           data-tag="wps"
+           data-author="" >
+            <span class="post-title" title="c++编码规范">c++编码规范</span>
+            <span class="post-date" title="2022-10-15 15:26:48">2022/10/15</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/53127.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="最长字符串链">最长字符串链</span>
+            <span class="post-date" title="2022-10-13 13:59:07">2022/10/13</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/4097.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="Otherthings">Otherthings</span>
+            <span class="post-date" title="2022-10-11 19:24:37">2022/10/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/6511.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="Template Template Parameter">Template Template Parameter</span>
+            <span class="post-date" title="2022-10-11 19:04:35">2022/10/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/45839.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="Alias Template">Alias Template</span>
+            <span class="post-date" title="2022-10-11 18:45:06">2022/10/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64016.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="变参模板">变参模板</span>
+            <span class="post-date" title="2022-10-10 16:31:16">2022/10/10</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/9423.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="STL">STL</span>
+            <span class="post-date" title="2022-10-07 18:29:52">2022/10/07</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39842.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="unique_ptr">unique_ptr</span>
+            <span class="post-date" title="2022-10-02 19:53:58">2022/10/02</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/39856.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="构建器模式">构建器模式</span>
+            <span class="post-date" title="2022-10-02 19:01:32">2022/10/02</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/62812.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="InnoDB引擎">InnoDB引擎</span>
+            <span class="post-date" title="2022-10-02 15:15:37">2022/10/02</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/21631.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="锁">锁</span>
+            <span class="post-date" title="2022-09-29 23:16:11">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/3892.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="装饰者模式">装饰者模式</span>
+            <span class="post-date" title="2022-09-29 16:22:07">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/27560.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="桥模式">桥模式</span>
+            <span class="post-date" title="2022-09-29 15:51:18">2022/09/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/61876.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="超过一半的数字">超过一半的数字</span>
+            <span class="post-date" title="2022-09-28 20:03:36">2022/09/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/34639.html"
+           data-tag="剑指offer"
+           data-author="" >
+            <span class="post-title" title="数组中数字出现的个数">数组中数字出现的个数</span>
+            <span class="post-date" title="2022-09-27 21:20:30">2022/09/27</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/40758.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="触发器">触发器</span>
+            <span class="post-date" title="2022-09-27 16:04:13">2022/09/27</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/64451.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="存储过程">存储过程</span>
+            <span class="post-date" title="2022-09-23 12:44:39">2022/09/23</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/3825.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="视图">视图</span>
+            <span class="post-date" title="2022-09-23 11:04:20">2022/09/23</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/14565.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="模板模式">模板模式</span>
+            <span class="post-date" title="2022-09-22 19:52:54">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/39554.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="适配器模式">适配器模式</span>
+            <span class="post-date" title="2022-09-22 19:31:55">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/29711.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="建造者模式">建造者模式</span>
+            <span class="post-date" title="2022-09-22 19:20:40">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/48003.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="代理模式">代理模式</span>
+            <span class="post-date" title="2022-09-22 18:57:19">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/22548.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="原型模式">原型模式</span>
+            <span class="post-date" title="2022-09-22 18:35:08">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/7738.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="观察者模式">观察者模式</span>
+            <span class="post-date" title="2022-09-22 16:22:50">2022/09/22</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/1692.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="优化">优化</span>
+            <span class="post-date" title="2022-09-21 19:27:54">2022/09/21</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/11557.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="索引">索引</span>
+            <span class="post-date" title="2022-09-20 19:41:27">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/27905.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="存储引擎">存储引擎</span>
+            <span class="post-date" title="2022-09-20 19:14:39">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/62546.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="事务">事务</span>
+            <span class="post-date" title="2022-09-20 18:37:59">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/19503.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="多表查询">多表查询</span>
+            <span class="post-date" title="2022-09-20 15:09:37">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/35621.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="约束">约束</span>
+            <span class="post-date" title="2022-09-20 14:27:02">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/21513.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="函数">函数</span>
+            <span class="post-date" title="2022-09-20 13:07:32">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/29900.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL">SQL</span>
+            <span class="post-date" title="2022-09-20 10:02:57">2022/09/20</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/35802.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用集合算法">常用集合算法</span>
+            <span class="post-date" title="2022-09-16 20:39:48">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/41195.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用算术生成算法">常用算术生成算法</span>
+            <span class="post-date" title="2022-09-16 20:38:46">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/20982.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用拷贝和替换算法">常用拷贝和替换算法</span>
+            <span class="post-date" title="2022-09-16 20:25:30">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/29759.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用排序算法">常用排序算法</span>
+            <span class="post-date" title="2022-09-16 19:53:06">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/31381.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="STL常用算法">STL常用算法</span>
+            <span class="post-date" title="2022-09-16 13:06:00">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/45788.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="内建函数对象">内建函数对象</span>
+            <span class="post-date" title="2022-09-16 12:35:16">2022/09/16</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/37043.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="map/multimap">map/multimap</span>
+            <span class="post-date" title="2022-09-15 21:12:00">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/22700.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="set/multiset">set/multiset</span>
+            <span class="post-date" title="2022-09-15 21:07:26">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39907.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="List">List</span>
+            <span class="post-date" title="2022-09-15 20:34:58">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/41872.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="queue">queue</span>
+            <span class="post-date" title="2022-09-15 20:33:56">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64038.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="stack">stack</span>
+            <span class="post-date" title="2022-09-15 20:25:14">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/42201.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="deque">deque</span>
+            <span class="post-date" title="2022-09-15 20:06:02">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/54708.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="vector">vector</span>
+            <span class="post-date" title="2022-09-15 19:33:36">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/58909.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="string">string</span>
+            <span class="post-date" title="2022-09-15 16:29:29">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/5958.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="谓词">谓词</span>
+            <span class="post-date" title="2022-09-15 16:19:03">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/46132.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="单例模式">单例模式</span>
+            <span class="post-date" title="2022-09-15 16:04:46">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/59316.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="factory模式">factory模式</span>
+            <span class="post-date" title="2022-09-15 16:04:46">2022/09/15</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/38710.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="括号生成">括号生成</span>
+            <span class="post-date" title="2022-09-13 16:21:25">2022/09/13</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/59129.html"
+           data-tag="csp"
+           data-author="" >
+            <span class="post-title" title="寻宝大作战">寻宝大作战</span>
+            <span class="post-date" title="2022-09-11 16:31:29">2022/09/11</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/23999.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="金山训练营第一周">金山训练营第一周</span>
+            <span class="post-date" title="2022-09-09 19:46:09">2022/09/09</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/59828.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="把数组排成最小的数">把数组排成最小的数</span>
+            <span class="post-date" title="2022-09-08 14:13:19">2022/09/08</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/20114.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="同构字符串">同构字符串</span>
+            <span class="post-date" title="2022-09-08 12:31:34">2022/09/08</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/64084.html"
+           data-tag="字节"
+           data-author="" >
+            <span class="post-title" title="数组游戏">数组游戏</span>
+            <span class="post-date" title="2022-09-07 16:57:46">2022/09/07</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/63859.html"
+           data-tag="math"
+           data-author="" >
+            <span class="post-title" title="全排列">全排列</span>
+            <span class="post-date" title="2022-09-07 13:01:27">2022/09/07</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/1868.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="日期差值">日期差值</span>
+            <span class="post-date" title="2022-09-06 16:14:24">2022/09/06</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/61401.html"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="零钱兑换">零钱兑换</span>
+            <span class="post-date" title="2022-09-04 12:13:58">2022/09/04</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/58639.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="策略模式">策略模式</span>
+            <span class="post-date" title="2022-09-01 10:25:44">2022/09/01</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/47718.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="智能指针">智能指针</span>
+            <span class="post-date" title="2022-08-30 20:56:50">2022/08/30</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/1199.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="nullptr">nullptr</span>
+            <span class="post-date" title="2022-08-30 20:41:05">2022/08/30</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/49651.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="前k个高频词">前k个高频词</span>
+            <span class="post-date" title="2022-08-30 20:09:01">2022/08/30</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/50254.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="设计模式简介">设计模式简介</span>
+            <span class="post-date" title="2022-08-30 19:44:16">2022/08/30</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/14283.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="无重复字符的最长子串">无重复字符的最长子串</span>
+            <span class="post-date" title="2022-08-12 10:09:13">2022/08/12</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/967.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="反转链表">反转链表</span>
+            <span class="post-date" title="2022-08-10 11:41:17">2022/08/10</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/37489.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="排序">排序</span>
+            <span class="post-date" title="2022-08-10 10:04:24">2022/08/10</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/43574.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="链接编译联编">链接编译联编</span>
+            <span class="post-date" title="2022-08-08 11:21:41">2022/08/08</span>
+        </a>
+        
+        
+        <a  class="All Git "
+           href="/p/5226.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git常用方法">git常用方法</span>
+            <span class="post-date" title="2022-08-05 09:44:12">2022/08/05</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/41521.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="代码风格规定">代码风格规定</span>
+            <span class="post-date" title="2022-07-30 10:52:08">2022/07/30</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/46257.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="lambda、资源管理与杂项">lambda、资源管理与杂项</span>
+            <span class="post-date" title="2022-07-29 19:01:40">2022/07/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/29637.html"
+           data-tag="华为可信课程,编码规范"
+           data-author="" >
+            <span class="post-title" title="类与函数">类与函数</span>
+            <span class="post-date" title="2022-07-29 18:01:02">2022/07/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39885.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="表达式与变量">表达式与变量</span>
+            <span class="post-date" title="2022-07-15 09:50:49">2022/07/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/22884.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="安全编码与未定义行为">安全编码与未定义行为</span>
+            <span class="post-date" title="2022-07-15 09:07:10">2022/07/15</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/397.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="define、const、typedef、inline">define、const、typedef、inline</span>
+            <span class="post-date" title="2022-07-13 10:19:04">2022/07/13</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/40034.html"
+           data-tag="csp"
+           data-author="" >
+            <span class="post-title" title="非零段划分">非零段划分</span>
+            <span class="post-date" title="2022-06-06 21:12:44">2022/06/06</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/9616.html"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="买卖股票1">买卖股票1</span>
+            <span class="post-date" title="2022-03-26 20:36:28">2022/03/26</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/9615.html"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="买卖股票1">买卖股票1</span>
+            <span class="post-date" title="2022-03-26 20:08:12">2022/03/26</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/3457.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="字典序的第k大数字">字典序的第k大数字</span>
+            <span class="post-date" title="2022-03-23 20:26:38">2022/03/23</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/47143.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Easy Strings Merging">Easy Strings Merging</span>
+            <span class="post-date" title="2022-03-03 19:29:40">2022/03/03</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/65488.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="779 第k个语法符号">779 第k个语法符号</span>
+            <span class="post-date" title="2022-03-03 15:13:51">2022/03/03</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/16107.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2022-03-01 19:26:09">2022/03/01</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-OS/Linux线程同步对象" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Linux线程同步对象</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="操作系统">操作系统</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-06-17 00:20:15'>2023-06-11 16:03</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:10k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                Comment:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E5%AF%B9%E8%B1%A1"><span class="toc-text">Linux线程同步对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E4%BA%92%E6%96%A5%E4%BD%93"><span class="toc-text">Linux互斥体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%92%E6%96%A5%E4%BD%93%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-text">互斥体对象的属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PTHREAD-MUTEX-NORMAL%EF%BC%88%E6%99%AE%E9%80%9A%E9%94%81%EF%BC%89"><span class="toc-text">PTHREAD_MUTEX_NORMAL（普通锁）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PTHREAD-MUTEX-ERRORCHECK%EF%BC%88%E6%A3%80%E9%94%99%E9%94%81%EF%BC%89"><span class="toc-text">PTHREAD_MUTEX_ERRORCHECK（检错锁）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PTHREAD-MUTEX-RECURSIVE"><span class="toc-text">PTHREAD_MUTEX_RECURSIVE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%92%E6%96%A5%E4%BD%93%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%BD%BF%E7%94%A8%E8%A6%81%E7%82%B9%E7%9A%84%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">互斥体对象的使用要点的总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="toc-text">信号量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F"><span class="toc-text">Linux条件变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F"><span class="toc-text">为什么需要使用条件变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%8E%E4%BA%92%E6%96%A5%E4%BD%93%E5%AF%B9%E8%B1%A1%E7%BB%93%E5%90%88%E4%BD%BF%E7%94%A8"><span class="toc-text">条件变量为什么要与互斥体对象结合使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">条件变量的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E7%9A%84%E8%99%9A%E5%81%87%E5%94%A4%E9%86%92"><span class="toc-text">条件变量的虚假唤醒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E4%BF%A1%E5%8F%B7%E4%B8%A2%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">条件变量信号丢失的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E8%AF%BB%E5%86%99%E9%94%81"><span class="toc-text">Linux读写锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E9%94%81%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">读写锁的应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E9%94%81%E7%9A%84%E7%9B%B8%E5%85%B3API"><span class="toc-text">读写锁的相关API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E9%94%81%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-text">读写锁的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E9%94%81%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-text">读写锁应用示例</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-5 i,
+    .toc-level-5 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux线程同步对象"><a href="#Linux线程同步对象" class="headerlink" title="Linux线程同步对象"></a>Linux线程同步对象</h1><h2 id="Linux互斥体"><a href="#Linux互斥体" class="headerlink" title="Linux互斥体"></a>Linux互斥体</h2><p>Linux互斥体与Windows的临界区对象用法很相似，一般也是通过限制多个线程同时执行某段代码来保护资源的。在Linux中，互斥体对象（mutex）用于保护共享资源，以防止多个线程同时访问或修改该资源。Linux提供了pthread_mutex_t数据结构来表示互斥体对象，并提供了一些函数来进行初始化和操作互斥体。</p>
+<p>有两种方式可以初始化互斥体对象：</p>
+<ol>
+<li>使用PTHREAD_MUTEX_INITIALIZER宏进行初始化：</li>
+</ol>
+<pre><code class="c++">pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+</code></pre>
+<p>这种方式适用于静态分配的互斥体对象，直接通过宏进行初始化。</p>
+<ol start="2">
+<li>使用pthread_mutex_init函数进行初始化：</li>
+</ol>
+<pre><code class="c++">pthread_mutex_t mutex;
+pthread_mutex_init(&amp;mutex, NULL);
+</code></pre>
+<p>这种方式适用于动态分配的互斥体对象或需要设置额外属性的情况。pthread_mutex_init函数用于初始化互斥体，第一个参数是指向互斥体对象的指针，第二个参数是指向pthread_mutexattr_t结构的指针，用于设置互斥体的属性。如果不需要设置属性，可以将第二个参数设为NULL。<br>如果函数执行成功，则会返回 0；如果执行失败，则会返回 1 个错误码。<br>需要注意的是，在使用互斥体保护资源时，需要使用pthread_mutex_lock函数进行加锁，保证只有一个线程可以进入临界区执行代码。在临界区执行完后，使用pthread_mutex_unlock函数进行解锁，允许其他线程进入临界区。</p>
+<p>当我们不再需要一个互斥体对象时，可以使用<code>pthread_mutex_destroy</code>函数将其销毁。该函数的函数签名如下：</p>
+<pre><code class="c++">int pthread_mutex_destroy(pthread_mutex_t *mutex);
+</code></pre>
+<p>参数<code>mutex</code>是指向要销毁的互斥体对象的指针。调用<code>pthread_mutex_destroy</code>函数后，互斥体对象将不再可用。<br>如果函数执行成功，则会返回0；如果执行失败，则会返回一个错误码表明出错的原因。这里需要注意两点。</p>
+<ul>
+<li>无须销毁使用PTHREAD_MUTEX_INITIALIZER初始化的互斥体。</li>
+<li>不要销毁一个已经加锁或正在被条件变量使用的互斥体对象，当互斥体处于已加锁状态或者正在和条件变量配合使用时，调用pthread_mutex_destroy函数会返回EBUSY错误。</li>
+</ul>
+<p>以下代码演示了尝试销毁一个被锁定的互斥体对象的过程：</p>
+<pre><code class="c++">#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+
+pthread_mutex_t mutex;
+
+void* threadFunc(void* arg) &#123;
+    // 加锁互斥体
+    pthread_mutex_lock(&amp;mutex);
+    printf(&quot;Thread locked mutex\n&quot;);
+    
+    // 模拟一段耗时操作
+    sleep(2);
+    
+    // 解锁互斥体
+    pthread_mutex_unlock(&amp;mutex);
+    printf(&quot;Thread unlocked mutex\n&quot;);
+    
+    return NULL;
+&#125;
+
+int main() &#123;
+    // 初始化互斥体
+    pthread_mutex_init(&amp;mutex, NULL);
+    
+    // 创建线程
+    pthread_t thread;
+    pthread_create(&amp;thread, NULL, threadFunc, NULL);
+    
+    // 等待一段时间，让线程获得锁
+    sleep(1);
+    
+    // 销毁互斥体（尝试）
+    int result = pthread_mutex_destroy(&amp;mutex);
+    if (result == 0) &#123;
+        printf(&quot;Mutex destroyed successfully\n&quot;);
+    &#125; else &#123;
+        printf(&quot;Failed to destroy mutex\n&quot;);
+    &#125;
+    
+    // 等待线程结束
+    pthread_join(thread, NULL);
+    
+    return 0;
+&#125;
+</code></pre>
+<p>在上面的代码中，我们创建了一个线程，并在其中锁定了互斥体。然后，在主线程中尝试销毁该互斥体对象。运行代码时，会发现尝试销毁失败，因为互斥体被锁定，无法销毁。<br>这是因为互斥体对象在被锁定状态下是不允许被销毁的。如果尝试销毁一个被锁定的互斥体，<code>pthread_mutex_destroy</code>函数将返回一个非零的错误码，表示销毁失败。<br>在实际应用中，应该确保在销毁互斥体之前，先释放互斥体的所有锁定。只有当互斥体处于未锁定状态时，才能安全地销毁它。</p>
+<p>对于互斥体的加锁和解锁操作，我们一般使用以下三个函数：</p>
+<ol>
+<li><p><code>pthread_mutex_lock</code>: 用于加锁互斥体。如果互斥体已经被其他线程锁定，调用线程将被阻塞，直到互斥体被解锁。</p>
+<p>函数签名：</p>
+<pre><code class="c++">int pthread_mutex_lock(pthread_mutex_t* mutex);
+</code></pre>
+</li>
+<li><p><code>pthread_mutex_trylock</code>: 尝试加锁互斥体，如果互斥体已经被其他线程锁定，则立即返回失败，不会阻塞当前线程。</p>
+<p>函数签名：</p>
+<pre><code class="c++">int pthread_mutex_trylock(pthread_mutex_t* mutex);
+</code></pre>
+</li>
+<li><p><code>pthread_mutex_unlock</code>: 用于解锁互斥体。解锁之后，其他线程可以再次加锁互斥体。</p>
+<p>函数签名：</p>
+<pre><code class="c++">int pthread_mutex_unlock(pthread_mutex_t* mutex);
+</code></pre>
+</li>
+</ol>
+<p>参数mutex是我们需要加锁或解锁的互斥体对象，上述函数如果执行成功则返回 0，如果执行失败则返回一个错误码以表示具体的出错原因。具体的错误码随着互斥体对象属性类型的不同而不同。</p>
+<p>在设置互斥体对象的属性时，可以使用 <code>pthread_mutexattr_t</code> 类型的对象。下面是相关函数的签名：</p>
+<ol>
+<li><p><code>int pthread_mutexattr_init(pthread_mutexattr_t* attr);</code><br>该函数用于初始化 <code>pthread_mutexattr_t</code> 对象，使其成为默认值。</p>
+</li>
+<li><p><code>int pthread_mutexattr_destroy(pthread_mutexattr_t* attr);</code><br>该函数用于销毁 <code>pthread_mutexattr_t</code> 对象，释放相关资源。</p>
+</li>
+</ol>
+<p>在创建 <code>pthread_mutex_t</code> 对象之前，可以通过以下函数设置互斥体的属性：</p>
+<ol start="3">
+<li><p><code>int pthread_mutexattr_settype(pthread_mutexattr_t* attr, int type);</code><br>该函数用于设置互斥体的类型。参数 <code>type</code> 可以取以下值：</p>
+<ul>
+<li><code>PTHREAD_MUTEX_NORMAL</code>: 普通互斥体，默认值。</li>
+<li><code>PTHREAD_MUTEX_ERRORCHECK</code>: 错误检查互斥体，在同一线程中重复加锁会返回错误。</li>
+<li><code>PTHREAD_MUTEX_RECURSIVE</code>: 递归互斥体，允许同一线程多次加锁。</li>
+</ul>
+<p>注意：某些系统可能不支持所有类型，因此需要根据目标平台的支持情况来选择。</p>
+</li>
+</ol>
+<h3 id="互斥体对象的属性"><a href="#互斥体对象的属性" class="headerlink" title="互斥体对象的属性"></a>互斥体对象的属性</h3><h4 id="PTHREAD-MUTEX-NORMAL（普通锁）"><a href="#PTHREAD-MUTEX-NORMAL（普通锁）" class="headerlink" title="PTHREAD_MUTEX_NORMAL（普通锁）"></a>PTHREAD_MUTEX_NORMAL（普通锁）</h4><p>对于属性类型 <code>PTHREAD_MUTEX_NORMAL</code>，它表示普通锁，默认情况下互斥体的属性就是普通锁。当一个线程对普通锁加锁后，其他线程会被阻塞在 <code>pthread_mutex_lock</code> 调用处，直到持有锁的线程释放锁。</p>
+<p>以下是一个验证示例代码：</p>
+<pre><code class="c">#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+int counter = 0;
+
+void* increment(void* arg) &#123;
+    for (int i = 0; i &lt; 100000; ++i) &#123;
+        pthread_mutex_lock(&amp;mutex);
+        counter++;
+        pthread_mutex_unlock(&amp;mutex);
+    &#125;
+    return NULL;
+&#125;
+
+int main() &#123;
+    pthread_t thread1, thread2;
+
+    pthread_create(&amp;thread1, NULL, increment, NULL);
+    pthread_create(&amp;thread2, NULL, increment, NULL);
+
+    pthread_join(thread1, NULL);
+    pthread_join(thread2, NULL);
+
+    printf(&quot;Counter value: %d\n&quot;, counter);
+
+    return 0;
+&#125;
+</code></pre>
+<p>在上面的示例中，我们创建了两个线程 <code>thread1</code> 和 <code>thread2</code>，它们都执行 <code>increment</code> 函数，该函数对 <code>counter</code> 变量进行 100000 次加一操作。为了保证操作的原子性，我们使用互斥体 <code>mutex</code> 进行加锁和解锁操作。</p>
+<p>最终，我们打印出 <code>counter</code> 的值，预期结果应该是 200000。这是因为两个线程分别进行了 100000 次加一操作，互斥体保证了对 <code>counter</code> 的访问是线程安全的。</p>
+<p>但是对于一个已经加锁的普通锁（<code>PTHREAD_MUTEX_NORMAL</code>），如果同一个线程再次调用 <code>pthread_mutex_lock</code> 进行加锁操作，那么该线程会被阻塞在第二次的加锁操作处，形成死锁。</p>
+<p>以下是测试代码：</p>
+<pre><code class="c">#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
+void* thread_func(void* arg) &#123;
+    printf(&quot;Thread starting...\n&quot;);
+
+    // 第一次加锁
+    pthread_mutex_lock(&amp;mutex);
+    printf(&quot;Thread acquired lock\n&quot;);
+
+    // 第二次加锁，会导致死锁
+    pthread_mutex_lock(&amp;mutex);
+    printf(&quot;Thread acquired lock again\n&quot;);
+
+    pthread_mutex_unlock(&amp;mutex);
+    pthread_mutex_unlock(&amp;mutex);
+
+    printf(&quot;Thread exiting...\n&quot;);
+
+    return NULL;
+&#125;
+
+int main() &#123;
+    pthread_t thread;
+    pthread_create(&amp;thread, NULL, thread_func, NULL);
+
+    pthread_join(thread, NULL);
+
+    return 0;
+&#125;
+</code></pre>
+<p>在上面的示例中，我们创建了一个线程 <code>thread</code>，该线程执行 <code>thread_func</code> 函数。在 <code>thread_func</code> 函数中，我们对互斥体 <code>mutex</code> 进行两次加锁操作。这样的操作会导致线程在第二次加锁操作处被阻塞，形成了死锁。<br>在运行代码时，可以观察到程序会卡在第二次加锁操作处，并无法继续执行。这是因为同一个线程对已经加锁的普通锁再次进行加锁操作会导致线程自身无法解锁，从而形成了死锁。</p>
+<h4 id="PTHREAD-MUTEX-ERRORCHECK（检错锁）"><a href="#PTHREAD-MUTEX-ERRORCHECK（检错锁）" class="headerlink" title="PTHREAD_MUTEX_ERRORCHECK（检错锁）"></a>PTHREAD_MUTEX_ERRORCHECK（检错锁）</h4><p>对于属性类型 <code>PTHREAD_MUTEX_ERRORCHECK</code>，在同一个线程多次对已经加锁的互斥体对象进行加锁操作时，<code>pthread_mutex_lock</code> 函数会返回错误码 <code>EDEADLK</code>，表示检测到了死锁。</p>
+<pre><code class="c">#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+
+pthread_mutexattr_t attr;
+pthread_mutex_t mutex;
+
+void* thread_func(void* arg) &#123;
+    printf(&quot;Thread starting...\n&quot;);
+
+    // 第一次加锁
+    pthread_mutex_lock(&amp;mutex);
+    printf(&quot;Thread acquired lock\n&quot;);
+
+    // 第二次加锁，会返回 EDEADLK
+    int result = pthread_mutex_lock(&amp;mutex);
+    if (result == EDEADLK) &#123;
+        printf(&quot;Thread detected deadlock\n&quot;);
+    &#125; else &#123;
+        printf(&quot;Thread acquired lock again\n&quot;);
+        pthread_mutex_unlock(&amp;mutex);
+    &#125;
+
+    pthread_mutex_unlock(&amp;mutex);
+
+    printf(&quot;Thread exiting...\n&quot;);
+
+    return NULL;
+&#125;
+
+int main() &#123;
+    pthread_mutexattr_init(&amp;attr);
+    pthread_mutexattr_settype(&amp;attr, PTHREAD_MUTEX_ERRORCHECK);
+    pthread_mutex_init(&amp;mutex, &amp;attr);
+
+    pthread_t thread;
+    pthread_create(&amp;thread, NULL, thread_func, NULL);
+
+    pthread_join(thread, NULL);
+
+    pthread_mutex_destroy(&amp;mutex);
+    pthread_mutexattr_destroy(&amp;attr);
+
+    return 0;
+&#125;
+</code></pre>
+<p>在上述代码中，我们首先使用 <code>pthread_mutexattr_init</code> 函数初始化互斥体属性对象 <code>attr</code>，然后使用 <code>pthread_mutexattr_settype</code> 函数设置属性类型为 <code>PTHREAD_MUTEX_ERRORCHECK</code>，接着使用 <code>pthread_mutex_init</code> 函数初始化互斥体 <code>mutex</code>，确保它使用了设置好的属性。</p>
+<p>在 <code>thread_func</code> 函数中，我们对互斥体进行两次加锁操作，并检查第二次加锁时返回的错误码。如果返回了 <code>EDEADLK</code> 错误码，则输出相应的提示信息。</p>
+<p>当运行代码时，线程在第二次加锁操作处返回了 <code>EDEADLK</code> 错误码，并输出了相应的提示信息，表示检测到了死锁。</p>
+<h4 id="PTHREAD-MUTEX-RECURSIVE"><a href="#PTHREAD-MUTEX-RECURSIVE" class="headerlink" title="PTHREAD_MUTEX_RECURSIVE"></a>PTHREAD_MUTEX_RECURSIVE</h4><p>对于属性类型 <code>PTHREAD_MUTEX_RECURSIVE</code>，它允许同一个线程对持有的互斥体对象进行重复加锁操作，每次成功调用 <code>pthread_mutex_lock</code> 函数时，互斥体对象的锁引用计数会增加 1，而每次成功调用 <code>pthread_mutex_unlock</code> 函数时，锁引用计数会减少 1。只有当锁引用计数为 0 时，其他线程才能获得该锁；否则，其他线程调用 <code>pthread_mutex_lock</code> 时会阻塞在该函数调用处。<br>这种属性类型的互斥体对象可以用于实现递归操作或者在嵌套函数调用中对共享资源进行保护。同一个线程在持有互斥体对象的同时可以多次调用加锁操作，只有在对应数量的解锁操作完成后，其他线程才能获得该锁。这种机制能够确保资源在嵌套函数调用中的正确访问和保护。<br>需要注意的是，在使用 <code>PTHREAD_MUTEX_RECURSIVE</code> 属性的互斥体对象时，要确保加锁和解锁操作的次数匹配，否则可能导致死锁或其他错误。</p>
+<h3 id="互斥体对象的使用要点的总结："><a href="#互斥体对象的使用要点的总结：" class="headerlink" title="互斥体对象的使用要点的总结："></a>互斥体对象的使用要点的总结：</h3><ol>
+<li>在实际开发中，同一个线程对一个互斥体对象反复加锁的场景非常少见。</li>
+<li>为了避免在逻辑中忘记调用 <code>pthread_mutex_unlock</code> 导致死锁，或者在逻辑出口处出现大量重复的解锁代码，建议使用 RAII 技术（资源获取即初始化）来封装互斥体对象。这样可以确保在离开作用域时自动释放互斥体，避免忘记解锁的问题。</li>
+</ol>
+<p>RAII 技术可以通过使用 C++ 的智能指针或封装类来实现。在创建一个封装互斥体的类时，可以在构造函数中调用 <code>pthread_mutex_lock</code>，在析构函数中调用 <code>pthread_mutex_unlock</code>，这样可以确保互斥体对象在离开作用域时自动解锁。这种方式可以简化代码，提高代码的可维护性和可靠性。</p>
+<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><p>信号量代表一定的资源数量，可以根据当前资源的数量按需唤醒指定数量的资源消费者线程，资源消费者线程一旦获取信号量，就会让资源减少指定的数量，如果资源数量减少为0，则消费者线程将全部处于挂起状态；当有新的资源到来时，消费者线程将继续被唤醒。另外，信号量有“资源有多份，可以同时被多个线程访问”的意思。<br>在Linux中，信号量的常用API函数包括：</p>
+<ol>
+<li><code>int sem_init(sem_t *sem, int pshared, unsigned int value)</code>: 用于初始化一个命名或匿名信号量。参数<code>sem</code>是指向信号量对象的指针，<code>pshared</code>指定信号量的共享方式（0表示线程间共享，非0表示进程间共享），<code>value</code>是信号量的初始值。</li>
+<li><code>int sem_destroy(sem_t *sem)</code>: 用于销毁一个已初始化的信号量对象。参数<code>sem</code>是指向信号量对象的指针。</li>
+<li><code>int sem_wait(sem_t *sem)</code>: 对信号量进行P操作（等待），如果信号量的值大于0，则将其减1；如果值为0，则阻塞等待直到值大于0。</li>
+<li><code>int sem_trywait(sem_t *sem)</code>: 对信号量进行非阻塞的P操作（尝试等待），如果信号量的值大于0，则将其减1；如果值为0，则立即返回并返回错误码。</li>
+<li><code>int sem_timedwait(sem_t *sem, const struct timespec *abs_timeout)</code>: 对信号量进行定时等待的P操作，等待一定的时间，如果信号量的值大于0，则将其减1；如果值为0，则阻塞等待直到值大于0或超过指定的超时时间。</li>
+<li><code>int sem_post(sem_t *sem)</code>: 对信号量进行V操作（释放），将信号量的值加1，并唤醒等待该信号量的线程或进程。</li>
+<li><code>int sem_getvalue(sem_t *sem, int *sval)</code>: 获取信号量的当前值，并将其存储在<code>sval</code>指向的整型变量中。</li>
+</ol>
+<p>以上是Linux中信号量的常用API函数，它们定义在<code>&lt;semaphore.h&gt;</code>头文件中，用于实现进程间或线程间的同步和互斥操作。<br>使用以上几个函数时还有几个需要注意的地方。</p>
+<ol>
+<li><p>当多个线程调用 <code>sem_wait</code> 等函数等待同一个信号量时，只会有一个线程被唤醒，即只有一个线程可以成功获取到资源。这是因为这些函数在递减资源计数到1时会锁定信号量对象，确保只有一个线程可以通过。其他线程会在等待队列中等待，直到该线程释放信号量后才有机会获得资源。</p>
+</li>
+<li><p><code>sem_wait</code>、<code>sem_trywait</code>、<code>sem_timedwait</code> 函数在调用成功时返回值为0，表示成功获取到资源。而在调用失败时返回-1，并通过错误码 <code>errno</code> 来指示失败的原因。可以使用 <code>errno</code> 来判断具体的错误类型，例如 <code>EAGAIN</code> 表示资源当前不可用，<code>ETIMEDOUT</code> 表示超时等。</p>
+</li>
+<li><p><code>sem_wait</code>、<code>sem_trywait</code>、<code>sem_timedwait</code> 函数可以被Linux信号中断。当信号中断发生时，这些函数会立即返回，并将返回值设置为-1，同时错误码 <code>errno</code> 被设置为 <code>EINTR</code>。这种情况下，通常需要检查是否是由于信号中断而导致的返回，可以重新调用函数来处理信号中断的情况。</p>
+</li>
+<li><p>尽管这些函数的名称没有以 <code>pthread_</code> 为前缀，但是实际使用时仍然需要链接 <code>pthread</code> 库。因为信号量是基于线程库实现的，因此需要链接相应的库以使用这些函数。</p>
+</li>
+</ol>
+<p>下面是一个示例，演示了创建一个生产者线程和五个消费者线程，使用信号量来实现任务的生产和消费：</p>
+<pre><code class="cpp">#include &lt;pthread.h&gt;
+#include &lt;semaphore.h&gt;
+#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;unistd.h&gt;
+
+// 全局变量
+std::queue&lt;int&gt; taskQueue;  // 任务队列
+pthread_mutex_t queueMutex; // 任务队列互斥锁
+sem_t sem;                  // 信号量
+
+// 生产者线程函数
+void* producerThread(void* arg) &#123;
+    int taskId = 1;
+    while (true) &#123;
+        // 生成任务
+        int task = taskId++;
+
+        // 将任务加入队列
+        pthread_mutex_lock(&amp;queueMutex);
+        taskQueue.push(task);
+        pthread_mutex_unlock(&amp;queueMutex);
+
+        // 增加信号量资源计数
+        sem_post(&amp;sem);
+
+        sleep(1);
+    &#125;
+    return NULL;
+&#125;
+
+// 消费者线程函数
+void* consumerThread(void* arg) &#123;
+    while (true) &#123;
+        // 等待信号量，等待可执行任务
+        sem_wait(&amp;sem);
+
+        // 从队列中获取任务
+        pthread_mutex_lock(&amp;queueMutex);
+        int task = taskQueue.front();
+        taskQueue.pop();
+        pthread_mutex_unlock(&amp;queueMutex);
+
+        // 处理任务
+        std::cout &lt;&lt; &quot;Consumer thread &quot; &lt;&lt; pthread_self() &lt;&lt; &quot; processing task: &quot; &lt;&lt; task &lt;&lt; std::endl;
+
+        // 删除任务对象，避免内存泄漏
+        // ...
+
+        // 可以进行其他操作
+
+        sleep(1);
+    &#125;
+    return NULL;
+&#125;
+
+int main() &#123;
+    // 初始化互斥锁和信号量
+    pthread_mutex_init(&amp;queueMutex, NULL);
+    sem_init(&amp;sem, 0, 0);
+
+    // 创建生产者线程
+    pthread_t producer;
+    pthread_create(&amp;producer, NULL, producerThread, NULL);
+
+    // 创建消费者线程
+    const int numConsumers = 5;
+    pthread_t consumers[numConsumers];
+    for (int i = 0; i &lt; numConsumers; ++i) &#123;
+        pthread_create(&amp;consumers[i], NULL, consumerThread, NULL);
+    &#125;
+
+    // 等待生产者线程和消费者线程结束
+    pthread_join(producer, NULL);
+    for (int i = 0; i &lt; numConsumers; ++i) &#123;
+        pthread_join(consumers[i], NULL);
+    &#125;
+
+    // 销毁互斥锁和信号量
+    pthread_mutex_destroy(&amp;queueMutex);
+    sem_destroy(&amp;sem);
+
+    return 0;
+&#125;
+</code></pre>
+<p>在这个示例代码中，主函数创建了一个生产者线程和五个消费者线程。生产者线程循环生成任务，并将任务加入任务队列。每次生产任务后，通过 <code>sem_post</code> 函数增加信号量资源计数。</p>
+<p>消费者线程通过 <code>sem_wait</code> 函数等待可执行的任务。当信号量的资源计数大于0时，其中一个消费者线程会被唤醒，从任务队列中获取任务进行处理。在处理任务后，可以进行其他操作，如删除任务对象，避免内存泄漏。</p>
+<p>在调用sem_wait和sem_post时会对信号量对象进行加锁和解锁，为什么这里还需要使用一个互斥体呢？其实，这个互斥体是用来保护队列tasks的，因为多个线程会同时读写它。</p>
+<p>另外，为了确保线程的正确退出，主函数使用 <code>pthread_join</code> 函数等待生产者线程和消费者线程结束。</p>
+<h2 id="Linux条件变量"><a href="#Linux条件变量" class="headerlink" title="Linux条件变量"></a>Linux条件变量</h2><p>有人说 Linux 条件变量（Condition Variable）是最不容易用错的一种线程同步对象，确实是这样，但必须建立在对条件变量熟练应用的基础之上。</p>
+<h3 id="为什么需要使用条件变量"><a href="#为什么需要使用条件变量" class="headerlink" title="为什么需要使用条件变量"></a>为什么需要使用条件变量</h3><p>在实际应用中，我们常常会有类似如下的需求：</p>
+<pre><code>// 以下是伪代码
+// m 的类型是 pthread_mutex_t，已经初始化过了
+int waitForTrue() &#123;
+    do &#123;
+        // 加锁互斥体，确保条件判断的原子性
+        pthread_mutex_lock(&amp;m);
+
+        // 验证条件是否为 true
+        // ...
+
+        // 解锁互斥体，让其他线程有机会改变条件
+        pthread_mutex_unlock(&amp;m);
+
+        // 睡眠 n 秒
+        sleep(n);
+
+    &#125; while (condition is false);
+
+    return 1;
+&#125;
+</code></pre>
+<p>反复判断一个多线程的共享条件是否满足，一直到该条件满足为止。由于该条件被多个线程操作，因此在每次判断之前都需要进行加锁操作，判断完毕后需要进行解锁操作。但是，该逻辑存在严重的效率问题，假设解锁离开临界区后，其他线程修改了条件导致条件满足，则此时程序仍然需要睡眠n秒才能得到反馈。因此我们需要这样一种机制：某个线程 A 在条件不满足的情况下主动让出互斥体，让其他线程操作，线程 A在此处等待条件满足；一旦条件满足，线程 A就可以被立刻唤醒。线程 A之所以可以安心等待，依赖的是其他线程的协作，它确认会有一个线程在发现条件满足以后，向它发送信号并且让出互斥体。如果其他线程不配合（不发送信号、不让出互斥体），就无法实现上述效果。<br>这就是为什么需要条件等待，但条件等待不是条件变量的全部功能。</p>
+<h3 id="条件变量为什么要与互斥体对象结合使用"><a href="#条件变量为什么要与互斥体对象结合使用" class="headerlink" title="条件变量为什么要与互斥体对象结合使用"></a>条件变量为什么要与互斥体对象结合使用</h3><p>为什么条件变量一定要与一个互斥体对象结合使用呢？我们假设条件变量不与互斥体对象结合，来看看是什么效果。以下是伪代码：</p>
+<pre><code>// m的类型是 pthread_mutex_t，并且已经初始化过了，cv是条件变量
+
+pthread_mutex_lock(&amp;m);
+
+while (condition_ is_false) &#123;
+    pthread_mutex_unlock(&amp;m);
+
+    // 解锁之后，等待之前，可能条件已经满足，信号已经发出，但是该信号可能被错过
+
+    pthread_cond_wait(&amp;cv, &amp;m);
+
+    pthread_mutex_lock(&amp;m);
+&#125;
+
+pthread_mutex_unlock(&amp;m);
+</code></pre>
+<p>在以上代码中，假设线程A在执行完pthread_mutex_unlock(&amp;m)后CPU时间片被剥夺，此时另一个线程 B获得该互斥体对象 m，然后发送条件信号，等<br>线程 A重新获得时间片后，由于该信号已经被错过，可能会导致线程A在代码第7行无限阻塞下去。造成这个问题的根源是释放互斥体对象与条件变量等待唤醒不是原子操作，即解锁和等待这两个步骤必须在同一个原子操作中，才能确保cond_wait在唤醒之前不会有其他线程获得这个互斥体对象。</p>
+<h3 id="条件变量的使用"><a href="#条件变量的使用" class="headerlink" title="条件变量的使用"></a>条件变量的使用</h3><p>对条件变量进行初始化和销毁，可以使用以下 API 函数：</p>
+<ol>
+<li><p><code>pthread_cond_init</code>：用于初始化条件变量。</p>
+<ul>
+<li>函数原型：<code>int pthread_cond_init(pthread_cond_t *cond, const pthread_condattr_t *attr);</code></li>
+<li>参数 <code>cond</code> 是指向条件变量对象的指针。</li>
+<li>参数 <code>attr</code> 是指向条件变量属性对象的指针，可以为 NULL 表示使用默认属性。</li>
+<li>返回值：成功返回 0，失败返回错误码。</li>
+</ul>
+</li>
+<li><p><code>pthread_cond_destroy</code>：用于销毁条件变量。</p>
+<ul>
+<li>函数原型：<code>int pthread_cond_destroy(pthread_cond_t *cond);</code></li>
+<li>参数 <code>cond</code> 是指向条件变量对象的指针。</li>
+<li>返回值：成功返回 0，失败返回错误码。</li>
+</ul>
+</li>
+</ol>
+<p>在 Linux 系统中，<code>pthread_cond_t</code> 表示条件变量的数据类型。可以使用如下方式初始化一个条件变量：</p>
+<pre><code class="cpp">#include &lt;pthread.h&gt;
+
+pthread_cond_t cv = PTHREAD_COND_INITIALIZER;
+</code></pre>
+<p>上述代码将条件变量 <code>cv</code> 初始化为静态分配的条件变量对象，并使用宏 <code>PTHREAD_COND_INITIALIZER</code> 进行初始化。这种方式适用于静态分配<br>使用示例：</p>
+<pre><code class="cpp">#include &lt;pthread.h&gt;
+
+pthread_cond_t cv; // 声明条件变量对象
+
+int main() &#123;
+    // 初始化条件变量
+    int result = pthread_cond_init(&amp;cv, NULL);
+    if (result != 0) &#123;
+        // 处理初始化失败的情况
+    &#125;
+
+    // 使用条件变量
+
+    // 销毁条件变量
+    result = pthread_cond_destroy(&amp;cv);
+    if (result != 0) &#123;
+        // 处理销毁失败的情况
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<p>注意：在使用条件变量之前，需要先初始化它，使用完毕后再进行销毁操作。确保在销毁条件变量之前，没有线程在等待或使用该条件变量。</p>
+<p>可以使用以下 API 函数等待条件变量被唤醒：</p>
+<pre><code class="cpp">#include &lt;pthread.h&gt;
+
+int pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex);
+</code></pre>
+<p>函数 <code>pthread_cond_wait</code> 用于等待条件变量的信号，并在等待期间自动释放关联的互斥体锁，并在被唤醒后重新获得锁。函数的参数 <code>cond</code> 是指向条件变量的指针，<code>mutex</code> 是指向互斥体对象的指针。</p>
+<p>调用 <code>pthread_cond_wait</code> 时，会进行以下操作：</p>
+<ol>
+<li>首先，函数会自动释放 <code>mutex</code> 指向的互斥体锁，以允许其他线程访问临界区。</li>
+<li>然后，线程将进入等待状态，直到接收到条件变量的信号。</li>
+<li>当条件变量的信号被发送并接收到时，线程将重新获得 <code>mutex</code> 指向的互斥体锁，并从 <code>pthread_cond_wait</code> 函数返回。</li>
+</ol>
+<p>需要注意的是，<code>pthread_cond_wait</code> 函数需要在持有互斥体锁的情况下调用，否则行为是未定义的。在调用 <code>pthread_cond_wait</code> 前后，通常需要使用互斥体来保护条件的判断和修改，以确保线程安全性。</p>
+<p>使用示例：</p>
+<pre><code class="cpp">#include &lt;pthread.h&gt;
+
+pthread_cond_t cv;
+pthread_mutex_t mutex;
+
+void* thread_function(void* arg) &#123;
+    // 在获取锁之前做一些准备工作
+
+    pthread_mutex_lock(&amp;mutex);
+
+    // 检查条件是否满足
+    while (condition_is_false) &#123;
+        // 等待条件变量的信号，自动释放互斥体锁
+        pthread_cond_wait(&amp;cv, &amp;mutex);
+
+        // 在被唤醒后重新获得互斥体锁，继续检查条件
+    &#125;
+
+    // 条件满足后的处理
+
+    pthread_mutex_unlock(&amp;mutex);
+
+    return NULL;
+&#125;
+</code></pre>
+<p>在上述示例中，线程在等待条件变量的信号时会自动释放互斥体锁，并在被唤醒后重新获得锁，以继续执行后续操作。</p>
+<p>以下是可以唤醒等待在条件变量上的线程的 API 函数：</p>
+<pre><code class="cpp">#include &lt;pthread.h&gt;
+
+int pthread_cond_signal(pthread_cond_t *cond);
+int pthread_cond_broadcast(pthread_cond_t *cond);
+</code></pre>
+<ul>
+<li><code>pthread_cond_signal</code> 函数用于唤醒等待在条件变量上的一个线程。如果有多个线程在等待条件变量上，只会唤醒其中一个线程，具体唤醒哪个线程是不确定的。</li>
+<li><code>pthread_cond_broadcast</code> 函数用于唤醒等待在条件变量上的所有线程。</li>
+</ul>
+<p>这两个函数的参数 <code>cond</code> 是指向条件变量的指针。pthread_cond_signal和pthread_cond_broadcast均返回0，反之均返回具体的错误码值。</p>
+<p>调用 <code>pthread_cond_signal</code> 或 <code>pthread_cond_broadcast</code> 函数后，等待在条件变量上的线程将被唤醒，并重新开始竞争互斥体锁。被唤醒的线程将继续执行等待后的代码，直到重新获得互斥体锁。</p>
+<p>需要注意的是，为了确保等待线程能够正确地接收到信号，通常在发送信号之前需要先获得相关的互斥体锁，以保证操作的原子性。</p>
+<p>使用示例：</p>
+<pre><code class="cpp">#include &lt;pthread.h&gt;
+
+pthread_cond_t cv;
+pthread_mutex_t mutex;
+
+void signal_condition() &#123;
+    pthread_mutex_lock(&amp;mutex);
+
+    // 发送条件变量的信号，唤醒等待的线程
+    pthread_cond_signal(&amp;cv);
+
+    pthread_mutex_unlock(&amp;mutex);
+&#125;
+
+void broadcast_condition() &#123;
+    pthread_mutex_lock(&amp;mutex);
+
+    // 发送条件变量的广播信号，唤醒所有等待的线程
+    pthread_cond_broadcast(&amp;cv);
+
+    pthread_mutex_unlock(&amp;mutex);
+&#125;
+</code></pre>
+<p>在上述示例中，通过调用 <code>pthread_cond_signal</code> 函数或 <code>pthread_cond_broadcast</code> 函数，可以唤醒等待在条件变量上的线程。这些线程会在被唤醒后竞争互斥体锁，并继续执行等待后的代码。</p>
+<p>在使用 <code>pthread_cond_wait</code> 函数时，需要注意以下两点：</p>
+<ol>
+<li><p>调用 <code>pthread_cond_wait</code> 前需要对互斥体进行加锁操作：在等待条件时，线程需要持有与条件变量关联的互斥体锁。因此，在调用 <code>pthread_cond_wait</code> 之前，通常需要使用 <code>pthread_mutex_lock</code> 函数对互斥体进行加锁操作，确保在等待条件时互斥体是被当前线程所持有。这样可以避免在等待过程中出现竞态条件。</p>
+</li>
+<li><p>收到条件信号时，<code>pthread_cond_wait</code> 函数会返回并对其绑定的互斥体进行加锁操作：当等待的条件满足并且收到条件信号时，<code>pthread_cond_wait</code> 函数会返回，并且在返回时会对其绑定的互斥体进行加锁操作。这是为了确保线程在返回后可以安全地访问共享资源。因此，在 <code>pthread_cond_wait</code> 的下面，通常会有对互斥体进行解锁的操作，以允许其他线程获得互斥体锁，并且可以继续执行需要保护的临界区代码。</p>
+</li>
+</ol>
+<h3 id="条件变量的虚假唤醒"><a href="#条件变量的虚假唤醒" class="headerlink" title="条件变量的虚假唤醒"></a>条件变量的虚假唤醒</h3><p>在多线程编程中，存在一种称为 “虚假唤醒”（spurious wakeup）的情况。即使没有收到条件信号，线程有时也可能被唤醒。因此，在使用条件变量时，需要使用 <code>while</code> 循环来再次检查条件是否满足，以防止虚假唤醒导致的错误行为。<br>虚假唤醒这看起来像个Bug，但它在Linux系统中是实实在在存在的。假设pthread_cond_wait函数被信号中断，则在 pthread_cond_wait 函数返回之后，到重新调用之前，pthread_cond_signal 或pthread_cond_broadcast函数可能已被调用。一旦错失该信号，则可能由于条件信号不再产生，再次调用 thread_cond_wait 函数将导致程序无限等待。为了避免这种情况发生，我们宁可虚假唤醒，也不能再次调用pthread_cond_wait函数，以免陷入无穷等待中。<br>这种虚假唤醒可能发生在以下情况下：</p>
+<ol>
+<li>平台实现：不同的操作系统或编译器对条件变量的实现可能会导致虚假唤醒的问题。</li>
+<li>信号中断：当线程被信号中断唤醒时，可能会发生虚假唤醒。信号中断会打断线程的阻塞状态，使其从 <code>pthread_cond_wait</code> 返回，但并没有实际的条件变化发生。</li>
+<li>在条件满足时发送信号，但等到调用pthread_cond_wait函数的线程得到CPU时间片时，条件又再次不满足了。<br>通过使用 <code>while</code> 循环再次检查条件，可以确保只有在条件满足时线程才继续执行，否则会再次进入等待状态。这样可以防止因为虚假唤醒而引发的错误行为。<br>除了上面的信号因素，还存在一些情况：在条件满足时发送信号，但等到调用pthread_cond_wait函数的线程得到CPU时间片时，条<br>件又再次不满足了。<br>以下是示例代码:</li>
+</ol>
+<pre><code class="cpp">pthread_mutex_t mutex;
+pthread_cond_t cv;
+int condition = 0;
+
+void* thread_function(void* arg) &#123;
+    pthread_mutex_lock(&amp;mutex);
+    
+    // 使用 while 循环来再次检查条件
+    while (condition == 0) &#123;
+        pthread_cond_wait(&amp;cv, &amp;mutex);
+    &#125;
+    
+    // 条件满足后的处理
+    // ...
+
+    pthread_mutex_unlock(&amp;mutex);
+    return NULL;
+&#125;
+
+void signal_condition() &#123;
+    pthread_mutex_lock(&amp;mutex);
+    
+    // 更新条件
+    condition = 1;
+    
+    // 发送条件变量的信号，唤醒等待的线程
+    pthread_cond_signal(&amp;cv);
+    
+    pthread_mutex_unlock(&amp;mutex);
+&#125;
+</code></pre>
+<p>通过在 <code>while</code> 循环中再次检查条件，即使出现虚假唤醒的情况，线程也会再次等待条件满足，以确保正确的行为。</p>
+<h3 id="条件变量信号丢失的问题"><a href="#条件变量信号丢失的问题" class="headerlink" title="条件变量信号丢失的问题"></a>条件变量信号丢失的问题</h3><p>如果一个条件变量信号在产生时（调用pthread_cond_signal或pthread_cond_broadcast），没有相关线程调用 pthread_cond_wait 捕获该信号，该信号就会永久丢失，再次调用pthread_cond_wait 会导致永久阻塞。我们在设计条件变量信号只会产生一次的逻辑中尤其需要注意这种情况。举个例子，假设现在某个程序中有一批等待条件变量的线程，和一个只产生一次条件变量信号的线程。为了让等待条件变量的线程能够正常运行而不阻塞，编写这段逻辑时一定要确保等待的线程在产生条件变量信号的线程发送条件信号之前调用pthread_cond_wait。</p>
+<h2 id="Linux读写锁"><a href="#Linux读写锁" class="headerlink" title="Linux读写锁"></a>Linux读写锁</h2><h3 id="读写锁的应用场景"><a href="#读写锁的应用场景" class="headerlink" title="读写锁的应用场景"></a>读写锁的应用场景</h3><p>在实际应用中，对共享变量的访问大多有个特点：在大多数情况下，线程只是读取共享变量的值，只在极少数情况下才会真正修改共享变量的值。对于这种情况，读请求之间无须同步，它们之间的并发访问是安全的。然而写请求必须锁住读请求和其他写请求。这在实际应用中是存在的，例如读取一个全局对象的状态属性，这个状态属性的值一般不会变化，偶尔才会被修改。如果使用互斥体完全阻止读请求并发，则会造成性能的损失。</p>
+<h3 id="读写锁的相关API"><a href="#读写锁的相关API" class="headerlink" title="读写锁的相关API"></a>读写锁的相关API</h3><p>在Linux系统中，可以使用以下系统API函数来初始化和销毁读写锁：</p>
+<ol>
+<li><p>初始化读写锁：<code>int pthread_rwlock_init(pthread_rwlock_t* rwlock, const pthread_rwlockattr_t* attr)</code></p>
+<ul>
+<li>参数 <code>rwlock</code>：指向要初始化的读写锁对象的指针。</li>
+<li>参数 <code>attr</code>：指向读写锁属性的指针，通常设置为<code>NULL</code>表示使用默认属性。</li>
+<li>返回值：若成功初始化读写锁，则返回0；否则返回错误码。</li>
+</ul>
+</li>
+<li><p>销毁读写锁：<code>int pthread_rwlock_destroy(pthread_rwlock_t* rwlock)</code></p>
+<ul>
+<li>参数 <code>rwlock</code>：指向要销毁的读写锁对象的指针。</li>
+<li>返回值：若成功销毁读写锁，则返回0；否则返回错误码。</li>
+</ul>
+</li>
+</ol>
+<p>当然，如果不需要动态创建或者设置非默认属性的读写锁对象，则也可以使用如下语法初始化一个读写锁对象：</p>
+<pre><code>pthread_rwlock_t rwlock = PTHREAD_RWLOCK_INITIALIZER;
+</code></pre>
+<p>以下是请求读锁和写锁的系统API接口：</p>
+<p>请求读锁的系统API接口：</p>
+<ol>
+<li><code>int pthread_rwlock_rdlock(pthread_rwlock_t *rwlock)</code>：请求读取锁。如果读取锁可用，则将读取锁分配给调用线程，否则线程将阻塞，直到读取锁可用。</li>
+<li><code>int pthread_rwlock_tryrdlock(pthread_rwlock_t *rwlock)</code>：尝试请求读取锁。如果读取锁可用，则将读取锁分配给调用线程并返回0，否则立即返回EBUSY，不会阻塞线程。</li>
+<li><code>int pthread_rwlock_timedrdlock(pthread_rwlock_t *rwlock, const struct timespec *abs_timeout)</code>：在指定的超时时间内请求读取锁。如果在超时时间内读取锁可用，则将读取锁分配给调用线程并返回0，否则返回ETIMEDOUT。</li>
+</ol>
+<p>请求写锁的系统API接口：</p>
+<ol>
+<li><code>int pthread_rwlock_wrlock(pthread_rwlock_t *rwlock)</code>：请求写入锁。如果写入锁可用，则将写入锁分配给调用线程，否则线程将阻塞，直到写入锁可用。</li>
+<li><code>int pthread_rwlock_trywrlock(pthread_rwlock_t *rwlock)</code>：尝试请求写入锁。如果写入锁可用，则将写入锁分配给调用线程并返回0，否则立即返回EBUSY，不会阻塞线程。</li>
+<li><code>int pthread_rwlock_timedwrlock(pthread_rwlock_t *rwlock, const struct timespec *abs_timeout)</code>：在指定的超时时间内请求写入锁。如果在超时时间内写入锁可用，则将写入锁分配给调用线程并返回0，否则返回ETIMEDOUT。</li>
+</ol>
+<p>这些API函数可以用于在多线程环境中对读写锁进行加锁操作。</p>
+<p>读写锁的使用规则如下：</p>
+<p>读模式（共享模式）：</p>
+<ul>
+<li>如果当前读写锁已经被某线程以读模式占有，其他线程可以立即获取读锁，而不会被阻塞。</li>
+<li>如果当前读写锁已经被某线程以写模式占有，其他线程请求读锁会被阻塞，直到写锁被释放。</li>
+</ul>
+<p>写模式（独占模式）：</p>
+<ul>
+<li>如果当前读写锁已经被某线程以写模式占有，其他线程无论是请求读锁还是写锁，都会被阻塞，直到写锁被释放。</li>
+<li>在写模式下，不允许其他线程获取读锁或写锁。</li>
+</ul>
+<p>通过读写锁，可以实现对共享资源的并发读取和独占写入的控制，提高系统的并发性和吞吐量。</p>
+<p>释放读锁和写锁都使用同一个接口</p>
+<pre><code>pthread_rwlock_unlock
+</code></pre>
+<p>该函数用于释放当前线程持有的读锁或写锁。<br>无论是请求读锁还是写锁，都提供了 trylock 的功能（pthread_rwlock_tryrdlock 和pthread_rwlock_trywrlock），调用线程不会阻塞，而是立即返回。如果能成功获得读锁或者写锁，则函数返回0，如果不能获得读锁或写锁，则函数返回非0值，此时错误码errno是EBUSY。当然，无论是请求读锁还是写锁，都提供了限时等待功能。如果不能获取读写锁，则会陷入阻塞，最多等待到参数 abstime设置的时间，如果此时仍然无法获得锁，则返回，错误码errno是ETIMEOUT。</p>
+<h3 id="读写锁的属性"><a href="#读写锁的属性" class="headerlink" title="读写锁的属性"></a>读写锁的属性</h3><p>pthread_rwlock_init函数我们可以知道第2个参数可以设置读写锁的属性，读写锁的属性类型是pthread_rwlockattr_t。glibc引入了如下接口来查询和改变读写锁的类型：</p>
+<pre><code>pthread_rwlockattr_init: 初始化读写锁属性对象。
+pthread_rwlockattr_destroy: 销毁读写锁属性对象。
+pthread_rwlockattr_getkind_np: 获取读写锁的类型。
+pthread_rwlockattr_setkind_np: 设置读写锁的类型。
+</code></pre>
+<p>其中，函数名中的 _np 表示这些函数是非标准的扩展函数，属于 GNU C 库 (glibc) 的特定扩展。这些函数允许查询和设置读写锁的类型属性，以控制读写锁的行为。</p>
+<p><code>pthread_rwlockattr_setkind_np</code> 函数的第二个参数 <code>pref</code> 用于设置读写锁的类型，它可以取以下值：</p>
+<ul>
+<li><code>PTHREAD_RWLOCK_PREFER_READER_NP</code>: 优先读者模式。在有读者等待时，尽量让其他读者获得读锁，以提高读取操作的并发性。</li>
+<li><code>PTHREAD_RWLOCK_PREFER_WRITER_NP</code>: 优先写者模式。在有写者等待时，尽量让写者获得写锁，以避免读者长时间等待。</li>
+<li><code>PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP</code>: 优先非递归写者模式。在有写者等待时，只允许以非递归方式获取写锁，以避免写者之间发生死锁情况。</li>
+</ul>
+<p>通过设置读写锁的类型，可以根据应用场景选择适当的读写锁行为，以提高并发性或避免死锁问题。需要注意的是，这些取值是非标准的扩展，具体实现可能因操作系统和库版本而有所差异。在使用时，应注意兼容性和可移植性。</p>
+<h3 id="读写锁应用示例"><a href="#读写锁应用示例" class="headerlink" title="读写锁应用示例"></a>读写锁应用示例</h3><p>读写锁应用示例如下：</p>
+<pre><code>#include &lt;pthread.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;iostream&gt;
+
+int resourceID = 0;
+pthread_rwlock_t myrwlock;
+
+void* read_thread(void* param)
+&#123;    
+    while (true)
+    &#123;
+        //请求读锁
+        pthread_rwlock_rdlock(&amp;myrwlock);
+
+        std::cout &lt;&lt; &quot;read thread ID: &quot; &lt;&lt; pthread_self() &lt;&lt; &quot;, resourceID: &quot; &lt;&lt; resourceID &lt;&lt; std::endl;
+                
+        //使用睡眠模拟读线程读的过程消耗了很久的时间
+        sleep(1);
+                
+        pthread_rwlock_unlock(&amp;myrwlock);
+    &#125;
+    
+    return NULL;
+&#125;
+
+void* write_thread(void* param)
+&#123;
+    while (true)
+    &#123;
+        //请求写锁
+        pthread_rwlock_wrlock(&amp;myrwlock);
+
+        ++resourceID;
+        std::cout &lt;&lt; &quot;write thread ID: &quot; &lt;&lt; pthread_self() &lt;&lt; &quot;, resourceID: &quot; &lt;&lt; resourceID &lt;&lt; std::endl;
+                
+        //使用睡眠模拟读线程读的过程消耗了很久的时间
+        sleep(1);
+                
+        pthread_rwlock_unlock(&amp;myrwlock);
+    &#125;
+    
+    return NULL;
+&#125;
+
+int main()
+&#123;
+    pthread_rwlock_init(&amp;myrwlock, NULL);
+
+    //创建5个请求读锁线程
+    pthread_t readThreadID[5];
+    for (int i = 0; i &lt; 5; ++i)
+    &#123;
+        pthread_create(&amp;readThreadID[i], NULL, read_thread, NULL);
+    &#125;
+    
+    //创建一个请求写锁线程
+    pthread_t writeThreadID;
+    pthread_create(&amp;writeThreadID, NULL, write_thread, NULL);
+
+    pthread_join(writeThreadID, NULL);
+    
+    for (int i = 0; i &lt; 5; ++i)
+    &#123;
+        pthread_join(readThreadID[i], NULL);
+    &#125;
+    
+    pthread_rwlock_destroy(&amp;myrwlock);
+
+    return 0;
+&#125;
+</code></pre>
+<p>在上述程序中创建了5个请求读锁的读线程和1个请求写锁的写线程，共享的资源是一个整形变量resourceID，我们编译并执行它以得到输出</p>
+<pre><code>read thread ID:140575861593856, resourceID: 0
+read thread ID:140575878379264,resourceID: 0
+read thread ID:140575853201152,resourceID:O
+read thread ID:140575869986560,resource1D: O
+read thread ID: 140575886771968, resourceID: O
+read thread ID: read thread ID: read thread ID: read thread ID:140575861593856140575886771968,resourceID: 0, resourceID:
+0
+140575878379264read thread ID: 140575869986560,resourceID:0,resourceID:0
+140575853201152, resourceID:0
+read thread ID:read thread ID: read thread ID:
+140575861593856140575853201152140575886771968,resourceID: , resourceID: 0,resourceID:00
+read thread ID:140575869986560,resourceID:0
+</code></pre>
+<p>以上输出结果验证了以下两个结论。</p>
+<ul>
+<li>由于读写锁对象myrwlock使用了默认属性，其行为是请求读锁的线程优先获得锁，请求写锁的线程write_thread很难获得锁，因此在其结果中基本没有请求写锁线程的输出结果。</li>
+<li>由于多个请求读锁的线程read_thread可以自由获得读锁，输出不是原子的，所以多个读线程的输出可能交替，出现“错乱”。</li>
+</ul>
+<p>我们将读写锁对象myrwlock的属性修改成请求写锁优先，再来试一试</p>
+<pre><code>#include &lt;pthread.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;iostream&gt;
+
+int resourceID = 0;
+pthread_rwlock_t myrwlock;
+
+void* read_thread(void* param)
+&#123;    
+    while (true)
+    &#123;
+        //请求读锁
+        pthread_rwlock_rdlock(&amp;myrwlock);
+
+        std::cout &lt;&lt; &quot;read thread ID: &quot; &lt;&lt; pthread_self() &lt;&lt; &quot;, resourceID: &quot; &lt;&lt; resourceID &lt;&lt; std::endl;
+                
+        //使用睡眠模拟读线程读的过程消耗了很久的时间
+        sleep(1);
+                
+        pthread_rwlock_unlock(&amp;myrwlock);
+    &#125;
+    
+    return NULL;
+&#125;
+
+void* write_thread(void* param)
+&#123;
+    while (true)
+    &#123;
+        //请求写锁
+        pthread_rwlock_wrlock(&amp;myrwlock);
+
+        ++resourceID;
+        std::cout &lt;&lt; &quot;write thread ID: &quot; &lt;&lt; pthread_self() &lt;&lt; &quot;, resourceID: &quot; &lt;&lt; resourceID &lt;&lt; std::endl;
+                
+        //使用睡眠模拟读线程读的过程消耗了很久的时间
+        sleep(1);
+        
+        pthread_rwlock_unlock(&amp;myrwlock);
+    &#125;
+    
+    return NULL;
+&#125;
+
+int main()
+&#123;
+    pthread_rwlockattr_t attr;
+    pthread_rwlockattr_init(&amp;attr);
+    //设置成请求写锁优先
+    pthread_rwlockattr_setkind_np(&amp;attr, PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP);
+    pthread_rwlock_init(&amp;myrwlock, &amp;attr);
+
+    //创建5个请求读锁线程
+    pthread_t readThreadID[5];
+    for (int i = 0; i &lt; 5; ++i)
+    &#123;
+        pthread_create(&amp;readThreadID[i], NULL, read_thread, NULL);
+    &#125;
+    
+    //创建一个请求写锁线程
+    pthread_t writeThreadID;
+    pthread_create(&amp;writeThreadID, NULL, write_thread, NULL);
+
+    pthread_join(writeThreadID, NULL);
+    
+    for (int i = 0; i &lt; 5; ++i)
+    &#123;
+        pthread_join(readThreadID[i], NULL);
+    &#125;
+    
+    pthread_rwlock_destroy(&amp;myrwlock);
+
+    return 0;
+&#125;
+</code></pre>
+<p>由于将myrwlock设置成请求写锁优先，所以几乎都是write_thread的输出结果。</p>
+<pre><code>read thread ID: 140122217539328, resourceID: 0
+read thread ID: 140122242717440, resourceID: 0
+read thread ID: 140122209146624, resourceID: 0
+write thread ID: 140122200753920, resourceID: 1
+read thread ID: 140122234324736, resourceID: 1
+write thread ID: 140122200753920, resourceID: 2
+write thread ID: 140122200753920, resourceID: 3
+write thread ID: 140122200753920, resourceID: 4
+write thread ID: 140122200753920, resourceID: 5
+write thread ID: 140122200753920, resourceID: 6
+write thread ID: 140122200753920, resourceID: 7
+write thread ID: 140122200753920, resourceID: 8
+write thread ID: 140122200753920, resourceID: 9
+write thread ID: 140122200753920, resourceID: 10
+write thread ID: 140122200753920, resourceID: 11
+write thread ID: 140122200753920, resourceID: 12
+write thread ID: 140122200753920, resourceID: 13
+read thread ID: 140122217539328, resourceID: 13
+write thread ID: 140122200753920, resourceID: 14
+write thread ID: 140122200753920, resourceID: 15
+write thread ID: 140122200753920, resourceID: 16
+write thread ID: 140122200753920, resourceID: 17
+write thread ID: 140122200753920, resourceID: 18
+write thread ID: 140122200753920, resourceID: 19
+write thread ID: 140122200753920, resourceID: 20
+write thread ID: 140122200753920, resourceID: 21
+write thread ID: 140122200753920, resourceID: 22
+write thread ID: 140122200753920, resourceID: 23
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3366576307@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '9863a58d805d69a19ec3',
+            clientSecret: 'eec6c8ede04bbc286f4410646f54282eafb3b33f',
+            repo: 'talkFile.github.io',
+            owner: 'whl963854',
+            admin: ['whl963854'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2022 whl
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #c1bfc1;
+    }
+    
+    
+    .nav-right nav a.hover > span{
+        color: #ffffff !important;
+    }
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div class="mobile-menus-out" >
+
+</div>
+<div class="mobile-menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/whl963854">github</a>
+    
+</div>
+
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 0;">
+<div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483671599&auto=1&height=66"></iframe>
+</div>
+
+
+
+
+<!--以下代码是为了支持随时拖动音乐控件的位置，如没有需求，可去掉下面代码-->
+<script>
+var $DOC = $(document)
+$('#musicMouseDrag').on('mousedown', function (e) {
+// 阻止文本选中
+$DOC.bind("selectstart", function () {
+return false;
+});
+$('#musicDragArea').css('height', '100%');
+var $moveTarget = $('#musicMouseDrag');
+$moveTarget.css('border', '1px dashed grey')
+var div_x = e.pageX - $moveTarget.offset().left;
+var div_y = e.pageY - $moveTarget.offset().top;
+$DOC.on('mousemove', function (e) {
+var targetX = e.pageX - div_x;
+var targetY = e.pageY - div_y;
+targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+$moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+}).on('mouseup', function () {
+$DOC.unbind("selectstart");
+$DOC.off('mousemove')
+$DOC.off('mouseup')
+$moveTarget.css('border', 'none')
+$('#musicDragArea').css('height', '10px');
+})
+})
+</script>
+</html>
