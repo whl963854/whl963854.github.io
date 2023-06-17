@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>二叉树的遍历 | Hexo</title>
-  <meta name="keywords" content=" 数据结构 ">
-  <meta name="description" content="二叉树的遍历 | Hexo">
+  <title>WebSocket协议 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="WebSocket协议 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到！">
 <meta property="og:type" content="website">
@@ -2173,9 +2173,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-数据结构与算法/二叉树的遍历" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-计算机通信与网络/WebSocket协议" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">二叉树的遍历</h1>
+        <h1 class="article-title">WebSocket协议</h1>
     
     <div class="article-meta">
         
@@ -2185,27 +2185,20 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="算法与数据结构">算法与数据结构</a>
+            <a  data-rel="计算机通信与网络">计算机通信与网络</a>
             
         </span>
         
         
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color5">数据结构</a>
-            
-        </span>
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-06-17 16:15:49'>2023-06-17 15:07</time>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-05-07 00:02:01'>2023-04-23 21:12</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>Count:1.1k</span>
+        <span>Count:2.6k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -2235,7 +2228,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95"><span class="toc-text">二叉树的遍历方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">先序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">中序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">后序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">层序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DFS"><span class="toc-text">DFS</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WebSocket%E5%8D%8F%E8%AE%AE"><span class="toc-text">WebSocket协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#WebSocket%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B"><span class="toc-text">WebSocket协议的握手过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebSocket%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-text">WebSocket协议的格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebSocket%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A0%BC%E5%BC%8F"><span class="toc-text">WebSocket协议的压缩格式</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -2251,183 +2244,131 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="二叉树的遍历方法"><a href="#二叉树的遍历方法" class="headerlink" title="二叉树的遍历方法"></a>二叉树的遍历方法</h1><ul>
-<li><p>Pre-Order Traversal ： 到达一个节点后，即刻输出该节点的值，并继续遍历其左右子树。                                VLR</p>
-</li>
-<li><p>In-Order Traversal  ：   到达一个节点后，将其暂存，遍历完左子树后，再输出该节点的值，然后遍历右子树。LVR</p>
-</li>
-<li><p>Post-Order Traversal:   到达一个节点后，将其暂存，遍历完左右子树后，再输出该节点的值。                          LRV</p>
-</li>
+        <h1 id="WebSocket协议"><a href="#WebSocket协议" class="headerlink" title="WebSocket协议"></a>WebSocket协议</h1><p>WebSocket协议是用于解决HTTP通信的无状态、短连接（通常是）和服务端无法主动向客户端推送数据等问题而开发的新型协议，其通信基础也基于 TCP。由于较旧的浏览器可能不支持WebSocket协议，所以使用WebSocket协议的通信双方在进行 TCP三次握手之后，还要额外地进行一次握手，这次参与握手的通信双方的报文格式是基于HTTP改造的。</p>
+<h2 id="WebSocket协议的握手过程"><a href="#WebSocket协议的握手过程" class="headerlink" title="WebSocket协议的握手过程"></a>WebSocket协议的握手过程</h2><p>本节介绍WebSocket协议通信中的最后一次握手过程。最后一次握手开始后，一方向另外一方发送了一个HTTP格式的报文，这个报文的格式大致如下：</p>
+<pre><code>GET /realtime HTTP/1.1
+Host: 127.0.0.1:9989
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+Upgrade: websocket
+Origin: http://xyz.com
+Sec-WebSocket-Version: 13
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN, zh;q=0.9, en;q=0.8
+Sec-WebSocket-Key: 1qeAodjyeDJuhGg2WkpKg-
+Sec-WebSocket-Extensions: permessage-deflater; client_max_window_bits
+</code></pre>
+<p>对这个格式有如下要求：</p>
+<ol>
+<li>请求方法必须是 GET，且 HTTP 版本必须是 1.1。</li>
+<li>握手必须是一个有效的HTTP请求</li>
+<li>请求必须包含 Host 字段信息。</li>
+<li>请求必须包含 Upgrade 字段信息，值必须为 websocket。</li>
+<li>请求必须包含 Connection 字段信息，值必须为 Upgrade。</li>
+<li>请求必须包含 Sec-WebSocket-Key 字段，该字段值是客户端的标识编码成 base64 格式后的内容。</li>
+<li>请求必须包含 Sec-WebSocket-Version 字段信息，值必须是 13。</li>
+<li>请求必须包含 Origin 字段。</li>
+<li>请求可能包含 Sec-WebSocket-Protocol 字段来规定子协议。</li>
+<li>请求可能包含 Sec-WebSocket-Extensions 字段来规定协议的扩展。</li>
+<li>请求可能包含其他字段，如 cookie 等。</li>
+</ol>
+<p>对端在收到该数据包后如果支持WebSocket协议，则会回复一个HTTP格式的应答，这个应答报文的格式大致如下：<br>    HTTP&#x2F;1.1 101 Switching ProtocolslrinUpgrade: websocket<br>    connection: Upgrade<br>    Sec-NebSocket-Accept: 5wC5L6joP6t131zpj901CNv9Jy4<br>上面列出了应答报文中必须包含的几个字段和对应的值，即<br>Upgrade、Connection、Sec-WebSocket-Accept，注意：第1行必须是HTTP&#x2F;1.1 101 Switching Protocols\r\n。<br>对于Sec-WebSocket-Accept字段，其值是根据对端传过来的SecWebSocket-Key的值经过一定的算法计算出来的，这样应答的双方才能匹配。算法流程如下：</p>
+<ul>
+<li>将 Sec-WebSocket-Key 的值与固定的字符串“258EAFA5-E914-47DA-95CA-C5AB0DC85B11”拼接；</li>
+<li>将拼接后的字符串进行SHA-1处理，然后将结果进行base64编码。</li>
 </ul>
-<h2 id="先序遍历"><a href="#先序遍历" class="headerlink" title="先序遍历"></a>先序遍历</h2><p><strong>递归实现</strong></p>
-<pre><code>void preOrderTraverse(node *root)&#123;
-    if(root==nullptr)&#123;
-        return ;
-    &#125;
-    printf(&quot;%d\n&quot;,root-&gt;data);
-    preOrder(root-&gt;lchild);
-    preOrder(root-&gt;rchild);
-&#125;
-</code></pre>
-<p><strong>非递归实现</strong></p>
-<pre><code>void preOrderTraverse2(node *root) &#123;
-    LinkedList&lt;node*&gt; stack = new LinkedList&lt;&gt;();
-    node *pNode = root;
-    while (pNode != nullptr || !stack.isEmpty()) &#123;
-        if (pNode != nullptr) &#123;
-            System.out.print(pNode.val+&quot;  &quot;);
-            stack.push(pNode);
-            pNode = pNode.left;
-        &#125; 
-        else &#123; //pNode == nullptr &amp;&amp; !stack.isEmpty()
-            nodeNode node = stack.pop();
-            pNode = node.right;
-        &#125;
-    &#125;
-&#125;
-</code></pre>
-<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><p><strong>递归实现</strong></p>
-<pre><code>void inOrderTraverse(node *root)&#123;
-    if(root==nullptr)&#123;
-        return ;
-    &#125;
-    preOrder(root-&gt;lchild);
-    printf(&quot;%d\n&quot;,root-&gt;data);
-    preOrder(root-&gt;rchild);
-&#125;
-</code></pre>
-<p><strong>非递归实现</strong></p>
-<pre><code>void inOrderTraverse(node *root)&#123;
-    if (root == nullptr)
-        return;
-    node *p = root;
-    stack&lt;node*&gt;s;
-    while (p != nullptr || !s.empty())
-    &#123;
-        while (p!=nullptr)
-        &#123;
-            s.push(p);
-            p = p-&gt;lchild;
-        &#125;
-        if (!s.empty())
-        &#123; 
-            p = s.top();
-            cout &lt;&lt; p-&gt;data &lt;&lt; &quot; &quot;;        //第二次遇见的时候输出
-            s.pop();
-            p = p-&gt;rchild;
-        &#125;
-    &#125;
-&#125;
-</code></pre>
-<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2><p><strong>递归实现</strong></p>
-<pre><code>void postOrderTraverse(node *root)&#123;
-    if(root==nullptr)&#123;
-        return ;
-    &#125;
-    preOrder(root-&gt;lchild);
-    preOrder(root-&gt;rchild);
-    printf(&quot;%d\n&quot;,root-&gt;data);
-&#125;
-</code></pre>
-<p><strong>非递归实现</strong><br>第一种思路：对于任一结点P，将其入栈，然后沿其左子树一直往下搜索，直到搜索到没有左孩子的结点，此时该结点出现在栈顶，但是此时不能将其出栈并访问。其右孩子还未被访问,所以接下来按照相同的规则对其右子树进行相同的处理，当访问完其右孩子时，该结点又出现在栈顶，此时可以将其出栈并访问。这样就保证了正确的访问顺序。可以看出，在这个过程中，每个结点都两次出现在栈顶，只有在第二次出现在栈顶时，才能访问它。因此需要多设置一个变量标识该结点是 否是第一次出现在栈顶。</p>
-<pre><code>void postOrderTraverse(node* root)
+<p>算法公式如下：<br>    mask &#x3D; “258EAFA5-E914-47DA-95CA-C5ABODC85B11”;<br>    &#x2F;&#x2F;这是算法中要用到的固定字符串accept &#x3D; base64( shal( Sec-webSocket-Key +mask ));</p>
+<h2 id="WebSocket协议的格式"><a href="#WebSocket协议的格式" class="headerlink" title="WebSocket协议的格式"></a>WebSocket协议的格式</h2><p>WebSocket协议除了上文提到的握手过程中使用的是HTTP数据格式，之后的通信双方使用的是另一种自定义格式。每个 WebSocket 数据包都被称为一个 Frame（帧），其格式如下<br><img src="https://s1.ax1x.com/2023/06/17/pCQO0gK.png" alt="pCQO0gK.png"></p>
+<p>下面逐一介绍上文中各字段的含义。<br>第 1字节（上图中第 1个数字 0至第 1个数字 7）的内容如下。</p>
+<ul>
+<li>FIN 标志：占第 1 字节中的第 1 位（bit），即第 1 字节的最高位（1 字节含有 8位（bit）），该标志置 0 时表示当前包未结束，后续有该包的分片；置 1 时表示当前包已结束，后续无该包的分片。我们在解包时如果发现该标志为0，则需要将当前包的包体数据（即Payload Data）缓存起来，与后续的包分片组装在一起才是一个完整的包体数据。</li>
+<li>RSV1、RSV2、RSV3：每个各占 1位，一共 3位，这 3位是保留字段（默认都是0），可以用它们作为通信双方协商好的一些特殊标志。</li>
+<li>opCode：操作类型，占4位。目前的操作类型及其取值如下</li>
+</ul>
+<p>第2字节（上图中第1个数字8至第2个数字5）的内容如下。</p>
+<ul>
+<li>MASK标志：占1位（bit），该标志为1时，表明该Frame在包体长度字段后面携带4字节的masking-key信息，为0时则没有masking key信息。</li>
+<li>Payload len：占7位，表示包体的长度信息。由于Payloadlen值使用了1字节的低 7位（7bit），因此其能表示的长度范围是 0～127，其中126和 127被当作特殊标志使用。当该字段值是 0～125时，表示跟在 masking-key 字段后面的就是包体内容长度；当该值是126时，接下来两字节的内容表示跟在masking-key字段后面的包体内容长度（即图中的Extended Payload Length）。由于两字节表示的最大无符号整数是0xFFFF（十进制是 65535，因此编译器提供了一个宏UINT16_MAX 来表示这个值）。如果包体长度超过65535，包长度就记录不下了，此时应该将Payload len设置为127，以使用更多的字节数<br>表示包体长度。当 Payload len 是 127 时，接下来用 8 字节的内容表示跟在 masking-key字段后面的包体内容长度（Extended PayloadLength）。总结起来，若Payload len在0～125之间，则ExtendedPayload Len不存在，即占0字节；若Payload len等于126，则Extended Payload Length占两字节；若Payload len等于127，则Extended Payload Length占8字节。另外，若 Payload len 等于 125或 126，则接下来存储实际包长信息分别使用两字节或 8字节，其值必须被转换为网络字节序（Big Endian）。</li>
+<li>Masking-key：如果前面的mask标志被设置成1，则该字段存在，占4字节；反之，在Frame中不存在存储Masking-key字段的字节。另外，客户端（主动发起握手请求的一方）向服务端（被动接受握手的另一方）发送的frame信息（包信息）中的mask标志必须是1，而服务端向客户端发送的frame信息中的mask标志是0，客户端发送给服务端的数据帧中存在 4 字节的 masking-key，而服务端发送给客户端的数据帧中不存在Masking-key信息（笔者在Websocket协议的RFC文档中并没有看到有这种强行规定，在研究了一些Websocket库的实现后发现，此结论并不一定成立，客户端发送的数据也可能没有被设置mask标志）。如果存在Masking-key信息，则数据帧中的数据（图中的Payload Data）都是与Masking-key运算后的内容。无论是将原始数据与Masking-key运算后得到传输的数据，还是将传输的数据还原成原始数据，其算法都如下。</li>
+</ul>
+<p>分包的逻辑很简单：假设将一个包分成 3 个包片，那么应该将第 1 个和第 2个包片第1字节的第1位FIN设置为0，将OpCode设置为CONTINUATION_FRAME（也是0）；将第3个包片FIN设置为1，表示该包至此结束，将OpCode设置为想要的类型（如TEXT_FRAME、BINARY_FRAME等）。对端收到该包时，如果发现标志FIN&#x3D;0或OpCode&#x3D;0，则将该包包体的数据暂存起来，直到收到FIN&#x3D;1、OpCode≠0的包，将该包的数据与前面收到的数据放在一起，组装成一个完整的业务数据。示例代码如下：</p>
+<pre><code>//某次解包后得到包体payloadData，根据FIN标志判断，
+//如果FIN= true，则说明一个完整的业务数据包已经收完整了1/调用processPackage函数处理该业务数据
+//否则暂存于m_strParsedData中
+//每次处理完一个完整的业务包数据，就将暂存区m_strParsedData中的数据清空
+if (FIN)
 &#123;
-    if (root == nullptr)
-        return;
-    stack&lt;node*&gt;s;
-    Binode p = root;
-    node tmp;
-    while (p!=nullptr || !s.empty())
-    &#123;
-        while (p != nullptr)            //沿左子树一直往下搜索，直至出现没有左子树的结点
-        &#123;
-            node btn = (node)malloc(sizeof(Node));
-            btn-&gt;btnode = p;
-            btn-&gt;isfirst = true;
-            s.push(btn);
-            p = p-&gt;lchild;
-        &#125;
-        if (!s.empty())
-        &#123;
-            tmp = s.top();
-            s.pop();
-            if (tmp-&gt;isfirst == true)    //第一次出现在栈顶
-            &#123;
-                tmp-&gt;isfirst = false;
-                s.push(tmp);
-                p = tmp-&gt;btnode-&gt;rchild;
-            &#125;
-            else                //第二次出现在栈顶
-            &#123;
-                cout &lt;&lt; tmp-&gt;btnode-&gt;data&lt;&lt;&quot; &quot;;
-                p = nullptr;
-            &#125;
-        &#125;
-    &#125;
+    msLrParsedData.append (payloadData);
+    processPackage (m strParsedData) ;
+    mstrParsedData.clear ();
 &#125;
-</code></pre>
-<p>第二种思路：要保证根结点在左孩子和右孩子访问之后才能访问，因此对于任一结点P，先将其入栈。如果P不存在左孩子和右孩子，则可以直接访问它；或者P存在左孩子或者右孩子，但是其左孩子和右孩子都已被访问过了，则同样可以直接访问该结点。若非上述两种情况，则将P的右孩子和左孩子依次入栈，这样就保证了 每次取栈顶元素的时候，左孩子在右孩子前面被访问，左孩子和右孩子都在根结点前面被访问。</p>
-<pre><code>void postOrderTraverse(node* root)
+else
 &#123;
-    if (root == nullptr)
+    m_strParsedData.append(payloadData);
+&#125;
+</code></pre>
+<h2 id="WebSocket协议的压缩格式"><a href="#WebSocket协议的压缩格式" class="headerlink" title="WebSocket协议的压缩格式"></a>WebSocket协议的压缩格式</h2><p>WebSocket协议对于包体也支持压缩，是否需要开启压缩，需要通信双方在握手时进行协商。再看一下握手时主动发起一方的包内容：</p>
+<pre><code>GET /realtime HTTP/1.1
+Host: 127.0.0.1:9989
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Windows NT 10.0; win64; x64)
+Upgrade: websocket
+Origin: http://xyz.com
+Sec-WebSocket-Version: 13
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+Sec-WebSocket-Key: IgcAwodjyPDJuhGgzwkpKg--
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+</code></pre>
+<p>在该包中，在 Sec-WebSocket-Extensions 字段中有一个值permessage-deflate，这是Websocket数据包是否支持压缩功能的标志。如果发起方支持压缩功能，则在发起握手的数据包中添加该标志，若对端收到后也支持压缩功能，则在应答的包中也设置该标志；如果没有该标志，则表示不支持压缩。例如：</p>
+<pre><code>HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: 5wC5L6joP6t131zp901CNv9Jy4=
+Sec-WebSocket-Extensions: permessage-deflate; client_no_context_takeover
+</code></pre>
+<p>如果双方都支持压缩，则此后通信包中的包体部分都是经过压缩的，反之是未经过压缩的。在解包得到包体（即Payload Data）后，如果握手时有压缩标志并且对方也回复了支持压缩，则需要对该包体进行解压缩；同理，在发送数据之前组装产生 WebSocket 包时，需要先对包体（即Payload Data）进行压缩<br>收包后解压缩的示例代码如下：</p>
+<pre><code>bool MywebSocketSession::processPackage(const std::string&amp; data) &#123;
+    std::string out;
+    // 根据握手时确定的客户端是否支持压缩的标志位 mbclientcompressed 进行处理
+    if (mbclientcompressed) &#123;
+        // 解压缩
+        if (!Z1ibUtil::inflate(data, out)) &#123;
+            LOGE(&quot;uncompress failed, dataLength: %d&quot;, data.length());
+            return false;
+        &#125; else &#123;
+            out = data;
+        &#125;
+    &#125; else &#123;
+        out = data;
+    &#125;
+
+    LOGI(&quot;received data: %s&quot;, out.c_str());
+
+    return Process(out);
+&#125;
+</code></pre>
+<p>对包进行压缩的算法如下：</p>
+<pre><code>size_t dataLength = data.length();
+std::string destbuf;
+
+if (mbClientCompressed) &#123;
+    // 进行压缩
+    if (!Z1ibUtil::deflate(data, destbuf)) &#123;
+        LOGE(&quot;compress buf error, data: %s&quot;, data.c_str());
         return;
-    stack&lt;node*&gt;s;
-    node* cur = root, *pre = nullptr;
-    s.push(root);
-    while (!s.empty())
-    &#123;
-        cur = s.top();
-        if ((cur-&gt;lchild == nullptr&amp;&amp;cur-&gt;rchild == nullptr) ||
-            ((pre == cur-&gt;lchild || pre == cur-&gt;rchild) &amp;&amp; pre != nullptr))
-        &#123;
-            cout &lt;&lt; cur-&gt;data &lt;&lt; &quot; &quot;;
-            s.pop();
-            pre = cur;
-        &#125;
-        else
-        &#123;
-            if (cur-&gt;rchild != nullptr)
-                s.push(cur-&gt;rchild);
-            if (cur-&gt;lchild != nullptr)
-                s.push(cur-&gt;lchild);
-        &#125;
+    &#125; else &#123;
+        destbuf = data;
     &#125;
 &#125;
+
+LOGI(&quot;destbuf.length(): %d&quot;, destbuf.length());
 </code></pre>
-<h2 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h2><p><strong>非递归遍历</strong></p>
-<pre><code>void layerOrderTraverse(node* root)&#123;
-    queue&lt;node*&gt; q;
-    q.push(root);
-    while(!q.empty())&#123;
-        node*now=q.front();
-        q.pop();
-        cout&lt;&lt; now-&gt;data&lt;&lt;endl;
-        if(now-&gt;lchild!=nullptr)q.push(now-&gt;lchild);
-        if(now-&gt;rchild!=nullptr)q.push(now-&gt;rchild);
-    &#125;
-&#125;
-</code></pre>
-<h2 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h2><pre><code>void DFS(node* root)
-&#123;
-    Stack&lt;node*&gt; nodeStack;
-    nodeStack.push(root);
-    while(!nodeStack.empty())
-    &#123;
-        root=nodeStack.top();
-        printf(format, root-&gt;data);
-        nodeStack.pop();
-        if(root-&gt;rChild)
-        &#123;
-            nodeStack.push(root-&gt;rChild);
-        &#125;
-        if(root-&gt;lChild)
-        &#123;
-            nodeStack.push(root-&gt;lChild);
-        &#125;
-        
-    &#125;
-&#125;
-</code></pre>
+<p>压缩和解压缩算法即gzip压缩算法。压缩和解压缩的函数为zlib库的deflate（压缩）和inflate（解压缩）函数，在使用 zlib 的 deflate 函数进行压缩时，压缩完毕后要将压缩后的字节流末尾多余的4字节删掉，这是因为deflate函数在压缩后会将内容为00 00 ff ff的特殊标志放入压缩后的缓冲区中，这个<br>标志不是我们需要的正文内容。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3366576307@qq.com </span>
