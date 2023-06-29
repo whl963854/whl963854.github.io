@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>链接编译联编 | Hexo</title>
+  <title>常量变量 | Hexo</title>
   <meta name="keywords" content=" cpp ">
-  <meta name="description" content="链接编译联编 | Hexo">
+  <meta name="description" content="常量变量 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到！">
 <meta property="og:type" content="website">
@@ -2250,9 +2250,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-cpp/知识点/链接编译连编" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-cpp/知识点/常量_变量" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">链接编译联编</h1>
+        <h1 class="article-title">常量变量</h1>
     
     <div class="article-meta">
         
@@ -2277,12 +2277,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-04-21 22:30:06'>2022-08-08 11:21</time>
+            Created At : <time class="date" title='Updated At: 2023-06-29 21:38:41'>2023-06-29 12:39</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:1.1k</span>
+        <span>Count:1.9k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -2312,7 +2312,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E7%BC%96%E8%AF%91%E8%81%94%E7%BC%96"><span class="toc-text">链接编译联编</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8A%A8%E6%80%81%E7%BC%96%E8%AF%91%E4%B8%8E%E9%9D%99%E6%80%81%E7%BC%96%E8%AF%91"><span class="toc-text">1.动态编译与静态编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E7%BC%96%E8%AF%91"><span class="toc-text">静态编译</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E7%BC%96%E8%AF%91"><span class="toc-text">动态编译</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%92%8C%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E5%8C%BA%E5%88%AB"><span class="toc-text">2.动态链接和静态链接区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8A%A8%E6%80%81%E8%81%94%E7%BC%96%E4%B8%8E%E9%9D%99%E6%80%81%E8%81%94%E7%BC%96"><span class="toc-text">3.动态联编与静态联编</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E8%81%94%E7%BC%96%E4%B8%89%E4%B8%AA%E6%9D%A1%E4%BB%B6%EF%BC%9A"><span class="toc-text">实现动态联编三个条件：</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F%E5%8F%98%E9%87%8F"><span class="toc-text">常量变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#const-%E4%B8%8E-volatile"><span class="toc-text">const 与 volatile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84-const-%E7%94%A8%E6%B3%95"><span class="toc-text">基本的 const 用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E7%B1%BB%E7%9B%B8%E5%85%B3%E7%9A%84-const-%E7%94%A8%E6%B3%95"><span class="toc-text">与类相关的 const 用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97-mutable"><span class="toc-text">关键字 mutable</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -2328,12 +2328,63 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="链接编译联编"><a href="#链接编译联编" class="headerlink" title="链接编译联编"></a>链接编译联编</h2><h3 id="1-动态编译与静态编译"><a href="#1-动态编译与静态编译" class="headerlink" title="1.动态编译与静态编译"></a>1.动态编译与静态编译</h3><h3 id="静态编译"><a href="#静态编译" class="headerlink" title="静态编译"></a>静态编译</h3><p>编译器在编译可执⾏⽂件时，把需要⽤到的对应动态链接库中的部分提取出来，连接到可执⾏⽂件中去，使可执⾏⽂件在运⾏时不需要依赖于动态链接库；</p>
-<h4 id="动态编译"><a href="#动态编译" class="headerlink" title="动态编译"></a>动态编译</h4><p>可执⾏⽂件需要附带⼀个动态链接库，在执⾏时，需要调⽤其对应动态链接库的命令。所以其优点⼀⽅⾯是缩⼩了执⾏⽂件本身的体积，另⼀⽅⾯是加快了编译速度，节省了系统资源。缺点是哪怕是很简单的程序，只⽤到了链接库的⼀两条命令，也需要附带⼀个相对庞⼤的链接库；⼆是如果其他计算机上没有安装对应的运⾏库， 则⽤动态编译的可执⾏⽂件就不能运⾏。</p>
-<h3 id="2-动态链接和静态链接区别"><a href="#2-动态链接和静态链接区别" class="headerlink" title="2.动态链接和静态链接区别"></a>2.动态链接和静态链接区别</h3><p><strong>静态连接库</strong>就是把 (lib) ⽂件中⽤到的函数代码直接链接进⽬标程序，程序运⾏的时候不再需要其它的库⽂件；<br><strong>动态链接</strong>就是把调⽤的函数所在⽂件模块(DLL)和调⽤函数在⽂件中的位置等信息链接进⽬标程序，程序运⾏的时候 再从 DLL 中寻找相应函数代码，因此需要相应 DLL ⽂件的⽀持。</p>
-<p><strong>静态连接库</strong>与<strong>动态链接库</strong>都是共享代码的⽅式，如果采⽤静态链接库，则⽆论你愿不愿意，lib中的指令都全部被直接包含在最终⽣成的 EXE ⽂件中了。但是若使⽤ DLL，该 DLL 不必被包含在最终 EXE ⽂件中，EXE ⽂件执⾏时可以“动态”地引⽤和卸载这个与 EXE 独⽴的 DLL ⽂件。<br><strong>静态连接库</strong>和<strong>动态链接库</strong>的另外⼀个区别在于静态链接库中不能再<br>包含其他的动态链接库或者静态库，⽽在动态链接库中还可以再包含其他的动态或静态链接库。<br><strong>动态库</strong>就是在需要调⽤其中的函数时，根据函数映射表找到该函数然后调⼊堆栈执⾏。如果在当前⼯程中多处对 dll⽂件中同⼀个函数的调⽤，那么执⾏时，这个函数只会留下⼀份拷⻉。但如果有多处对lib⽂件中同⼀个函数的调⽤，那么执⾏时该函数将在当前程序的执⾏空间⾥留下多份拷⻉，⽽且是⼀处调⽤就产⽣⼀份拷⻉。</p>
-<h3 id="3-动态联编与静态联编"><a href="#3-动态联编与静态联编" class="headerlink" title="3.动态联编与静态联编"></a>3.动态联编与静态联编</h3><p>在 C++ 中，联编是指⼀个计算机程序的不同部分彼此关联的过程。按照联编所进⾏的阶段不同，可以分为静态联编和动态联编；<br><strong>静态联编</strong>是指联编⼯作在编译阶段完成的，这种联编过程是在程序运⾏之前完成⼜称为早期联编。要实现静态 联编，在编译阶段就必须确定程序中的操作调⽤（如函数调⽤）与执⾏该操作代码间的关系，确定这种关系称为束 定，在编译时的束定称为静态束定。静态联编对函数的选择是基于指向对象的指针或者引⽤的类型。其优点是效率⾼，但灵活性差。<br><strong>动态联编</strong>是指联编在程序运⾏时动态地进⾏，根据当时的情况来确定调⽤哪个同名函数，实际上是在运⾏时虚函数 的实现。这种联编⼜称为晚期联编，或动态束定。动态联编对成员函数的选择是基于对象的类型，针对不同的对象 类型将做出不同的编译结果。C++中⼀般情况下的联编是静态联编，但是当涉及到多态性和虚函数时应该使⽤动态联编。动态联编的优点是灵活性强，但效率低。动态联编规定，只能通过指向基类的指针或基类对象的引⽤来调⽤虚函数，其格式为：指向基类 的指针变量名-&gt;虚函数名（实参表）或基类对象的引⽤名.虚函数名（实参表）</p>
-<h4 id="实现动态联编三个条件："><a href="#实现动态联编三个条件：" class="headerlink" title="实现动态联编三个条件："></a>实现动态联编三个条件：</h4><p>1.必须把动态联编的⾏为定义为类的虚函数；<br>2.类之间应满⾜⼦类型关系，通常表现为⼀个类从另⼀个类公有派⽣⽽来；<br>3.必须先使⽤基类指针指向⼦类型的对象，然后直接或间接使⽤基类指针调⽤虚函数； </p>
+        <h1 id="常量变量"><a href="#常量变量" class="headerlink" title="常量变量"></a>常量变量</h1><h2 id="const-与-volatile"><a href="#const-与-volatile" class="headerlink" title="const 与 volatile"></a>const 与 volatile</h2><p>先来看 const 吧，正如它的字面含义，const表示“常量”。最简单的用法就是，定义程序用到的数字、字符串常量，代替宏定义。</p>
+<pre><code>const int MAX_LEN = 1024;
+const std::string NAME = &quot;metroid&quot;;
+</code></pre>
+<p>但如果我们从 C++ 程序的生命周期角度来看的话，就会发现，它和宏定义还是有本质区别的：const 定义的常量在预处理阶段并不存在，而是直到运行阶段才会出现。<br>所以，准确地说，它实际上是运行时的“变量”，只不过不允许修改，是“只读”的（read only），叫“只读变量”更合适。<br>既然它是“变量”，那么，使用指针获取地址，再“强制”写入也是可以的。但这种做法破坏了“常量性”，绝对不提倡。还要用到另外一个关键字 volatile。</p>
+<pre><code>// 需要加上volatile修饰，运行时才能看到效果
+const volatile int MAX_LEN = 1024;
+auto ptr = (int*)(&amp;MAX_LEN);
+*ptr = 2048;
+cout &lt;&lt; MAX_LEN &lt;&lt; endl; // 输出2048
+</code></pre>
+<p>这里加入volatile主要是让编译器不要对const常量进行优化，不要进行常量传播，在编译期把常量都换成具体内容导致只读变量内容更改也不影响后面引用只读常量的地方。</p>
+<p>现在就来看看 volatile 的作用。<br>它的含义是“不稳定的”“易变的”，在 C++ 里，表示变量的值可能会以“难以察觉”的方式被修改（比如操作系统信号、外界其他的代码），所以要禁止编译器做任何形式的优化，每次使用的时候都必须“老老实实”地去取值。现在，再去看刚才的那段示例代码，MAX_LEN 虽然是个“只读变量”，但加上了 volatile 修饰，就表示它不稳定，可能会悄悄地改变。编译器在生成二进制机器<br>码的时候，不会再去做那些可能有副作用的优化，而是用最“保守”的方式去使用MAX_LEN。<br>也就是说，编译器不会再把 MAX_LEN 替换为 1024，而是去内存里取值（而它已经通过指针被强制修改了）。所以，这段代码最后输出的是 2048，而不是最初的 1024。<br>const 理解成 read only（虽然是“只读”，但在运行阶段没有什么是不可以改变的，也可以强制写入），把变量标记成 const 可以让编译器做更好的优化。而 volatile 会禁止编译器做优化，所以除非必要，应当少用 volatile，</p>
+<h2 id="基本的-const-用法"><a href="#基本的-const-用法" class="headerlink" title="基本的 const 用法"></a>基本的 const 用法</h2><p>在 C++ 里，除了最基本的值类型，还有引用类型和指针类型，它们加上 const 就成了常量引用和常量指针</p>
+<pre><code>int x = 100;
+const int&amp; rx = x;
+const int* px = &amp;x;
+</code></pre>
+<p>const &amp; 被称为万能引用，它可以引用任何类型，即不管是值、指针、左引用还是右引用，它都能“照单全收”。<br>而且，它还会给变量附加上 const 特性，这样“变量”就成了“常量”，只能读、禁止写。编译器会帮你检查出所有对它的写操作，发出警告，在编译阶段防止有意或者无意的修改。这样一来，const 常量用起来就非常安全了。因此，在设计函数的时候，尽可能地使用它作为入口参数，一来保证效率，二来保证安全。<br>const 用于指针的情况会略微复杂一点。常见的用法是，const 放在声明的最左边，表示指向常量的指针。这个其实很好理解，指针指向的是一个“只读变量”，不允许修改：</p>
+<pre><code>string name = &quot;uncharted&quot;;
+const string* ps1 = &amp;name; // 指向常量
+*ps1 = &quot;spiderman&quot;; // 错误，不允许修改
+</code></pre>
+<p>另外一种比较“恶心”的用法是，const 在“*”的右边，表示指针不能被修改，而指向的变量可以被修改：</p>
+<pre><code>string* const ps2 = &amp;name; // 指向变量，但指针本身不能被修改
+*ps2 = &quot;spiderman&quot;; // 正确，允许修改
+</code></pre>
+<p>再进一步，那就是“*”两边都有 const，你看看是什么意思呢：</p>
+<pre><code>const string* const ps3 = &amp;name;
+</code></pre>
+<p>这是一个指针常量，指向一个常量。</p>
+<h2 id="与类相关的-const-用法"><a href="#与类相关的-const-用法" class="headerlink" title="与类相关的 const 用法"></a>与类相关的 const 用法</h2><p>刚才说的 const 用法都是面向过程的，在面向对象里，const 也很有用。</p>
+<pre><code>class DemoClass final &#123;
+private:
+    const long MAX_SIZE = 256; // const成员变量
+    int m_value; // 成员变量
+public:
+    int get_value() const // const成员函数
+    &#123;
+        return m_value;
+    &#125;
+&#125;;
+</code></pre>
+<p>这里 const 的用法有点特别。它被放在了函数的后面，表示这个函数是一个“常量”。（如果在前面，就代表返回值是 const int）<br>“const 成员函数”的意思并不是说函数不可修改。实际上，在 C++ 里，函数并不是变量（lambda 表达式除外），所以，“只读”对于函数来说没有任何意义。它的真正含义是：函数的执行过程是 const 的，不会修改对象的状态（即成员变量），也就是说，成员函数是一个“只读操作”。通过将成员函数标记为const，我们向使用该函数的调用者承诺，该函数不会对对象的状态进行修改。这样做的好处是可以增加代码的可读性和安全性。调用者可以在使用对象时更加放心，因为他们知道通过调用const成员函数，不会意外地修改对象的状态。</p>
+<p>因为“常量引用”“常量指针”关联的对象是只读、不可修改的，那么也就意味着，对它的任何操作也应该是只读、不可修改的，否则就无法保证它的安全性。所以，编译器会检查const 对象相关的代码，如果成员函数不是 const，就不允许调用。<br>这其实也是对“常量”语义的一个自然延伸，既然对象是 const，那么它所有的相关操作也必然是 const。同样，保证了安全之后，编译器确认对象不会变，也可以去做更好的优化。</p>
+<p><a target="_blank" rel="noopener" href="https://s1.ax1x.com/2023/06/29/pCwW8aD.md.png">pCwW8aD.md.png</a></p>
+<h2 id="关键字-mutable"><a href="#关键字-mutable" class="headerlink" title="关键字 mutable"></a>关键字 mutable</h2><p>mutable 与 volatile 的字面含义有点像，但用法、效果却大相径庭。volatile 可以用来修饰任何变量，而 mutable 却只能修饰类里面的成员变量，表示变量即使是在 const 对象里，也是可以修改的。标记为 mutable 的成员不会改变对象的状态，也就是不影响对象的常量性，所以允许 const 成员函数改写 mutable 成员变量。<br>mutable 像是 C++ 给 const 对象打的一个“补丁”，让它部分可变。因为对象与普通的 int、double 不同，内部会有很多成员变量来表示状态，但因为“封装”特性，外界只能看到一部分状态，判断对象是否 const 应该由这些外部可观测的状态特征来决定。<br>比如说，对象内部用到了一个 mutex 来保证线程安全，或者有一个缓冲区来暂存数据，再或者有一个原子变量做引用计数……这些属于内部的私有实现细节，外面看不到，变与不变不会改变外界看到的常量性。这时，如果 const 成员函数不允许修改它们，就有点说不过去了。<br>所以，对于这些有特殊作用的成员变量，你可以给它加上 mutable 修饰，解除 const 的限制，让任何成员函数都可以操作它。</p>
+<pre><code>class DemoClass final &#123;
+private:
+    mutable mutex_type m_mutex; // mutable成员变量
+public:
+    void save_data() const // const成员函数
+    &#123;
+        // do someting with m_mutex
+    &#125;
+&#125;;
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3366576307@qq.com </span>

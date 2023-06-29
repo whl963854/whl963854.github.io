@@ -154,7 +154,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(185)</small>
+                <small>(186)</small>
             
         </div>
     </li>
@@ -305,7 +305,7 @@
                     <div data-rel="cpp">
                         
                         cpp
-                        <small>(71)</small>
+                        <small>(72)</small>
                         
                     </div>
                     
@@ -395,8 +395,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="185">
-<input type="hidden" id="yelog_site_word_count" value="304.9k">
+<input type="hidden" id="yelog_site_posts_number" value="186">
+<input type="hidden" id="yelog_site_word_count" value="307.2k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -557,6 +557,15 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All cpp "
+           href="/p/c082d8df.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="常量变量">常量变量</span>
+            <span class="post-date" title="2023-06-29 12:39:09">2023/06/29</span>
+        </a>
         
         
         <a  class="All cpp "
@@ -2268,7 +2277,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-06-28 22:10:35'>2023-04-02 20:20</time>
+            Created At : <time class="date" title='Updated At: 2023-06-28 22:17:04'>2023-04-02 20:20</time>
         
     </div>
     <div class="article-meta">
@@ -2461,7 +2470,7 @@ END_NAMESPACE(my_own)
 <h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>编译是预处理之后的阶段，它的输入是（经过预处理的）C++ 源码，输出是二进制可执行文件（也可能是汇编文件、动态库或者静态库）。这个处理动作就是由编译器来执行的。和预处理阶段一样，在这里你也可以“面向编译器编程”，用一些指令或者关键字让编译器按照你的想法去做一些事情。只不过，这时你要面对的是庞大的 C++ 语法，而不是简单的文本替换，难度可以说是高了好几个数量级。编译只是把我们写的代码转为汇编代码，它的工作是检查词法和语法规则，所以，如果程序没有词法或则语法错误，那么不管逻辑是怎样错误的，都不会报错。<br>编译不是指程序从源文件到二进制程序的全部过程，而是指将经过预处理之后的程序转换成特定汇编代码(assembly code)的过程。</p>
 <pre><code>$ gcc -S -I./inc main.cpp -o main.s
 </code></pre>
-<p>上述命令中-S让编译器在编译之后停止，不进行后续过程。编译过程完成后，将生成程序的汇编代码test.s，这也是文本文件<br>编译过程可以使用注解标签或者静态断言，注解标签我们已经介绍过，可以左侧导航栏搜索参考。下面主要介绍静态断言。</p>
+<p>上述命令中-S让编译器在编译之后停止，不进行后续过程。编译过程完成后，将生成程序的汇编代码test.s，这也是文本文件<br>编译过程可以使用注解标签或者静态断言，<a target="_blank" rel="noopener" href="https://whl963854.github.io/p/acd745d4.html">注解标签</a>我们已经介绍过，可以左侧导航栏搜索参考。下面主要介绍静态断言。</p>
 <h3 id="静态断言（static-assert）"><a href="#静态断言（static-assert）" class="headerlink" title="静态断言（static_assert）"></a>静态断言（static_assert）</h3><p>“属性”像是给编译器的一个”提示”或”告知”，无法进行计算，还算不上是编程。而静态断言（static_assert），则更接近编程的范畴。</p>
 <p>你可能使用过 assert，它用来断言一个表达式必定为真。比如说，数字必须是正数，指针必须非空、函数必须返回 true：</p>
 <pre><code class="cpp">assert(i &gt; 0 &amp;&amp; &quot;i must be greater than zero&quot;);

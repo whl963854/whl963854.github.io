@@ -154,7 +154,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(185)</small>
+                <small>(186)</small>
             
         </div>
     </li>
@@ -305,7 +305,7 @@
                     <div data-rel="cpp">
                         
                         cpp
-                        <small>(71)</small>
+                        <small>(72)</small>
                         
                     </div>
                     
@@ -395,8 +395,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="185">
-<input type="hidden" id="yelog_site_word_count" value="304.9k">
+<input type="hidden" id="yelog_site_posts_number" value="186">
+<input type="hidden" id="yelog_site_word_count" value="307.2k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -557,6 +557,15 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All cpp "
+           href="/p/c082d8df.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="常量变量">常量变量</span>
+            <span class="post-date" title="2023-06-29 12:39:09">2023/06/29</span>
+        </a>
         
         
         <a  class="All cpp "
@@ -2268,12 +2277,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-06-08 16:27:55'>2022-10-02 19:53</time>
+            Created At : <time class="date" title='Updated At: 2023-06-29 22:04:42'>2022-10-02 19:53</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:1.4k</span>
+        <span>Count:1.7k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -2323,7 +2332,7 @@
 <pre><code>#include &lt;memory&gt;
 using namespace std;
 </code></pre>
-<p>unique_ptr是一个只移型别，</p>
+<p>unique_ptr是一个只移型别。</p>
 <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>通过以下  2 种方式，可以创建出空的 unique_ptr 指针：</p>
 <pre><code>std::unique_ptr&lt;int&gt; p1();
 std::unique_ptr&lt;int&gt; p2(nullptr);
@@ -2331,7 +2340,20 @@ std::unique_ptr&lt;int&gt; p2(nullptr);
 <p>创建 unique_ptr 指针的同时，也可以明确其指向。例如：</p>
 <pre><code>std::unique_ptr&lt;int&gt; p3(new int);
 </code></pre>
-<p>由此就创建出了一个 p3 智能指针，其指向的是可容纳 1 个整数的堆存储空间。和可以用 make_shared<T>() 模板函数初始化 shared_ptr 指针不同，C++11 标准中并没有为 unique_ptr 类型指针添加类似的模板函数。</T></p>
+<p>由此就创建出了一个 p3 智能指针，其指向的是可容纳 1 个整数的堆存储空间。和可以用 make_shared<T>() 模板函数初始化 shared_ptr 指针不同，C++11 标准中并没有为 unique_ptr 类型指针添加类似的模板函数（后续c++14有了）。未初始化的 unique_ptr 表示空指针，这样就相当于直接操作了空指针，运行时就会产生致命的错误（比如 core dump）。为了避免这种低级错误，可以调用工厂函数 make_unique()，强制创建智能指针的时候必须初始化。</T></p>
+<p>如果使用的c++11也可以简单实现该函数，并不是很复杂：</p>
+<pre><code class="cpp">template&lt;class T, class... Args&gt;
+std::unique_ptr&lt;T&gt; my_make_unique(Args&amp;&amp;... args)
+&#123;
+    return std::unique_ptr&lt;T&gt;(new T(std::forward&lt;Args&gt;(args)...));
+&#125;
+</code></pre>
+<p>上述代码是一个简化版的<code>make_unique()</code>函数的实现，适用于C++11标准。它使用了可变参数模板和完美转发来构造一个<code>std::unique_ptr</code>对象并返回。</p>
+<p>使用该函数可以替代C++14中引入的<code>make_unique()</code>函数，用于创建动态分配的对象的智能指针。</p>
+<p>示例用法：</p>
+<pre><code class="cpp">auto ptr = my_make_unique&lt;MyClass&gt;(arg1, arg2, arg3);
+</code></pre>
+<p>C++14及更高版本已经提供了标准的<code>make_unique()</code>函数，无需手动实现。上述代码只适用于C++11标准下不支持<code>make_unique()</code>的情况下使用。</p>
 <p>std::unique_ptr 不允许复制，但是可以通过函数返回给其他的 std::unique_ptr，还可以通过 std::move 来转译给其他的 std::unique_ptr，这样原始指针的所有权就被转移了，这个原始指针还是被独占的。</p>
 <p>unique_ptr 独占智能指针类也有一个 reset 方法，函数原型如下：</p>
 <pre><code>void reset( pointer ptr = pointer() ) noexcept;
