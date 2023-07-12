@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>set/multiset | Hexo</title>
-  <meta name="keywords" content=" STL ">
-  <meta name="description" content="set/multiset | Hexo">
+  <title>zorm学习 | Hexo</title>
+  <meta name="keywords" content=" go ">
+  <meta name="description" content="zorm学习 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到！">
 <meta property="og:type" content="website">
@@ -2465,9 +2465,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-cpp/hj/zSTL/set" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Go/zorm" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">set/multiset</h1>
+        <h1 class="article-title">zorm学习</h1>
     
     <div class="article-meta">
         
@@ -2477,7 +2477,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="cpp">cpp</a>
+            <a  data-rel="go">go</a>
             
         </span>
         
@@ -2485,19 +2485,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">STL</a>
+            <a class="color3">go</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-07-09 17:09:24'>2023-07-11 22:27</time>
+            Created At : <time class="date" title='Updated At: 2023-07-12 14:52:25'>2023-07-11 22:27</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:1.6k</span>
+        <span>Count:746</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -2527,7 +2527,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#set-x2F-multiset-%E5%AE%B9%E5%99%A8"><span class="toc-text">set&#x2F; multiset 容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#set%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">set基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="toc-text">简介：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E8%B4%A8%EF%BC%9A"><span class="toc-text">本质：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#set%E5%92%8Cmultiset%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-text">set和multiset区别：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set%E6%9E%84%E9%80%A0%E5%92%8C%E8%B5%8B%E5%80%BC"><span class="toc-text">set构造和赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%EF%BC%9A"><span class="toc-text">构造：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC%EF%BC%9A"><span class="toc-text">赋值：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="toc-text">示例：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set%E5%A4%A7%E5%B0%8F%E5%92%8C%E4%BA%A4%E6%8D%A2"><span class="toc-text">set大小和交换</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-1"><span class="toc-text">示例：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-4-set%E6%8F%92%E5%85%A5%E5%92%8C%E5%88%A0%E9%99%A4"><span class="toc-text">3.8.4 set插入和删除</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-2"><span class="toc-text">示例：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set%E6%9F%A5%E6%89%BE%E5%92%8C%E7%BB%9F%E8%AE%A1"><span class="toc-text">set查找和统计</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-3"><span class="toc-text">示例：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set%E5%92%8Cmultiset%E5%8C%BA%E5%88%AB"><span class="toc-text">set和multiset区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-text">区别：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-4"><span class="toc-text">示例：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">总结：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pair%E5%AF%B9%E7%BB%84%E5%88%9B%E5%BB%BA"><span class="toc-text">pair对组创建</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-text">两种创建方式：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set%E5%AE%B9%E5%99%A8%E6%8E%92%E5%BA%8F"><span class="toc-text">set容器排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%B8%80-set%E5%AD%98%E6%94%BE%E5%86%85%E7%BD%AE%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">示例一 set存放内置数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E5%88%A9%E7%94%A8%E4%BB%BF%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E6%8C%87%E5%AE%9Aset%E5%AE%B9%E5%99%A8%E7%9A%84%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99"><span class="toc-text">总结：利用仿函数可以指定set容器的排序规则</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BA%8C-set%E5%AD%98%E6%94%BE%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">示例二 set存放自定义数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-1"><span class="toc-text">总结：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#zorm%E5%AD%A6%E4%B9%A0"><span class="toc-text">zorm学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-text">文件结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#structFieldInfo"><span class="toc-text">structFieldInfo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IEntity"><span class="toc-text">IEntity</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -2543,340 +2543,105 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="set-x2F-multiset-容器"><a href="#set-x2F-multiset-容器" class="headerlink" title="set&#x2F; multiset 容器"></a>set&#x2F; multiset 容器</h1><h2 id="set基本概念"><a href="#set基本概念" class="headerlink" title="set基本概念"></a>set基本概念</h2><h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><p>所有元素都会在插入时自动被排序</p>
-<h3 id="本质："><a href="#本质：" class="headerlink" title="本质："></a>本质：</h3><p>set&#x2F;multiset属于关联式容器，底层结构是用二叉树实现。</p>
-<h3 id="set和multiset区别："><a href="#set和multiset区别：" class="headerlink" title="set和multiset区别："></a>set和multiset区别：</h3><ul>
-<li>set不允许容器中有重复的元素</li>
-<li>multiset允许容器中有重复的元素</li>
-</ul>
-<h2 id="set构造和赋值"><a href="#set构造和赋值" class="headerlink" title="set构造和赋值"></a>set构造和赋值</h2><h3 id="构造："><a href="#构造：" class="headerlink" title="构造："></a>构造：</h3><ul>
-<li><p>set<T> st; &#x2F;&#x2F;默认构造函数：</T></p>
+        <h1 id="zorm学习"><a href="#zorm学习" class="headerlink" title="zorm学习"></a>zorm学习</h1><h2 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h2><h3 id="structFieldInfo"><a href="#structFieldInfo" class="headerlink" title="structFieldInfo"></a>structFieldInfo</h3><ul>
+<li><p>exportStructFieldMap :&#x3D; make(map[string]reflect.StructField)</p>
 </li>
-<li><p>set(const set &amp;st); &#x2F;&#x2F;拷贝构造函数</p>
+<li><p>privateStructFieldMap :&#x3D; make(map[string]reflect.StructField)</p>
+</li>
+<li><p>dbColumnFieldMap :&#x3D; make(map[string]reflect.StructField)</p>
+</li>
+<li><p>structFieldTagMap :&#x3D; make(map[string]string)</p>
+</li>
+<li><p>dbColumnFieldNameSlice :&#x3D; make([]string, 0)</p>
+</li>
+<li><p>cacheStructFieldInfoMap.Store(exportCacheKey, exportStructFieldMap)                —exportCacheKey</p>
+</li>
+<li><p>cacheStructFieldInfoMap.Store(privateCacheKey, privateStructFieldMap)              —privateCacheKey</p>
+</li>
+<li><p>cacheStructFieldInfoMap.Store(dbColumnCacheKey, dbColumnFieldMap)                  —dbColumnCacheKey</p>
+</li>
+<li><p>cacheStructFieldInfoMap.Store(structFieldTagCacheKey, structFieldTagMap)           —structFieldTagCacheKey</p>
+</li>
+<li><p>cacheStructFieldInfoMap.Store(dbColumnNameSliceCacheKey, dbColumnFieldNameSlice)   —dbColumnNameSliceCacheKey</p>
 </li>
 </ul>
-<h3 id="赋值："><a href="#赋值：" class="headerlink" title="赋值："></a>赋值：</h3><ul>
-<li>set&amp; operator&#x3D;(const set &amp;st); &#x2F;&#x2F;重载等号操作符</li>
-</ul>
-<h5 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h5><pre><code>#include &lt;set&gt;
-void printSet(set&lt;int&gt; &amp; s)
-&#123;
-    for (set&lt;int&gt;::iterator it = s.begin(); it != s.end(); it++)
-    &#123;
-        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
-    &#125;
-        cout &lt;&lt; endl;
-    &#125;
-&#125;
-//构造和赋值
-void test01()
-&#123;
-    set&lt;int&gt; s1;
-    s1.insert( 10 );
-    s1.insert( 30 );
-    s1.insert( 20 );
-    s1.insert( 40 );
-    printSet(s1);
-    //拷贝构造
-    set&lt;int&gt;s2(s1);
-    printSet(s2);
-    //赋值
-    set&lt;int&gt;s3;
-    s3 = s2;
-    printSet(s3);
-&#125;
-int main() &#123;
-    test01();
-    system(&quot;pause&quot;);
-    return 0 ;
-&#125;
-</code></pre>
-<p>总结：</p>
 <ul>
-<li>set容器插入数据时用insert</li>
-<li>set容器插入数据的数据会自动排序</li>
+<li><p>func structFieldInfo(typeOf *reflect.Type) error</p>
+</li>
+<li><p>根据传入的结构体类型，获取该结构体的字段信息，并将其缓存起来，以提高后续的性能</p>
+</li>
+<li><p>func getCacheStructFieldInfo(typeOf *reflect.Type, keyPrefix string) (*interface{}, error)</p>
+</li>
+<li><p>从缓存中获取结构体字段信息，如果缓存中不存在，则通过调用 structFieldInfo 函数来获取并存入缓存</p>
+</li>
+<li><p>func getCacheStructFieldInfoMap(typeOf *reflect.Type, keyPrefix string) (*map[string]reflect.StructField, error) </p>
+</li>
+<li><p>获取对应的几个Map比如exportStructFieldMap，privateStructFieldMap</p>
+</li>
+<li><p>func getDBColumnFieldMap(typeOf *reflect.Type) (*map[string]reflect.StructField, error)</p>
+</li>
+<li><p>获取dbColumnFieldMap</p>
+</li>
+<li><p>func setFieldValueByColumnName(entity interface{}, columnName string, value interface{}) error</p>
+</li>
+<li><p>根据column名字给field赋值value</p>
+</li>
+<li><p>func getDBColumnFieldNameSlice(typeOf <em>reflect.Type) (</em>[]string, error)</p>
+</li>
+<li><p>获取dbColumnFieldNameSlice</p>
+</li>
+<li><p>func getStructFieldTagMap(typeOf *reflect.Type) (*map[string]string, error)</p>
+</li>
+<li><p>获取structFieldTagMap</p>
+</li>
+<li><p>func entityPKFieldName(entity IEntityStruct, typeOf *reflect.Type) (string, error)</p>
+</li>
+<li><p>获取实体类主键属性名称</p>
+</li>
+<li><p>func checkEntityKind(entity interface{}) (*reflect.Type, error)</p>
+</li>
+<li><p>检查entity类型必须是*struct类型或者基础类型的指针</p>
+</li>
 </ul>
-<h2 id="set大小和交换"><a href="#set大小和交换" class="headerlink" title="set大小和交换"></a>set大小和交换</h2><ul>
-<li>size(); &#x2F;&#x2F;返回容器中元素的数目</li>
-<li>empty(); &#x2F;&#x2F;判断容器是否为空</li>
-<li>swap(st); &#x2F;&#x2F;交换两个集合容器</li>
+<h3 id="IEntity"><a href="#IEntity" class="headerlink" title="IEntity"></a>IEntity</h3><ul>
+<li><p><code>IEntityStruct</code>：struct实体类的接口，定义了实体类必须实现的方法。</p>
+<ul>
+<li><code>GetTableName() string</code>：获取表名称的方法。</li>
+<li><code>GetPKColumnName() string</code>：获取数据库表的主键字段名称的方法。</li>
+<li><code>GetPkSequence() string</code>：获取主键序列的方法。</li>
+<li><code>GetDefaultValueMap() map[string]interface&#123;&#125;</code>：获取列的默认值Map的方法。</li>
 </ul>
-<h5 id="示例：-1"><a href="#示例：-1" class="headerlink" title="示例："></a>示例：</h5><pre><code>#include &lt;set&gt;
-void printSet(set&lt;int&gt; &amp; s)
-&#123;
-    for (set&lt;int&gt;::iterator it = s.begin(); it != s.end(); it++)
-    &#123;
-        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
-    &#125;
-    cout &lt;&lt; endl;
-&#125;
-//大小
-void test01()
-&#123;
-    set&lt;int&gt; s1;
-    s1.insert( 10 );
-    s1.insert( 30 );
-    s1.insert( 20 );
-    s1.insert( 40 );
-    if (s1.empty())
-    &#123;
-        cout &lt;&lt; &quot;s1为空&quot; &lt;&lt; endl;
-    &#125;
-    else
-    &#123;
-        cout &lt;&lt; &quot;s1不为空&quot; &lt;&lt; endl;
-        cout &lt;&lt; &quot;s1的大小为： &quot; &lt;&lt; s1.size() &lt;&lt; endl;
-    &#125;
-&#125;
-//交换
-void test02()
-&#123;
-    set&lt;int&gt; s1;
-    s1.insert( 10 );
-    s1.insert( 30 );
-    s1.insert( 20 );
-    s1.insert( 40 );
-    set&lt;int&gt; s2;
-    s2.insert( 100 );
-    s2.insert( 300 );
-    s2.insert( 200 );
-    s2.insert( 400 );
-    cout &lt;&lt; &quot;交换前&quot; &lt;&lt; endl;
-    printSet(s1);
-    printSet(s2);
-    cout &lt;&lt; endl;
-    cout &lt;&lt; &quot;交换后&quot; &lt;&lt; endl;
-    s1.swap(s2);
-    printSet(s1);
-    printSet(s2);
-&#125;
-int main() &#123;
-    //test01();
-    test02();
-    system(&quot;pause&quot;);
-    return 0 ;
-&#125;
-</code></pre>
-<h4 id="3-8-4-set插入和删除"><a href="#3-8-4-set插入和删除" class="headerlink" title="3.8.4 set插入和删除"></a>3.8.4 set插入和删除</h4><ul>
-<li>insert(elem); &#x2F;&#x2F;在容器中插入元素。</li>
-<li>clear(); &#x2F;&#x2F;清除所有元素</li>
-<li>erase(pos); &#x2F;&#x2F;删除pos迭代器所指的元素，返回下一个元素的迭代器。</li>
-<li>erase(beg, end); &#x2F;&#x2F;删除区间[beg,end)的所有元素 ，返回下一个元素的迭代器。</li>
-<li>erase(elem); &#x2F;&#x2F;删除容器中值为elem的元素。</li>
+</li>
+<li><p><code>IEntityMap</code>：使用Map保存数据的接口，用于不方便使用struct的场景。</p>
+<ul>
+<li><code>GetTableName() string</code>：获取表名称的方法。</li>
+<li><code>GetPKColumnName() string</code>：获取数据库表的主键字段名称的方法。</li>
+<li><code>GetEntityMapPkSequence() string</code>：获取主键序列的方法。</li>
+<li><code>GetDBFieldMap() map[string]interface&#123;&#125;</code>：获取数据库字段Map的方法。</li>
+<li><code>GetDBFieldMapKey() []string</code>：按照Set的先后顺序记录数据库字段的方法。</li>
+<li><code>Set(key string, value interface&#123;&#125;) map[string]interface&#123;&#125;</code>：设置数据库字段的值的方法。</li>
 </ul>
-<h5 id="示例：-2"><a href="#示例：-2" class="headerlink" title="示例："></a>示例：</h5><pre><code>#include &lt;set&gt;
-void printSet(set&lt;int&gt; &amp; s)
-&#123;
-    for (set&lt;int&gt;::iterator it = s.begin(); it != s.end(); it++)
-    &#123;
-    cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
-    &#125;
-    cout &lt;&lt; endl;
-&#125;
-//插入和删除
-void test01()
-&#123;
-    set&lt;int&gt; s1;
-    //插入
-    s1.insert( 10 );
-    s1.insert( 30 );
-    s1.insert( 20 );
-    s1.insert( 40 );
-    printSet(s1);
-    //删除
-    s1.erase(s1.begin());
-    printSet(s1);
-    s1.erase( 30 );
-    printSet(s1);
-    //清空
-    //s1.erase(s1.begin(), s1.end());
-    s1.clear();
-    printSet(s1);
-&#125;
-int main() &#123;
-    test01();
-    system(&quot;pause&quot;);
-    return 0 ;
-&#125;
-</code></pre>
-<h2 id="set查找和统计"><a href="#set查找和统计" class="headerlink" title="set查找和统计"></a>set查找和统计</h2><ul>
-<li>find(key); &#x2F;&#x2F;查找key是否存在,若存在，返回该键的元素的迭代器；若不存在，返回set.end();</li>
-<li>count(key); &#x2F;&#x2F;统计key的元素个数</li>
+</li>
+<li><p><code>EntityStruct</code>：<code>IEntityStruct</code>接口的基础实现，用于所有的实体类匿名注入，类似实现继承。</p>
+<ul>
+<li><code>GetPKColumnName() string</code>：获取数据库表的主键字段名称的方法的实现。</li>
+<li><code>GetPkSequence() string</code>：获取主键序列的方法的实现。</li>
+<li><code>GetDefaultValueMap() map[string]interface&#123;&#125;</code>：获取列的默认值Map的方法的实现。</li>
 </ul>
-<h5 id="示例：-3"><a href="#示例：-3" class="headerlink" title="示例："></a>示例：</h5><pre><code>#include &lt;set&gt;
-void test01()
-&#123;
-    set&lt;int&gt; s1;
-    //插入
-    s1.insert( 10 );
-    s1.insert( 30 );
-    s1.insert( 20 );
-    s1.insert( 40 );
-    //查找
-    set&lt;int&gt;::iterator pos = s1.find( 30 );
-    if (pos != s1.end())
-    &#123;
-        cout &lt;&lt; &quot;找到了元素 ： &quot; &lt;&lt; *pos &lt;&lt; endl;
-    &#125;
-    else
-    &#123;
-        cout &lt;&lt; &quot;未找到元素&quot; &lt;&lt; endl;
-    &#125;
-    //统计
-    int num = s1.count( 30 );
-    cout &lt;&lt; &quot;num = &quot; &lt;&lt; num &lt;&lt; endl;
-&#125;
-int main() &#123;
-    test01();
-    system(&quot;pause&quot;);
-    return 0 ;
-&#125;
-</code></pre>
-<h2 id="set和multiset区别"><a href="#set和multiset区别" class="headerlink" title="set和multiset区别"></a>set和multiset区别</h2><h3 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h3><ul>
-<li>set不可以插入重复数据，而multiset可以</li>
-<li>set插入数据的同时会返回插入结果，表示插入是否成功</li>
-<li>multiset不会检测数据，因此可以插入重复数据</li>
+</li>
+<li><p><code>EntityMap</code>：<code>IEntityMap</code>接口的基础实现，可以直接使用或匿名注入。</p>
+<ul>
+<li><code>NewEntityMap(tbName string) *EntityMap</code>：初始化<code>EntityMap</code>的函数，需要传入表名称。</li>
+<li><code>GetTableName() string</code>：获取表名称的方法的实现。</li>
+<li><code>GetPKColumnName() string</code>：获取数据库表的主键字段名称的方法的实现。</li>
+<li><code>GetEntityMapPkSequence() string</code>：获取主键序列的方法的实现。</li>
+<li><code>GetDBFieldMap() map[string]interface&#123;&#125;</code>：获取数据库字段Map的方法的实现。</li>
+<li><code>GetDBFieldMapKey() []string</code>：按照Set的先后顺序记录数据库字段的方法的实现。</li>
+<li><code>Set(key string, value interface&#123;&#125;) map[string]interface&#123;&#125;</code>：设置数据库字段的值的方法的实现。</li>
+<li><code>MarshalJSON() ([]byte, error)</code>：将<code>EntityMap</code>对象转换为JSON格式的方法。</li>
+<li><code>UnmarshalJSON(data []byte) error</code>：将JSON格式的数据解析为<code>EntityMap</code>对象的方法。</li>
 </ul>
-<h5 id="示例：-4"><a href="#示例：-4" class="headerlink" title="示例："></a>示例：</h5><pre><code>#include &lt;set&gt;
-//set和multiset区别
-void test01()
-&#123;
-    set&lt;int&gt; s;
-    pair&lt;set&lt;int&gt;::iterator, bool&gt; ret = s.insert( 10 );
-    if (ret.second) &#123;
-        cout &lt;&lt; &quot;第一次插入成功!&quot; &lt;&lt; endl;
-    &#125;
-    else &#123;
-        pair&lt;type, type&gt; p ( value1, value2 );
-        pair&lt;type, type&gt; p = make_pair( value1, value2 );
-        cout &lt;&lt; &quot;第一次插入失败!&quot; &lt;&lt; endl;
-    &#125;
-    ret = s.insert( 10 );
-    if (ret.second) &#123;
-        cout &lt;&lt; &quot;第二次插入成功!&quot; &lt;&lt; endl;
-    &#125;
-    else &#123;
-        cout &lt;&lt; &quot;第二次插入失败!&quot; &lt;&lt; endl;
-    &#125;
-    //multiset
-    multiset&lt;int&gt; ms;
-    ms.insert( 10 );
-    ms.insert( 10 );
-    for (multiset&lt;int&gt;::iterator it = ms.begin(); it != ms.end(); it++) &#123;
-        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
-    &#125;
-    cout &lt;&lt; endl;
-&#125;
-int main() &#123;
-    test01();
-    system(&quot;pause&quot;);
-    return 0 ;
-&#125;
-</code></pre>
-<h5 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h5><ul>
-<li>如果不允许插入重复数据可以利用set</li>
-<li>如果需要插入重复数据利用multiset</li>
-</ul>
-<h2 id="pair对组创建"><a href="#pair对组创建" class="headerlink" title="pair对组创建"></a>pair对组创建</h2><h5 id="两种创建方式："><a href="#两种创建方式：" class="headerlink" title="两种创建方式："></a>两种创建方式：</h5><pre><code>#include &lt;string&gt;
-//对组创建
-void test01()
-&#123;
-    pair&lt;string, int&gt; p(string(&quot;Tom&quot;), 20 );
-    cout &lt;&lt; &quot;姓名： &quot; &lt;&lt; p.first &lt;&lt; &quot; 年龄： &quot; &lt;&lt; p.second &lt;&lt; endl;
-    pair&lt;string, int&gt; p2 = make_pair(&quot;Jerry&quot;, 10 );
-    cout &lt;&lt; &quot;姓名： &quot; &lt;&lt; p2.first &lt;&lt; &quot; 年龄： &quot; &lt;&lt; p2.second &lt;&lt; endl;
-&#125;
-int main() &#123;
-    test01();
-    system(&quot;pause&quot;);
-    return 0 ;
-&#125;
-</code></pre>
-<h2 id="set容器排序"><a href="#set容器排序" class="headerlink" title="set容器排序"></a>set容器排序</h2><h3 id="示例一-set存放内置数据类型"><a href="#示例一-set存放内置数据类型" class="headerlink" title="示例一 set存放内置数据类型"></a>示例一 set存放内置数据类型</h3><pre><code>#include &lt;set&gt;
-class MyCompare
-&#123;
-public:
-    bool operator()(int v1, int v2) &#123;
-        return v1 &gt; v2;
-    &#125;
-&#125;;
-void test01()
-&#123;
-    set&lt;int&gt; s1;
-    s1.insert( 10 );
-    s1.insert( 40 );
-    s1.insert( 20 );
-    s1.insert( 30 );
-    s1.insert( 50 );
-    //默认从小到大
-    for (set&lt;int&gt;::iterator it = s1.begin(); it != s1.end(); it++) &#123;
-        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
-    &#125;
-    cout &lt;&lt; endl;
-    //指定排序规则
-    set&lt;int,MyCompare&gt; s2;
-    s2.insert( 10 );
-    s2.insert( 40 );
-    s2.insert( 20 );
-    s2.insert( 30 );
-    s2.insert( 50 );
-    for (set&lt;int, MyCompare&gt;::iterator it = s2.begin(); it != s2.end(); it++) &#123;
-        cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
-    &#125;
-    cout &lt;&lt; endl;
-&#125;
-int main() &#123;
-    test01();
-    system(&quot;pause&quot;);
-    return 0 ;
-&#125;
-</code></pre>
-<h5 id="总结：利用仿函数可以指定set容器的排序规则"><a href="#总结：利用仿函数可以指定set容器的排序规则" class="headerlink" title="总结：利用仿函数可以指定set容器的排序规则"></a>总结：利用仿函数可以指定set容器的排序规则</h5><h3 id="示例二-set存放自定义数据类型"><a href="#示例二-set存放自定义数据类型" class="headerlink" title="示例二 set存放自定义数据类型"></a>示例二 set存放自定义数据类型</h3><pre><code>#include &lt;set&gt;
-#include &lt;string&gt;
-class Person
-&#123;
-public:
-    Person(string name, int age)
-    &#123;
-        this-&gt;m_Name = name;
-        this-&gt;m_Age = age;
-    &#125;
-    string m_Name;
-    int m_Age;
-&#125;;
-class comparePerson
-&#123;
-public:
-    bool operator()(const Person&amp; p1, const Person &amp;p2)
-    &#123;
-        //按照年龄进行排序 降序
-        return p1.m_Age &gt; p2.m_Age;
-    &#125;
-&#125;;
-void test01()
-&#123;
-    set&lt;Person, comparePerson&gt; s;
-    Person p1(&quot;刘备&quot;, 23 );
-    Person p2(&quot;关羽&quot;, 27 );
-    Person p3(&quot;张飞&quot;, 25 );
-    Person p4(&quot;赵云&quot;, 21 );
-    s.insert(p1);
-    s.insert(p2);
-    s.insert(p3);
-    s.insert(p4);
-    for (set&lt;Person, comparePerson&gt;::iterator it = s.begin(); it != s.end(); it++)
-    &#123;
-        cout &lt;&lt; &quot;姓名： &quot; &lt;&lt; it-&gt;m_Name &lt;&lt; &quot; 年龄： &quot; &lt;&lt; it-&gt;m_Age &lt;&lt; endl;
-    &#125;
-&#125;
-int main() &#123;
-    test01();
-    system(&quot;pause&quot;);
-    return 0 ;
-&#125;
-</code></pre>
-<h5 id="总结：-1"><a href="#总结：-1" class="headerlink" title="总结："></a>总结：</h5><ul>
-<li>对于自定义数据类型，set必须指定排序规则才可以插入数据</li>
+</li>
 </ul>
 
       
