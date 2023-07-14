@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-07-13T10:09:34.402Z</updated>
+  <updated>2023-07-14T01:13:36.168Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,77 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>WebAssembly与Rust实践</title>
+    <link href="http://example.com/p/f113fd4.html"/>
+    <id>http://example.com/p/f113fd4.html</id>
+    <published>2023-07-13T13:57:09.666Z</published>
+    <updated>2023-07-14T01:13:36.168Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="WebAssembly与Rust实践"><a href="#WebAssembly与Rust实践" class="headerlink" title="WebAssembly与Rust实践"></a>WebAssembly与Rust实践</h1><div class="row">    <embed src="../../../pdf/WebAssembly与Rust实践.pdf" width="100%" height="550" type="application/pdf"></div><p>注：pdf为本人编写，不需要用图床比较方便，用图太多实在不想整理到博客了，下面内容不全，真心求教大佬们有没有什么魔法可以markdown粘贴图片绑定图床自动生成链接。</p><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Rust编程语言和WebAssembly（Wasm）都是由Mozilla推动的前沿技术，并且它们在许多方面相互补充。<strong>Rust正致力于成为WebAssembly的首选编程语言</strong>。<br>Rust语言的最大特色之一是在保证系统性能的同时提供内存安全性。通过其所有权系统、借用检查器和生命周期规则，Rust可以在编译时捕获内存安全错误，避免了许多常见的内存错误，如空指针引用、数据竞争等。这使得Rust成为开发高性能、安全和可靠系统级软件的理想选择。<br>WebAssembly是一种可移植的低级字节码格式，可以在Web环境中运行。它的目标是在不同平台和语言之间提供统一的执行环境，并以接近原生的性能运行代码。WebAssembly允许以高效且安全的方式在Web浏览器中执行性能敏感的任务，同时保持与底层平台的兼容性。<br>Rust语言在与WebAssembly的结合方面有很多优势。Rust从诞生之初就考虑到与C语言的兼容性，使得使用Rust编写的代码可以直接与C语言的二进制接口（ABI）进行交互。这使得Rust成为编写WebAssembly模块的理想语言之一。Rust的Cargo包管理工具也为构建、打包和发布WebAssembly模块提供了便利。通过使用Rust和WebAssembly，开发人员可以借助Rust语言的安全性和性能优势，同时利用WebAssembly的跨平台和高性能特性，构建出功能强大、高效且安全的Web应用程序、浏览器扩展、游戏和其他Web平台的应用。</p><h2 id="安装WebAssembly开发环境"><a href="#安装WebAssembly开发环境" class="headerlink" title="安装WebAssembly开发环境"></a>安装WebAssembly开发环境</h2><p>Rust是目前WebAssembly生态中支持力度最强的一种语言。开源社区中不仅有Rust语言开发的WebAssembly虚拟机，还有基于WebAssembly模块的管理工具。<br>Rust语言默认安装的是生成本地应用的开发环境，因此WebAssembly开发环境需要单独安装。<br>首先查看有哪些环境可以安装：</p><pre><code> rustup target list | grep wasm</code></pre><p>运行结果如下所示：<br>• rustup target add wasm32-wasi：<br>    ◦ 这个指令将把wasm32-wasi目标加入到Rust工具链中。wasm32-wasi是用于WebAssembly系统接口(WASI)的目标，WASI是一种与操作系统无关的WebAssembly运行环境，允许在不同平台上运行WebAssembly模块。<br>• rustup target add wasm32-unknown-emscripten：<br>    ◦ 为了将 wasm32-unknown-emscripten 目标添加到 Rust 工具链，需要运行以下命令。wasm32-unknown-emscripten 是 Emscripten 工具链提供的一个目标，它能够将 Rust 代码编译为适用于浏览器环境的 WebAssembly 模块。<br>• rustup target add wasm32-unknown-unknown：<br>    ◦ 此命令将在 Rust 工具链中添加 wasm32-unknown-unknown 目标。wasm32-unknown-unknown 目标是一个通用的 WebAssembly 目标，适用于在不特定于操作系统或运行时环境的情况下构建 WebAssembly 模块。</p><p>了解环境之后，我们可以通过以下命令安装：</p><pre><code>rustup target add wasm32-wasirustup target add wasm32-unknown-emscriptenrustup target add wasm32-unknown-unknown</code></pre><p>为了方便测试和运行WebAssembly模块，还需要安装wasmer虚拟机环境。使用Scoop：</p><pre><code>scoop install wasmer</code></pre><p>安装成功之后，输入以下命令查看wasmer版本信息：</p><pre><code>wasmer -h</code></pre><h2 id="将Rust编译为wasm"><a href="#将Rust编译为wasm" class="headerlink" title="将Rust编译为wasm"></a>将Rust编译为wasm</h2><p>我们仍然使用刚才的入门测试程序，打印你好，世界！<br>然后，在编译时指定目标为wasm32-wasi：</p><pre><code>cargo build --target=wasm32-wasi</code></pre><p>在src同级目录下面，target&#x2F;wasm32-wasi&#x2F;debug&#x2F;内已经生成了对应的hello.wasm文件。<br>最后，通过wasmer工具运行该程序文件</p><pre><code>wasmer run target/wasm32-wasi/debug/hello.wasm</code></pre><p>可以看到程序正常输出</p><h2 id="导入和导出函数"><a href="#导入和导出函数" class="headerlink" title="导入和导出函数"></a>导入和导出函数</h2><h3 id="导出main-函数"><a href="#导出main-函数" class="headerlink" title="导出main()函数"></a>导出main()函数</h3><p>当在 Rust 中构建 WebAssembly 模块时，导入和导出函数是实现与宿主环境进行交互的关键部分。通过导入函数，可以在 Rust 模块中调用宿主环境中提供的功能，而通过导出函数，可以将 Rust 函数暴露给宿主环境使用。<br>上面测试时编译目标为wasm32-wasi，因此程序只能在宿主支持的WASI虚拟机环境运行。现在，我们设置编译目标为wasm32-unknown-unknown（即纯WebAssembly环境），然后查看其导出的函数。<br>输入以下命令重新构建：</p><pre><code>cargo build --target wasm32-unknown-unknown</code></pre><p>默认生成.&#x2F;target&#x2F;wasm32-unknown-unknown&#x2F;debug&#x2F;hello.wasm</p><p>可以看到我们已经导出了main函数。</p><p>我们还可以在Node.js环境，通过console.dir()调试函数查看导出的内容，在wasm对应目录下创建hello.js文件：</p><pre><code>const fs = require(&#39;fs&#39;);//readFileSync文件读取会阻塞代码的执行，直到读取完成const buf = fs.readFileSync(&#39;./hello.wasm&#39;);WebAssembly.instantiate(new Uint8Array(buf)).then(function(result) &#123;    console.dir(result.instance.exports);&#125;);</code></pre><p>运行代码，得到以下输出:</p><p>这说明普通的应用程序默认导出了main()函数。</p><h3 id="导入宿主打印函数"><a href="#导入宿主打印函数" class="headerlink" title="导入宿主打印函数"></a>导入宿主打印函数</h3><p>WebAssembly是一个与宿主环境隔离的虚拟机，因此WebAssembly模块不能直接访问宿主环境的控制台或文件系统等资源。为了在WebAssembly模块中输出信息，需要通过与宿主环境的交互来完成输出操作。<br>我们假定Node.js宿主环境提供了一个console_log()函数，用于输出一个整数值：</p><pre><code>function console_log(x) &#123;    console.log(x);&#125;</code></pre><p>这样就可以通过console_log()函数输出信息了。src&#x2F;main.rs内容修改如下：</p><pre><code>extern &quot;C&quot; &#123;    fn console_log(a: i32);&#125;fn main() &#123;    unsafe &#123;        console_log(42);    &#125;&#125;</code></pre><p>其中，紧跟extern “C”后的大括弧内是宿主导入函数声明，它们都是以C语言ABI规范导入。由于外部函数的实现是由宿主环境提供的，而不是由Rust代码控制的，因此我们无法保证这些函数的安全性和正确性。为此，我们需要将调用外部函数的代码放在unsafe语句块中，这样编译器就会知道该代码可能存在不安全操作，并需要我们自行确保其正确性和安全性。<br>对应Node.js环境的启动代码如下</p><pre><code>const fs = require(&#39;fs&#39;);const buf = fs.readFileSync(&#39;./hello.wasm&#39;);function console_log(x) &#123; console.log(x); &#125;WebAssembly.instantiate(new Uint8Array(buf), &#123;    env: &#123; &quot;console_log&quot;: console_log &#125;&#125;).then(function(result) &#123;    result.instance.exports.main();&#125;);</code></pre><h1 id="TODO-更新"><a href="#TODO-更新" class="headerlink" title="TODO 更新"></a>TODO 更新</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;WebAssembly与Rust实践&quot;&gt;&lt;a href=&quot;#WebAssembly与Rust实践&quot; class=&quot;headerlink&quot; title=&quot;WebAssembly与Rust实践&quot;&gt;&lt;/a&gt;WebAssembly与Rust实践&lt;/h1&gt;
+
+	&lt;div c</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Rust简单入门</title>
+    <link href="http://example.com/p/854cfaff.html"/>
+    <id>http://example.com/p/854cfaff.html</id>
+    <published>2023-07-13T12:10:03.572Z</published>
+    <updated>2023-07-13T12:44:55.224Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Rust简单入门"><a href="#Rust简单入门" class="headerlink" title="Rust简单入门"></a>Rust简单入门</h1><p>Rust的特点<br>• 零开销抽象<br>• 没有gc<br>• 内存模型没有高度封装<br>• 语法干净正交，没有C++那么繁琐。<br>• 安全性。Rust语法引入所有权和生命期概念，在编译期就能检查出一部分内存管理错误，这是rust的一个杀手锏的特性。<br>• 现代语言特性。语言特性吸收了现代语言的大量优秀特性，支持多范式。</p><h2 id="Rust环境安装"><a href="#Rust环境安装" class="headerlink" title="Rust环境安装"></a>Rust环境安装</h2><h3 id="安装Rust开发环境"><a href="#安装Rust开发环境" class="headerlink" title="安装Rust开发环境"></a>安装Rust开发环境</h3><p>访问Rust语言官方网站的安装地址<a href="https://www.rust-lang.org/tools/install">https://www.rust-lang.org/tools/install</a><br>先下载rustup安装程序再安装,安装的所有工具在~&#x2F;.cargo&#x2F;bin目录下，我们需要将该目录添加到PATH环境变量。</p><p><img src="https://s1.ax1x.com/2023/07/13/pChOJrF.png" alt="pChOJrF.png"></p><p>打开安装程序后，我们会发现需要依赖的windowsAPI库，我们采用下载vs installer的方式获取对应库。</p><p><img src="https://s1.ax1x.com/2023/07/13/pChOUa9.png" alt="pChOUa9.png"></p><p>安装vs install以后重新打开rustup安装程序，选择默认安装。<br>安装完成后，我们需要将~&#x2F;.cargo&#x2F;bin目录添加到PATH环境变量。<br>我们可以通过以下方式查看rustup、rustc和cargo工具的版本信息：</p><p><img src="https://s1.ax1x.com/2023/07/13/pChOwP1.png" alt="pChOwP1.png"></p><p>其中，rustup是Rust工具的管理工具，rustc是Rust程序编译器，cargo是Rust工程的管理工具</p><h3 id="Rust程序测试"><a href="#Rust程序测试" class="headerlink" title="Rust程序测试"></a>Rust程序测试</h3><p>我们从“你好，世界”这个例子开始测试。</p><p><img src="https://s1.ax1x.com/2023/07/13/pChO08x.md.png" alt="pChO08x.md.png"></p><p>其中，fn是关键字，表示定义一个函数，定义的函数的名字是main。main()函数的参数在小括弧中列出（这里的main()函数没有参数），函数体位于大括弧内。这里main()函数体中只有一个语句，就是用println!宏输出一个字符串并换行。</p><h3 id="Cargo管理工程"><a href="#Cargo管理工程" class="headerlink" title="Cargo管理工程"></a>Cargo管理工程</h3><p>Rust 编程语言引以为傲的一个重要特性是其工程管理工具 Cargo。Cargo 是 Rust 官方提供的构建系统和包管理器，被广泛认可为行业标杆。、<br>以下是 Cargo 的一些主要特性和优势：<br>• 依赖管理：Cargo 提供了强大的依赖管理功能。通过 Cargo.toml 文件，可以定义项目的依赖项和版本约束，能够轻松地引入、更新和管理外部库。<br>• 构建系统：Cargo 提供了一个集成的构建系统，使得构建、编译和测试 Rust 项目变得简单而高效。它自动处理依赖关系、编译顺序和编译标志等，开发者只需要专注于编写代码而不必手动管理构建过程。<br>• 项目管理：Cargo 提供了一组命令行工具，用于创建、初始化和管理 Rust 项目。通过简单的命令，您可以创建新项目、生成文档、运行测试、发布软件包等，提高开发者的效率和工作流程。<br>• 社区集成：Cargo 和 Rust 社区紧密结合，通过 Cargo 可以方便地共享、发布和发现 Rust 库和工具。Cargo 提供了 Cargo Crates 网站<a href="https://crates.io/">https://crates.io</a> Rust 生态系统中集中管理和发布库的中央仓库。<br>• 多工作区支持：Cargo 允许在单个项目中管理多个工作区，每个工作区可以拥有自己的依赖关系和构建配置。这对于大型项目或拥有多个模块的项目特别有用，可以更好地组织和管理代码。<br>工程一般以目录的方式组织，因此我们先创建一个空的目录（目录的名字自由选择），其中包含一个Cargo.toml文件。</p><pre><code>[package]name = &quot;hello&quot;version = &quot;0.1.0&quot;</code></pre><p>Cargo.toml是一种TOML格式的工程文件（TOML格式和ini格式类似，但是其功能更加强大）。其中，[package]部分包含工程的基本信息：name字段表示工程的名字，version字段表示工程的版本。<br>然后，创建一个src目录，在目录中创建一个main.rs文件：</p><pre><code>fn main() &#123;    println!(&quot;你好，世界&quot;);&#125;</code></pre><p>Cargo工具默认以src&#x2F;main.rs为程序的入口文件，因此只需要输入<br>cargo run就可以编译并运行程序了</p><p><img src="https://s1.ax1x.com/2023/07/13/pChXhTJ.png" alt="pChXhTJ.png"></p><p>Cargo底层依然是调用rustc编译器工具。但是，Cargo不仅可以管理可执行程序和库，还可以对其他第三方库的依赖进行管理，同时支持自定义的构建脚本。<br>cargo-generate是一个开发人员工具，通过利用预先存在的 git 存储库作为模板，帮助开发者快速启动和运行新的 Rust 项目。</p><pre><code>cargo install cargo-generate</code></pre><h3 id="本地文档"><a href="#本地文档" class="headerlink" title="本地文档"></a>本地文档</h3><p>Rust还提供了本地文档用于帮助学习和了解Rust。<br>我们可以在终端运行：</p><pre><code>rustup doc</code></pre><p>打开文档。</p><p><img src="https://s1.ax1x.com/2023/07/13/pChj9pt.png" alt="pChj9pt.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Rust简单入门&quot;&gt;&lt;a href=&quot;#Rust简单入门&quot; class=&quot;headerlink&quot; title=&quot;Rust简单入门&quot;&gt;&lt;/a&gt;Rust简单入门&lt;/h1&gt;&lt;p&gt;Rust的特点&lt;br&gt;• 零开销抽象&lt;br&gt;• 没有gc&lt;br&gt;• 内存模型没有高度封装&lt;b</summary>
+      
+    
+    
+    
+    <category term="others" scheme="http://example.com/categories/others/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>WebAssembly跨语言调用</title>
+    <link href="http://example.com/p/bf55081a.html"/>
+    <id>http://example.com/p/bf55081a.html</id>
+    <published>2023-07-13T11:58:12.167Z</published>
+    <updated>2023-07-13T12:10:21.357Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="WebAssembly跨语言调用"><a href="#WebAssembly跨语言调用" class="headerlink" title="WebAssembly跨语言调用"></a>WebAssembly跨语言调用</h1><p>WebAssembly (Wasm) 可以在多种编程语言之间进行跨语言调用。它提供了一种标准化的接口，使得不同语言的代码可以相互调用和交互。<br>选择一种编程语言（例如 Rust、C++、Go 等）编写Wasm 模块。使用相应的编译器或工具链将代码编译为 Wasm 模块文件。然后导入 Wasm 模块到目标语言：在目标语言的代码中，使用相应的 Wasm 运行时库或框架来导入和执行 Wasm 模块。不同的语言可能有不同的 Wasm 运行时库可用，例如wasmer、wasmtime 等。</p><h2 id="Go和Rust调用实例"><a href="#Go和Rust调用实例" class="headerlink" title="Go和Rust调用实例"></a>Go和Rust调用实例</h2><h3 id="被调用方Rust"><a href="#被调用方Rust" class="headerlink" title="被调用方Rust"></a>被调用方Rust</h3><p>首先我们需要将被编译的程序编译成wasm文件<br>这里我们用go程序调用rust程序<br>用cargo init  add创建一个rust文件，更改add.rs</p><pre><code>fn main()&#123;&#125;#[no_mangle]pub extern &quot;C&quot; fn sum(x: i32, y: i32) -&gt; i32 &#123;    x + y&#125;</code></pre><p>将该文件编译为wasm</p><pre><code>cargo build --target wasm32-unknown-unknown --release</code></pre><p>现在被调用者我们已经处理完了，下面我们编写调用方代码。</p><h3 id="调用方Go"><a href="#调用方Go" class="headerlink" title="调用方Go"></a>调用方Go</h3><p>这里我们参照<a href="https://github.com/wasmerio/wasmer-go%E9%87%87%E7%94%A8wasmer%E5%BA%93%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86">https://github.com/wasmerio/wasmer-go采用wasmer库进行处理</a><br>需要注意的是目前该库并不支持windows，需要在linux环境下使用</p><p><img src="https://s1.ax1x.com/2023/07/13/pChOkgf.png" alt="pChOkgf.png"></p><p>创建相应go文件调用生成的wasm文件</p><pre><code>package mainimport (    &quot;fmt&quot;    &quot;io/ioutil&quot;    wasmer &quot;github.com/wasmerio/wasmer-go/wasmer&quot;)func main() &#123;    // 换成生成add.wasm的路径    wasmBytes, _ := ioutil.ReadFile(&quot;add/target/wasm32-unknown-unknown/release/add.wasm&quot;)    // Create an Engine    engine := wasmer.NewEngine()    // Create a Store    store := wasmer.NewStore(engine)    // Let&#39;s compile the module.    module, err := wasmer.NewModule(store, wasmBytes)    if err != nil &#123;        fmt.Println(&quot;Failed to compile module:&quot;, err)    &#125;    // Create an empty import object.    importObject := wasmer.NewImportObject()    // Let&#39;s instantiate the WebAssembly module.    instance, err := wasmer.NewInstance(module, importObject)    if err != nil &#123;        panic(fmt.Sprintln(&quot;Failed to instantiate the module:&quot;, err))    &#125;    // Now let&#39;s execute the `sum` function.    sum, err := instance.Exports.GetFunction(&quot;sum&quot;)    if err != nil &#123;        panic(fmt.Sprintln(&quot;Failed to get the `add_one` function:&quot;, err))    &#125;    result, err := sum(1, 2)    if err != nil &#123;        panic(fmt.Sprintln(&quot;Failed to call the `add_one` function:&quot;, err))    &#125;    fmt.Println(&quot;Results of `sum`:&quot;, result)&#125;</code></pre><p>注意：<br>• 12行需要换成生成add.wasm的相对&#x2F;绝对路径<br>• 需要拉取对应仓库<br>• 更多具体api参照<a href="https://pkg.go.dev/github.com/wasmerio/wasmer-go/wasmer">https://pkg.go.dev/github.com/wasmerio/wasmer-go/wasmer</a></p><p>之后我们直接运行程序，可以看到跨语言调用成功</p><p><img src="https://s1.ax1x.com/2023/07/13/pChOuUs.png" alt="pChOuUs.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;WebAssembly跨语言调用&quot;&gt;&lt;a href=&quot;#WebAssembly跨语言调用&quot; class=&quot;headerlink&quot; title=&quot;WebAssembly跨语言调用&quot;&gt;&lt;/a&gt;WebAssembly跨语言调用&lt;/h1&gt;&lt;p&gt;WebAssembly (W</summary>
+      
+    
+    
+    
+    <category term="others" scheme="http://example.com/categories/others/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>C++进程优雅退出</title>
     <link href="http://example.com/p/53dbe2a2.html"/>
     <id>http://example.com/p/53dbe2a2.html</id>
     <published>2023-07-13T10:05:38.797Z</published>
-    <updated>2023-07-13T10:09:34.402Z</updated>
+    <updated>2023-07-13T10:09:58.663Z</updated>
     
     <content type="html"><![CDATA[<h1 id="C-进程的优雅退出"><a href="#C-进程的优雅退出" class="headerlink" title="C++进程的优雅退出"></a>C++进程的优雅退出</h1><h2 id="C-11"><a href="#C-11" class="headerlink" title="C++11"></a>C++11</h2><h3 id="通过原子变量"><a href="#通过原子变量" class="headerlink" title="通过原子变量"></a>通过原子变量</h3><p>原子变量是线程安全的，我们可以通过atomic变量控制线程开始结束</p><pre><code>#include &lt;csignal&gt;#include &lt;iostream&gt;#include &lt;thread&gt;#include &lt;chrono&gt;#include &lt;atomic&gt;// 用于确定关闭状态的全局布尔变量std::atomic&lt;bool&gt; shutdownFlag(false);// 信号处理函数void signalHandler(int signal) &#123;    // 也可以使用 switch/case 进行控制    if (signal == SIGINT) &#123;        std::cout &lt;&lt; &quot;收到 SIGINT 信号。正在启动优雅关闭...&quot; &lt;&lt; std::endl;    &#125; else if (signal == SIGTERM) &#123;        std::cout &lt;&lt; &quot;收到 SIGTERM 信号。正在启动优雅关闭...&quot; &lt;&lt; std::endl;    &#125;    shutdownFlag = true;&#125;int main() &#123;    // 设置 SIGINT 和 SIGTERM 的信号处理函数    std::signal(SIGINT, signalHandler);    std::signal(SIGTERM, signalHandler);    // 服务器的主循环    while (!shutdownFlag) &#123;        // 在此处处理连接        std::this_thread::sleep_for(std::chrono::seconds(1));        std::cout &lt;&lt; &quot;服务器正在运行...&quot; &lt;&lt; std::endl;    &#125;    // 启动优雅关闭过程    std::cout &lt;&lt; &quot;正在启动优雅关闭...&quot; &lt;&lt; std::endl;        // 在这里可以进行清理操作，例如：    // 逐个关闭仍在进行中的连接，    // 保存数据，    // 正确关闭套接字等        std::cout &lt;&lt; &quot;优雅关闭完成。程序正在退出。&quot; &lt;&lt; std::endl;    return 0;&#125;</code></pre><p>在上述例子中，我们捕获了SIGINT和SIGTERM信号，并根据这些信号进行了相应的处理。<br>SIGINT信号通常由用户在终端中按下中断键（如CTRL+C）时发送。它是一种用户主动发出的中断信号，用于通知程序终止执行。通过捕获SIGINT信号并设置相应的处理逻辑，我们可以在收到该信号时执行特定的操作，例如优雅地关闭服务器或执行其他清理任务。<br>而SIGTERM信号通常由操作系统或其他程序发送，用于请求程序正常终止。这种信号可能是远程管理工具、容器编排系统或其他管理机制发送的。与SIGINT信号类似，通过捕获SIGTERM信号并设置相应的处理逻辑，我们可以实现平滑关闭的过程，让程序有机会完成一些清理操作，确保数据的完整性和一致性。<br>通过设置信号处理函数来捕获这两个信号，并在接收到信号时设置原子变量shutdownFlag为true，以触发服务器的优雅关闭过程。这样可以在接收到这些信号时执行一些特定的操作，例如向用户发送关闭通知、保存数据、关闭连接等。</p><h3 id="休眠线程以及条件变量"><a href="#休眠线程以及条件变量" class="headerlink" title="休眠线程以及条件变量"></a>休眠线程以及条件变量</h3><p>但是如果线程大部分时间都在休眠怎么办？ 比如某一个线程仅偶尔执行一些工作，其间有长时间的睡眠。 如果终止信号到达，睡眠必须立即中断。 此外，如果向应用程序发送SIGTERM，并且应用程序没有在超时时间内终止，那么应用程序将被强行kill。<br>对于这个问题解决方式就是使用条件变量condition_variable::wait()，让线程休眠，直到经过特定时间跨度或满足条件。常用的方式就是使用条件变量，使用std::condition_variable::notify_one和std::condition_variable::notify_all 可以将线程从睡眠中唤醒，std::condition_variable的成员函数notify_one()与notify_all()是用来唤醒阻塞在wait（）的线程。假如有多个线程调用condition_variable::wait()陷入休眠之后。condition_variable的实现中有一个等待队列来保存堵塞在它之上的线程。当其他线程调用notify_one()时，只唤醒等待队列中的第一个线程；其余的线程不会被唤醒，需要等待再次调用notify_one()或者notify_all()才会唤醒。如果是调用notify_all()：会唤醒所有等待队列中阻塞的线程，但是存在锁争用，只有一个线程能够获得锁。队列中的其他线程，会不断尝试获得锁，当第一个唤醒的线程释放锁之后，剩余的线程就能获得锁继续执行。<br>但是notify_{one,all} 不是信号安全的，因此不能在信号处理程序中使用。所以signal handlers are out</p><blockquote><p>信号就像硬件中断一样，会打断正在执行的指令序列。信号处理函数无法判断捕获到信号的时候，进程在何处运行。如果信号处理函数中的操作与打断的函数的操作相同，而且这个操作中有静态数据结构等，当信号处理函数返回的时候（当然这里讨论的是信号处理函数可以返回），恢复原先的执行序列，可能会导致信号处理函数中的操作覆盖了之前正常操作中的数据。</p></blockquote><h3 id="采用sigwait"><a href="#采用sigwait" class="headerlink" title="采用sigwait"></a>采用sigwait</h3><p>sigwait()函数是一个POSIX函数，它允许线程挂起其执行，直到在给定的信号集中指定的某个信号成为待处理信号。该函数接受信号（从待处理信号列表中删除它），并将信号编号存储在sig变量中。<br>通过使用sigwait或sigwaitinfo，多线程应用程序可以在启动时阻塞所有信号，并有一个专用线程等待信号。这样，我们可以利用所有可用的同步原语。</p><pre><code>#include &lt;signal.h&gt;int sigwait(const sigset_t *set, int *sig);</code></pre><p>• set参数是指向信号集的指针，信号集是表示一组信号的数据结构。<br>• sig参数是一个指向整数的指针，成功完成函数后，接收到的信号编号将存储在其中。<br>以下是sigwait()的示例用法：</p><pre><code>#include &lt;condition_variable&gt;#include &lt;cstdlib&gt;#include &lt;future&gt;#include &lt;iostream&gt;#include &lt;mutex&gt;#include &lt;thread&gt;#include &lt;vector&gt;#include &lt;signal.h&gt;int main()&#123;    // 阻塞当前线程和后续生成的线程中的信号    sigset_t sigset;    sigemptyset(&amp;sigset);    sigaddset(&amp;sigset, SIGINT);    sigaddset(&amp;sigset, SIGTERM);    pthread_sigmask(SIG_BLOCK, &amp;sigset, nullptr);    std::atomic&lt;bool&gt; shutdown_requested(false);    std::mutex cv_mutex;    std::condition_variable cv;    // 信号处理函数，在收到信号时设置shutdown_requested为true，    // 并通过条件变量cv通知其他等待的线程。    auto signal_handler = [&amp;shutdown_requested, &amp;cv, &amp;sigset]() &#123;        int signum = 0;        // 等待信号的到达：        sigwait(&amp;sigset, &amp;signum);        shutdown_requested.store(true);        // 通知所有等待的工作线程检查其断言：        cv.notify_all();        return signum;    &#125;;    // 将信号处理函数放在一个独立的线程中运行。    auto ft_signal_handler = std::async(std::launch::async, signal_handler);    auto worker = [&amp;shutdown_requested, &amp;cv_mutex, &amp;cv]() &#123;        while( shutdown_requested.load() == false )        &#123;        std::unique_lock lock(cv_mutex);        cv.wait_for(            lock,            // 最多等待一小时            std::chrono::hours(1),            // 当条件变量被唤醒并且断言为true时，停止等待：            [&amp;shutdown_requested]() &#123; return shutdown_requested.load(); &#125;);        &#125;        return shutdown_requested.load();    &#125;;    // 生成一组工作线程    std::vector&lt;std::future&lt;bool&gt;&gt; workers;    for( int i = 0; i &lt; 10; ++i )        workers.push_back(std::async(std::launch::async, worker));    std::cout &lt;&lt; &quot;等待SIGTERM或SIGINT信号（按下[CTRL]+[c]）...\n&quot;;    // 等待信号处理函数完成    int signal = ft_signal_handler.get();    std::cout &lt;&lt; &quot;收到信号 &quot; &lt;&lt; signal &lt;&lt; &quot;\n&quot;;    // 等待工作线程    for( auto&amp; future : workers )        std::cout &lt;&lt; &quot;工作线程观察到关机请求: &quot;                &lt;&lt; std::boolalpha                &lt;&lt; future.get()                &lt;&lt; &quot;\n&quot;;    std::cout &lt;&lt; &quot;正常关机\n&quot;;    return EXIT_SUCCESS;&#125;</code></pre><h2 id="C-17"><a href="#C-17" class="headerlink" title="C++17"></a>C++17</h2><p>Signal Wrangler  是一个小型的仅需要包含标头的库，更加方便管理信号。<br>Dependencies<br>• C++17<br>• Clang or GCC<br>• linux<br>• pthread<br>• cmake (recommended, but optional)<br>• Catch2 for testing</p><pre><code>#include &lt;sgnl/AtomicCondition.h&gt;#include &lt;sgnl/SignalHandler.h&gt;#include &lt;cstdlib&gt;#include &lt;future&gt;#include &lt;iostream&gt;#include &lt;thread&gt;void Worker(const sgnl::AtomicCondition&lt;bool&gt;&amp; exit_condition)&#123;    auto predicate = [&amp;exit_condition]() &#123;        return exit_condition.get();    &#125;;    while (true)    &#123;        exit_condition.wait_for(std::chrono::minutes(1), predicate);        if (exit_condition.get())        return;        /* ... 执行工作 ... */    &#125;&#125;int main()&#123;    sgnl::AtomicCondition&lt;bool&gt; exit_condition(false);    auto handler = [&amp;exit_condition](int signum) &#123;        std::cout &lt;&lt; &quot;收到信号 &quot; &lt;&lt; signum &lt;&lt; &quot;\n&quot;;        if (signum == SIGTERM || signum == SIGINT)        &#123;        exit_condition.set(true);        // 唤醒所有等待的线程        exit_condition.notify_all();        // 停止等待信号        return true;        &#125;        // 继续等待信号        return false;    &#125;;    // 阻塞当前线程中的信号。    // 后续生成的线程将继承信号屏蔽。    sgnl::SignalHandler signal_handler(&#123;SIGINT, SIGTERM, SIGUSR1&#125;);    std::future&lt;int&gt; ft_sig_handler =        std::async(            std::launch::async,            &amp;sgnl::SignalHandler::sigwait_handler,            &amp;signal_handler,            std::ref(handler));    std::vector&lt;std::future&lt;void&gt;&gt; futures;    for (int i = 0; i &lt; 10; ++i)        futures.push_back(            std::async(                std::launch::async,                Worker,                std::ref(exit_condition)));    // 发送 SIGUSR1 信号    std::this_thread::sleep_for(std::chrono::milliseconds(100));    kill(0, SIGUSR1);    // 发送 SIGTERM 信号    kill(0, SIGTERM);    std::this_thread::sleep_for(std::chrono::milliseconds(100));    for (auto&amp; future : futures)        future.wait();    int last_signal = ft_sig_handler.get();    std::cout &lt;&lt; &quot;退出（收到信号 &quot; &lt;&lt; last_signal &lt;&lt; &quot;）\n&quot;;    return EXIT_SUCCESS;&#125;</code></pre><h2 id="C-20"><a href="#C-20" class="headerlink" title="C++20"></a>C++20</h2><p>C++20实现优雅退出的一个方式是通过<a href="https://whl963854.github.io/p/324821f5.html">jthread</a>来进行实现C++20 jthread通过这种方式我们不用像传统做法定义一个变量进行控制，线程本身就可以控制子线程的运行以及停止。</p><pre><code>#include &lt;iostream&gt;#include &lt;thread&gt;#include &lt;chrono&gt;void task()&#123;    while (true)    &#123;        // 执行任务        std::cout &lt;&lt; &quot;Performing task...\n&quot;;        std::this_thread::sleep_for(std::chrono::seconds(1));        // 检查是否收到停止请求        if (std::jthread::stop_requested())        &#123;            std::cout &lt;&lt; &quot;Stop requested. Exiting...\n&quot;;            break;        &#125;    &#125;&#125;int main()&#123;    std::jthread thread(task);    // 等待一段时间或等待某个条件满足    std::this_thread::sleep_for(std::chrono::seconds(5));    // 请求停止子线程    thread.request_stop();    // 继续等待一段时间，确保子线程完成当前任务    std::this_thread::sleep_for(std::chrono::seconds(2));    // std::jthread的析构函数会自动调用join()，等待子线程执行完毕    // 主线程退出，整个进程结束    return 0;&#125;</code></pre>]]></content>
     
@@ -69,7 +135,7 @@
     <link href="http://example.com/p/53ad465c.html"/>
     <id>http://example.com/p/53ad465c.html</id>
     <published>2023-07-13T09:47:07.553Z</published>
-    <updated>2023-07-13T09:46:13.139Z</updated>
+    <updated>2023-07-13T10:09:58.661Z</updated>
     
     <content type="html"><![CDATA[<h1 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h1><h2 id="进程的创建"><a href="#进程的创建" class="headerlink" title="进程的创建"></a>进程的创建</h2><p>如果我们希望在本进程fork出一个子进程，可以使用os.StartProcess方法，它会fork出一个子进程后返回这个子进程的pid。</p><pre><code>func StartProcess(name string, argv []string, attr *ProcAttr) (*Process, error) &#123;    testlog.Open(name)    return startProcess(name, argv, attr)&#125;</code></pre><p>但是我们一般不这么做，因为 os.StartProcess 是一个比较底层的接口，一般是提供给go内部其他的方法去使用的。我们可以使用os.Command方法创建一个命令，并调用cmd.Start()方法运行命令，Start()方法内部其实就是调用的os.StartProcess()方法去fork一个子进程。</p><p>我们先来看Command方法，该方法返回一个*Cmd类型</p><pre><code>func Command(name string, arg ...string) *Cmd</code></pre><p>Cmd定义如下</p><pre><code>type Cmd struct &#123;        // Path is the path of the command to run.        //        // This is the only field that must be set to a non-zero        // value. If Path is relative, it is evaluated relative        // to Dir.        Path string        // Args holds command line arguments, including the command as Args[0].        // If the Args field is empty or nil, Run uses &#123;Path&#125;.        //        // In typical use, both Path and Args are set by calling Command.        Args []string        // Env specifies the environment of the process.        // Each entry is of the form &quot;key=value&quot;.        // If Env is nil, the new process uses the current process&#39;s        // environment.        // If Env contains duplicate environment keys, only the last        // value in the slice for each duplicate key is used.        Env []string        // Dir specifies the working directory of the command.        // If Dir is the empty string, Run runs the command in the        // calling process&#39;s current directory.        Dir string        // Stdin specifies the process&#39;s standard input.        // If Stdin is nil, the process reads from the null device (os.DevNull).        // If Stdin is an *os.File, the process&#39;s standard input is connected        // directly to that file.        // Otherwise, during the execution of the command a separate        // goroutine reads from Stdin and delivers that data to the command        // over a pipe. In this case, Wait does not complete until the goroutine        // stops copying, either because it has reached the end of Stdin        // (EOF or a read error) or because writing to the pipe returned an error.        Stdin io.Reader        // Stdout and Stderr specify the process&#39;s standard output and error.        //        // If either is nil, Run connects the corresponding file descriptor        // to the null device (os.DevNull).        //        // If Stdout and Stderr are the same writer, and have a type that can be compared with ==,        // at most one goroutine at a time will call Write.        Stdout io.Writer        Stderr io.Writer        // ExtraFiles specifies additional open files to be inherited by the        // new process. It does not include standard input, standard output, or        // standard error. If non-nil, entry i becomes file descriptor 3+i.        ExtraFiles []*os.File        // SysProcAttr holds optional, operating system-specific attributes.        // Run passes it to os.StartProcess as the os.ProcAttr&#39;s Sys field.        SysProcAttr *syscall.SysProcAttr        // Process is the underlying process, once started.        Process *os.Process        // ProcessState contains information about an exited process,        // available after a call to Wait or Run.        ProcessState *os.ProcessState        // contains filtered or unexported fields&#125;</code></pre><p>然后利用cmd调用Start函数，</p><pre><code>func (c *Cmd) Start() error</code></pre><p>Start开始执行以后并不阻塞。如果Start函数返回成功，则c.Process字段将被设置相关内容。在成功调用开始之后，必须调用Wait方法释放关联的系统资源。</p><p>这样，通过上述标准库提供的函数，我们就可以<strong>创建子进程</strong>了，下面我们来看一下如何进行<strong>进程间通信</strong>。</p><h2 id="进程通信-1"><a href="#进程通信-1" class="headerlink" title="进程通信"></a>进程通信</h2><h3 id="信号-signal"><a href="#信号-signal" class="headerlink" title="信号 signal"></a>信号 signal</h3><p>操作系统信号（signal，以下简称信号）是IPC中唯一一种异步的通信方法，它的本质是用软件来模拟硬件的中断机制。信号用来通知某个进程有某个事件发生了。<br>每一个信号都有一个以“SIG”为前缀的名字，例如SIGINT、SIGQUIT以及SIGKILL等。在操作系统内部，这些信号都由正整数表示，这些正整数称为信号编号。在Linux的命令行终端下，我们可以使用kill  -l命令来查看当前系统所支持的信号</p><p>接口类型os.Signal 的声明如下：</p><pre><code>type Signal interface &#123;    String() string    Signal() // 与其他 Stringers 区分开来&#125;</code></pre><p>实现了os.Signal接口的类型就是1种信号量，或者说只要实现了Signal和String方法的类型就是1种信号量。比如像syscall.Signal类型，它的底层类型是int，但是它实现了os.Signal接口类型，因此syscall.Signal就是信号量类型（其下有多种信号量，每一个整型数字代表1中信号）。<br>os.Signal的Signal()的实现是一个空方法，syscall.Signal的Singal()是一个空方法，其他实现os.Signal的类型其Signal()也是空方法。Signal()方法的作用仅仅是为了标识这个实现了该方法的类型是一个信号量类型而已。<br>我们可以通过os.Signal的Signal()代码包os&#x2F;signal中的Notify 函数对信号进行接收</p><pre><code>func Notify(c chan&lt;- os.Signal, sig ...os.Signal)</code></pre><p>这个函数需要传入一个channel，signal.Notify方法内部做的事就是接收到来自操作系统进程的信号并将这个信号发送给这个channel。 只有第二参sig中规定的信号量才会发送到chan中，其他信号量不会（而是执行系统默认操作）。然后在用户程序中异步的从这个channel接收信号就可以捕获来自操作系统发送的信号。</p><pre><code>package mainimport (    &quot;fmt&quot;    &quot;os&quot;    &quot;os/signal&quot;    &quot;syscall&quot;)func main() &#123;    fmt.Println(&quot;Start running&quot;)    // 定义一个需要自定义处理的信号量列表    signalsHandledByMyself := []os.Signal&#123;syscall.SIGINT, syscall.SIGQUIT&#125;    // 定义一个channel接收来自操作系统的信号，容量为1    signalChannel := make(chan os.Signal, 1)    // Notify监听操作系统是否有发送信号，如果有就会通过往channel发送信号量的方式异步通知当前进程（有信号量的时候才会通知）    signal.Notify(signalChannel, signalsHandledByMyself...)    // 在主进程中接收Notify的通知并处理需要自定义处理的信号    for sign := range signalChannel &#123;        fmt.Printf(&quot;Receive signal from the operating system: %s\n&quot;, sign)    &#125;&#125;</code></pre><p>下面是一个Notify调用示例：</p><pre><code>package mainimport (    &quot;fmt&quot;    &quot;os&quot;    &quot;os/signal&quot;    &quot;syscall&quot;)func main() &#123;    fmt.Println(&quot;Start running&quot;)    // 定义一个需要自定义处理的信号量列表    signalsHandledByMyself := []os.Signal&#123;syscall.SIGINT, syscall.SIGQUIT&#125;    // 定义一个channel接收来自操作系统的信号，容量为1    signalChannel := make(chan os.Signal, 1)    // Notify监听操作系统是否有发送信号，如果有就会通过往channel发送信号量的方式异步通知当前进程（有信号量的时候才会通知）    signal.Notify(signalChannel, signalsHandledByMyself...)    // 在主进程中接收Notify的通知并处理需要自定义处理的信号    for sign := range signalChannel &#123;        fmt.Printf(&quot;Receive signal from the operating system: %s\n&quot;, sign)    &#125;&#125;</code></pre><p>运行结果如下，可以看到我们已经对信号捕获成功：</p><pre><code>$ go run main.goStart running^CReceive signal from the operating system: interrupt^\Receive signal from the operating system: quit^\Receive signal from the operating system: quit^\Receive signal from the operating system: quit^CReceive signal from the operating system: interrupt^CReceive signal from the operating system: interrupt^CReceive signal from the operating system: interrupt^CReceive signal from the operating system: interrupt^Z[2]+  Stopped                 go run main.go</code></pre><p>上面我们已经能够对信号进行捕获，现在想从主进程将信号传递到子进程。Cmd保存了子进程的信息，我们查看Cmd结构，可以找到Process(*os.Process)字段有一个Signal函数。</p><pre><code>type Process struct &#123;        Pid int        // contains filtered or unexported fields&#125;func (p *Process) Signal(sig Signal) error</code></pre><p>该函数的作用就是像进程发送信号，如果发送失败则会返回错误，我们可以通过Cmd对象获取对应的Process，然后调用该进程的signal函数像该子进程发送所需要的信号。<br>现在我们已经能够从父进程向子进程发送信号，下面我们创建一个子进程写一个示例，创建main.go文件：</p><pre><code>package mainimport (    &quot;fmt&quot;    &quot;os&quot;    &quot;os/exec&quot;    &quot;time&quot;)func main() &#123;    // 创建一个用于执行外部命令的 *exec.Cmd 对象    cmd := exec.Command(&quot;./child&quot;)    cmd.Stdout = os.Stdout    cmd.Stderr = os.Stderr        // 启动子进程    err := cmd.Start()    if err != nil &#123;        _, _ = fmt.Fprintf(os.Stderr, &quot;启动子进程出错: &quot;+err.Error())        return    &#125;    // 等待一段时间，然后发送信号    time.Sleep(time.Millisecond * 500)    err = cmd.Process.Signal(os.Interrupt)    if err != nil &#123;        _, _ = fmt.Fprintf(os.Stderr, &quot;发送信号出错: &quot;+err.Error())        return    &#125;    // 等待子进程结束    err = cmd.Wait()    if err != nil &#123;        _, _ = fmt.Fprintf(os.Stderr, &quot;等待子进程结束出错: &quot;+err.Error())    &#125;    return&#125;</code></pre><p>该函数通过 exec 包启动了一个子进程，并在一段时间后向子进程发送中断信号。子进程存储在child.go当中，我们直接运行child.go的编译的可执行文件。下面是子进程一个简单实现：</p><pre><code>package mainimport (    &quot;fmt&quot;    &quot;os&quot;    &quot;os/signal&quot;)func main() &#123;    stop := make(chan os.Signal, 1)    signal.Notify(stop, os.Interrupt)    fmt.Println(&quot;started&quot;)    &lt;-stop    fmt.Println(&quot;stopped&quot;)&#125;</code></pre><p>运行结果如下所示：</p><pre><code>$ go run main.gostartedstopped</code></pre><p>可以看到我们已经成功将信号传入了子函数当中。<br>结合Go进程的优雅退出(待附链接，金山文档容易链接失效，等待更新到博客再更新)<br>我们可以创建graceful_shutdown.go：</p><pre><code>package mainimport (    &quot;fmt&quot;    &quot;os&quot;    &quot;os/signal&quot;    &quot;time&quot;)func grace() &#123;    fmt.Println(&quot;处理剩余资源&quot;)    time.Sleep(2 * time.Second)&#125;func main() &#123;    stop := make(chan os.Signal, 1)    signal.Notify(stop, os.Interrupt)    for &#123;        select &#123;        case &lt;-stop:            fmt.Println(&quot;收到父进程信号&quot;)            grace()            fmt.Println(&quot;子进程退出&quot;)            return        case &lt;-time.After(1 * time.Second):            fmt.Println(&quot;子进程运行&quot;)        &#125;    &#125;&#125;</code></pre><p>模拟主进程收到信号传递给子进程的过程，我们将main.go文件也进行改写</p><pre><code>package mainimport (    &quot;fmt&quot;    &quot;os&quot;    &quot;os/exec&quot;    &quot;os/signal&quot;    &quot;time&quot;)func main() &#123;    cmd := exec.Command(&quot;./grace_shutdown&quot;)    cmd.Stdout = os.Stdout    cmd.Stderr = os.Stderr    // 启动子进程    err := cmd.Start()    if err != nil &#123;        _, _ = fmt.Fprintf(os.Stderr, &quot;Start: &quot;+err.Error())        return    &#125;    // 创建一个接收信号的通道    sigChannel := make(chan os.Signal, 1)    // 监听中断信号    signal.Notify(sigChannel, os.Interrupt)    for &#123;        select &#123;        case &lt;-sigChannel:            fmt.Println(&quot;父进程收到系统信号&quot;)            // 发送信号给子进程            err = cmd.Process.Signal(os.Interrupt)            if err != nil &#123;                _, _ = fmt.Fprintf(os.Stderr, &quot;Signal: &quot;+err.Error())                return            &#125;            // 等待子进程结束            err = cmd.Wait()            if err != nil &#123;                _, _ = fmt.Fprintf(os.Stderr, &quot;Wait: &quot;+err.Error())            &#125;            return        case &lt;-time.After(1 * time.Second):            fmt.Println(&quot;wait...&quot;)        &#125;    &#125;&#125;</code></pre><p>运行结果如下：</p><pre><code>$ go run main.gowait...子进程运行wait...子进程运行wait...子进程运行^C父进程收到系统信号收到父进程信号处理剩余资源子进程退出</code></pre>]]></content>
     
@@ -113,30 +179,6 @@
   </entry>
   
   <entry>
-    <title>防疫大数据</title>
-    <link href="http://example.com/p/43256.html"/>
-    <id>http://example.com/p/43256.html</id>
-    <published>2023-07-11T14:27:38.896Z</published>
-    <updated>2023-07-09T09:09:24.725Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="防疫大数据"><a href="#防疫大数据" class="headerlink" title="防疫大数据"></a>防疫大数据</h1><h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p>近期，国内 COVID-19 疫情多点散发，西西艾弗岛的防疫形势也异常严峻。西西艾弗岛疫情防控指挥部决定在岛上建立一套疫情风险监测系统。这套风险监测系统的主要功能是，收集手机用户到访地区的信息，根据用户的到访地区，判断用户的疫情风险。具体而言，在每天夜里，西西艾弗岛大数据运行管理中心都会收到一批手机用户到访地区的信息，以及当天疫情风险地区的信息。数据中心需要根据这些信息，生成一份存在风险的手机用户的名单，提供给疫情防控指挥部，以便进行后续的疫情防控工作。</p><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p><a href="https://imgse.com/i/x6kjot"><img src="https://s1.ax1x.com/2022/10/20/x6kjot.png" alt="x6kjot.png"></a></p><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>输出到标准输出。<br>输出 n 行，自第 0 天起，按顺序输出各日运算产生的疫情风险名单。每行包含空格分隔的若干整数。其中第一个整数表示当天的日期，接下来的各个整数为按从小到大排序的存在风险的用户列表。</p><p><strong>样例 1 输入</strong></p><pre><code>91 4 10 1 1-1 1 1-1 2 10 2 20 30 3 11 2 21 3 20 00 00 00 00 00 15 4 11 0 1</code></pre><p><strong>样例 1 输出</strong></p><pre><code>0 11 1 32 1 33 1 34 1 35 1 36 1 378</code></pre><h3 id="本弱鸡解题思路"><a href="#本弱鸡解题思路" class="headerlink" title="本弱鸡解题思路"></a>本弱鸡解题思路</h3><p>无脑做，不知道哪里有问题，只有20分，哭死（）</p><p> <strong>代码实现</strong></p><pre><code>？？？忘保存了！！！</code></pre><h3 id="大佬解法"><a href="#大佬解法" class="headerlink" title="大佬解法"></a>大佬解法</h3><p><strong>代码实现</strong></p><pre><code>#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;set&gt;using namespace std;typedef long long LL;set&lt;LL&gt; sd[1050], su;struct node&#123;    LL d, u, r;&#125;a;vector&lt;node&gt; v[1050];LL n, ri, mi, d, u, r, pi;int main()&#123;    cin &gt;&gt; n;    for (int i = 0; i &lt; n; i ++ ) // i:生成名单这一天    &#123;        cin &gt;&gt; ri &gt;&gt; mi;                for (int j = 0; j &lt; ri; j ++ ) // ri个风险地区        &#123;            cin &gt;&gt; pi;            for (int k = i; k &lt; i + 7; k ++ ) sd[k].insert(pi); // pi地区i ~ i+6天都是风险地区        &#125;                for (int j = 0; j &lt; mi; j ++ ) //         &#123;            cin &gt;&gt; d &gt;&gt; u &gt;&gt; r;            if (d &lt; 0) continue;            if (!sd[d].count(r)) continue; // 到访的地区在到访的那一日不处于风险状态,肯定无风险            v[i].push_back(&#123;d, u, r&#125;); // 存储第i天的漫游数据        &#125;                // 对漫游信息进行判断,从第i-6天开始.因为7天前的用户漫游数据有可能到现在还是风险的        for (int j = max(0, i - 6); j &lt;= i; j ++ )        &#123;            for (int k = 0; k &lt; v[j].size(); k ++ )            &#123;                d = v[j][k].d;                u = v[j][k].u;                r = v[j][k].r;                                // 1.该用户的d要在7日内                // 2.该用户在近7日内到访的地区在到访的那一日处于风险状态                // 3.上述存在风险的地区自到访日(d)至生成名单当日(i)持续处于风险状态                bool flag = 1;                if (d &lt;= i - 7) continue; // 要求1                for (int l = d; l &lt;= i; l ++ ) // 要一直持续到当前i这一天 要求2&amp;3                    flag = flag &amp; sd[l].count(r);                if (flag) su.insert(u);            &#125;        &#125;                cout &lt;&lt; i &lt;&lt; &quot; &quot;;        for (auto it : su) cout &lt;&lt; it &lt;&lt; &quot; &quot;;        cout &lt;&lt; endl;        su.clear();    &#125;        return 0;&#125;</code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;防疫大数据&quot;&gt;&lt;a href=&quot;#防疫大数据&quot; class=&quot;headerlink&quot; title=&quot;防疫大数据&quot;&gt;&lt;/a&gt;防疫大数据&lt;/h1&gt;&lt;h2 id=&quot;题目背景&quot;&gt;&lt;a href=&quot;#题目背景&quot; class=&quot;headerlink&quot; title=&quot;题目背景&quot;</summary>
-      
-    
-    
-    
-    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="csp" scheme="http://example.com/tags/csp/"/>
-    
-  </entry>
-  
-  <entry>
     <title>寻宝大作战</title>
     <link href="http://example.com/p/59129.html"/>
     <id>http://example.com/p/59129.html</id>
@@ -161,18 +203,18 @@
   </entry>
   
   <entry>
-    <title>数组中数字出现的个数</title>
-    <link href="http://example.com/p/34639.html"/>
-    <id>http://example.com/p/34639.html</id>
-    <published>2023-07-11T14:27:38.880Z</published>
+    <title>防疫大数据</title>
+    <link href="http://example.com/p/43256.html"/>
+    <id>http://example.com/p/43256.html</id>
+    <published>2023-07-11T14:27:38.896Z</published>
     <updated>2023-07-09T09:09:24.725Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="数组中数字出现的个数"><a href="#数组中数字出现的个数" class="headerlink" title="数组中数字出现的个数"></a>数组中数字出现的个数</h1><h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><p>一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。</p><h2 id="用例："><a href="#用例：" class="headerlink" title="用例："></a>用例：</h2><p>输入：</p><pre><code>1 2 3 4 4 2</code></pre><p>输出：</p><pre><code>1 3</code></pre><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><pre><code>这里只想到了如何快速获得一个只出现一次的数字，没有想到分组异或相同的数异或为0，不同的异或为1。0和任何数异或等于这个数本身。所以，数组里面所有数异或 = 目标两个数异或 。 由于这两个数不同，所以异或结果必然不为0。假设数组异或的二进制结果为10010，那么说明这两个数从右向左数第2位是不同的那么可以根据数组里面所有数的第二位为0或者1将数组划分为2个。这样做可以将目标数必然分散在不同的数组中，而且相同的数必然落在同一个数组中。这两个数组里面的数各自进行异或，得到的结果就是答案</code></pre><h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>class Solution &#123;public:    vector&lt;int&gt; singleNumbers(vector&lt;int&gt;&amp; nums) &#123;        int ret = 0;        for (int n : nums)            ret ^= n;        int div = 1;        while ((div &amp; ret) == 0)            div &lt;&lt;= 1;        int a = 0, b = 0;        for (int n : nums)            if (div &amp; n)                a ^= n;            else                b ^= n;        return vector&lt;int&gt;&#123;a, b&#125;;    &#125;&#125;;</code></pre>]]></content>
+    <content type="html"><![CDATA[<h1 id="防疫大数据"><a href="#防疫大数据" class="headerlink" title="防疫大数据"></a>防疫大数据</h1><h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p>近期，国内 COVID-19 疫情多点散发，西西艾弗岛的防疫形势也异常严峻。西西艾弗岛疫情防控指挥部决定在岛上建立一套疫情风险监测系统。这套风险监测系统的主要功能是，收集手机用户到访地区的信息，根据用户的到访地区，判断用户的疫情风险。具体而言，在每天夜里，西西艾弗岛大数据运行管理中心都会收到一批手机用户到访地区的信息，以及当天疫情风险地区的信息。数据中心需要根据这些信息，生成一份存在风险的手机用户的名单，提供给疫情防控指挥部，以便进行后续的疫情防控工作。</p><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p><a href="https://imgse.com/i/x6kjot"><img src="https://s1.ax1x.com/2022/10/20/x6kjot.png" alt="x6kjot.png"></a></p><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>输出到标准输出。<br>输出 n 行，自第 0 天起，按顺序输出各日运算产生的疫情风险名单。每行包含空格分隔的若干整数。其中第一个整数表示当天的日期，接下来的各个整数为按从小到大排序的存在风险的用户列表。</p><p><strong>样例 1 输入</strong></p><pre><code>91 4 10 1 1-1 1 1-1 2 10 2 20 30 3 11 2 21 3 20 00 00 00 00 00 15 4 11 0 1</code></pre><p><strong>样例 1 输出</strong></p><pre><code>0 11 1 32 1 33 1 34 1 35 1 36 1 378</code></pre><h3 id="本弱鸡解题思路"><a href="#本弱鸡解题思路" class="headerlink" title="本弱鸡解题思路"></a>本弱鸡解题思路</h3><p>无脑做，不知道哪里有问题，只有20分，哭死（）</p><p> <strong>代码实现</strong></p><pre><code>？？？忘保存了！！！</code></pre><h3 id="大佬解法"><a href="#大佬解法" class="headerlink" title="大佬解法"></a>大佬解法</h3><p><strong>代码实现</strong></p><pre><code>#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;set&gt;using namespace std;typedef long long LL;set&lt;LL&gt; sd[1050], su;struct node&#123;    LL d, u, r;&#125;a;vector&lt;node&gt; v[1050];LL n, ri, mi, d, u, r, pi;int main()&#123;    cin &gt;&gt; n;    for (int i = 0; i &lt; n; i ++ ) // i:生成名单这一天    &#123;        cin &gt;&gt; ri &gt;&gt; mi;                for (int j = 0; j &lt; ri; j ++ ) // ri个风险地区        &#123;            cin &gt;&gt; pi;            for (int k = i; k &lt; i + 7; k ++ ) sd[k].insert(pi); // pi地区i ~ i+6天都是风险地区        &#125;                for (int j = 0; j &lt; mi; j ++ ) //         &#123;            cin &gt;&gt; d &gt;&gt; u &gt;&gt; r;            if (d &lt; 0) continue;            if (!sd[d].count(r)) continue; // 到访的地区在到访的那一日不处于风险状态,肯定无风险            v[i].push_back(&#123;d, u, r&#125;); // 存储第i天的漫游数据        &#125;                // 对漫游信息进行判断,从第i-6天开始.因为7天前的用户漫游数据有可能到现在还是风险的        for (int j = max(0, i - 6); j &lt;= i; j ++ )        &#123;            for (int k = 0; k &lt; v[j].size(); k ++ )            &#123;                d = v[j][k].d;                u = v[j][k].u;                r = v[j][k].r;                                // 1.该用户的d要在7日内                // 2.该用户在近7日内到访的地区在到访的那一日处于风险状态                // 3.上述存在风险的地区自到访日(d)至生成名单当日(i)持续处于风险状态                bool flag = 1;                if (d &lt;= i - 7) continue; // 要求1                for (int l = d; l &lt;= i; l ++ ) // 要一直持续到当前i这一天 要求2&amp;3                    flag = flag &amp; sd[l].count(r);                if (flag) su.insert(u);            &#125;        &#125;                cout &lt;&lt; i &lt;&lt; &quot; &quot;;        for (auto it : su) cout &lt;&lt; it &lt;&lt; &quot; &quot;;        cout &lt;&lt; endl;        su.clear();    &#125;        return 0;&#125;</code></pre>]]></content>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;数组中数字出现的个数&quot;&gt;&lt;a href=&quot;#数组中数字出现的个数&quot; class=&quot;headerlink&quot; title=&quot;数组中数字出现的个数&quot;&gt;&lt;/a&gt;数组中数字出现的个数&lt;/h1&gt;&lt;h2 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;head</summary>
+    <summary type="html">&lt;h1 id=&quot;防疫大数据&quot;&gt;&lt;a href=&quot;#防疫大数据&quot; class=&quot;headerlink&quot; title=&quot;防疫大数据&quot;&gt;&lt;/a&gt;防疫大数据&lt;/h1&gt;&lt;h2 id=&quot;题目背景&quot;&gt;&lt;a href=&quot;#题目背景&quot; class=&quot;headerlink&quot; title=&quot;题目背景&quot;</summary>
       
     
     
@@ -180,7 +222,7 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="剑指offer" scheme="http://example.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    <category term="csp" scheme="http://example.com/tags/csp/"/>
     
   </entry>
   
@@ -210,6 +252,30 @@
   </entry>
   
   <entry>
+    <title>数组中数字出现的个数</title>
+    <link href="http://example.com/p/34639.html"/>
+    <id>http://example.com/p/34639.html</id>
+    <published>2023-07-11T14:27:38.880Z</published>
+    <updated>2023-07-09T09:09:24.725Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="数组中数字出现的个数"><a href="#数组中数字出现的个数" class="headerlink" title="数组中数字出现的个数"></a>数组中数字出现的个数</h1><h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><p>一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。</p><h2 id="用例："><a href="#用例：" class="headerlink" title="用例："></a>用例：</h2><p>输入：</p><pre><code>1 2 3 4 4 2</code></pre><p>输出：</p><pre><code>1 3</code></pre><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><pre><code>这里只想到了如何快速获得一个只出现一次的数字，没有想到分组异或相同的数异或为0，不同的异或为1。0和任何数异或等于这个数本身。所以，数组里面所有数异或 = 目标两个数异或 。 由于这两个数不同，所以异或结果必然不为0。假设数组异或的二进制结果为10010，那么说明这两个数从右向左数第2位是不同的那么可以根据数组里面所有数的第二位为0或者1将数组划分为2个。这样做可以将目标数必然分散在不同的数组中，而且相同的数必然落在同一个数组中。这两个数组里面的数各自进行异或，得到的结果就是答案</code></pre><h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code>class Solution &#123;public:    vector&lt;int&gt; singleNumbers(vector&lt;int&gt;&amp; nums) &#123;        int ret = 0;        for (int n : nums)            ret ^= n;        int div = 1;        while ((div &amp; ret) == 0)            div &lt;&lt;= 1;        int a = 0, b = 0;        for (int n : nums)            if (div &amp; n)                a ^= n;            else                b ^= n;        return vector&lt;int&gt;&#123;a, b&#125;;    &#125;&#125;;</code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;数组中数字出现的个数&quot;&gt;&lt;a href=&quot;#数组中数字出现的个数&quot; class=&quot;headerlink&quot; title=&quot;数组中数字出现的个数&quot;&gt;&lt;/a&gt;数组中数字出现的个数&lt;/h1&gt;&lt;h2 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;head</summary>
+      
+    
+    
+    
+    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="剑指offer" scheme="http://example.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
     <title>无重复字符的最长子串</title>
     <link href="http://example.com/p/14283.html"/>
     <id>http://example.com/p/14283.html</id>
@@ -223,6 +289,30 @@
       
     <summary type="html">&lt;h3 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;     给定一个字符串 s ，请你找出其中不含有重复字符的最长子串的长度。
 &lt;/</summary>
+      
+    
+    
+    
+    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最长字符串链</title>
+    <link href="http://example.com/p/53127.html"/>
+    <id>http://example.com/p/53127.html</id>
+    <published>2023-07-11T14:27:38.880Z</published>
+    <updated>2023-07-09T09:09:24.725Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="最长字符串链"><a href="#最长字符串链" class="headerlink" title="最长字符串链"></a>最长字符串链</h1><h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><p>给出一个单词数组 words ，其中每个单词都由小写英文字母组成。</p><p>如果我们可以 不改变其他字符的顺序 ，在 wordA 的任何地方添加 恰好一个 字母使其变成 wordB ，那么我们认为 wordA 是 wordB 的 前身 。</p><p>例如，”abc” 是 “abac” 的 前身 ，而 “cba” 不是 “bcad” 的 前身<br>词链是单词 [word_1, word_2, …, word_k] 组成的序列，k &gt;&#x3D; 1，其中 word1 是 word2 的前身，word2 是 word3 的前身，依此类推。一个单词通常是 k &#x3D;&#x3D; 1 的 单词链 。</p><p>从给定单词列表 words 中选择单词组成词链，返回 词链的 最长可能长度 。 </p><h2 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h2><p>示例 1：</p><pre><code>输入：words = [&quot;a&quot;,&quot;b&quot;,&quot;ba&quot;,&quot;bca&quot;,&quot;bda&quot;,&quot;bdca&quot;]输出：4解释：最长单词链之一为 [&quot;a&quot;,&quot;ba&quot;,&quot;bda&quot;,&quot;bdca&quot;]</code></pre><p>示例 2:</p><pre><code>输入：words = [&quot;xbc&quot;,&quot;pcxbcf&quot;,&quot;xb&quot;,&quot;cxbc&quot;,&quot;pcxbc&quot;]输出：5解释：所有的单词都可以放入单词链 [&quot;xb&quot;, &quot;xbc&quot;, &quot;cxbc&quot;, &quot;pcxbc&quot;, &quot;pcxbcf&quot;].</code></pre><p>示例 3:</p><pre><code>输入：words = [&quot;abcd&quot;,&quot;dbqca&quot;]输出：1解释：字链[&quot;abcd&quot;]是最长的字链之一。[&quot;abcd&quot;，&quot;dbqca&quot;]不是一个有效的单词链，因为字母的顺序被改变了。</code></pre><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><pre><code>1 &lt;= words.length &lt;= 10001 &lt;= words[i].length &lt;= 16words[i] 仅由小写英文字母组成。</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>首先我们将问题分解成几个子问题，我们先来看单词链的判断，单词链相邻单词必然满足长度相差一且长度较长的单词&#x3D;长度短的单词+任意位置插入一个字母，也就是说如果没有插入字母两个字符串是完全相同的，插入一个字母以后，除了那一个位置以外的所有字母都是一一对应的。那么我们可以根据这个对短单词进行遍历，一一与长单词进行对应，如果不相同则跳过这个字母，比对后面的字母，如果跳过次数不等于1，则两个单词不能组成单词链。<br>接下来我们分析题目，需要求最长单词链，我们仔细观察可以发现最长单词链是满足最优子结构性的，例如长度为最大为m的单词组成的最长链必须由单词+最长的单词长度最大为m-1的单词链组成。<br>定义</p><pre><code>dp[i]表示以单词i为结尾的最长的单词链长度</code></pre><p>初始化</p><pre><code>至少一个单词，初始化为1</code></pre><p>计算</p><pre><code>预处理先按照字符串长度升序排列从短到长来计算, 对于当前单词去找序号比它小的 j 情况： 如果相等，则 max(d[i], d[j]+1)</code></pre><p>代码 </p><pre><code>class Solution &#123;    // a是否是b的前身    bool isFor(string&amp; a, string&amp; b) &#123;        int asize=a.size();        int bsize=b.size();        if(bsize - asize== 1) &#123;            int i = 0, j = 0;            while(i &lt; asize &amp;&amp; j &lt; bsize) &#123;                if(a[i] == b[j]) i++;                j++;            &#125;            if(i == asize) return true;        &#125;        return false;    &#125;public:    int longestStrChain(vector&lt;string&gt;&amp; words) &#123;        if(words.size() &lt; 2)            return words.size();                vector&lt;int&gt; dp(words.size(), 1);        int res = 1;                // 按字符串长度递增排序        sort(words.begin(), words.end(),             [](string a, string b) &#123;return a.size() &lt; b.size();&#125;);                for(int i = 0; i &lt; words.size(); i++) &#123;            for(int j = i - 1; j &gt;= 0; j--) &#123;                if(isFor(words[j], words[i])) &#123;                    dp[i] = max(dp[i], dp[j] + 1);                &#125;            &#125;            res = max(res, dp[i]);        &#125;        return res;    &#125;&#125;;</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/longest-string-chain">https://leetcode.cn/problems/longest-string-chain</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;最长字符串链&quot;&gt;&lt;a href=&quot;#最长字符串链&quot; class=&quot;headerlink&quot; title=&quot;最长字符串链&quot;&gt;&lt;/a&gt;最长字符串链&lt;/h1&gt;&lt;h2 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题</summary>
       
     
     
@@ -285,30 +375,6 @@
   </entry>
   
   <entry>
-    <title>最长字符串链</title>
-    <link href="http://example.com/p/53127.html"/>
-    <id>http://example.com/p/53127.html</id>
-    <published>2023-07-11T14:27:38.880Z</published>
-    <updated>2023-07-09T09:09:24.725Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="最长字符串链"><a href="#最长字符串链" class="headerlink" title="最长字符串链"></a>最长字符串链</h1><h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><p>给出一个单词数组 words ，其中每个单词都由小写英文字母组成。</p><p>如果我们可以 不改变其他字符的顺序 ，在 wordA 的任何地方添加 恰好一个 字母使其变成 wordB ，那么我们认为 wordA 是 wordB 的 前身 。</p><p>例如，”abc” 是 “abac” 的 前身 ，而 “cba” 不是 “bcad” 的 前身<br>词链是单词 [word_1, word_2, …, word_k] 组成的序列，k &gt;&#x3D; 1，其中 word1 是 word2 的前身，word2 是 word3 的前身，依此类推。一个单词通常是 k &#x3D;&#x3D; 1 的 单词链 。</p><p>从给定单词列表 words 中选择单词组成词链，返回 词链的 最长可能长度 。 </p><h2 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h2><p>示例 1：</p><pre><code>输入：words = [&quot;a&quot;,&quot;b&quot;,&quot;ba&quot;,&quot;bca&quot;,&quot;bda&quot;,&quot;bdca&quot;]输出：4解释：最长单词链之一为 [&quot;a&quot;,&quot;ba&quot;,&quot;bda&quot;,&quot;bdca&quot;]</code></pre><p>示例 2:</p><pre><code>输入：words = [&quot;xbc&quot;,&quot;pcxbcf&quot;,&quot;xb&quot;,&quot;cxbc&quot;,&quot;pcxbc&quot;]输出：5解释：所有的单词都可以放入单词链 [&quot;xb&quot;, &quot;xbc&quot;, &quot;cxbc&quot;, &quot;pcxbc&quot;, &quot;pcxbcf&quot;].</code></pre><p>示例 3:</p><pre><code>输入：words = [&quot;abcd&quot;,&quot;dbqca&quot;]输出：1解释：字链[&quot;abcd&quot;]是最长的字链之一。[&quot;abcd&quot;，&quot;dbqca&quot;]不是一个有效的单词链，因为字母的顺序被改变了。</code></pre><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><pre><code>1 &lt;= words.length &lt;= 10001 &lt;= words[i].length &lt;= 16words[i] 仅由小写英文字母组成。</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>首先我们将问题分解成几个子问题，我们先来看单词链的判断，单词链相邻单词必然满足长度相差一且长度较长的单词&#x3D;长度短的单词+任意位置插入一个字母，也就是说如果没有插入字母两个字符串是完全相同的，插入一个字母以后，除了那一个位置以外的所有字母都是一一对应的。那么我们可以根据这个对短单词进行遍历，一一与长单词进行对应，如果不相同则跳过这个字母，比对后面的字母，如果跳过次数不等于1，则两个单词不能组成单词链。<br>接下来我们分析题目，需要求最长单词链，我们仔细观察可以发现最长单词链是满足最优子结构性的，例如长度为最大为m的单词组成的最长链必须由单词+最长的单词长度最大为m-1的单词链组成。<br>定义</p><pre><code>dp[i]表示以单词i为结尾的最长的单词链长度</code></pre><p>初始化</p><pre><code>至少一个单词，初始化为1</code></pre><p>计算</p><pre><code>预处理先按照字符串长度升序排列从短到长来计算, 对于当前单词去找序号比它小的 j 情况： 如果相等，则 max(d[i], d[j]+1)</code></pre><p>代码 </p><pre><code>class Solution &#123;    // a是否是b的前身    bool isFor(string&amp; a, string&amp; b) &#123;        int asize=a.size();        int bsize=b.size();        if(bsize - asize== 1) &#123;            int i = 0, j = 0;            while(i &lt; asize &amp;&amp; j &lt; bsize) &#123;                if(a[i] == b[j]) i++;                j++;            &#125;            if(i == asize) return true;        &#125;        return false;    &#125;public:    int longestStrChain(vector&lt;string&gt;&amp; words) &#123;        if(words.size() &lt; 2)            return words.size();                vector&lt;int&gt; dp(words.size(), 1);        int res = 1;                // 按字符串长度递增排序        sort(words.begin(), words.end(),             [](string a, string b) &#123;return a.size() &lt; b.size();&#125;);                for(int i = 0; i &lt; words.size(); i++) &#123;            for(int j = i - 1; j &gt;= 0; j--) &#123;                if(isFor(words[j], words[i])) &#123;                    dp[i] = max(dp[i], dp[j] + 1);                &#125;            &#125;            res = max(res, dp[i]);        &#125;        return res;    &#125;&#125;;</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/longest-string-chain">https://leetcode.cn/problems/longest-string-chain</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;最长字符串链&quot;&gt;&lt;a href=&quot;#最长字符串链&quot; class=&quot;headerlink&quot; title=&quot;最长字符串链&quot;&gt;&lt;/a&gt;最长字符串链&lt;/h1&gt;&lt;h2 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题</summary>
-      
-    
-    
-    
-    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
     <title>棘手怀念摧毁</title>
     <link href="http://example.com/p/12758.html"/>
     <id>http://example.com/p/12758.html</id>
@@ -329,70 +395,6 @@
     
     
     <category term="码题集" scheme="http://example.com/tags/%E7%A0%81%E9%A2%98%E9%9B%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>779 第k个语法符号</title>
-    <link href="http://example.com/p/65488.html"/>
-    <id>http://example.com/p/65488.html</id>
-    <published>2023-07-11T14:27:38.880Z</published>
-    <updated>2023-07-09T09:09:24.725Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><pre><code>在第一行我们写上一个 0。接下来的每一行，将前一行中的0替换为01，1替换为10。给定行数 N 和序数 K，返回第 N 行中第 K个字符。（K从1开始）例子:输入: N = 1, K = 1输出: 0输入: N = 2, K = 1输出: 0输入: N = 2, K = 2输出: 1输入: N = 4, K = 5输出: 1解释:第一行: 0第二行: 01第三行: 0110第四行: 01101001来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems/k-th-symbol-in-grammar</code></pre><h3 id="本弱鸡解法"><a href="#本弱鸡解法" class="headerlink" title="本弱鸡解法"></a>本弱鸡解法</h3><pre><code class="bash">    可以将第n个数字串平均分两部分，前半部分和第n-1数字串相同，后半部分则是第n-1数字串按位取反    那么我们可以判断k的位置，从而不断缩小数字串的长度，最终到第一个字符串；</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>    int kthGrammar(int n, int k)&#123;    int sign=1;    while(1)&#123;        if(k&lt;=(1&lt;&lt;(n-1)))&#123;            n--;        &#125;        if(n&amp;&amp;k&gt;(1&lt;&lt;(n-1)))&#123;            k=k-(1&lt;&lt;(n-1));            sign*=-1;        &#125;        if(k==1)&#123;            return sign&gt;0?0:1;        &#125;    &#125;&#125;                                                                                      </code></pre><h3 id="大佬做法"><a href="#大佬做法" class="headerlink" title="大佬做法"></a>大佬做法</h3><p>经过观察发现这道题的解其实就是对K-1进行了一个奇偶校验，因此连N这个参数都用不着，O(1)时间空间复杂度求解</p><pre><code>    int kthGrammar(int N, unsigned int K) &#123;        K -= 1;        K ^= K &gt;&gt; 1;        K ^= K &gt;&gt; 2;        K = (K &amp; 0x11111111U) * 0x11111111U;        return (K &gt;&gt; 28) &amp; 1;    &#125;</code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;在第一行我们写上一个 0。接下来的每一行，将前一行中的0替换为01，1替换为10。
-给定行数 N 和序数 K</summary>
-      
-    
-    
-    
-    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>统计子矩阵</title>
-    <link href="http://example.com/p/35775.html"/>
-    <id>http://example.com/p/35775.html</id>
-    <published>2023-07-11T14:27:38.880Z</published>
-    <updated>2023-07-09T09:09:24.725Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><p>给定一个 N × M 的矩阵 A , 请你统计有多少个子矩阵 (最小 1 × 1, 最大 N × M ) 满足子矩阵中所有数的和不超过给定的整数 K  ?</p><p>输入格式<br>第一行包含三个整数 N , M 和 K .</p><p>之后 N行每行包含 M 个整数, 代表矩阵 A.</p><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><p>示例 1:</p><pre><code>输入：    3 4 10    1 2 3 4    5 6 7 8    9 10 11 12输出：19</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>首先，求取一个矩阵的和可以采用二维前缀和简化计算，降低复杂度。其次，不难想到，我们可以枚举左上角坐标以及右下角坐标求出所有满足条件的矩阵，但是这样复杂度就是n^4，时间复杂度相对难以接受。所以我们应该想办法降低复杂度，根据题目要求，不大于k,那么一个矩阵的子矩阵大于k则该矩阵就无需判断，这样利用双指针，我们可以在O(n)的时间求出这一行的矩阵。</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>#include &lt;iostream&gt;using namespace std;int a[510][510];int sum1(int x1,int y1,int x2,int y2)&#123;    return a[x2][y2]-a[x1-1][y2]-a[x2][y1-1]+a[x1-1][y1-1];&#125;int main()&#123;    int n,m,k;    scanf(&quot;%d %d %d&quot;,&amp;n,&amp;m,&amp;k);    long long int ans=0;    int temp;    for(int i=1;i&lt;=n;i++)    &#123;        for(int j=1;j&lt;=m;j++)        &#123;        scanf(&quot;%d&quot;,&amp;temp);        a[i][j]=a[i-1][j]+a[i][j-1]+temp-a[i-1][j-1];        &#125;    &#125;    for (int i = 1; i &lt;= n; ++i) &#123;            for (int j = i; j &lt;= n; ++j) &#123;                for (int l = 1, r = 1; r &lt;= m; ++r) &#123;                    while (l &lt;= r &amp;&amp; sum1(i, l, j, r) &gt; k) l++;                    ans += r - l + 1;                &#125;            &#125;        &#125;    cout &lt;&lt; ans;    return 0;&#125;</code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h3&gt;&lt;p&gt;给定一个 N × M 的矩阵 A , 请你统计有多少个子矩阵 (最小 1 × 1, 最大 N × M ) 满足子矩阵中所有数</summary>
-      
-    
-    
-    
-    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="蓝桥" scheme="http://example.com/tags/%E8%93%9D%E6%A1%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>超过一半的数字</title>
-    <link href="http://example.com/p/61876.html"/>
-    <id>http://example.com/p/61876.html</id>
-    <published>2023-07-11T14:27:38.880Z</published>
-    <updated>2023-07-09T09:09:24.725Z</updated>
-    
-    
-    
-    
-    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
-    
     
   </entry>
   
@@ -447,18 +449,19 @@
   </entry>
   
   <entry>
-    <title>买卖股票1</title>
-    <link href="http://example.com/p/9616.html"/>
-    <id>http://example.com/p/9616.html</id>
-    <published>2023-07-11T14:27:38.865Z</published>
+    <title>779 第k个语法符号</title>
+    <link href="http://example.com/p/65488.html"/>
+    <id>http://example.com/p/65488.html</id>
+    <published>2023-07-11T14:27:38.880Z</published>
     <updated>2023-07-09T09:09:24.725Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code class="bash">    给定一个数组 prices ，其中 prices[i] 表示股票第 i 天的价格。在每一天，你可能会决定购买      或出售股票。你在任何时候最多只能持有一股股票。你也可以购买它，然后在同一天出售。返回你能获      得的最大利润。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code class="bash">    输入: prices = [7,1,5,3,6,4]    输出: 7    解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5的时候卖出,       这笔交易所能获得利润 = 5-1 = 4 。    随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6） 的时候卖出,       这笔交易所能获得利润 = 6-3 = 3 </code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><h4 id="一，动态规划"><a href="#一，动态规划" class="headerlink" title="一，动态规划"></a>一，动态规划</h4><pre><code>    考虑到「不能同时参与多笔交易」，因此每天交易结束后只可能存在手里有一支股票或者没有股票的状态。    定义状态 dp[i][0] 表示第i天交易完后手里没有股票的最大利润，dp[i][1] 表示第i天交易完后手里      持有一支股票的最大利润（i 从 0 开始）。    考虑 dp[i][0] 的转移方程，如果这一天交易完后手里没有股票，那么可能的转移状态为前一天已经没有      股票，即 dp[i−1][0]，或者前一天结束的时候手里持有一支股票，即 dp[i−1][1]，这时候我们要将      其卖出，并获得prices[i] 的收益。因此为了收益最大化，我们列出如下的转移方程：                dp[i][0]=max(dp[i-1][0],dp[i-1][1]+prices[i])    再来考虑dp[i][1]，按照同样的方式考虑转移状态，那么可能的转移状态为前一天已经持有一支股票，即      dp[i−1][1]，或者前一天结束时还没有股票，即dp[i−1][0]，这时候我们要将其买入，并减少prices[i]      的收益。可以列出如下的转移方程：                dp[i][1]=max&#123;dp[i−1][1],dp[i−1][0]−prices[i]&#125;    对于初始状态，根据状态定义我们可以知道第 0 天交易结束的时候 0dp[0][0]=0，dp[0][1]=−prices[0]。    因此，我们只要从前往后依次计算状态即可。由于全部交易结束后，持有股票的收益一定低于不持有股票的收      益，因此这时候 dp[n−1][0]的收益必然是大于dp[n−1][1] 的，最后的答案即为dp[n−1][0]。    </code></pre><h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><pre><code>class Solution &#123;public:    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;        int n = prices.size();        int dp[n][2];        dp[0][0] = 0, dp[0][1] = -prices[0];        for (int i = 1; i &lt; n; ++i) &#123;            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i]);            dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] - prices[i]);        &#125;        return dp[n - 1][0];    &#125;&#125;;</code></pre><h4 id="二，（贪心算法）本弱鸡的解法"><a href="#二，（贪心算法）本弱鸡的解法" class="headerlink" title="二，（贪心算法）本弱鸡的解法"></a>二，（贪心算法）本弱鸡的解法</h4><pre><code>    因为可以不限制购买，所以只要是顺序对就把他加入。同时要注意的是，连续的顺序对，比如&#123;1，2，3，4&#125;，      实际购买情况是第一天买入第四天卖出，做题顺序不等于实际购买顺序。</code></pre><h6 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h6><pre><code>class Solution &#123;public:    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;        int sum=0;        for(int i=1;i&lt;prices.size();i++)&#123;            if(prices[i]&gt;prices[i-1])sum+=prices[i]-prices[i-1];        &#125;        return sum;    &#125;    &#125;;</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii">https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><pre><code>在第一行我们写上一个 0。接下来的每一行，将前一行中的0替换为01，1替换为10。给定行数 N 和序数 K，返回第 N 行中第 K个字符。（K从1开始）例子:输入: N = 1, K = 1输出: 0输入: N = 2, K = 1输出: 0输入: N = 2, K = 2输出: 1输入: N = 4, K = 5输出: 1解释:第一行: 0第二行: 01第三行: 0110第四行: 01101001来源：力扣（LeetCode）链接：https://leetcode-cn.com/problems/k-th-symbol-in-grammar</code></pre><h3 id="本弱鸡解法"><a href="#本弱鸡解法" class="headerlink" title="本弱鸡解法"></a>本弱鸡解法</h3><pre><code class="bash">    可以将第n个数字串平均分两部分，前半部分和第n-1数字串相同，后半部分则是第n-1数字串按位取反    那么我们可以判断k的位置，从而不断缩小数字串的长度，最终到第一个字符串；</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>    int kthGrammar(int n, int k)&#123;    int sign=1;    while(1)&#123;        if(k&lt;=(1&lt;&lt;(n-1)))&#123;            n--;        &#125;        if(n&amp;&amp;k&gt;(1&lt;&lt;(n-1)))&#123;            k=k-(1&lt;&lt;(n-1));            sign*=-1;        &#125;        if(k==1)&#123;            return sign&gt;0?0:1;        &#125;    &#125;&#125;                                                                                      </code></pre><h3 id="大佬做法"><a href="#大佬做法" class="headerlink" title="大佬做法"></a>大佬做法</h3><p>经过观察发现这道题的解其实就是对K-1进行了一个奇偶校验，因此连N这个参数都用不着，O(1)时间空间复杂度求解</p><pre><code>    int kthGrammar(int N, unsigned int K) &#123;        K -= 1;        K ^= K &gt;&gt; 1;        K ^= K &gt;&gt; 2;        K = (K &amp; 0x11111111U) * 0x11111111U;        return (K &gt;&gt; 28) &amp; 1;    &#125;</code></pre>]]></content>
     
     
       
       
-    <summary type="html">&lt;h3 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;    给定一个数组 prices ，其中 prices[i] 表示股票第 i 天</summary>
+    <summary type="html">&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;在第一行我们写上一个 0。接下来的每一行，将前一行中的0替换为01，1替换为10。
+给定行数 N 和序数 K</summary>
       
     
     
@@ -466,23 +469,23 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="动态规划" scheme="http://example.com/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
     
   </entry>
   
   <entry>
-    <title>全排列</title>
-    <link href="http://example.com/p/63859.html"/>
-    <id>http://example.com/p/63859.html</id>
-    <published>2023-07-11T14:27:38.865Z</published>
+    <title>统计子矩阵</title>
+    <link href="http://example.com/p/35775.html"/>
+    <id>http://example.com/p/35775.html</id>
+    <published>2023-07-11T14:27:38.880Z</published>
     <updated>2023-07-09T09:09:24.725Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h2><p>全排列 一般把1~ n 这 n 个整数按某个顺序摆放的结果称为这 n 个整数的一个排列，而全排列指这 n 个整数能形成的所有排列。<br>例如对1、2、3这三个整数来说，(1,2,3)、(1,3,2)、(2,1,3)、(2,3,1 、(3,1,2)、(3,2, I ）就是1<del>3的全排列。<br>从递归的角度去考虑，如果把问题描述成“输出1</del> n 这 n 个整数的全排列”，那么它就可以被分为若干个子问题：“输出以1开头的全排列”“输出以2开头的全排列”…“输出以 n 开头的全排列”。于是不妨设定一个数组 P ，用来存放当前的排列；再设定一个散列数组 hash Table ，其中 hashTable [ x ］当整数 x 已经在数组 P 中时为 true 。<br>现在按顺序往 P 的第1位到第 n 位中填入数字。不妨假设当前已经填好了 P [1]~ P [ index -1]，正准备填 P [ index ]。显然需要枚举1~ n ，如果当前枚举的数字 x 还没有在 P [1]~ P [ index -1］中（即 hashTable [ x ]&#x3D; false )，那么就把它填入 P [ index ]，同时将 hashTable [ x ］置为 true ,然后去处理 P 的第 Tndex +1位（即进行递归）；而当递归完成时，再将 hashTable [ x ］还原为 false ,以便让 P [ index ］填下一个数字。<br>当 index 达到 n +1时，说明 P 的第1~ n 位都已经填好了，此时可以把数组 P 输出，表示生成了一个排列，然后直接 return 即可。</p><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>    # include &lt; cstdio &gt;    const int maxn =1l;    //P为当前排列， hashTable 记录整数 x 是否已经在 P 中     int n , P [maxn], hashTable[maxn]=&#123;false&#125;;    //当前处理排列的第 index 号位    void generateP ( int index )&#123;        if ( index = n +1)&#123;//递归边界，已经处理完排列的1~ n 位            for ( int i = 1 ; i &lt;= n ; i ++)&#123;                printf (&quot;%d&quot;, P [ i ]);//输出当前排列            &#125;            printf (&quot;\n &quot;);            return ;        &#125;        for ( int ×=1;×&lt;= n ;×++)&#123;//枚举1~ n ，试图将×填入 P [ index ]            if ( hashTable [ x ]== false )&#123;//如果×不在P[0]~P [index-1］中             P [ index ]= X ;//令 P 的第 index 位为×，即把×加入当前排列             hashTable [ x ]= true ;//记 x 已在 P 中            generateP ( index +1);//处理排列的第 index +1号位            hashTable [ x ]= false ;//已处理完 P [ index ］为×的子问题，还原状态            &#125;        &#125;    &#125;    int main ()&#123;        n =3;//欲输出1~3的全排列        generateP (1);//从 P [1］开始填         return 0;    &#125;</code></pre>]]></content>
+    <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><p>给定一个 N × M 的矩阵 A , 请你统计有多少个子矩阵 (最小 1 × 1, 最大 N × M ) 满足子矩阵中所有数的和不超过给定的整数 K  ?</p><p>输入格式<br>第一行包含三个整数 N , M 和 K .</p><p>之后 N行每行包含 M 个整数, 代表矩阵 A.</p><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><p>示例 1:</p><pre><code>输入：    3 4 10    1 2 3 4    5 6 7 8    9 10 11 12输出：19</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>首先，求取一个矩阵的和可以采用二维前缀和简化计算，降低复杂度。其次，不难想到，我们可以枚举左上角坐标以及右下角坐标求出所有满足条件的矩阵，但是这样复杂度就是n^4，时间复杂度相对难以接受。所以我们应该想办法降低复杂度，根据题目要求，不大于k,那么一个矩阵的子矩阵大于k则该矩阵就无需判断，这样利用双指针，我们可以在O(n)的时间求出这一行的矩阵。</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>#include &lt;iostream&gt;using namespace std;int a[510][510];int sum1(int x1,int y1,int x2,int y2)&#123;    return a[x2][y2]-a[x1-1][y2]-a[x2][y1-1]+a[x1-1][y1-1];&#125;int main()&#123;    int n,m,k;    scanf(&quot;%d %d %d&quot;,&amp;n,&amp;m,&amp;k);    long long int ans=0;    int temp;    for(int i=1;i&lt;=n;i++)    &#123;        for(int j=1;j&lt;=m;j++)        &#123;        scanf(&quot;%d&quot;,&amp;temp);        a[i][j]=a[i-1][j]+a[i][j-1]+temp-a[i-1][j-1];        &#125;    &#125;    for (int i = 1; i &lt;= n; ++i) &#123;            for (int j = i; j &lt;= n; ++j) &#123;                for (int l = 1, r = 1; r &lt;= m; ++r) &#123;                    while (l &lt;= r &amp;&amp; sum1(i, l, j, r) &gt; k) l++;                    ans += r - l + 1;                &#125;            &#125;        &#125;    cout &lt;&lt; ans;    return 0;&#125;</code></pre>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;全排列&quot;&gt;&lt;a href=&quot;#全排列&quot; class=&quot;headerlink&quot; title=&quot;全排列&quot;&gt;&lt;/a&gt;全排列&lt;/h2&gt;&lt;p&gt;全排列 一般把1~ n 这 n 个整数按某个顺序摆放的结果称为这 n 个整数的一个排列，而全排列指这 n 个整数能形成的所有排列。&lt;</summary>
+    <summary type="html">&lt;h3 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h3&gt;&lt;p&gt;给定一个 N × M 的矩阵 A , 请你统计有多少个子矩阵 (最小 1 × 1, 最大 N × M ) 满足子矩阵中所有数</summary>
       
     
     
@@ -490,7 +493,7 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="math" scheme="http://example.com/tags/math/"/>
+    <category term="蓝桥" scheme="http://example.com/tags/%E8%93%9D%E6%A1%A5/"/>
     
   </entry>
   
