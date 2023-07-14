@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>组合模式 | Hexo</title>
-  <meta name="keywords" content=" 结构型模式 ">
-  <meta name="description" content="组合模式 | Hexo">
+  <title>WebAssembly与Rust实践 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="WebAssembly与Rust实践 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到！">
 <meta property="og:type" content="website">
@@ -2510,39 +2510,24 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-DesignMode/Structural Pattern/组合模式" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-WPS/wasm和rust" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">组合模式</h1>
+        <h1 class="article-title">WebAssembly与Rust实践</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="设计模式">设计模式</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color1">结构型模式</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-07-09 17:09:24'>2023-07-11 22:27</time>
+            Created At : <time class="date" title='Updated At: 2023-07-14 09:16:01'>2023-07-13 21:57</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:1.2k</span>
+        <span>Count:1.7k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -2572,7 +2557,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F"><span class="toc-text">组合模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WebAssembly%E4%B8%8ERust%E5%AE%9E%E8%B7%B5"><span class="toc-text">WebAssembly与Rust实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85WebAssembly%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-text">安装WebAssembly开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86Rust%E7%BC%96%E8%AF%91%E4%B8%BAwasm"><span class="toc-text">将Rust编译为wasm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%92%8C%E5%AF%BC%E5%87%BA%E5%87%BD%E6%95%B0"><span class="toc-text">导入和导出函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%87%BAmain-%E5%87%BD%E6%95%B0"><span class="toc-text">导出main()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%AE%BF%E4%B8%BB%E6%89%93%E5%8D%B0%E5%87%BD%E6%95%B0"><span class="toc-text">导入宿主打印函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TODO-%E6%9B%B4%E6%96%B0"><span class="toc-text">TODO 更新</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -2588,124 +2573,81 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h1><p>组合模式 Pattern），又叫部分整体模式，是用于把一组相似的对象当作一个单一的对象。组合模式依据树形结构来组合对象，用来表示部分以及整体层次。这种类型的设计模式属于结构型模式，它创建了对象组的树形结构。<br>在金山WPS企业课程中对此有所实践，当时做的是一个复杂图形以及简单图形面积求解问题，复杂图形可以包含其他复杂图形或者简单图形。</p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>意图：将对象组合成树形结构以表示”部分-整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</p>
-<p>主要解决：它在我们树型结构的问题中，模糊了简单元素和复杂元素的概念，客户程序可以像处理简单元素一样来处理复杂元素，从而使得客户程序与复杂元素的内部结构解耦。</p>
-<p>何时使用： 1、您想表示对象的部分-整体层次结构（树形结构）。 2、您希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。</p>
-<p>如何解决：树枝和叶子实现统一接口，树枝内部组合该接口。</p>
-<p>关键代码：树枝内部组合该接口，并且含有内部属性 List，里面放 Component。</p>
-<p>应用实例： 1、算术表达式包括操作数、操作符和另一个操作数，其中，另一个操作数也可以是操作数、操作符和另一个操作数。 2、在 JAVA AWT 和 SWING 中，对于 Button 和 Checkbox 是树叶，Container 是树枝。</p>
-<p>优点： 1、高层模块调用简单。 2、节点自由增加。</p>
-<p>缺点：在使用组合模式时，其叶子和树枝的声明都是实现类，而不是接口，违反了依赖倒置原则。</p>
-<p>何时使用： 1、您想表示对象的部分-整体层次结构（树形结构）。 2、您希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>在windows里面无论是对于什么后缀的文件还是目录，我们都可以用删除，添加，重命名等统一的操作，不需要区别对待。手机菜单，话机菜单等等一切目录菜单也是一样的，我们可以用统一的接口操作。</p>
-<pre><code>#include&lt;iostream&gt;
-#include&lt;vector&gt;
-using namespace std;
+        <h1 id="WebAssembly与Rust实践"><a href="#WebAssembly与Rust实践" class="headerlink" title="WebAssembly与Rust实践"></a>WebAssembly与Rust实践</h1>
 
-class fileSystem &#123;
-    public:
-        string name;
-        virtual void add(fileSystem* node) = 0;
-        virtual void rename(string newname) = 0;
-        virtual void remove(fileSystem* node) = 0;
-        virtual fileSystem* enter() = 0;
-        virtual fileSystem* GetNode(int index) &#123;&#125;
-        void showName() &#123;
-            cout &lt;&lt;&quot;文件名字:&quot;&lt;&lt;name&lt;&lt;endl;
-        &#125;
-&#125;;
+	<div class="row">
+    <embed src="../../../pdf/WebAssembly与Rust实践.pdf" width="100%" height="550" type="application/pdf">
+	</div>
 
-class dir :public fileSystem &#123;
-    private:
-        vector &lt;fileSystem*&gt; file;
-    public:
-        dir(string name) &#123;
-            this-&gt;name = name;
-        &#125;
-        void add(fileSystem* node) &#123;
-            file.push_back(node);
-        &#125;
-        void remove(fileSystem* node) &#123; 
-            for(auto it=file.begin();it!=file.end();it++) &#123;
-                if(*it == node)
-                    file.erase(it);
-            &#125;       
-        &#125;
-        void rename(string newName) &#123;
-            name = newName;
-        &#125;
-        fileSystem* enter() &#123;      //目录点击去就是显示里面有什么
-            cout&lt;&lt;&quot;打开名叫&quot;&lt;&lt;name&lt;&lt;&quot;的目录&quot;&lt;&lt;endl;
-            for(auto it=file.begin();it!=file.end();it++) &#123;
-                cout&lt;&lt;(*it)-&gt;name&lt;&lt;endl;
-            &#125;
-            return this;       
-        &#125;
-        fileSystem* GetNode(int index) &#123;    //电脑会进行按键扫描返回是第几个文件也就是index
-            return file[index];
-        &#125;
-&#125;;
 
-class cppfile :public fileSystem &#123;
-    public:
-        cppfile(string name) &#123;
-            this-&gt;name = name;
-        &#125;
-        void add(fileSystem* node) &#123;
-            cout&lt;&lt;&quot;不支持这个操作&quot;&lt;&lt;endl;
-        &#125;
-        void remove(fileSystem* node) &#123;
-            cout&lt;&lt;&quot;不支持这个操作&quot;&lt;&lt;endl;
-        &#125;
-        void rename(string newName) &#123;
-                name = newName;
-        &#125;
-        fileSystem* enter() &#123;      //文件就是打开
-            cout&lt;&lt;&quot;打开名叫&quot;&lt;&lt;name&lt;&lt;&quot;的文件&quot;&lt;&lt;endl;
-            return this;
-        &#125;
 
-&#125;;
 
-class txtfile :public fileSystem &#123;
-    public:
-        txtfile(string name) &#123;
-            this-&gt;name = name;
-        &#125;
-        void add(fileSystem* node) &#123;
-            cout&lt;&lt;&quot;不支持这个操作&quot;&lt;&lt;endl;
-        &#125;
-        void remove(fileSystem* node) &#123;
-            cout&lt;&lt;&quot;不支持这个操作&quot;&lt;&lt;endl;
-        &#125;
-        void rename(string newName) &#123;
-            name = newName;
-        &#125;
-        fileSystem* enter() &#123;      //文件就是打开
-            cout&lt;&lt;&quot;打开名叫&quot;&lt;&lt;name&lt;&lt;&quot;的文件&quot;&lt;&lt;endl;
-            return this;
-        &#125;
-&#125;;
-
-int main() &#123;
-    fileSystem * d = new dir(&quot;1dir&quot;);     //创建根目录1dir
-    d-&gt;showName();
-    d-&gt;add(new txtfile(&quot;2txt&quot;));          //创建三个类型文件
-    d-&gt;add(new cppfile(&quot;3cpp&quot;));
-    d-&gt;add(new dir(&quot;4dir&quot;));
-    d = d-&gt;enter();                       //进入1dir目录，展示下面有哪些文件              
-    d = d-&gt;GetNode(2);                    //按键扫描，表示接下来操作的是哪个位置上的文件
-    d = d-&gt;enter();                       //进入4dir目录，展示下面有哪些文件 
-    d-&gt;showName();
-    d-&gt;add(new cppfile(&quot;5cpp&quot;));          //创建5cpp
-    d = d-&gt;GetNode(0);                    //按键扫描，表示接下来操作的是哪个位置上的文件
-    d = d-&gt;enter();
-    d-&gt;showName();
-    return 0; 
+<p>注：pdf为本人编写，不需要用图床比较方便，用图太多实在不想整理到博客了，下面内容不全，真心求教大佬们有没有什么魔法可以markdown粘贴图片绑定图床自动生成链接。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Rust编程语言和WebAssembly（Wasm）都是由Mozilla推动的前沿技术，并且它们在许多方面相互补充。<strong>Rust正致力于成为WebAssembly的首选编程语言</strong>。<br>Rust语言的最大特色之一是在保证系统性能的同时提供内存安全性。通过其所有权系统、借用检查器和生命周期规则，Rust可以在编译时捕获内存安全错误，避免了许多常见的内存错误，如空指针引用、数据竞争等。这使得Rust成为开发高性能、安全和可靠系统级软件的理想选择。<br>WebAssembly是一种可移植的低级字节码格式，可以在Web环境中运行。它的目标是在不同平台和语言之间提供统一的执行环境，并以接近原生的性能运行代码。WebAssembly允许以高效且安全的方式在Web浏览器中执行性能敏感的任务，同时保持与底层平台的兼容性。<br>Rust语言在与WebAssembly的结合方面有很多优势。Rust从诞生之初就考虑到与C语言的兼容性，使得使用Rust编写的代码可以直接与C语言的二进制接口（ABI）进行交互。这使得Rust成为编写WebAssembly模块的理想语言之一。Rust的Cargo包管理工具也为构建、打包和发布WebAssembly模块提供了便利。通过使用Rust和WebAssembly，开发人员可以借助Rust语言的安全性和性能优势，同时利用WebAssembly的跨平台和高性能特性，构建出功能强大、高效且安全的Web应用程序、浏览器扩展、游戏和其他Web平台的应用。</p>
+<h2 id="安装WebAssembly开发环境"><a href="#安装WebAssembly开发环境" class="headerlink" title="安装WebAssembly开发环境"></a>安装WebAssembly开发环境</h2><p>Rust是目前WebAssembly生态中支持力度最强的一种语言。开源社区中不仅有Rust语言开发的WebAssembly虚拟机，还有基于WebAssembly模块的管理工具。<br>Rust语言默认安装的是生成本地应用的开发环境，因此WebAssembly开发环境需要单独安装。<br>首先查看有哪些环境可以安装：</p>
+<pre><code> rustup target list | grep wasm
+</code></pre>
+<p>运行结果如下所示：<br>• rustup target add wasm32-wasi：<br>    ◦ 这个指令将把wasm32-wasi目标加入到Rust工具链中。wasm32-wasi是用于WebAssembly系统接口(WASI)的目标，WASI是一种与操作系统无关的WebAssembly运行环境，允许在不同平台上运行WebAssembly模块。<br>• rustup target add wasm32-unknown-emscripten：<br>    ◦ 为了将 wasm32-unknown-emscripten 目标添加到 Rust 工具链，需要运行以下命令。wasm32-unknown-emscripten 是 Emscripten 工具链提供的一个目标，它能够将 Rust 代码编译为适用于浏览器环境的 WebAssembly 模块。<br>• rustup target add wasm32-unknown-unknown：<br>    ◦ 此命令将在 Rust 工具链中添加 wasm32-unknown-unknown 目标。wasm32-unknown-unknown 目标是一个通用的 WebAssembly 目标，适用于在不特定于操作系统或运行时环境的情况下构建 WebAssembly 模块。</p>
+<p>了解环境之后，我们可以通过以下命令安装：</p>
+<pre><code>rustup target add wasm32-wasi
+rustup target add wasm32-unknown-emscripten
+rustup target add wasm32-unknown-unknown
+</code></pre>
+<p>为了方便测试和运行WebAssembly模块，还需要安装wasmer虚拟机环境。使用Scoop：</p>
+<pre><code>scoop install wasmer
+</code></pre>
+<p>安装成功之后，输入以下命令查看wasmer版本信息：</p>
+<pre><code>wasmer -h
+</code></pre>
+<h2 id="将Rust编译为wasm"><a href="#将Rust编译为wasm" class="headerlink" title="将Rust编译为wasm"></a>将Rust编译为wasm</h2><p>我们仍然使用刚才的入门测试程序，打印你好，世界！<br>然后，在编译时指定目标为wasm32-wasi：</p>
+<pre><code>cargo build --target=wasm32-wasi
+</code></pre>
+<p>在src同级目录下面，target&#x2F;wasm32-wasi&#x2F;debug&#x2F;内已经生成了对应的hello.wasm文件。<br>最后，通过wasmer工具运行该程序文件</p>
+<pre><code>wasmer run target/wasm32-wasi/debug/hello.wasm
+</code></pre>
+<p>可以看到程序正常输出</p>
+<h2 id="导入和导出函数"><a href="#导入和导出函数" class="headerlink" title="导入和导出函数"></a>导入和导出函数</h2><h3 id="导出main-函数"><a href="#导出main-函数" class="headerlink" title="导出main()函数"></a>导出main()函数</h3><p>当在 Rust 中构建 WebAssembly 模块时，导入和导出函数是实现与宿主环境进行交互的关键部分。通过导入函数，可以在 Rust 模块中调用宿主环境中提供的功能，而通过导出函数，可以将 Rust 函数暴露给宿主环境使用。<br>上面测试时编译目标为wasm32-wasi，因此程序只能在宿主支持的WASI虚拟机环境运行。现在，我们设置编译目标为wasm32-unknown-unknown（即纯WebAssembly环境），然后查看其导出的函数。<br>输入以下命令重新构建：</p>
+<pre><code>cargo build --target wasm32-unknown-unknown
+</code></pre>
+<p>默认生成.&#x2F;target&#x2F;wasm32-unknown-unknown&#x2F;debug&#x2F;hello.wasm</p>
+<p>可以看到我们已经导出了main函数。</p>
+<p>我们还可以在Node.js环境，通过console.dir()调试函数查看导出的内容，在wasm对应目录下创建hello.js文件：</p>
+<pre><code>const fs = require(&#39;fs&#39;);
+//readFileSync文件读取会阻塞代码的执行，直到读取完成
+const buf = fs.readFileSync(&#39;./hello.wasm&#39;);
+WebAssembly.instantiate(new Uint8Array(buf)).then(function(result) &#123;
+    console.dir(result.instance.exports);
+&#125;);
+</code></pre>
+<p>运行代码，得到以下输出:</p>
+<p>这说明普通的应用程序默认导出了main()函数。</p>
+<h3 id="导入宿主打印函数"><a href="#导入宿主打印函数" class="headerlink" title="导入宿主打印函数"></a>导入宿主打印函数</h3><p>WebAssembly是一个与宿主环境隔离的虚拟机，因此WebAssembly模块不能直接访问宿主环境的控制台或文件系统等资源。为了在WebAssembly模块中输出信息，需要通过与宿主环境的交互来完成输出操作。<br>我们假定Node.js宿主环境提供了一个console_log()函数，用于输出一个整数值：</p>
+<pre><code>function console_log(x) &#123;
+    console.log(x);
 &#125;
 </code></pre>
+<p>这样就可以通过console_log()函数输出信息了。src&#x2F;main.rs内容修改如下：</p>
+<pre><code>extern &quot;C&quot; &#123;
+    fn console_log(a: i32);
+&#125;
+fn main() &#123;
+    unsafe &#123;
+        console_log(42);
+    &#125;
+&#125;
+</code></pre>
+<p>其中，紧跟extern “C”后的大括弧内是宿主导入函数声明，它们都是以C语言ABI规范导入。由于外部函数的实现是由宿主环境提供的，而不是由Rust代码控制的，因此我们无法保证这些函数的安全性和正确性。为此，我们需要将调用外部函数的代码放在unsafe语句块中，这样编译器就会知道该代码可能存在不安全操作，并需要我们自行确保其正确性和安全性。<br>对应Node.js环境的启动代码如下</p>
+<pre><code>const fs = require(&#39;fs&#39;);
+const buf = fs.readFileSync(&#39;./hello.wasm&#39;);
 
+function console_log(x) &#123; console.log(x); &#125;
+WebAssembly.instantiate(new Uint8Array(buf), &#123;
+    env: &#123; &quot;console_log&quot;: console_log &#125;
+&#125;).then(function(result) &#123;
+    result.instance.exports.main();
+&#125;);
+</code></pre>
+<h1 id="TODO-更新"><a href="#TODO-更新" class="headerlink" title="TODO 更新"></a>TODO 更新</h1>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3366576307@qq.com </span>
     </div>
