@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-07-14T01:16:01.552Z</updated>
+  <updated>2023-07-16T09:25:12.728Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,62 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>栈</title>
+    <link href="http://example.com/p/1f4ac2fb.html"/>
+    <id>http://example.com/p/1f4ac2fb.html</id>
+    <published>2023-07-16T09:10:58.637Z</published>
+    <updated>2023-07-16T09:25:12.728Z</updated>
+    
+    <content type="html"><![CDATA[<hr><h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>20,155,232,844,224,682,496.</p><h2 id="有效的括号"><a href="#有效的括号" class="headerlink" title="有效的括号"></a>有效的括号</h2><pre><code>class Solution &#123;public:    bool isValid(string s) &#123;        stack&lt;char&gt;stk;        map&lt;char,char&gt;table;        table.insert(&#123;&#39;(&#39;,&#39;)&#39;&#125;);        table.insert(&#123;&#39;[&#39;,&#39;]&#39;&#125;);        table.insert(&#123;&#39;&#123;&#39;,&#39;&#125;&#39;&#125;);        for(auto c:s)        &#123;            if(c==&#39;(&#39;||c==&#39;[&#39;||c==&#39;&#123;&#39;)            &#123;                stk.push(c);            &#125;            else            &#123;                if(stk.size()&amp;&amp;table[stk.top()]==c)                &#123;                    stk.pop();                &#125;                else&#123;                    return false;                &#125;            &#125;        &#125;        if(stk.size())return false;        return true;    &#125;&#125;;</code></pre><p>坑点有很多，比如每次pop需要注意栈非空，匹配结束如果栈有值则失败，思路想的时候很好代码实现总是遗漏要点。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;h1 id=&quot;栈&quot;&gt;&lt;a href=&quot;#栈&quot; class=&quot;headerlink&quot; title=&quot;栈&quot;&gt;&lt;/a&gt;栈&lt;/h1&gt;&lt;p&gt;20,155,232,844,224,682,496.&lt;/p&gt;
+&lt;h2 id=&quot;有效的括号&quot;&gt;&lt;a href=&quot;#有效的括号&quot; class</summary>
+      
+    
+    
+    
+    <category term="算法与数据结构" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>链表</title>
+    <link href="http://example.com/p/2362a8ea.html"/>
+    <id>http://example.com/p/2362a8ea.html</id>
+    <published>2023-07-16T07:09:58.247Z</published>
+    <updated>2023-07-16T09:10:20.004Z</updated>
+    
+    <content type="html"><![CDATA[<hr><h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><ul><li>单链表反转</li><li>链表中环的检测</li><li>两个有序的链表合并</li><li>删除链表倒数第 n 个结点</li><li>求链表的中间结点</li></ul><p>练习题LeetCode对应编号：206，141，21，19，876</p><h2 id="反转链表"><a href="#反转链表" class="headerlink" title="反转链表"></a>反转链表</h2><pre><code>class Solution &#123;public:    ListNode* reverseList(ListNode* head) &#123;        ListNode* prev = nullptr;        ListNode* curr = head;        while (curr) &#123;            ListNode* next = curr-&gt;next;            curr-&gt;next = prev;            prev = curr;            curr = next;        &#125;        return prev;    &#125;&#125;;</code></pre><h2 id="判断环形链表"><a href="#判断环形链表" class="headerlink" title="判断环形链表"></a>判断环形链表</h2><pre><code>class Solution &#123;public:    bool hasCycle(ListNode* head) &#123;        ListNode* slow = head;        ListNode* fast = head;        while (fast != nullptr &amp;&amp; fast-&gt;next != nullptr) &#123;            slow = slow-&gt;next;            fast = fast-&gt;next-&gt;next;            if (fast == slow) &#123;    // 如果快慢指针相遇                return true;            &#125;        &#125;        return false;    &#125;&#125;;</code></pre><h2 id="合并两个有序链表"><a href="#合并两个有序链表" class="headerlink" title="合并两个有序链表"></a>合并两个有序链表</h2><pre><code>class Solution &#123;public:    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) &#123;        ListNode* preHead = new ListNode(-1);        ListNode* prev = preHead;        while (l1 != nullptr &amp;&amp; l2 != nullptr) &#123;            if (l1-&gt;val &lt; l2-&gt;val) &#123;                prev-&gt;next = l1;                l1 = l1-&gt;next;            &#125; else &#123;                prev-&gt;next = l2;                l2 = l2-&gt;next;            &#125;            prev = prev-&gt;next;        &#125;        // 合并后 l1 和 l2 最多只有一个还未被合并完，我们直接将链表末尾指向未合并完的链表即可        prev-&gt;next = l1 == nullptr ? l2 : l1;        return preHead-&gt;next;    &#125;&#125;;</code></pre><h2 id="删除倒数节点"><a href="#删除倒数节点" class="headerlink" title="删除倒数节点"></a>删除倒数节点</h2><pre><code>class Solution &#123;public:    ListNode* removeNthFromEnd(ListNode* head, int n) &#123;        auto first=head;        auto second=first;        for(int i=0;i&lt;n;i++)&#123;            second=second-&gt;next;        &#125;        if(second==nullptr)return head-&gt;next;        second=second-&gt;next;        while(second!=nullptr)        &#123;            first=first-&gt;next;            second=second-&gt;next;        &#125;        auto temp=first-&gt;next;        first-&gt;next=temp-&gt;next;        delete temp;        return head;    &#125;&#125;;</code></pre><h2 id="返回中点"><a href="#返回中点" class="headerlink" title="返回中点"></a>返回中点</h2><pre><code>class Solution &#123;public:    ListNode* middleNode(ListNode* head) &#123;        auto slow=head;        auto fast=head;        while(fast&amp;&amp;fast-&gt;next)        &#123;            slow=slow-&gt;next;            fast=fast-&gt;next-&gt;next;        &#125;        return slow;    &#125;&#125;;</code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;h1 id=&quot;链表&quot;&gt;&lt;a href=&quot;#链表&quot; class=&quot;headerlink&quot; title=&quot;链表&quot;&gt;&lt;/a&gt;链表&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;单链表反转&lt;/li&gt;
+&lt;li&gt;链表中环的检测&lt;/li&gt;
+&lt;li&gt;两个有序的链表合并&lt;/li&gt;
+&lt;li&gt;删除链表倒数第 </summary>
+      
+    
+    
+    
+    <category term="算法与数据结构" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>WebAssembly与Rust实践</title>
     <link href="http://example.com/p/13592136.html"/>
     <id>http://example.com/p/13592136.html</id>
     <published>2023-07-13T13:57:09.666Z</published>
-    <updated>2023-07-14T01:16:01.552Z</updated>
+    <updated>2023-07-14T02:17:14.555Z</updated>
     
     <content type="html"><![CDATA[<h1 id="WebAssembly与Rust实践"><a href="#WebAssembly与Rust实践" class="headerlink" title="WebAssembly与Rust实践"></a>WebAssembly与Rust实践</h1><div class="row">    <embed src="../../../pdf/WebAssembly与Rust实践.pdf" width="100%" height="550" type="application/pdf"></div><p>注：pdf为本人编写，不需要用图床比较方便，用图太多实在不想整理到博客了，下面内容不全，真心求教大佬们有没有什么魔法可以markdown粘贴图片绑定图床自动生成链接。</p><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Rust编程语言和WebAssembly（Wasm）都是由Mozilla推动的前沿技术，并且它们在许多方面相互补充。<strong>Rust正致力于成为WebAssembly的首选编程语言</strong>。<br>Rust语言的最大特色之一是在保证系统性能的同时提供内存安全性。通过其所有权系统、借用检查器和生命周期规则，Rust可以在编译时捕获内存安全错误，避免了许多常见的内存错误，如空指针引用、数据竞争等。这使得Rust成为开发高性能、安全和可靠系统级软件的理想选择。<br>WebAssembly是一种可移植的低级字节码格式，可以在Web环境中运行。它的目标是在不同平台和语言之间提供统一的执行环境，并以接近原生的性能运行代码。WebAssembly允许以高效且安全的方式在Web浏览器中执行性能敏感的任务，同时保持与底层平台的兼容性。<br>Rust语言在与WebAssembly的结合方面有很多优势。Rust从诞生之初就考虑到与C语言的兼容性，使得使用Rust编写的代码可以直接与C语言的二进制接口（ABI）进行交互。这使得Rust成为编写WebAssembly模块的理想语言之一。Rust的Cargo包管理工具也为构建、打包和发布WebAssembly模块提供了便利。通过使用Rust和WebAssembly，开发人员可以借助Rust语言的安全性和性能优势，同时利用WebAssembly的跨平台和高性能特性，构建出功能强大、高效且安全的Web应用程序、浏览器扩展、游戏和其他Web平台的应用。</p><h2 id="安装WebAssembly开发环境"><a href="#安装WebAssembly开发环境" class="headerlink" title="安装WebAssembly开发环境"></a>安装WebAssembly开发环境</h2><p>Rust是目前WebAssembly生态中支持力度最强的一种语言。开源社区中不仅有Rust语言开发的WebAssembly虚拟机，还有基于WebAssembly模块的管理工具。<br>Rust语言默认安装的是生成本地应用的开发环境，因此WebAssembly开发环境需要单独安装。<br>首先查看有哪些环境可以安装：</p><pre><code> rustup target list | grep wasm</code></pre><p>运行结果如下所示：<br>• rustup target add wasm32-wasi：<br>    ◦ 这个指令将把wasm32-wasi目标加入到Rust工具链中。wasm32-wasi是用于WebAssembly系统接口(WASI)的目标，WASI是一种与操作系统无关的WebAssembly运行环境，允许在不同平台上运行WebAssembly模块。<br>• rustup target add wasm32-unknown-emscripten：<br>    ◦ 为了将 wasm32-unknown-emscripten 目标添加到 Rust 工具链，需要运行以下命令。wasm32-unknown-emscripten 是 Emscripten 工具链提供的一个目标，它能够将 Rust 代码编译为适用于浏览器环境的 WebAssembly 模块。<br>• rustup target add wasm32-unknown-unknown：<br>    ◦ 此命令将在 Rust 工具链中添加 wasm32-unknown-unknown 目标。wasm32-unknown-unknown 目标是一个通用的 WebAssembly 目标，适用于在不特定于操作系统或运行时环境的情况下构建 WebAssembly 模块。</p><p>了解环境之后，我们可以通过以下命令安装：</p><pre><code>rustup target add wasm32-wasirustup target add wasm32-unknown-emscriptenrustup target add wasm32-unknown-unknown</code></pre><p>为了方便测试和运行WebAssembly模块，还需要安装wasmer虚拟机环境。使用Scoop：</p><pre><code>scoop install wasmer</code></pre><p>安装成功之后，输入以下命令查看wasmer版本信息：</p><pre><code>wasmer -h</code></pre><h2 id="将Rust编译为wasm"><a href="#将Rust编译为wasm" class="headerlink" title="将Rust编译为wasm"></a>将Rust编译为wasm</h2><p>我们仍然使用刚才的入门测试程序，打印你好，世界！<br>然后，在编译时指定目标为wasm32-wasi：</p><pre><code>cargo build --target=wasm32-wasi</code></pre><p>在src同级目录下面，target&#x2F;wasm32-wasi&#x2F;debug&#x2F;内已经生成了对应的hello.wasm文件。<br>最后，通过wasmer工具运行该程序文件</p><pre><code>wasmer run target/wasm32-wasi/debug/hello.wasm</code></pre><p>可以看到程序正常输出</p><h2 id="导入和导出函数"><a href="#导入和导出函数" class="headerlink" title="导入和导出函数"></a>导入和导出函数</h2><h3 id="导出main-函数"><a href="#导出main-函数" class="headerlink" title="导出main()函数"></a>导出main()函数</h3><p>当在 Rust 中构建 WebAssembly 模块时，导入和导出函数是实现与宿主环境进行交互的关键部分。通过导入函数，可以在 Rust 模块中调用宿主环境中提供的功能，而通过导出函数，可以将 Rust 函数暴露给宿主环境使用。<br>上面测试时编译目标为wasm32-wasi，因此程序只能在宿主支持的WASI虚拟机环境运行。现在，我们设置编译目标为wasm32-unknown-unknown（即纯WebAssembly环境），然后查看其导出的函数。<br>输入以下命令重新构建：</p><pre><code>cargo build --target wasm32-unknown-unknown</code></pre><p>默认生成.&#x2F;target&#x2F;wasm32-unknown-unknown&#x2F;debug&#x2F;hello.wasm</p><p>可以看到我们已经导出了main函数。</p><p>我们还可以在Node.js环境，通过console.dir()调试函数查看导出的内容，在wasm对应目录下创建hello.js文件：</p><pre><code>const fs = require(&#39;fs&#39;);//readFileSync文件读取会阻塞代码的执行，直到读取完成const buf = fs.readFileSync(&#39;./hello.wasm&#39;);WebAssembly.instantiate(new Uint8Array(buf)).then(function(result) &#123;    console.dir(result.instance.exports);&#125;);</code></pre><p>运行代码，得到以下输出:</p><p>这说明普通的应用程序默认导出了main()函数。</p><h3 id="导入宿主打印函数"><a href="#导入宿主打印函数" class="headerlink" title="导入宿主打印函数"></a>导入宿主打印函数</h3><p>WebAssembly是一个与宿主环境隔离的虚拟机，因此WebAssembly模块不能直接访问宿主环境的控制台或文件系统等资源。为了在WebAssembly模块中输出信息，需要通过与宿主环境的交互来完成输出操作。<br>我们假定Node.js宿主环境提供了一个console_log()函数，用于输出一个整数值：</p><pre><code>function console_log(x) &#123;    console.log(x);&#125;</code></pre><p>这样就可以通过console_log()函数输出信息了。src&#x2F;main.rs内容修改如下：</p><pre><code>extern &quot;C&quot; &#123;    fn console_log(a: i32);&#125;fn main() &#123;    unsafe &#123;        console_log(42);    &#125;&#125;</code></pre><p>其中，紧跟extern “C”后的大括弧内是宿主导入函数声明，它们都是以C语言ABI规范导入。由于外部函数的实现是由宿主环境提供的，而不是由Rust代码控制的，因此我们无法保证这些函数的安全性和正确性。为此，我们需要将调用外部函数的代码放在unsafe语句块中，这样编译器就会知道该代码可能存在不安全操作，并需要我们自行确保其正确性和安全性。<br>对应Node.js环境的启动代码如下</p><pre><code>const fs = require(&#39;fs&#39;);const buf = fs.readFileSync(&#39;./hello.wasm&#39;);function console_log(x) &#123; console.log(x); &#125;WebAssembly.instantiate(new Uint8Array(buf), &#123;    env: &#123; &quot;console_log&quot;: console_log &#125;&#125;).then(function(result) &#123;    result.instance.exports.main();&#125;);</code></pre><h1 id="TODO-更新"><a href="#TODO-更新" class="headerlink" title="TODO 更新"></a>TODO 更新</h1>]]></content>
     
@@ -35,6 +86,12 @@
     
     
     
+    <category term="others" scheme="http://example.com/categories/others/"/>
+    
+    
+    <category term="实习" scheme="http://example.com/tags/%E5%AE%9E%E4%B9%A0/"/>
+    
+    <category term="WebAssembly" scheme="http://example.com/tags/WebAssembly/"/>
     
   </entry>
   
@@ -155,6 +212,30 @@
   </entry>
   
   <entry>
+    <title>寻宝大作战</title>
+    <link href="http://example.com/p/59129.html"/>
+    <id>http://example.com/p/59129.html</id>
+    <published>2023-07-11T14:27:38.896Z</published>
+    <updated>2023-07-09T09:09:24.725Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><h3 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h3><p>暑假要到了。可惜由于种种原因，小 P 原本的出游计划取消。失望的小 P 只能留在西西艾弗岛上度过一个略显单调的假期……直到……</p><p>某天，小 P 获得了一张神秘的藏宝图。</p><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>西西艾弗岛上种有 n 棵树，这些树的具体位置记录在一张绿化图上。<br>简单地说，西西艾弗岛绿化图可以视作一个大小为 (L+1)×(L+1) 的 01 矩阵 A，<br>地图左下角（坐标 (0,0)）和右上角（坐标 (L,L)）分别对应 A[0][0] 和 A[L][L]。<br>其中 A[i][j]&#x3D;1 表示坐标 (i,j) 处种有一棵树，A[i][j]&#x3D;0 则表示坐标 (i,j) 处没有树。<br>换言之，矩阵 A 中有且仅有的 n 个 1 展示了西西艾弗岛上 n 棵树的具体位置。</p><p>传说，大冒险家顿顿的宝藏就埋藏在某棵树下。<br>并且，顿顿还从西西艾弗岛的绿化图上剪下了一小块，制作成藏宝图指示其位置。<br>具体来说，藏宝图可以看作一个大小为 (S+1)×(S+1) 的 01 矩阵 B（S 远小于 L），对应着 A 中的某一部分。<br>理论上，绿化图 A 中存在着一处坐标 (x,y)（0≤x,y≤L−S）与藏宝图 B 左下角 (0,0) 相对应，即满足：<br>对 B 上任意一处坐标 (i,j)（0≤i,j≤S），都有 A[x+i][y+j]&#x3D;B[i][j]。<br>当上述条件满足时，我们就认为藏宝图 B 对应着绿化图 A 中左下角为 (x,y)、右上角为 (x+S,y+S) 的区域。</p><p>实际上，考虑到藏宝图仅描绘了很小的一个范围，满足上述条件的坐标 (x,y) 很可能存在多个。<br>请结合西西艾弗岛绿化图中 n 棵树的位置，以及小 P 手中的藏宝图，判断绿化图中有多少处坐标满足条件。</p><p>特别地，藏宝图左下角位置一定是一棵树，即 A[x][y]&#x3D;B[0][0]&#x3D;1，表示了宝藏埋藏的位置。</p><h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>从标准输入读入数据。</p><p>输入的第一行包含空格分隔的三个正整数 n、L 和 S，分别表示西西艾弗岛上树的棵数、绿化图和藏宝图的大小。</p><p>由于绿化图尺寸过大，输入数据中仅包含 n 棵树的坐标而非完整的地图；即接下来 n 行每行包含空格分隔的两个整数 x 和 y，表示一棵树的坐标，满足 0≤x,y≤L 且同一坐标不会重复出现。</p><p>最后 (S+1) 行输入小 P 手中完整的藏宝图，其中第 i 行（0≤i≤S）包含空格分隔的 (S+1) 个 0 和 1，表示 B[S−i][0]⋯B[S−i][S]。<br>需要注意，最先输入的是 B[S][0]⋯B[S][S] 一行，B[0][0]⋯B[0][S] 一行最后输入。</p><p><strong>样例 1 输入</strong></p><pre><code>5 100 20 01 12 23 34 40 0 10 1 01 0 0</code></pre><p><strong>样例 1 输出</strong></p><pre><code>3</code></pre><h3 id="本弱鸡解题思路"><a href="#本弱鸡解题思路" class="headerlink" title="本弱鸡解题思路"></a>本弱鸡解题思路</h3><p>对stl掌握的不好，只能用数组碰运气来做。浪费很多时间，最后只拿了200分，第三题本来可以骗几个用例分数的，，，，，我采用的是记录稀疏矩阵，然后根据横坐标纵坐标排序，最后采用O(n)枚举的暴力做法。代码又臭又长，如下所示（不看也罢）：</p><p> <strong>代码实现</strong></p><pre><code>#include &lt;bits/stdc++.h&gt;using namespace std;/* run this program using the console pauser or add your own getch, system(&quot;pause&quot;) or input loop */struct Zb&#123;    int x;    int y;&#125;zb[1050],cbt[60];int ss[60][60];int cmp(struct Zb a,struct Zb b)&#123;    if(a.x==b.x)&#123;        return a.y&lt;b.y;    &#125;    else return a.x&lt;b.x;    &#125;int main(int argc, char** argv) &#123;    int n,L,s ;    scanf(&quot;%d %d %d&quot;,&amp;n,&amp;L,&amp;s);    for(int i=0;i&lt;n;i++)&#123;        scanf(&quot;%d %d&quot;,&amp;zb[i].x,&amp;zb[i].y);    &#125;        sort(zb,zb+n,cmp);        int t,count=0;        for(int i=s;i&gt;=0;i--)&#123;            for(int j=0;j&lt;=s;j++)&#123;                scanf(&quot;%d&quot;,&amp;ss[i][j]);                if(ss[i][j]==1)&#123;                    cbt[count].y=j;                    cbt[count].x=i;                    count++;                &#125;            &#125;        &#125;        sort(cbt,cbt+count,cmp);        int vcount =0;        for(int i=0;i&lt;n;i++)&#123;            int flag=0;            int k=i+1;            int countzb=0;            if(zb[i].x&gt;L-s||zb[i].y&gt;L-s)flag=1;            while(zb[k].x-zb[i].x&lt;=s&amp;&amp;k&lt;n)&#123;                if(abs(zb[k].x-zb[i].x)&lt;=s&amp;&amp;zb[k].y-zb[i].y&lt;=s&amp;&amp;zb[k].y-zb[i].y&gt;=0)&#123;                    if(ss[abs(zb[k].x-zb[i].x)][abs(zb[k].y-zb[i].y)]!=1)&#123;                        flag=1;                        break;                    &#125;                     countzb++;                &#125;                k++;            &#125;            if(countzb+1!=count)flag=1;            if(flag==0)&#123;                    vcount++;            &#125;        &#125;        printf(&quot;%d&quot;,vcount);     return 0;&#125;</code></pre><h3 id="大佬解法"><a href="#大佬解法" class="headerlink" title="大佬解法"></a>大佬解法</h3><p>对于较大数据10^9，如果用二维数组vector的话无法开辟那么大空间，换成二维map来存储可以解决较大数据问题。解决好两个图的存储问题之后，接下来就是找到符合要求的可能埋有宝藏地点个数，无非就是两个条件：一是满足藏宝图可以在绿化图某块区域完美对上，二是满足藏宝图在绿化图中不出界。可以利用这两个条件去判断每一个符合条件的绿树点。如果两个条件都满足即有可能此处为藏宝点。<br><strong>代码实现</strong></p><pre><code>#include&lt;iostream&gt; #include&lt;map&gt;#include&lt;cmath&gt;using namespace std;//pair&lt;int ,int&gt;和int对应map&lt;int,map&lt;int,int&gt; &gt;mp;struct node&#123;    int x,y;&#125;point[1001];int g[51][51];//地图int main()&#123;    int n,L,S;    cin&gt;&gt;n&gt;&gt;L&gt;&gt;S;    for(int i=0;i&lt;n;i++)&#123;        cin&gt;&gt;point[i].x&gt;&gt;point[i].y;        mp[point[i].x][point[i].y]=1;    &#125;    //输入也是一个坑    for(int i=S;i&gt;=0;i--)&#123;        for(int j=0;j&lt;=S;j++)&#123;            cin&gt;&gt;g[i][j];        &#125;    &#125;    int cnt=0;    for(int i=0;i&lt;n;i++)&#123;        int flag=1;        int x=point[i].x,y=point[i].y;        for(int j=0;j&lt;=S;j++)&#123;            for(int k=0;k&lt;=S;k++)&#123;                if(x+S&gt;L||y+S&gt;L||mp[x+j][y+k]!=g[j][k])&#123;                    flag=0;                    break;                &#125;            &#125;            if(!flag) break;        &#125;        if(flag) cnt++;    &#125;    cout&lt;&lt;cnt&lt;&lt;endl;    return 0;&#125;</code></pre><p><a href="https://blog.csdn.net/victory066/article/details/125819918">作者原文</a><br><a href="https://blog.csdn.net/victory066/article/details/125819918">https://blog.csdn.net/victory066/article/details/125819918</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h2&gt;&lt;h3 id=&quot;题目背景&quot;&gt;&lt;a href=&quot;#题目背景&quot; class=&quot;headerlink&quot; title=&quot;题目背景&quot;&gt;&lt;/a</summary>
+      
+    
+    
+    
+    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="csp" scheme="http://example.com/tags/csp/"/>
+    
+  </entry>
+  
+  <entry>
     <title>非零段划分</title>
     <link href="http://example.com/p/40034.html"/>
     <id>http://example.com/p/40034.html</id>
@@ -203,18 +284,19 @@
   </entry>
   
   <entry>
-    <title>寻宝大作战</title>
-    <link href="http://example.com/p/59129.html"/>
-    <id>http://example.com/p/59129.html</id>
-    <published>2023-07-11T14:27:38.896Z</published>
+    <title>无重复字符的最长子串</title>
+    <link href="http://example.com/p/14283.html"/>
+    <id>http://example.com/p/14283.html</id>
+    <published>2023-07-11T14:27:38.880Z</published>
     <updated>2023-07-09T09:09:24.725Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h2><h3 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h3><p>暑假要到了。可惜由于种种原因，小 P 原本的出游计划取消。失望的小 P 只能留在西西艾弗岛上度过一个略显单调的假期……直到……</p><p>某天，小 P 获得了一张神秘的藏宝图。</p><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>西西艾弗岛上种有 n 棵树，这些树的具体位置记录在一张绿化图上。<br>简单地说，西西艾弗岛绿化图可以视作一个大小为 (L+1)×(L+1) 的 01 矩阵 A，<br>地图左下角（坐标 (0,0)）和右上角（坐标 (L,L)）分别对应 A[0][0] 和 A[L][L]。<br>其中 A[i][j]&#x3D;1 表示坐标 (i,j) 处种有一棵树，A[i][j]&#x3D;0 则表示坐标 (i,j) 处没有树。<br>换言之，矩阵 A 中有且仅有的 n 个 1 展示了西西艾弗岛上 n 棵树的具体位置。</p><p>传说，大冒险家顿顿的宝藏就埋藏在某棵树下。<br>并且，顿顿还从西西艾弗岛的绿化图上剪下了一小块，制作成藏宝图指示其位置。<br>具体来说，藏宝图可以看作一个大小为 (S+1)×(S+1) 的 01 矩阵 B（S 远小于 L），对应着 A 中的某一部分。<br>理论上，绿化图 A 中存在着一处坐标 (x,y)（0≤x,y≤L−S）与藏宝图 B 左下角 (0,0) 相对应，即满足：<br>对 B 上任意一处坐标 (i,j)（0≤i,j≤S），都有 A[x+i][y+j]&#x3D;B[i][j]。<br>当上述条件满足时，我们就认为藏宝图 B 对应着绿化图 A 中左下角为 (x,y)、右上角为 (x+S,y+S) 的区域。</p><p>实际上，考虑到藏宝图仅描绘了很小的一个范围，满足上述条件的坐标 (x,y) 很可能存在多个。<br>请结合西西艾弗岛绿化图中 n 棵树的位置，以及小 P 手中的藏宝图，判断绿化图中有多少处坐标满足条件。</p><p>特别地，藏宝图左下角位置一定是一棵树，即 A[x][y]&#x3D;B[0][0]&#x3D;1，表示了宝藏埋藏的位置。</p><h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>从标准输入读入数据。</p><p>输入的第一行包含空格分隔的三个正整数 n、L 和 S，分别表示西西艾弗岛上树的棵数、绿化图和藏宝图的大小。</p><p>由于绿化图尺寸过大，输入数据中仅包含 n 棵树的坐标而非完整的地图；即接下来 n 行每行包含空格分隔的两个整数 x 和 y，表示一棵树的坐标，满足 0≤x,y≤L 且同一坐标不会重复出现。</p><p>最后 (S+1) 行输入小 P 手中完整的藏宝图，其中第 i 行（0≤i≤S）包含空格分隔的 (S+1) 个 0 和 1，表示 B[S−i][0]⋯B[S−i][S]。<br>需要注意，最先输入的是 B[S][0]⋯B[S][S] 一行，B[0][0]⋯B[0][S] 一行最后输入。</p><p><strong>样例 1 输入</strong></p><pre><code>5 100 20 01 12 23 34 40 0 10 1 01 0 0</code></pre><p><strong>样例 1 输出</strong></p><pre><code>3</code></pre><h3 id="本弱鸡解题思路"><a href="#本弱鸡解题思路" class="headerlink" title="本弱鸡解题思路"></a>本弱鸡解题思路</h3><p>对stl掌握的不好，只能用数组碰运气来做。浪费很多时间，最后只拿了200分，第三题本来可以骗几个用例分数的，，，，，我采用的是记录稀疏矩阵，然后根据横坐标纵坐标排序，最后采用O(n)枚举的暴力做法。代码又臭又长，如下所示（不看也罢）：</p><p> <strong>代码实现</strong></p><pre><code>#include &lt;bits/stdc++.h&gt;using namespace std;/* run this program using the console pauser or add your own getch, system(&quot;pause&quot;) or input loop */struct Zb&#123;    int x;    int y;&#125;zb[1050],cbt[60];int ss[60][60];int cmp(struct Zb a,struct Zb b)&#123;    if(a.x==b.x)&#123;        return a.y&lt;b.y;    &#125;    else return a.x&lt;b.x;    &#125;int main(int argc, char** argv) &#123;    int n,L,s ;    scanf(&quot;%d %d %d&quot;,&amp;n,&amp;L,&amp;s);    for(int i=0;i&lt;n;i++)&#123;        scanf(&quot;%d %d&quot;,&amp;zb[i].x,&amp;zb[i].y);    &#125;        sort(zb,zb+n,cmp);        int t,count=0;        for(int i=s;i&gt;=0;i--)&#123;            for(int j=0;j&lt;=s;j++)&#123;                scanf(&quot;%d&quot;,&amp;ss[i][j]);                if(ss[i][j]==1)&#123;                    cbt[count].y=j;                    cbt[count].x=i;                    count++;                &#125;            &#125;        &#125;        sort(cbt,cbt+count,cmp);        int vcount =0;        for(int i=0;i&lt;n;i++)&#123;            int flag=0;            int k=i+1;            int countzb=0;            if(zb[i].x&gt;L-s||zb[i].y&gt;L-s)flag=1;            while(zb[k].x-zb[i].x&lt;=s&amp;&amp;k&lt;n)&#123;                if(abs(zb[k].x-zb[i].x)&lt;=s&amp;&amp;zb[k].y-zb[i].y&lt;=s&amp;&amp;zb[k].y-zb[i].y&gt;=0)&#123;                    if(ss[abs(zb[k].x-zb[i].x)][abs(zb[k].y-zb[i].y)]!=1)&#123;                        flag=1;                        break;                    &#125;                     countzb++;                &#125;                k++;            &#125;            if(countzb+1!=count)flag=1;            if(flag==0)&#123;                    vcount++;            &#125;        &#125;        printf(&quot;%d&quot;,vcount);     return 0;&#125;</code></pre><h3 id="大佬解法"><a href="#大佬解法" class="headerlink" title="大佬解法"></a>大佬解法</h3><p>对于较大数据10^9，如果用二维数组vector的话无法开辟那么大空间，换成二维map来存储可以解决较大数据问题。解决好两个图的存储问题之后，接下来就是找到符合要求的可能埋有宝藏地点个数，无非就是两个条件：一是满足藏宝图可以在绿化图某块区域完美对上，二是满足藏宝图在绿化图中不出界。可以利用这两个条件去判断每一个符合条件的绿树点。如果两个条件都满足即有可能此处为藏宝点。<br><strong>代码实现</strong></p><pre><code>#include&lt;iostream&gt; #include&lt;map&gt;#include&lt;cmath&gt;using namespace std;//pair&lt;int ,int&gt;和int对应map&lt;int,map&lt;int,int&gt; &gt;mp;struct node&#123;    int x,y;&#125;point[1001];int g[51][51];//地图int main()&#123;    int n,L,S;    cin&gt;&gt;n&gt;&gt;L&gt;&gt;S;    for(int i=0;i&lt;n;i++)&#123;        cin&gt;&gt;point[i].x&gt;&gt;point[i].y;        mp[point[i].x][point[i].y]=1;    &#125;    //输入也是一个坑    for(int i=S;i&gt;=0;i--)&#123;        for(int j=0;j&lt;=S;j++)&#123;            cin&gt;&gt;g[i][j];        &#125;    &#125;    int cnt=0;    for(int i=0;i&lt;n;i++)&#123;        int flag=1;        int x=point[i].x,y=point[i].y;        for(int j=0;j&lt;=S;j++)&#123;            for(int k=0;k&lt;=S;k++)&#123;                if(x+S&gt;L||y+S&gt;L||mp[x+j][y+k]!=g[j][k])&#123;                    flag=0;                    break;                &#125;            &#125;            if(!flag) break;        &#125;        if(flag) cnt++;    &#125;    cout&lt;&lt;cnt&lt;&lt;endl;    return 0;&#125;</code></pre><p><a href="https://blog.csdn.net/victory066/article/details/125819918">作者原文</a><br><a href="https://blog.csdn.net/victory066/article/details/125819918">https://blog.csdn.net/victory066/article/details/125819918</a></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code class="bash">     给定一个字符串 s ，请你找出其中不含有重复字符的最长子串的长度。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code class="bash">    示例 1:        输入: s = &quot;abcabcbb&quot;        输出: 3         解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。    示例 2:        输入: s = &quot;bbbbb&quot;        输出: 1        解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。    示例 3:        输入: s = &quot;pwwkew&quot;        输出: 3        解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。             请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>    采用双指针的做法，通过一个桶记录字符是否出现过以及出现的位置，在O(n)的时间内解决问题</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>class Solution &#123;public:    int lengthOfLongestSubstring(string s) &#123;        // 记录字符上一次出现的位置        int last[128];        for(int i = 0; i &lt; 128; i++) &#123;            last[i] = -1;        &#125;        int n = s.length();        int res = 0;        int start = 0; // 窗口开始位置        for(int i = 0; i &lt; n; i++) &#123;            int index = s[i];            start = max(start, last[index] + 1);            res   = max(res, i - start + 1);            last[index] = i;        &#125;        return res;    &#125;&#125;;</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters">https://leetcode.cn/problems/longest-substring-without-repeating-characters</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h2&gt;&lt;h3 id=&quot;题目背景&quot;&gt;&lt;a href=&quot;#题目背景&quot; class=&quot;headerlink&quot; title=&quot;题目背景&quot;&gt;&lt;/a</summary>
+    <summary type="html">&lt;h3 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;     给定一个字符串 s ，请你找出其中不含有重复字符的最长子串的长度。
+&lt;/</summary>
       
     
     
@@ -222,7 +304,7 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="csp" scheme="http://example.com/tags/csp/"/>
+    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
     
   </entry>
   
@@ -251,31 +333,6 @@
   </entry>
   
   <entry>
-    <title>无重复字符的最长子串</title>
-    <link href="http://example.com/p/14283.html"/>
-    <id>http://example.com/p/14283.html</id>
-    <published>2023-07-11T14:27:38.880Z</published>
-    <updated>2023-07-09T09:09:24.725Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code class="bash">     给定一个字符串 s ，请你找出其中不含有重复字符的最长子串的长度。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code class="bash">    示例 1:        输入: s = &quot;abcabcbb&quot;        输出: 3         解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。    示例 2:        输入: s = &quot;bbbbb&quot;        输出: 1        解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。    示例 3:        输入: s = &quot;pwwkew&quot;        输出: 3        解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。             请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>    采用双指针的做法，通过一个桶记录字符是否出现过以及出现的位置，在O(n)的时间内解决问题</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>class Solution &#123;public:    int lengthOfLongestSubstring(string s) &#123;        // 记录字符上一次出现的位置        int last[128];        for(int i = 0; i &lt; 128; i++) &#123;            last[i] = -1;        &#125;        int n = s.length();        int res = 0;        int start = 0; // 窗口开始位置        for(int i = 0; i &lt; n; i++) &#123;            int index = s[i];            start = max(start, last[index] + 1);            res   = max(res, i - start + 1);            last[index] = i;        &#125;        return res;    &#125;&#125;;</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters">https://leetcode.cn/problems/longest-substring-without-repeating-characters</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;     给定一个字符串 s ，请你找出其中不含有重复字符的最长子串的长度。
-&lt;/</summary>
-      
-    
-    
-    
-    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
     <title>最长回文子串</title>
     <link href="http://example.com/p/52608.html"/>
     <id>http://example.com/p/52608.html</id>
@@ -288,6 +345,32 @@
       
       
     <summary type="html">&lt;h1 id=&quot;最长回文子串&quot;&gt;&lt;a href=&quot;#最长回文子串&quot; class=&quot;headerlink&quot; title=&quot;最长回文子串&quot;&gt;&lt;/a&gt;最长回文子串&lt;/h1&gt;&lt;h2 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题</summary>
+      
+    
+    
+    
+    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>日期差值</title>
+    <link href="http://example.com/p/1868.html"/>
+    <id>http://example.com/p/1868.html</id>
+    <published>2023-07-11T14:27:38.880Z</published>
+    <updated>2023-07-09T09:09:24.725Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code>求出两个日期之间的相差的天数，相邻日期算两天</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code>示例 1:    输入: 20200111         20200112    输出: 2 </code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>这是一道比较简单的题，只要月份天数闰年平年，注重细节就好了，记录这道题仅仅是熟悉一个思路比较清晰的方法。</p><p>不妨假设第一个日期早于第二个日期（否则交换即可)。<br>这种求日期之间相差天数的题目有一个很直接的思路，即令日期不断加1天，直到第一个日期等于第二个日期为止，即可统计出答案。具体处理时，如果当加了一天之后天数d等于当前月份m所拥有的天数加1，那么就令月份m加1、同时置天数d为1号（即把日期变为下一个月的1号);如果此时月份m变为了13，那么就令年份y加1、同时置月份m为1月（即把日期变为下一年的1月)。<br>为了方便直接取出每个月的天数，不妨给定一个二维数组int month[13][2]，用来存放每个月的天数，其中第二维为0时表示平年，为1时表示闰年。<br>注意:如果想要加快速度，只需要先把第一个日期的年份不断加1，直到与第二个日期的年份相差1为止，期间根据平年或是闰年来累加365天或者366天即可。之后再进行不断令天数加1的操作。</p><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>    #include &lt;cstdio&gt;    int month[13][2] =&#123; //平年和闰年的每个月的天数    &#123;0,0&#125;,&#123;31,31&#125;,&#123;28,29&#125;,&#123;31,31&#125;,&#123;30,30&#125;,&#123;31,31&#125;,&#123;30,30&#125;,    &#123;31, 31&#125;,&#123;31,31&#125;, &#123;30,30&#125;,&#123;31,31&#125;,&#123;30,30&#125;,&#123;31,31&#125;    &#125;    bool isLeap(int year) &#123;//判断是否是闰年        return (year % 4== 0 &amp;&amp; year % 100 = 0) &amp;&amp;(year % 400== 0);    &#125;    int main() &#123;        int timel, yl,ml,dl;        int time2, y2,m2,d2;        while(scanf( &quot;%d%d&quot;,&amp;timel,&amp;time2) !=EOF)&#123;            if(time1 &gt;time2)&#123; 1/第一个日期晚于第二个日期,则交换                int temp=timel;                timel = time2;                time2 = temp;            &#125;            y1 = time1 / 10000, ml = time1 % 10000 / 100,d1 = timel % 100;            y2 = time2 / 10000, m2 = time2 % 10000 / 100,d2 = time2 % 100;            int ans =1;//记录结果            //第一个日期没有达到第二个日期时进行循环            //即!((y1 == y2) &amp;&amp; (ml == m2) &amp;&amp;(d1 == d2))            while(yl&lt; y2 || ml&lt; m2 || d1&lt;d2)&#123;                d1++;//天数加1                if(d1 == month [m1] [isLeap(y1)] +1)&#123;//满当月天数                    m1++;//日期变为下个月的1号                    dl =1;                &#125;                if(m1 ==13) &#123; //月份满12个月                    y1++;//日期变为下一年的1月m1=1;                &#125;                ans++;//累计            &#125;        &#125;    return 0;    &#125;</code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;求出两个日期之间的相差的天数，相邻日期算两天
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;输入用例&quot;&gt;&lt;a </summary>
       
     
     
@@ -325,20 +408,20 @@
   </entry>
   
   <entry>
-    <title>日期差值</title>
-    <link href="http://example.com/p/1868.html"/>
-    <id>http://example.com/p/1868.html</id>
+    <title>零钱兑换</title>
+    <link href="http://example.com/p/61401.html"/>
+    <id>http://example.com/p/61401.html</id>
     <published>2023-07-11T14:27:38.880Z</published>
     <updated>2023-07-09T09:09:24.725Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code>求出两个日期之间的相差的天数，相邻日期算两天</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code>示例 1:    输入: 20200111         20200112    输出: 2 </code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>这是一道比较简单的题，只要月份天数闰年平年，注重细节就好了，记录这道题仅仅是熟悉一个思路比较清晰的方法。</p><p>不妨假设第一个日期早于第二个日期（否则交换即可)。<br>这种求日期之间相差天数的题目有一个很直接的思路，即令日期不断加1天，直到第一个日期等于第二个日期为止，即可统计出答案。具体处理时，如果当加了一天之后天数d等于当前月份m所拥有的天数加1，那么就令月份m加1、同时置天数d为1号（即把日期变为下一个月的1号);如果此时月份m变为了13，那么就令年份y加1、同时置月份m为1月（即把日期变为下一年的1月)。<br>为了方便直接取出每个月的天数，不妨给定一个二维数组int month[13][2]，用来存放每个月的天数，其中第二维为0时表示平年，为1时表示闰年。<br>注意:如果想要加快速度，只需要先把第一个日期的年份不断加1，直到与第二个日期的年份相差1为止，期间根据平年或是闰年来累加365天或者366天即可。之后再进行不断令天数加1的操作。</p><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>    #include &lt;cstdio&gt;    int month[13][2] =&#123; //平年和闰年的每个月的天数    &#123;0,0&#125;,&#123;31,31&#125;,&#123;28,29&#125;,&#123;31,31&#125;,&#123;30,30&#125;,&#123;31,31&#125;,&#123;30,30&#125;,    &#123;31, 31&#125;,&#123;31,31&#125;, &#123;30,30&#125;,&#123;31,31&#125;,&#123;30,30&#125;,&#123;31,31&#125;    &#125;    bool isLeap(int year) &#123;//判断是否是闰年        return (year % 4== 0 &amp;&amp; year % 100 = 0) &amp;&amp;(year % 400== 0);    &#125;    int main() &#123;        int timel, yl,ml,dl;        int time2, y2,m2,d2;        while(scanf( &quot;%d%d&quot;,&amp;timel,&amp;time2) !=EOF)&#123;            if(time1 &gt;time2)&#123; 1/第一个日期晚于第二个日期,则交换                int temp=timel;                timel = time2;                time2 = temp;            &#125;            y1 = time1 / 10000, ml = time1 % 10000 / 100,d1 = timel % 100;            y2 = time2 / 10000, m2 = time2 % 10000 / 100,d2 = time2 % 100;            int ans =1;//记录结果            //第一个日期没有达到第二个日期时进行循环            //即!((y1 == y2) &amp;&amp; (ml == m2) &amp;&amp;(d1 == d2))            while(yl&lt; y2 || ml&lt; m2 || d1&lt;d2)&#123;                d1++;//天数加1                if(d1 == month [m1] [isLeap(y1)] +1)&#123;//满当月天数                    m1++;//日期变为下个月的1号                    dl =1;                &#125;                if(m1 ==13) &#123; //月份满12个月                    y1++;//日期变为下一年的1月m1=1;                &#125;                ans++;//累计            &#125;        &#125;    return 0;    &#125;</code></pre>]]></content>
+    <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。你可以认为每种硬币的数量是无限的。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code>输入：coins = [1, 2, 5], amount = 11输出：3 解释：11 = 5 + 5 + 1</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><h4 id="一-暴力法"><a href="#一-暴力法" class="headerlink" title="一 暴力法"></a>一 暴力法</h4><pre><code>—略—</code></pre><h4 id="二-动态规划"><a href="#二-动态规划" class="headerlink" title="二 动态规划"></a>二 动态规划</h4><pre><code>其实这道题很明显就满足最优子结构性，如果想用最少的硬币兑换money，这对硬币的子集的总金额所需硬币数一定是最少的，否则用更少的硬币替换这个子集的硬币，则总money所需硬币数一定比原来少。现在的问题是如何获得状态方程。假设硬币的金额有m1,m2...mx,需要兑换的总金额为money，金额为money的硬币数存在f[money]中，那么f[money]一定可以由f[money-m1]+1,f[money-m2]+1...f[money-mx]+1中的一个或者多个组成，上面已经说明最优子结构，这样，我们只需要找f[money-m1],f[money-m2]...f[money-mx]中的最小值。问题不断分解，分解到f[m1],f[m2]...f[mx]这些确定值上面（都为1）。按照这个思路，我们反向进行迭代最终就可以求得f[money];    </code></pre><h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><pre><code>class Solution &#123;public:    int coinChange(vector&lt;int&gt;&amp; coins, int amount) &#123;        int Max = amount + 1;        vector&lt;int&gt; dp(amount + 1, Max);        dp[0] = 0;        for (int i = 1; i &lt;= amount; ++i) &#123;            for (int j = 0; j &lt; (int)coins.size(); ++j) &#123;                if (coins[j] &lt;= i) &#123;                    dp[i] = min(dp[i], dp[i - coins[j]] + 1);                &#125;            &#125;        &#125;        return dp[amount] &gt; amount ? -1 : dp[amount];    &#125;&#125;;</code></pre><p>作者：LeetCode-Solution<br>链接：<a href="https://leetcode.cn/problems/coin-change/solution/322-ling-qian-dui-huan-by-leetcode-solution/">https://leetcode.cn/problems/coin-change/solution/322-ling-qian-dui-huan-by-leetcode-solution/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;h3 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;求出两个日期之间的相差的天数，相邻日期算两天
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;输入用例&quot;&gt;&lt;a </summary>
+    <summary type="html">&lt;h3 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。
+
+计算并返回</summary>
       
     
     
@@ -346,7 +429,7 @@
     <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
+    <category term="动态规划" scheme="http://example.com/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
   </entry>
   
@@ -399,47 +482,6 @@
   </entry>
   
   <entry>
-    <title>超过一半的数字</title>
-    <link href="http://example.com/p/61876.html"/>
-    <id>http://example.com/p/61876.html</id>
-    <published>2023-07-11T14:27:38.880Z</published>
-    <updated>2023-07-09T09:09:24.725Z</updated>
-    
-    
-    
-    
-    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>零钱兑换</title>
-    <link href="http://example.com/p/61401.html"/>
-    <id>http://example.com/p/61401.html</id>
-    <published>2023-07-11T14:27:38.880Z</published>
-    <updated>2023-07-09T09:09:24.725Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。你可以认为每种硬币的数量是无限的。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code>输入：coins = [1, 2, 5], amount = 11输出：3 解释：11 = 5 + 5 + 1</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><h4 id="一-暴力法"><a href="#一-暴力法" class="headerlink" title="一 暴力法"></a>一 暴力法</h4><pre><code>—略—</code></pre><h4 id="二-动态规划"><a href="#二-动态规划" class="headerlink" title="二 动态规划"></a>二 动态规划</h4><pre><code>其实这道题很明显就满足最优子结构性，如果想用最少的硬币兑换money，这对硬币的子集的总金额所需硬币数一定是最少的，否则用更少的硬币替换这个子集的硬币，则总money所需硬币数一定比原来少。现在的问题是如何获得状态方程。假设硬币的金额有m1,m2...mx,需要兑换的总金额为money，金额为money的硬币数存在f[money]中，那么f[money]一定可以由f[money-m1]+1,f[money-m2]+1...f[money-mx]+1中的一个或者多个组成，上面已经说明最优子结构，这样，我们只需要找f[money-m1],f[money-m2]...f[money-mx]中的最小值。问题不断分解，分解到f[m1],f[m2]...f[mx]这些确定值上面（都为1）。按照这个思路，我们反向进行迭代最终就可以求得f[money];    </code></pre><h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><pre><code>class Solution &#123;public:    int coinChange(vector&lt;int&gt;&amp; coins, int amount) &#123;        int Max = amount + 1;        vector&lt;int&gt; dp(amount + 1, Max);        dp[0] = 0;        for (int i = 1; i &lt;= amount; ++i) &#123;            for (int j = 0; j &lt; (int)coins.size(); ++j) &#123;                if (coins[j] &lt;= i) &#123;                    dp[i] = min(dp[i], dp[i - coins[j]] + 1);                &#125;            &#125;        &#125;        return dp[amount] &gt; amount ? -1 : dp[amount];    &#125;&#125;;</code></pre><p>作者：LeetCode-Solution<br>链接：<a href="https://leetcode.cn/problems/coin-change/solution/322-ling-qian-dui-huan-by-leetcode-solution/">https://leetcode.cn/problems/coin-change/solution/322-ling-qian-dui-huan-by-leetcode-solution/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。
-
-计算并返回</summary>
-      
-    
-    
-    
-    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="动态规划" scheme="http://example.com/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-  </entry>
-  
-  <entry>
     <title>香槟塔</title>
     <link href="http://example.com/p/52292.html"/>
     <id>http://example.com/p/52292.html</id>
@@ -460,30 +502,6 @@
     
     
     <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>统计子矩阵</title>
-    <link href="http://example.com/p/35775.html"/>
-    <id>http://example.com/p/35775.html</id>
-    <published>2023-07-11T14:27:38.880Z</published>
-    <updated>2023-07-09T09:09:24.725Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><p>给定一个 N × M 的矩阵 A , 请你统计有多少个子矩阵 (最小 1 × 1, 最大 N × M ) 满足子矩阵中所有数的和不超过给定的整数 K  ?</p><p>输入格式<br>第一行包含三个整数 N , M 和 K .</p><p>之后 N行每行包含 M 个整数, 代表矩阵 A.</p><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><p>示例 1:</p><pre><code>输入：    3 4 10    1 2 3 4    5 6 7 8    9 10 11 12输出：19</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><pre><code>首先，求取一个矩阵的和可以采用二维前缀和简化计算，降低复杂度。其次，不难想到，我们可以枚举左上角坐标以及右下角坐标求出所有满足条件的矩阵，但是这样复杂度就是n^4，时间复杂度相对难以接受。所以我们应该想办法降低复杂度，根据题目要求，不大于k,那么一个矩阵的子矩阵大于k则该矩阵就无需判断，这样利用双指针，我们可以在O(n)的时间求出这一行的矩阵。</code></pre><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>#include &lt;iostream&gt;using namespace std;int a[510][510];int sum1(int x1,int y1,int x2,int y2)&#123;    return a[x2][y2]-a[x1-1][y2]-a[x2][y1-1]+a[x1-1][y1-1];&#125;int main()&#123;    int n,m,k;    scanf(&quot;%d %d %d&quot;,&amp;n,&amp;m,&amp;k);    long long int ans=0;    int temp;    for(int i=1;i&lt;=n;i++)    &#123;        for(int j=1;j&lt;=m;j++)        &#123;        scanf(&quot;%d&quot;,&amp;temp);        a[i][j]=a[i-1][j]+a[i][j-1]+temp-a[i-1][j-1];        &#125;    &#125;    for (int i = 1; i &lt;= n; ++i) &#123;            for (int j = i; j &lt;= n; ++j) &#123;                for (int l = 1, r = 1; r &lt;= m; ++r) &#123;                    while (l &lt;= r &amp;&amp; sum1(i, l, j, r) &gt; k) l++;                    ans += r - l + 1;                &#125;            &#125;        &#125;    cout &lt;&lt; ans;    return 0;&#125;</code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h3&gt;&lt;p&gt;给定一个 N × M 的矩阵 A , 请你统计有多少个子矩阵 (最小 1 × 1, 最大 N × M ) 满足子矩阵中所有数</summary>
-      
-    
-    
-    
-    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="蓝桥" scheme="http://example.com/tags/%E8%93%9D%E6%A1%A5/"/>
     
   </entry>
   
