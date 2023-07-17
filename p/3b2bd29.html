@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>WebAssembly跨语言调用 | Hexo</title>
+  <title>Rust简单入门 | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="WebAssembly跨语言调用 | Hexo">
+  <meta name="description" content="Rust简单入门 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到！">
 <meta property="og:type" content="website">
@@ -2518,9 +2518,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-others/WebAssembly跨语言调用" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-others/Rust简单入门" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">WebAssembly跨语言调用</h1>
+        <h1 class="article-title">Rust简单入门</h1>
     
     <div class="article-meta">
         
@@ -2538,12 +2538,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-07-14 09:13:51'>2023-07-13 19:58</time>
+            Created At : <time class="date" title='Updated At: 2023-07-17 09:13:28'>2023-07-13 20:10</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:585</span>
+        <span>Count:1.2k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -2573,7 +2573,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WebAssembly%E8%B7%A8%E8%AF%AD%E8%A8%80%E8%B0%83%E7%94%A8"><span class="toc-text">WebAssembly跨语言调用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E5%92%8CRust%E8%B0%83%E7%94%A8%E5%AE%9E%E4%BE%8B"><span class="toc-text">Go和Rust调用实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A2%AB%E8%B0%83%E7%94%A8%E6%96%B9Rust"><span class="toc-text">被调用方Rust</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E6%96%B9Go"><span class="toc-text">调用方Go</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Rust%E7%AE%80%E5%8D%95%E5%85%A5%E9%97%A8"><span class="toc-text">Rust简单入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Rust%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="toc-text">Rust环境安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Rust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-text">安装Rust开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rust%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95"><span class="toc-text">Rust程序测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cargo%E7%AE%A1%E7%90%86%E5%B7%A5%E7%A8%8B"><span class="toc-text">Cargo管理工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%87%E6%A1%A3"><span class="toc-text">本地文档</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -2589,77 +2589,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="WebAssembly跨语言调用"><a href="#WebAssembly跨语言调用" class="headerlink" title="WebAssembly跨语言调用"></a>WebAssembly跨语言调用</h1><p>WebAssembly (Wasm) 可以在多种编程语言之间进行跨语言调用。它提供了一种标准化的接口，使得不同语言的代码可以相互调用和交互。<br>选择一种编程语言（例如 Rust、C++、Go 等）编写Wasm 模块。使用相应的编译器或工具链将代码编译为 Wasm 模块文件。然后导入 Wasm 模块到目标语言：在目标语言的代码中，使用相应的 Wasm 运行时库或框架来导入和执行 Wasm 模块。不同的语言可能有不同的 Wasm 运行时库可用，例如wasmer、wasmtime 等。</p>
-<h2 id="Go和Rust调用实例"><a href="#Go和Rust调用实例" class="headerlink" title="Go和Rust调用实例"></a>Go和Rust调用实例</h2><h3 id="被调用方Rust"><a href="#被调用方Rust" class="headerlink" title="被调用方Rust"></a>被调用方Rust</h3><p>首先我们需要将被编译的程序编译成wasm文件<br>这里我们用go程序调用rust程序<br>用cargo init  add创建一个rust文件，更改add.rs</p>
-<pre><code>fn main()&#123;&#125;
-
-#[no_mangle]
-pub extern &quot;C&quot; fn sum(x: i32, y: i32) -&gt; i32 &#123;
-    x + y
+        <h1 id="Rust简单入门"><a href="#Rust简单入门" class="headerlink" title="Rust简单入门"></a>Rust简单入门</h1><p>Rust的特点<br>• 零开销抽象<br>• 没有gc<br>• 内存模型没有高度封装<br>• 语法干净正交，没有C++那么繁琐。<br>• 安全性。Rust语法引入所有权和生命期概念，在编译期就能检查出一部分内存管理错误，这是rust的一个杀手锏的特性。<br>• 现代语言特性。语言特性吸收了现代语言的大量优秀特性，支持多范式。</p>
+<h2 id="Rust环境安装"><a href="#Rust环境安装" class="headerlink" title="Rust环境安装"></a>Rust环境安装</h2><h3 id="安装Rust开发环境"><a href="#安装Rust开发环境" class="headerlink" title="安装Rust开发环境"></a>安装Rust开发环境</h3><p>访问Rust语言官方网站的安装地址<a target="_blank" rel="noopener" href="https://www.rust-lang.org/tools/install">https://www.rust-lang.org/tools/install</a><br>先下载rustup安装程序再安装,安装的所有工具在~&#x2F;.cargo&#x2F;bin目录下，我们需要将该目录添加到PATH环境变量。</p>
+<p><img src="https://s1.ax1x.com/2023/07/13/pChOJrF.png" alt="pChOJrF.png"></p>
+<p>打开安装程序后，我们会发现需要依赖的windowsAPI库，我们采用下载vs installer的方式获取对应库。</p>
+<p><img src="https://s1.ax1x.com/2023/07/13/pChOUa9.png" alt="pChOUa9.png"></p>
+<p>安装vs install以后重新打开rustup安装程序，选择默认安装。<br>安装完成后，我们需要将~&#x2F;.cargo&#x2F;bin目录添加到PATH环境变量。<br>我们可以通过以下方式查看rustup、rustc和cargo工具的版本信息：</p>
+<p><img src="https://s1.ax1x.com/2023/07/13/pChOwP1.png" alt="pChOwP1.png"></p>
+<p>其中，rustup是Rust工具的管理工具，rustc是Rust程序编译器，cargo是Rust工程的管理工具</p>
+<h3 id="Rust程序测试"><a href="#Rust程序测试" class="headerlink" title="Rust程序测试"></a>Rust程序测试</h3><p>我们从“你好，世界”这个例子开始测试。</p>
+<p><img src="https://s1.ax1x.com/2023/07/13/pChO08x.md.png" alt="pChO08x.md.png"></p>
+<p>其中，fn是关键字，表示定义一个函数，定义的函数的名字是main。main()函数的参数在小括弧中列出（这里的main()函数没有参数），函数体位于大括弧内。这里main()函数体中只有一个语句，就是用println!宏输出一个字符串并换行。</p>
+<h3 id="Cargo管理工程"><a href="#Cargo管理工程" class="headerlink" title="Cargo管理工程"></a>Cargo管理工程</h3><p>Rust 编程语言引以为傲的一个重要特性是其工程管理工具 Cargo。Cargo 是 Rust 官方提供的构建系统和包管理器，被广泛认可为行业标杆。、<br>以下是 Cargo 的一些主要特性和优势：<br>• 依赖管理：Cargo 提供了强大的依赖管理功能。通过 Cargo.toml 文件，可以定义项目的依赖项和版本约束，能够轻松地引入、更新和管理外部库。<br>• 构建系统：Cargo 提供了一个集成的构建系统，使得构建、编译和测试 Rust 项目变得简单而高效。它自动处理依赖关系、编译顺序和编译标志等，开发者只需要专注于编写代码而不必手动管理构建过程。<br>• 项目管理：Cargo 提供了一组命令行工具，用于创建、初始化和管理 Rust 项目。通过简单的命令，您可以创建新项目、生成文档、运行测试、发布软件包等，提高开发者的效率和工作流程。<br>• 社区集成：Cargo 和 Rust 社区紧密结合，通过 Cargo 可以方便地共享、发布和发现 Rust 库和工具。Cargo 提供了 Cargo Crates 网站<a target="_blank" rel="noopener" href="https://crates.io/">https://crates.io</a> Rust 生态系统中集中管理和发布库的中央仓库。<br>• 多工作区支持：Cargo 允许在单个项目中管理多个工作区，每个工作区可以拥有自己的依赖关系和构建配置。这对于大型项目或拥有多个模块的项目特别有用，可以更好地组织和管理代码。<br>工程一般以目录的方式组织，因此我们先创建一个空的目录（目录的名字自由选择），其中包含一个Cargo.toml文件。</p>
+<pre><code>[package]
+name = &quot;hello&quot;
+version = &quot;0.1.0&quot;
+</code></pre>
+<p>Cargo.toml是一种TOML格式的工程文件（TOML格式和ini格式类似，但是其功能更加强大）。其中，[package]部分包含工程的基本信息：name字段表示工程的名字，version字段表示工程的版本。<br>然后，创建一个src目录，在目录中创建一个main.rs文件：</p>
+<pre><code>fn main() &#123;
+    println!(&quot;你好，世界&quot;);
 &#125;
 </code></pre>
-<p>将该文件编译为wasm</p>
-<pre><code>cargo build --target wasm32-unknown-unknown --release
+<p>Cargo工具默认以src&#x2F;main.rs为程序的入口文件，因此只需要输入<br>cargo run就可以编译并运行程序了</p>
+<p><img src="https://s1.ax1x.com/2023/07/13/pChXhTJ.png" alt="pChXhTJ.png"></p>
+<p>Cargo底层依然是调用rustc编译器工具。但是，Cargo不仅可以管理可执行程序和库，还可以对其他第三方库的依赖进行管理，同时支持自定义的构建脚本。<br>cargo-generate是一个开发人员工具，通过利用预先存在的 git 存储库作为模板，帮助开发者快速启动和运行新的 Rust 项目。</p>
+<pre><code>cargo install cargo-generate
 </code></pre>
-<p>现在被调用者我们已经处理完了，下面我们编写调用方代码。</p>
-<h3 id="调用方Go"><a href="#调用方Go" class="headerlink" title="调用方Go"></a>调用方Go</h3><p>这里我们参照<a target="_blank" rel="noopener" href="https://github.com/wasmerio/wasmer-go%E9%87%87%E7%94%A8wasmer%E5%BA%93%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86">https://github.com/wasmerio/wasmer-go采用wasmer库进行处理</a><br>需要注意的是目前该库并不支持windows，需要在linux环境下使用</p>
-<p><img src="https://s1.ax1x.com/2023/07/13/pChOkgf.png" alt="pChOkgf.png"></p>
-<p>创建相应go文件调用生成的wasm文件</p>
-<pre><code>package main
-
-import (
-    &quot;fmt&quot;
-    &quot;io/ioutil&quot;
-
-    wasmer &quot;github.com/wasmerio/wasmer-go/wasmer&quot;
-)
-
-func main() &#123;
-    // 换成生成add.wasm的路径
-    wasmBytes, _ := ioutil.ReadFile(&quot;add/target/wasm32-unknown-unknown/release/add.wasm&quot;)
-
-    // Create an Engine
-    engine := wasmer.NewEngine()
-
-    // Create a Store
-    store := wasmer.NewStore(engine)
-
-    // Let&#39;s compile the module.
-    module, err := wasmer.NewModule(store, wasmBytes)
-
-    if err != nil &#123;
-        fmt.Println(&quot;Failed to compile module:&quot;, err)
-    &#125;
-
-    // Create an empty import object.
-    importObject := wasmer.NewImportObject()
-
-    // Let&#39;s instantiate the WebAssembly module.
-    instance, err := wasmer.NewInstance(module, importObject)
-
-    if err != nil &#123;
-        panic(fmt.Sprintln(&quot;Failed to instantiate the module:&quot;, err))
-    &#125;
-
-    // Now let&#39;s execute the `sum` function.
-    sum, err := instance.Exports.GetFunction(&quot;sum&quot;)
-
-    if err != nil &#123;
-        panic(fmt.Sprintln(&quot;Failed to get the `add_one` function:&quot;, err))
-    &#125;
-
-    result, err := sum(1, 2)
-
-    if err != nil &#123;
-        panic(fmt.Sprintln(&quot;Failed to call the `add_one` function:&quot;, err))
-    &#125;
-
-    fmt.Println(&quot;Results of `sum`:&quot;, result)
-&#125;
+<h3 id="本地文档"><a href="#本地文档" class="headerlink" title="本地文档"></a>本地文档</h3><p>Rust还提供了本地文档用于帮助学习和了解Rust。<br>我们可以在终端运行：</p>
+<pre><code>rustup doc
 </code></pre>
-<p>注意：<br>• 12行需要换成生成add.wasm的相对&#x2F;绝对路径<br>• 需要拉取对应仓库<br>• 更多具体api参照<a target="_blank" rel="noopener" href="https://pkg.go.dev/github.com/wasmerio/wasmer-go/wasmer">https://pkg.go.dev/github.com/wasmerio/wasmer-go/wasmer</a></p>
-<p>之后我们直接运行程序，可以看到跨语言调用成功</p>
-<p><img src="https://s1.ax1x.com/2023/07/13/pChOuUs.png" alt="pChOuUs.png"></p>
+<p>打开文档。</p>
+<p><img src="https://s1.ax1x.com/2023/07/13/pChj9pt.png" alt="pChj9pt.png"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3366576307@qq.com </span>
