@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>RPC | Hexo</title>
+  <title>git工作流 | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="RPC | Hexo">
+  <meta name="description" content="git工作流 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到！">
 <meta property="og:type" content="website">
@@ -2820,9 +2820,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-计算机通信与网络/RPC" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-git/git工作流" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">RPC</h1>
+        <h1 class="article-title">git工作流</h1>
     
     <div class="article-meta">
         
@@ -2832,7 +2832,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="计算机通信与网络">计算机通信与网络</a>
+            <a  data-rel="git">git</a>
             
         </span>
         
@@ -2840,12 +2840,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-07-24 22:24:18'>2023-07-22 16:38</time>
+            Created At : <time class="date" title='Updated At: 2023-08-11 15:18:58'>2023-08-11 15:15</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:7.9k</span>
+        <span>Count:1.9k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -2875,7 +2875,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RPC"><span class="toc-text">RPC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RPC-%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B"><span class="toc-text">RPC 通信流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RPC-%E6%9E%B6%E6%9E%84"><span class="toc-text">RPC 架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0"><span class="toc-text">服务发现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%EF%BC%9F"><span class="toc-text">为什么需要服务发现？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E-ZooKeeper-%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0"><span class="toc-text">基于 ZooKeeper 的服务发现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%B6%88%E6%81%AF%E6%80%BB%E7%BA%BF%E7%9A%84%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7%E7%9A%84%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-text">基于消息总线的最终一致性的注册中心</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%A5%E5%BA%B7%E6%A3%80%E6%B5%8B"><span class="toc-text">健康检测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%A5%E5%BA%B7%E6%A3%80%E6%B5%8B%E7%9A%84%E9%80%BB%E8%BE%91"><span class="toc-text">健康检测的逻辑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%AD%96%E7%95%A5"><span class="toc-text">路由策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E7%AD%96%E7%95%A5%EF%BC%9F"><span class="toc-text">如何实现路由策略？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%B7%AF%E7%94%B1"><span class="toc-text">参数路由</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%EF%BC%9F"><span class="toc-text">什么是负载均衡？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RPC-%E6%A1%86%E6%9E%B6%E4%B8%AD%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">RPC 框架中的负载均衡</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#git%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-text">git工作流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitFlow"><span class="toc-text">GitFlow</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AF%EF%BC%88Develop%EF%BC%89"><span class="toc-text">开发分支（Develop）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%80%A7%E5%88%86%E6%94%AF%EF%BC%88Feature%EF%BC%89"><span class="toc-text">特性分支（Feature）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Release-%E5%88%86%E6%94%AF%E3%80%82"><span class="toc-text">Release 分支。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E4%B8%81%E5%88%86%E6%94%AF%EF%BC%88hotfix%EF%BC%89"><span class="toc-text">补丁分支（hotfix）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Github-Flow"><span class="toc-text">Github Flow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gitlab-Flow"><span class="toc-text">Gitlab Flow</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E6%B8%B8%E4%BC%98%E5%85%88"><span class="toc-text">上游优先</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%81%E7%BB%AD%E5%8F%91%E5%B8%83"><span class="toc-text">持续发布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83"><span class="toc-text">版本发布</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -2891,79 +2891,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h1><p>RPC 的全称是 Remote Procedure Call，即远程过程调用。简单解读字面上的意思，远程肯定是指要跨机器而非本机，所以需要用到网络编程才能实现，帮助我们屏蔽网络编程细节，实现调用远程方法就跟调用本地（同一个项目中的方法）一样的体验，我们不需要因为这个方法是远程调用就需要编写很多与业务无关的代码。RPC 的作用就是体现在这样两个方面：</p>
-<ul>
-<li>屏蔽远程调用跟本地调用的区别，让我们感觉就是调用项目内的方法；</li>
-<li>隐藏底层网络通信的复杂性，让我们更专注于业务逻辑</li>
-</ul>
-<h2 id="RPC-通信流程"><a href="#RPC-通信流程" class="headerlink" title="RPC 通信流程"></a>RPC 通信流程</h2><p>RPC 是一个远程调用，那肯定就需要通过网络来传输数据，并且 RPC 常用于业务系统之间的数据交互，需要保证其可靠性，所以 RPC 一般默认采用 TCP 来传输。我们常用的 HTTP 协议也是建立在 TCP 之上的。<br>网络传输的数据必须是二进制数据，但调用方请求的出入参数都是对象。对象是肯定没法直接在网络中传输的，需要提前把它转成可传输的二进制，并且要求转换算法是可逆的，这个过程我们一般叫做“序列化”。调用方持续地把请求参数序列化成二进制后，经过 TCP 传输给了服务提供方。服务提供方<br>从 TCP 通道里面收到二进制数据.根据协议格式，服务提供方就可以正确地从二进制数据中分割出不同的请求来，同时根据请求类型和序列化类型，把二进制的消息体逆向还原成请求对象。服务提供方再根据反序列化出来的请求对象找到对应的实现类，完成真正的方法调用，然后把执行结果序列化后，回写到对应的 TCP 通道里面。调用方获取到应答的数据包后，再反序列化成应答对象，这样调用方就完成了一次 RPC 调用。</p>
-<p>由服务提供者给出业务接口声明，在调用方的程序里面，RPC 框架根据调用的服务接口提前生成动态代理实现类，并通过依赖注入等技术注入到声明了该接口的相关业务逻辑里面。该代理实现类会拦截所有的方法调用，在提供的方法处理逻辑里面完成一整套的远程调用，并把远程调用结果返回给调用方，这样调用方在调用远程方法的时候就获得了像调用本地接口一样的体验</p>
-<p><img src="https://s1.ax1x.com/2023/07/22/pCqmTbt.png" alt="pCqmTbt.png"></p>
-<p>RPC 是解决应用间通信的一种方式，而无论是在一个大型的分布式应用系统还是中小型系统中，应用架构最终都会从“单体”演进成“微服务化”，整个应用系统会被拆分为多个不同功能的应用，并将它们部署在不同的服务器中，而应用之间会通过 RPC 进行通信，可以说 RPC 对应的是整个分布式应用系统，就像是“经络”一样的存在。RPC 框架能够帮助我们解决系统拆分后的通信问题，并且能让我们像调用本地一样去调用远程方法。利用 RPC 我们不仅可以很方便地将应用架构从“单体”演进成“微服务化”，而且还能解决实际开发过程中的效率低下、系统耦合等问题，这样可以使得我们的系统架构整体清晰、健壮，应用可运维度增强。</p>
-<h2 id="RPC-架构"><a href="#RPC-架构" class="headerlink" title="RPC 架构"></a>RPC 架构</h2><p>RPC 本质上就是一个远程调用，那肯定就需要通过网络来传输数据。虽然传输协议可以有多种选择，但考虑到可靠性的话，我们一般默认采用 TCP 协议。为了屏蔽网络传输的复杂性，我们需要封装一个单独的数据传输模块用来收发二进制数据，这个单独模块我们可以叫做传输模块<br>用户请求的时候是基于方法调用，方法出入参数都是对象数据，对象是肯定没法直接在网络中传输的，我们需要提前把它转成可传输的二进制，这就是我们说的序列化过程。但只是把方法调用参数的二进制数据传输到服务提供方是不够的，我们需要在方法调用参数的二进制数据后面增加“断句”符号来分隔出不同的请求，在两个“断句”符号中间放的内容就是我们请求的二进制数据，这个过程我们叫做协议封装。<br>虽然这是两个不同的过程，但其目的都是一样的，都是为了保证数据在网络中可以正确传输。这里我说的正确，可不仅指数据能够传输，还需要保证传输后能正确还原出传输前的语义。所以我们可以把这两个处理过程放在架构中的同一个模块，统称为协议模块。除此之外，我们还可以在协议模块中加入压缩功能，这是因为压缩过程也是对传输的二进制数据进行操作。在实际的网络传输过程中，我们的请求数据包在数据链路层可能会因为太大而被拆分成多个数据包进行传输，为了减少被拆分的次数，从而导致整个传输过程时间太长的问题，我们可以在 RPC 调用的时候这样操作：在方法调用参数或者返回值的二进制数据大于某个阈值的情况下，我们可以通过压缩框架进行无损压缩，然后在另外一端也用同样的压缩算法进行解压，保证数据可还原<br>传输和协议这两个模块是 RPC 里面最基础的功能，它们使对象可以正确地传输到服务提供方。但距离 RPC 的目标——实现像调用本地一样地调用远程，还缺少点东西。因为这两个模块所提供的都是一些基础能力，要让这两个模块同时工作的话，我们需要手写一些黏合的代码，但这些代码对我们使用 RPC 的研发人员来说是没有意义的，而且属于一个重复的工作，会导致使用过程的体验非常不友好。<br>这就需要我们在 RPC 里面把这些细节对研发人员进行屏蔽，让他们感觉不到本地调用和远程调用的区别。假设有用到 Spring 的话，我们希望 RPC 能让我们把一个 RPC 接口定义成一个 Spring Bean，并且这个 Bean 也会统一被 Spring Bean Factory 管理，可以在项目中通过 Spring 依赖注入到方式引用。这是 RPC 调用的入口，我们一般叫做 Bootstrap 模块</p>
-<p>到这儿，一个点对点（Point to Point）版本的 RPC 框架就完成了。我一般称这种模式的 RPC 框架为单机版本，因为它没有集群能力。所谓集群能力，就是针对同一个接口有着多个服务提供者，但这多个服务提供者对于我们的调用方来说是透明的，所以在 RPC 里面我们还需要给调用方找到所有的服务提供方，并需要在 RPC 里面维护好接口跟服务提供者地址的关系，这样调用方在发起请求的时候才能快速地找到对应的接收地址，这就是我们常说的“服务发现”。</p>
-<p>但服务发现只是解决了接口和服务提供方地址映射关系的查找问题，这更多是一种“静态数据”。说它是静态数据是因为，对于我们的 RPC 来说，我们每次发送请求的时候都是需要用 TCP 连接的，相对服务提供方 IP 地址，TCP 连接状态是瞬息万变的，所以我们的 RPC框架里面要有连接管理器去维护 TCP 连接的状态。<br>有了集群之后，提供方可能就需要管理好这些服务了，那我们的 RPC 就需要内置一些服务治理的功能，比如服务提供方权重的设置、调用授权等一些常规治理手段。而服务调用方需要额外做哪些事情呢？每次调用前，我们都需要根据服务提供方设置的规则，从集群中选择可用的连接用于发送请求</p>
-<p><img src="https://s1.ax1x.com/2023/07/22/pCq17QO.png" alt="pCq17QO.png"></p>
-<p>设计 RPC 框架不可能在开始时就面面俱到。有一天业务方有了新的需求，要加入很多新的功能，这时当前架构面临的可就是大挑战了，要修改很多地方才能实现。这就是我们接下来要讲的插件化架构</p>
-<p>在 RPC 框架里面，我们是怎么支持插件化架构的呢？我们可以将每个功能点抽象成一个接口，将这个接口作为插件的契约，然后把这个功能的接口与功能的实现分离，并提供接口的默认实现。在 Java 里面，JDK 有自带的 SPI（Service Provider Interface）服务发现机制，它可以动态地为某个接口寻找服务实现。使用 SPI 机制需要在 Classpath 下的 META-INF&#x2F;services 目录里创建一个以服务接口命名的文件，这个文件里的内容就是这个接口的具体实现类。<br>但在实际项目中，我们其实很少使用到 JDK 自带的 SPI 机制，首先它不能按需加载，ServiceLoader 加载某个接口实现类的时候，会遍历全部获取，也就是接口的实现类得全部载入并实例化一遍，会造成不必要的浪费。另外就是扩展如果依赖其它的扩展，那就做不到自动注入和装配，这就很难和其他框架集成，比如扩展里面依赖了一个 Spring Bean，原生的 Java SPI 就不支持。</p>
-<p>加上了插件功能之后，我们的 RPC 框架就包含了两大核心体系——核心功能体系与插件体</p>
-<p><img src="https://s1.ax1x.com/2023/07/22/pCq3pSf.png" alt="pCq3pSf.png"></p>
-<p>这时，整个架构就变成了一个微内核架构，我们将每个功能点抽象成一个接口，将这个接口作为插件的契约，然后把这个功能的接口与功能的实现分离并提供接口的默认实现。这样的架构相比之前的架构，有很多优势。首先它的可扩展性很好，实现了开闭原则，用户可以非常方便地通过插件扩展实现自己的功能，而且不需要修改核心功能的本身；其次就是保持了核心包的精简，依赖外部包少，这样可以有效减少开发人员引入 RPC 导致的包版本冲突问题</p>
-<h2 id="服务发现"><a href="#服务发现" class="headerlink" title="服务发现"></a>服务发现</h2><h3 id="为什么需要服务发现？"><a href="#为什么需要服务发现？" class="headerlink" title="为什么需要服务发现？"></a>为什么需要服务发现？</h3><p>为了高可用，在生产环境中服务提供方都是以集群的方式对外提供服务，集群里面的这些 IP 随时可能变化，我们也需要用一本“通信录”及时获取到对应的服务节点，这个获取的过程我们一般叫作“服务发现<br>对于服务调用方和服务提供方来说，其契约就是接口，相当于“通信录”中的姓名，服务节点就是提供该契约的一个具体实例。服务 IP 集合作为“通信录”中的地址，从而可以通过接口获取服务 IP 的集合来完成服务的发现。这就是我要说的 PRC 框架的服务发现机制，如下图所示：</p>
-<p><img src="https://s1.ax1x.com/2023/07/22/pCq3lm4.png" alt="pCq3lm4.png"></p>
-<ol>
-<li>服务注册：在服务提供方启动的时候，将对外暴露的接口注册到注册中心之中，注册中心将这个服务节点的 IP 和接口保存下来。</li>
-<li>服务订阅：在服务调用方启动的时候，去注册中心查找并订阅服务提供方的 IP，然后缓存到本地，并用于后续的远程调用</li>
-</ol>
-<h3 id="基于-ZooKeeper-的服务发现"><a href="#基于-ZooKeeper-的服务发现" class="headerlink" title="基于 ZooKeeper 的服务发现"></a>基于 ZooKeeper 的服务发现</h3><p>整体的思路很简单，就是搭建一个 ZooKeeper 集群作为注册中心集群，服务注册的时候只需要服务节点向 ZooKeeper 节点写入注册信息即可，利用 ZooKeeper 的 Watcher 机制完成服务订阅与服务下发功能，整体流程如下图：</p>
-<p><img src="https://s1.ax1x.com/2023/07/22/pCq3dXD.md.png" alt="pCq3dXD.md.png"></p>
-<p>服务平台管理端先在 ZooKeeper 中创建一个服务根路径，可以根据接口名命名（例如：&#x2F;service&#x2F;com.demo.xxService），在这个路径再创建服务提供方目录与服务调用方目录（例如：provider、consumer），分别用来存储服务提供方的节点信息和服务调用方的节点信息。</p>
-<p>当服务提供方发起注册时，会在服务提供方目录中创建一个临时节点，节点中存储该服务提供方的注册信息。</p>
-<p>当服务调用方发起订阅时，则在服务调用方目录中创建一个临时节点，节点中存储该服务调用方的信息，同时服务调用方 watch 该服务的服务提供方目录（&#x2F;service&#x2F;com.demo.xxService&#x2F;provider）中所有的服务节点数据。</p>
-<p>当服务提供方目录下有节点数据发生变更时，ZooKeeper 就会通知给发起订阅的服务调用方</p>
-<p>微服务化程度越来越高之后，ZooKeeper 集群整体压力也越来越高,当连接到ZooKeeper 的节点数量特别多，对 ZooKeeper 读写特别频繁，且 ZooKeeper 存储的目录达到一定数量的时候，ZooKeeper 将不再稳定，CPU 持续升高，最终宕机。而宕机之后，由于各业务的节点还在持续发送读写请求，刚一启动，ZooKeeper 就因无法承受瞬间的读写压力，马上宕机。</p>
-<h3 id="基于消息总线的最终一致性的注册中心"><a href="#基于消息总线的最终一致性的注册中心" class="headerlink" title="基于消息总线的最终一致性的注册中心"></a>基于消息总线的最终一致性的注册中心</h3><p>ZooKeeper 的一大特点就是强一致性，ZooKeeper 集群的每个节点的数据每次发生更新操作，都会通知其它 ZooKeeper 节点同时执行更新。它要求保证每个节点的数据能够实时的完全一致，这也就直接导致了 ZooKeeper 集群性能上的下降。<br>而 RPC 框架的服务发现，在服务节点刚上线时，服务调用方是可以容忍在一段时间之后（比如几秒钟之后）发现这个新上线的节点的。毕竟服务节点刚上线之后的几秒内，甚至更长的一段时间内没有接收到请求流量，对整个服务集群是没有什么影响的，所以我们可以牺牲掉 CP（强制一致性），而选择 AP（最终一致），来换取整个注册中心集群的性能和稳定性。</p>
-<p>因为要求最终一致性，我们可以考虑采用消息总线机制。注册数据可以全量缓存在每个注册中心内存中，通过消息总线来同步数据。当有一个注册中心节点接收到服务节点注册时，会产生一个消息推送给消息总线，再通过消息总线通知给其它注册中心节点更新数据并进行服务下发，从而达到注册中心间数据最终一致性</p>
-<p><img src="https://s1.ax1x.com/2023/07/22/pCq3hng.md.png" alt="pCq3hng.md.png"></p>
-<p>当有服务上线，注册中心节点收到注册请求，服务列表数据发生变化，会生成一个消息，推送给消息总线，每个消息都有整体递增的版本。<br>消息总线会主动推送消息到各个注册中心，同时注册中心也会定时拉取消息。对于获取到消息的在消息回放模块里面回放，只接受大于本地版本号的消息，小于本地版本号的消息直接丢弃，从而实现最终一致性。<br>消费者订阅可以从注册中心内存拿到指定接口的全部服务实例，并缓存到消费者的内存里面。<br>采用推拉模式，消费者可以及时地拿到服务实例增量变化情况，并和内存中的缓存数据进行合并</p>
-<p>为了性能，这里采用了两级缓存，注册中心和消费者的内存缓存，通过异步推拉模式来确保最终一致性。</p>
-<p>服务调用方拿到的服务节点不是最新的，所以目标节点存在已经下线或不提供指定接口服务的情况，这个时候有没有问题？这个问题我们放到了 RPC 框架里面去处理，在服务调用方发送请求到目标节点后，目标节点会进行合法性验证，如果指定接口服务不存在或正在下线，则会拒绝该请求。服务调用方收到拒绝异常后，会安全重试到其它节点。</p>
-<p>通过消息总线的方式，我们就可以完成注册中心集群间数据变更的通知，保证数据的最终一致性，并能及时地触发注册中心的服务下发操作。服务发现的特性是允许我们在设计超大规模集群服务发现系统的时候，舍弃强一致性，更多地考虑系统的健壮性。最终一致性才是分布式系统设计中更为常用</p>
-<h2 id="健康检测"><a href="#健康检测" class="headerlink" title="健康检测"></a>健康检测</h2><p>因为有了集群，所以每次发请求前，RPC 框架会根据路由和负载均衡算法选择一个具体的IP 地址。为了保证请求成功，我们就需要确保每次选择出来的 IP 对应的连接是健康的.<br>调用方跟服务集群节点之间的网络状况是瞬息万变的，两者之间可能会出现闪断或者网络设备损坏等情况，那怎么保证选择出来的连接一定是可用的呢？</p>
-<p>终极的解决方案是让调用方实时感知到节点的状态变化，这样他们才能做出正确的选择。</p>
-<h3 id="健康检测的逻辑"><a href="#健康检测的逻辑" class="headerlink" title="健康检测的逻辑"></a>健康检测的逻辑</h3><p>当服务方下线，正常情况下我们肯定会收到连接断开的通知事件,但咱们这里不行，因为应用健康状况不仅包括 TCP 连接状况，还包括应用本身是否存活，很多情况下 TCP 连接没有断开，但应用可能已经“僵死了”。<br>业内常用的检测方法就是用心跳机制。心跳机制说起来也不复杂，其实就是服务调用方每隔一段时间就问一下服务提供方，“兄弟，你还好吧？”，然后服务提供方很诚实地告诉调用方它目前的状态。</p>
-<p>服务方的状态一般会有三种情况</p>
-<ol>
-<li>健康状态：建立连接成功，并且心跳探活也一直成功；</li>
-<li>亚健康状态：建立连接成功，但是心跳请求连续失败；</li>
-<li>死亡状态：建立连接失败。</li>
-</ol>
-<p>节点的状态并不是固定不变的，它会根据心跳或者重连的结果来动态变化，具体状态间转换图如下：</p>
-<p><img src="https://s1.ax1x.com/2023/07/22/pCq3hng.md.png" alt="pCq3hng.md.png"></p>
-<p>一开始初始化的时候，如果建立连接成功，那就是健康状态，否则就是死亡状态。这里没有亚健康这样的中间态。紧接着，如果健康状态的节点连续出现几次不能响应心跳请求的情况，那就会被标记为亚健康状态，也就是说，服务调用方会觉得它生病了。生病之后（亚健康状态），如果连续几次都能正常响应心跳请求，那就可以转回健康状态，证明病好了。如果病一直好不了，那就会被断定为是死亡节点，死亡之后还需要善后，比如关闭连接<br>当然，死亡并不是真正死亡，它还有复活的机会。如果某个时间点里，死亡的节点能够重连成功，那它就可以重新被标记为健康状态。</p>
-<p>一个节点从健康状态过渡到亚健康状态的前提是“连续”心跳失败次数必须到达某一个阈值</p>
-<ul>
-<li>调用方每个接口的调用频次不一样，有的接口可能 1 秒内调用上百次，有的接口可能半个小时才会调用一次，所以我们不能把简单的把总失败的次数当作判断条件。</li>
-<li>服务的接口响应时间也是不一样的，有的接口可能 1ms，有的接口可能是 10s，所以我们也不能把 TPS 至来当作判断条件。</li>
-</ul>
-<p>所以可以考虑使用可用率，可用率的计算方式是某一个时间窗口内接口调用成功次数的百分比（成功次数 &#x2F; 总调用次数）。当可用率低于个比例就认为这个节点存在问题，把它挪到亚健康列表，这样既考虑了高低频的调用接口也兼顾了接口响应时间不同的问题。</p>
-<h2 id="路由策略"><a href="#路由策略" class="headerlink" title="路由策略"></a>路由策略</h2><p>在真实环境中我们的服务提供方是以一个集群的方式提供服务，这对于服务调用方来说，就是一个接口会有多个服务提供方同时提供服务，所以我们的 RPC 在每次发起请求的时候，都需要从多个服务提供方节点里面选择一个用于发请求的节点。<br>既然这些节点都可以用来完成这次请求，那么我们就可以简单地认为这些节点是同质的。就是这次请求无论发送到集合中的哪个节点上，返回的结果都是一样的。<br>既然服务提供方是以集群的方式对外提供服务，那就要考虑一些实际问题。要知道我们每次上线应用的时候都不止一台服务器会运行实例，那上线就涉及到变更，只要变更就可能导致原本正常运行的程序出现异常，尤其是发生重大变动的时候，导致我们应用不稳定的因素就变得很多。为了减少这种风险，我们一般会选择灰度发布我们的应用实例，比如我们可以先发布少量实例观察是否有异常，后续再根据观察的情况，选择发布更多实例还是回滚已经上线的实例。<br>但这种方式不好的一点就是，线上一旦出现问题，影响范围还是挺大的。因为对于我们的服务提供方来说，我们的服务会同时提供给很多调用方来调用，尤其是像一些基础服务的调用方会更复杂，比如商品、价格等等，一旦刚上线的实例有问题，那将会导致所有的调用方业务都会受损。</p>
-<h3 id="如何实现路由策略？"><a href="#如何实现路由策略？" class="headerlink" title="如何实现路由策略？"></a>如何实现路由策略？</h3><p>在 RPC 里面服务调用方是通过服务发现的方式拿到了所有服务提供方的 IP 地址，当我们选择要灰度验证功能的时候，是不是就可以让注册中心在推送的时候区别对待，而不是一股脑的把服务提供方的 IP地址推送到所有调用方。换句话说就是，注册中心只会把刚上线的服务 IP 地址推送到选择指定的调用方，而其他调用方是不能通过服务发现拿到这个 IP 地址的。<br>通过服务发现的方式来隔离调用方请求，从逻辑上来看确实可行，但注册中心在 RPC 里面的定位是用来存储数据并保证数据一致性的。如果把这种复杂的计算逻辑放到注册中心里面，当集群节点变多之后，就会导致注册中心压力很大，而且大部分情况下我们一般都是采用开源软件来搭建注册中心，要满足这种需求还需要进行二次开发。所以从实际的角度出发，通过影响服务发现来实现请求隔离并不划算</p>
-<p>我们可以重新回到调用方发起 RPC 调用的流程。在 RPC 发起真实请求的时候，有一个步骤就是从服务提供方节点集合里面选择一个合适的节点（就是我们常说的负载均衡），那我们是不是可以在选择节点前加上“筛选逻辑”，把符合我们要求的节点筛选出来。那这个筛选的规则是什么呢？就是我们灰度过程中要验证的规则。</p>
-<p>比如我们要求新上线的节点只允许某个 IP 可以调用，那我们的注册中心会把这条规则下发到服务调用方。在调用方收到规则后，在选择具体要发请求的节点前，会先通过筛选规则过滤节点集合，按照这个例子的逻辑，最后会过滤出一个节点，这个节点就是我们刚才新上线的节点。通过这样的改造，RPC 调用流程就变成了这样：</p>
-<p><img src="https://s1.ax1x.com/2023/07/23/pCq7jMR.md.png" alt="pCq7jMR.md.png"></p>
-<p>这个筛选过程在RPC 里面有一个专业名词，就是“路由策略”，而上面例子里面的路由策略是我们常见的 IP 路由策略，用于限制可以调用服务提供方的 IP。使用了 IP 路由策略后，整个集群的调用拓扑如下图所示</p>
-<p><img src="https://s1.ax1x.com/2023/07/23/pCqb8hD.png" alt="pCqb8hD.png"></p>
-<h3 id="参数路由"><a href="#参数路由" class="headerlink" title="参数路由"></a>参数路由</h3><p>有了 IP 路由之后，上线过程中我们就可以做到只让部分调用方请求调用到新上线的实例，相对传统的灰度发布功能来说，这样做我们可以把试错成本降到最低。但在有些场景下，我们可能还需要更细粒度的路由方式。比如，在升级改造应用的时候，为了保证调用方能平滑地切调用我们的新应用逻辑，在升级过程中我们常用的方式是让新老应用并行运行一段时间，然后通过切流量百分比的方式，慢慢增大新应用承接的流量，直到新应用承担了 100% 且运行一段时间后才能去下线老应用。</p>
-<p>在流量切换的过程中，为了保证整个流程的完整性，我们必须保证某个主题对象的所有请求都使用同一种应用来承接。假设我们改造的是商品应用，那主题对象肯定是商品 ID，在切流量的过程中，我们必须保证某个商品的所有操作是用新应用（或者老应用）来完成所有请求的响应。很显然，上面的 IP 路由并不能满足我们这个需求，因为 IP 路由只是限制调用方来源，并不会根据请求参数请求到我们预设的服务提供方节点上去。</p>
-<p>我们可以给所有的服务提供方节点都打上标签，用来区分新老应用节点。在服务调用方发生请求的时候，我们可以很容易地拿到请求参数，也就是我们例子中的商品 ID，我们可以根据注册中心下发的规则来判断当前商品 ID 的请求是过滤掉新应用还是老应用的节点。因为规则对所有的调用方都是一样的，从而保证对应同一个商品 ID 的请求要么是新应用的节点，要么是老应用的节点。使用了参数路由策略后，整个集群的调用拓扑如下图所示：</p>
-<p><img src="https://s1.ax1x.com/2023/07/23/pCqbdBt.png" alt="pCqbdBt.png"></p>
-<p>相比 IP 路由，参数路由支持的灰度粒度更小，他为服务提供方应用提供了另外一个服务治理的手段。灰度发布功能是 RPC 路由功能的一个典型应用场景，通过 RPC 路由策略的组合使用可以让服务提供方更加灵活地管理、调用自己的流量，进一步降低上线可能导致的风<br>险。</p>
-<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><h3 id="什么是负载均衡？"><a href="#什么是负载均衡？" class="headerlink" title="什么是负载均衡？"></a>什么是负载均衡？</h3><p>当我们的一个服务节点无法支撑现有的访问量时，我们会部署多个节点，组成一个集群，然后通过负载均衡，将请求分发给这个集群下的每个服务节点，从而达到多个服务节点共同分担请求压力的目的。</p>
-<p><img src="https://s1.ax1x.com/2023/07/23/pCqqjMj.png" alt="pCqqjMj.png"></p>
-<p>负载均衡主要分为软负载和硬负载，软负载就是在一台或多台服务器上安装负载均衡的软件，如 LVS、Nginx 等，硬负载就是通过硬件设备来实现的负载均衡，如 F5 服务器等。负载均衡的算法主要有随机法、轮询法、最小连接法等。</p>
-<h3 id="RPC-框架中的负载均衡"><a href="#RPC-框架中的负载均衡" class="headerlink" title="RPC 框架中的负载均衡"></a>RPC 框架中的负载均衡</h3><p>RPC 的负载均衡完全由 RPC 框架自身实现，RPC 的服务调用者会与“注册中心”下发的所有服务节点建立长连接，在每次发起 RPC 调用时，服务调用者都会通过配置的负载均衡插件，自主选择一个服务节点，发起 RPC 调用请求。<br>RPC 负载均衡策略一般包括随机权重、Hash、轮询。当然，这还是主要看 RPC 框架自身的实现。其中的随机权重策略应该是我们最常用的一种了，通过随机算法，我们基本可以保证每个节点接收到的请求流量是均匀的；同时我们还可以通过控制节点权重的方式，来进行流量控制。比如我们默认每个节点的权重都是 100，但当我们把其中的一个节点的权重设置成 50 时，它接收到的流量就是其他节点的 1&#x2F;2。</p>
-<p>由于负载均衡机制完全是由 RPC 框架自身实现的，所以它不再需要依赖任何负载均衡设备，自然也不会发生负载均衡设备的单点问题，服务调用方的负载均衡策略也完全可配，同时我们可以通过控制权重的方式，对负载均衡进行治理。</p>
+        <h1 id="git工作流"><a href="#git工作流" class="headerlink" title="git工作流"></a>git工作流</h1><p>原文链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7202952940196708410">https://juejin.cn/post/7202952940196708410</a></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Git 是目前最流行的代码管理工具，团队一般为了规范开发，保持良好的代码提交记录以及维护 Git 分支结构清晰，方便后续维护等，都会定制一套团队内部比较规范的 Git 工作流。本期主要介绍最为常见和流行的三种Git分支工作流。<br>Git工作流与我们常用的add、commit、push等命令有区别，但它们之间是相互关联的。Git工作流定义了一个开发过程的整体架构和规范，而add、commit、push等命令则是在具体操作层面上实现Git工作流的基本操作。在具体使用Git时，你可以根据所采用的工作流选择合适的命令和操作来管理代码版本和进行团队协作。</p>
+<h2 id="GitFlow"><a href="#GitFlow" class="headerlink" title="GitFlow"></a>GitFlow</h2><p>GitFlow 是最早诞生，并且得到广泛应用的一种工作流程。GitFlow 通常包含五种类型的分支，分别为master、develop、feature、release、hotfix。<br>• master：主干分支，也是正式发布版本的分支，每次发布版本都需要打上相应的 tag，其包含可以部署到生产环境中的代码，通常情况下只允许其他分支将代码合入，不允许直接向 master 分支直接提交代码 (master 对应着生产环境)。<br>• develop：开发分支，在开发初期，由团队负责人从 master 签出，用来集成测试最新合入的开发成果，包含要发布到下一个 Release 的代码（对应开发环境）。<br>• feature：特性分支，通常从 Develop 分支签出，每个新特性的开发对应一个特性分支，用于开发人员提交代码并进行自测。自测完成后，会将 Feature 分支的代码合并至 Develop 分支，进入下一个Release 环节。<br>• release：预发布分支，发布新版本时，基于 Develop 分支创建，发布完成后，需要将此分支合并到 Master 和 Develop 分支（对应集成测试环境）。<br>• hotfix：热修复分支，生产环境发现新 Bug 时创建的临时分支，问题验证通过后，合并到 Master 和 Develop 分支。<br>develop分支包含项目完整的历史记录，而master分支将包含简化版本。团队成员在克隆中央存储库后，应基于develop创建跟踪分支，进行新功能开发。</p>
+<p>GitFlow的优点和缺点？<br>• 优点：流程清晰可控。<br>• 缺点：管理相对复杂，需要同时维护两个长期分支。同时不适合持续发布，目标产物通常是一段时间后产出一个新版本，是基于版本发布。</p>
+<h3 id="开发分支（Develop）"><a href="#开发分支（Develop）" class="headerlink" title="开发分支（Develop）"></a>开发分支（Develop）</h3><p>Develop 分支由团队负责人从 Master 创建。首次创建时，由团队负责人构建项目结构，推送至远端。通常在该分支上进行新特性的合并、签出予发布分支、合并hotfix分支等操作。</p>
+<h3 id="特性分支（Feature）"><a href="#特性分支（Feature）" class="headerlink" title="特性分支（Feature）"></a>特性分支（Feature）</h3><p>新特性分支基于 Develop 分支创建，每个新功能都应该驻留在其自己的分支中，我们可以将其推送到中央存储库进行协作或者备份。<br>在新功能开发完成后，需要将其合并到 Develop 分支中，同时删除本地与远端的feature分支。<br>预发布分支（Release）<br>一旦 Develop 分支获得了足够的发布功能，或者临近预定的发布日期，就需要基于 Develop 分支创建</p>
+<h3 id="Release-分支。"><a href="#Release-分支。" class="headerlink" title="Release 分支。"></a>Release 分支。</h3><p>创建此分支意味着将开始下一个发行周期，此刻 Release 分支不能添加任何新功能（除了错误修复、文档完善等），一旦准备发布，Release 分支将合并到 Master 分支并用版本号标记。另外，还要将其合并回 Develop 分支。待发版成功后，删除 Release 分支。<br>使用专门的分支进行版本发布可以让我们在新版本发布的同时，其他团队成员可以继续为下个版本开发新功能，而不影响此次发布。</p>
+<h3 id="补丁分支（hotfix）"><a href="#补丁分支（hotfix）" class="headerlink" title="补丁分支（hotfix）"></a>补丁分支（hotfix）</h3><p>维护 hotfix 分支用于快速修补生产版本出现的 bug。hotfix 分支是唯一一个从 Master 分支上创建的分支。<br>待修复程序完成后，应该将其合并到 Master 和 Develop 或者当前 Release 分支中，随后删除 hotfix 分支，并应使用更新的版本号标记 Master 分支。<br>拥用有专门的错误修复分支，可以保障团队可以在不中断其余工作流程的情况下，对线上的版本进行错误修复。</p>
+<h2 id="Github-Flow"><a href="#Github-Flow" class="headerlink" title="Github Flow"></a>Github Flow</h2><p>GitHub flow 是 Git Flow 的简化版，它是 github.com 使用的工作流程。它只有一个长期分支(master)，相对于 GitFlow 用起来相对比较简单。GitHubFlow 假设每次合并一个特性分支时都可以部署到生产环境，虽然这在某些情况下是不可能的。<br>它只有一个长期分支master：<br>• 第一步：根据需求，从 master 拉出新分支，不区分功能分支或补丁分支。<br>• 第二步：新分支开发完成后，或者需要讨论的时候，就像 master 分支发起一个pull request(简称PR)。<br>• 第三步：Pull Request既是一个通知，让别人注意到你的请求，又是一种对话机制，大家一起评审和讨论你的代码，对话过程中，你还可以不断提交代码。<br>• 第四步：你的Pull Request被接受，合并进master，重新部署后，原来你拉出来的那个分支就被删除。<br>GitHub Flow的优点和缺点？<br>• 优点：非常适合持续发布的产品，使用流程简单，仅有一个主干分支。Master 分支的最新代码，默认就是线上代码。<br>• 缺点：master 既包含生产环境，又包含开发环境，比较混乱。有些时候，代码合并进入 Master 分支，并不代表就能立刻发布，你不能控制发布的时间。例如，iOS 应用程序通过App Store验证后才发布。这是，如果后面还有新的代码合并到 Master，导致与刚刚发布的版本不一致。在这些情况下，需要额外创建一个 production 分支跟踪线上版本。如果想要查看生产环境代码，可切换至生产分支。</p>
+<h2 id="Gitlab-Flow"><a href="#Gitlab-Flow" class="headerlink" title="Gitlab Flow"></a>Gitlab Flow</h2><p>Gitlab Flow 是 Git Flow 与 Github Flow 的结合。它吸取了两者的优点，既有适应不同开发环境的弹性，又有单一分支的简单和便利，是 gitlab.com 推荐的做法。</p>
+<h3 id="上游优先"><a href="#上游优先" class="headerlink" title="上游优先"></a>上游优先</h3><p>Gitlab Flow 的最大原则叫做“上游优先”，指存在一个主分支，他是所有其他分支的上游，只有上游分支采纳的代码变化，才能应用到其他分支。</p>
+<h3 id="持续发布"><a href="#持续发布" class="headerlink" title="持续发布"></a>持续发布</h3><p>对于持续发布的项目，建议在 Master 之外，创建不同环境的分支，比如开发环境是 Master，预发布分支是pre-production，生产环境是production。<br>开发分支是语发布分支的上游，予发布分支是生产分支的上游。代码变化，必须由上游向下游发展。</p>
+<h3 id="版本发布"><a href="#版本发布" class="headerlink" title="版本发布"></a>版本发布</h3><p>对于版本发布的项目，建议的做法是每一个稳定的版本，都要从 Master 分支上拉出一个分支，比如1.0.3-stable等等。<br>发布版本后，只有向该分支添加严重的错误修复，首先将错误修复合并到 Master 分支，然后将其合并到 stable 分支，并且此时要更新小版本号码。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论. </span>
