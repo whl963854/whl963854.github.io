@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>网络边缘 | Hexo</title>
+  <title>算法 | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="网络边缘 | Hexo">
+  <meta name="description" content="算法 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="页面未找到！">
 <meta property="og:type" content="website">
@@ -2856,9 +2856,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-计算机通信与网络/网络边缘" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-面经/算法" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">网络边缘</h1>
+        <h1 class="article-title">算法</h1>
     
     <div class="article-meta">
         
@@ -2868,7 +2868,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="计算机通信与网络">计算机通信与网络</a>
+            <a  data-rel="面经">面经</a>
             
         </span>
         
@@ -2876,12 +2876,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-07-09 17:09:24'>2023-07-11 22:27</time>
+            Created At : <time class="date" title='Updated At: 2023-08-11 16:42:29'>2023-08-07 22:57</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:301</span>
+        <span>Count:7</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -2911,7 +2911,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98"><span class="toc-text">网络边缘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="toc-text">网络结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98-1"><span class="toc-text">网络边缘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%87%E7%94%A8%E7%BD%91%E7%BB%9C%E8%AE%BE%E6%96%BD%E7%9A%84%E9%9D%A2%E5%90%91%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%9C%8D%E5%8A%A1"><span class="toc-text">采用网络设施的面向连接的服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-text">目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E6%9C%8D%E5%8A%A1"><span class="toc-text">TCP服务</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9B%E6%89%A356%EF%BC%8C%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4"><span class="toc-text">力扣56，合并区间</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -2927,65 +2927,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="网络边缘"><a href="#网络边缘" class="headerlink" title="网络边缘"></a>网络边缘</h2><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><ul>
-<li>网路边缘<ul>
-<li>主机</li>
-<li>应用程序（客户端和服务器）</li>
-</ul>
-</li>
-<li>网络核心<ul>
-<li>互联着的路由器</li>
-<li>网络的网络</li>
-</ul>
-</li>
-<li>网络接入<ul>
-<li>有线或者无线通信链路</li>
-</ul>
-</li>
-</ul>
-<p>从应用往下看都是网络基础设施</p>
-<h3 id="网络边缘-1"><a href="#网络边缘-1" class="headerlink" title="网络边缘"></a>网络边缘</h3><ul>
-<li>端系统（主机）<ul>
-<li>运行应用程序</li>
-<li>如Web，email</li>
-<li>在“网络的边缘”</li>
-</ul>
-</li>
-<li>客户&#x2F;服务器模式 C&#x2F;S<ul>
-<li>客户端向服务器请求接受服务</li>
-<li>如Web浏览器&#x2F;服务器；email客户端&#x2F;服务器</li>
-</ul>
-</li>
-<li>对等模式 P2P<ul>
-<li>很少专门的服务器</li>
-<li>如Emule，KozaA</li>
-</ul>
-</li>
-</ul>
-<h3 id="采用网络设施的面向连接的服务"><a href="#采用网络设施的面向连接的服务" class="headerlink" title="采用网络设施的面向连接的服务"></a>采用网络设施的面向连接的服务</h3><h4 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h4><p>在端系统之间传输数据<br><strong>握手</strong>：在数据传输之前做好准备</p>
-<ul>
-<li>人类协议中：你好，你好</li>
-<li>两个通信主机之间为连接建立状态<br>面向连接的通信方式：通信方式只有端节点知道</li>
-</ul>
-<p><strong>TCP-传输控制协议</strong></p>
-<ul>
-<li>Internet上面向连接的服务</li>
-</ul>
-<h4 id="TCP服务"><a href="#TCP服务" class="headerlink" title="TCP服务"></a>TCP服务</h4><ul>
-<li>可靠的，按顺序的传送数据<ul>
-<li>确认和重传</li>
-</ul>
-</li>
-<li>流量控制<ul>
-<li>发送方不会淹没接收方</li>
-</ul>
-</li>
-<li>拥塞控制<ul>
-<li>当网络拥塞时，发送方降低发送速率</li>
-</ul>
-</li>
-</ul>
-
+        <h2 id="力扣56，合并区间"><a href="#力扣56，合并区间" class="headerlink" title="力扣56，合并区间"></a>力扣56，合并区间</h2>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎指出任何有错误或不够清晰的表达，可以在下面评论区评论. </span>
     </div>
