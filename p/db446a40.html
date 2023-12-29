@@ -1,0 +1,4822 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>单个服务的基本结构 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="单个服务的基本结构 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="页面未找到！">
+<meta property="og:type" content="website">
+<meta property="og:title" content="404">
+<meta property="og:url" content="http://example.com/404/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="页面未找到！">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-09-27T03:31:01.000Z">
+<meta property="article:modified_time" content="2023-08-04T10:01:36.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>John Doe</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/whl963854"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:3366576307@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=3366576307&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+    <a class="more-menus">更多菜单</a>
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(252)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="操作系统">
+                        
+                        操作系统
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="环境搭建">
+                        
+                        环境搭建
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="计算机通信与网络">
+                        
+                        计算机通信与网络
+                        <small>(16)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="框架">
+                        
+                        框架
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="面经">
+                        
+                        面经
+                        <small>(8)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="软工">
+                        
+                        软工
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="设计模式">
+                        
+                        设计模式
+                        <small>(27)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="算法与数据结构">
+                        
+                        算法与数据结构
+                        <small>(8)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="题解">
+                        
+                        题解
+                        <small>(27)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="cpp">
+                        
+                        cpp
+                        <small>(88)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Database">
+                        
+                        Database
+                        <small>(27)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Git">
+                        
+                        Git
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="go">
+                        
+                        go
+                        <small>(11)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Linux">
+                        
+                        Linux
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="others">
+                        
+                        others
+                        <small>(12)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+                <a class="dynamic-menu "
+                   target="_blank"
+                        
+                   href="https://github.com/whl963854">github</a>
+        
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  "
+               target="_blank"
+                    
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="252">
+<input type="hidden" id="yelog_site_word_count" value="565k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>编码规范</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>标准库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>创建型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态规划</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>华为可信课程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>剑指offer</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>结构型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>框架</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>蓝桥</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>码题集</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>软工</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>实习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>现代cpp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>行为型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>字节</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>c++11</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>c++17</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>c++20</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cpp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cpp17</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cpp20</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>csp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>go</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>leetcode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>math</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NoSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Redis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>STL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WebAssembly</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>wps</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All go "
+           href="/p/15a4d7c.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="goroutine">goroutine</span>
+            <span class="post-date" title="2023-12-28 16:35:00">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/17f45348.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="mod">mod</span>
+            <span class="post-date" title="2023-12-28 16:32:20">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/f0317f09.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go泛型运用">Go泛型运用</span>
+            <span class="post-date" title="2023-12-28 16:26:16">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-12-28 16:22:34">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-12-28 16:22:16">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-12-28 16:21:59">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-12-28 16:21:17">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/ee3dbaf8.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="cpp内存管理">cpp内存管理</span>
+            <span class="post-date" title="2023-12-28 16:01:32">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/87fdbf5e.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="cpp面向对象">cpp面向对象</span>
+            <span class="post-date" title="2023-12-28 15:59:07">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-12-28 15:58:37">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-12-28 15:58:00">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-12-28 15:57:23">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/39432f30.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="kubernetes介绍">kubernetes介绍</span>
+            <span class="post-date" title="2023-12-28 15:52:03">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/f255ffad.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="docker">docker</span>
+            <span class="post-date" title="2023-12-28 15:46:44">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/fec99276.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2023-12-28 15:45:47">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/284ab3e9.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bufferevent">bufferevent</span>
+            <span class="post-date" title="2023-12-28 15:40:36">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/881199c7.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="反转单词">反转单词</span>
+            <span class="post-date" title="2023-12-28 15:38:44">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/d9f4dee9.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="中望软件">中望软件</span>
+            <span class="post-date" title="2023-12-28 15:37:38">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/f9cb768.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="写作">写作</span>
+            <span class="post-date" title="2023-12-28 14:56:29">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/52292.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="香槟塔">香槟塔</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/61401.html"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="零钱兑换">零钱兑换</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/61876.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="超过一半的数字">超过一半的数字</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/65488.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="779 第k个语法符号">779 第k个语法符号</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/35775.html"
+           data-tag="蓝桥"
+           data-author="" >
+            <span class="post-title" title="统计子矩阵">统计子矩阵</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/12758.html"
+           data-tag="码题集"
+           data-author="" >
+            <span class="post-title" title="棘手怀念摧毁">棘手怀念摧毁</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/53127.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="最长字符串链">最长字符串链</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/52608.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="最长回文子串">最长回文子串</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/1868.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="日期差值">日期差值</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/14283.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="无重复字符的最长子串">无重复字符的最长子串</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/64084.html"
+           data-tag="字节"
+           data-author="" >
+            <span class="post-title" title="数组游戏">数组游戏</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/34639.html"
+           data-tag="剑指offer"
+           data-author="" >
+            <span class="post-title" title="数组中数字出现的个数">数组中数字出现的个数</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/38710.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="括号生成">括号生成</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/59828.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="把数组排成最小的数">把数组排成最小的数</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/20114.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="同构字符串">同构字符串</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/3457.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="字典序的第k大数字">字典序的第k大数字</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/967.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="反转链表">反转链表</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/39967.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="匹配子序列的单词数">匹配子序列的单词数</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/49651.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="前k个高频词">前k个高频词</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/63859.html"
+           data-tag="math"
+           data-author="" >
+            <span class="post-title" title="全排列">全排列</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/9616.html"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="买卖股票1">买卖股票1</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/9615.html"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="买卖股票1">买卖股票1</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/43256.html"
+           data-tag="csp"
+           data-author="" >
+            <span class="post-title" title="防疫大数据">防疫大数据</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/59129.html"
+           data-tag="csp"
+           data-author="" >
+            <span class="post-title" title="寻宝大作战">寻宝大作战</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/40034.html"
+           data-tag="csp"
+           data-author="" >
+            <span class="post-title" title="非零段划分">非零段划分</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/47143.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Easy Strings Merging">Easy Strings Merging</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/410e30c.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腾讯安全">腾讯安全</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/3a9ea38.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腾讯天美">腾讯天美</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/d809ecd7.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腾讯云智">腾讯云智</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/158ea4f5.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="百度">百度</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/bccf711e.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="滴滴秋储">滴滴秋储</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/c2f2ffeb.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="快手">快手</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/7d1900d6.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="字节提前批">字节提前批</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/d0681926.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="通信的三种方式">通信的三种方式</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/485abdb0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络通信协议设计">网络通信协议设计</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/2f9ed4ad.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络边缘">网络边缘</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/a5662a20.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络库的分层设计">网络库的分层设计</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/e431c708.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="本地套接字">本地套接字</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/73d6ffa7.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="服务器开发中的常用模块设计">服务器开发中的常用模块设计</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/8f29bb10.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络编程应该掌握的socket函数">网络编程应该掌握的socket函数</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/1bcba982.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="套接字编程">套接字编程</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/db446a40.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="单个服务的基本结构">单个服务的基本结构</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/36b011d7.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="http和https">http和https</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/5447b09e.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebSocket协议">WebSocket协议</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/6a48eebc.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="UDP">UDP</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/d6bcf660.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="TCP连接">TCP连接</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/4d69f701.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Reactor模式">Reactor模式</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/c5176eb2.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RPC">RPC</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/e431c708.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="七层协议">七层协议</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/ea0da367.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="理解HTTP">理解HTTP</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 环境搭建 "
+           href="/p/789273fd.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="libevent可执行文件生成">libevent可执行文件生成</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/2362a8ea.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链表">链表</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/1f4ac2fb.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="栈">栈</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/15bc60d.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="最短路径">最短路径</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/c517589e.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="并查集">并查集</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/ea4681d0.html"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="二叉树的遍历">二叉树的遍历</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/56030.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="带权并查集">带权并查集</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/37489.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="排序">排序</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/587dffa2.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="TB级数据排序">TB级数据排序</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/39432f30.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="kubernetes介绍">kubernetes介绍</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 软工 "
+           href="/p/55324.html"
+           data-tag="软工"
+           data-author="" >
+            <span class="post-title" title="某些小项目">某些小项目</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/2f57a694.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="正则表达式">正则表达式</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/bf55081a.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebAssembly跨语言调用">WebAssembly跨语言调用</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/3b2bd29.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust简单入门">Rust简单入门</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/16107.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Git "
+           href="/p/1.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git学习">git学习</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Git "
+           href="/p/e69805ba.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git开发环境应用">git开发环境应用</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Git "
+           href="/p/5226.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git常用方法">git常用方法</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/43574.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="链接编译联编">链接编译联编</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/53dbe2a2.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="C++进程优雅退出">C++进程优雅退出</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/5958.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="谓词">谓词</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/14976.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="虚函数表">虚函数表</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/d33db4ae.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="生命周期和编程范式">生命周期和编程范式</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/83d613f6.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="序列化和反序列化">序列化和反序列化</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/28877bf.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="异常处理">异常处理</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/c082d8df.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="常量变量">常量变量</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/ddc66992.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="字面量">字面量</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/b63369e3.html"
+           data-tag="标准库"
+           data-author="" >
+            <span class="post-title" title="字符串处理">字符串处理</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/1690d21b.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="函数式编程">函数式编程</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/45788.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="内建函数对象">内建函数对象</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/80c02825.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="static">static</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/80c02825.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="new/delete  malloc/free 区别">new/delete  malloc/free 区别</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/397.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="define、const、typedef、inline">define、const、typedef、inline</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/2.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64590.html"
+           data-tag="wps"
+           data-author="" >
+            <span class="post-title" title="c++编码规范">c++编码规范</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/43341.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="cpp代码到exe">cpp代码到exe</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/8a6d8fe.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="cmake基础">cmake基础</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/23999.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="金山训练营第一周">金山训练营第一周</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/28630.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="编译时常量的使用">编译时常量的使用</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/b2513043.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="线程的基本操作">线程的基本操作</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/226.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="线程池">线程池</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/af951d26.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="线程局部存储">线程局部存储</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/5639.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="类型推断">类型推断</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/acd745d4.html"
+           data-tag="c++17"
+           data-author="" >
+            <span class="post-title" title="注解标签">注解标签</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/a44af387.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="模板元编程">模板元编程</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/aebf582b.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="整型变量的原子操作">整型变量的原子操作</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/52505.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="并发">并发</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64657.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="左值引用和右值引用">左值引用和右值引用</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/f7f57f41.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="多线程使用锁经验总结">多线程使用锁经验总结</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/e1bf1f97.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="多线程与资源同步">多线程与资源同步</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/54280.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="初始化变量">初始化变量</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/10970.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="内存">内存</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/57725.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="lambda的使用">lambda的使用</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/6239.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="与时间有关的程序">与时间有关的程序</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/324821f5.html"
+           data-tag="c++20"
+           data-author="" >
+            <span class="post-title" title="jthread">jthread</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/a70da3b7.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="C++新特性">C++新特性</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/4071de72.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++11/14/17线程同步对象">C++11/14/17线程同步对象</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/9fa70a35.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SFINAE">SFINAE</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/814162d0.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="初始化方式">初始化方式</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39885.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="表达式与变量">表达式与变量</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/22884.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="安全编码与未定义行为">安全编码与未定义行为</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/29637.html"
+           data-tag="华为可信课程,编码规范"
+           data-author="" >
+            <span class="post-title" title="类与函数">类与函数</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/41521.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="代码风格规定">代码风格规定</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/46257.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="lambda、资源管理与杂项">lambda、资源管理与杂项</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39842.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="unique_ptr">unique_ptr</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64016.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="变参模板">变参模板</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/58909.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="string">string</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/54708.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="vector">vector</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/22700.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="set/multiset">set/multiset</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64038.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="stack">stack</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/41872.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="queue">queue</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/37043.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="map/multimap">map/multimap</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39907.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="List">List</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/51768.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="Hashtable">Hashtable</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/42201.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="deque">deque</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/9423.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="STL">STL</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/20982.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用拷贝和替换算法">常用拷贝和替换算法</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/29759.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用排序算法">常用排序算法</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/35802.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用集合算法">常用集合算法</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/41195.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用算术生成算法">常用算术生成算法</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/31381.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="STL常用算法">STL常用算法</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/4097.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="Otherthings">Otherthings</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/6511.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="Template Template Parameter">Template Template Parameter</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/57245.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="RvalueReference">RvalueReference</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/45839.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="Alias Template">Alias Template</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/7082d49f.html"
+           data-tag="cpp20"
+           data-author="" >
+            <span class="post-title" title="concepts">concepts</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/53866983.html"
+           data-tag="cpp17"
+           data-author="" >
+            <span class="post-title" title="结构化绑定">结构化绑定</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/2cf69f40.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="迭代器">迭代器</span>
+            <span class="post-date" title="2023-12-28 14:18:52">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/27999.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="移动语义">移动语义</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/7296bf5f.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="特种成员函数的生成机制">特种成员函数的生成机制</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/8398734e.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="枚举类">枚举类</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/47718.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="智能指针">智能指针</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/3763.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="左值右值">左值右值</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/50074.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="完美转发">完美转发</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/19966.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="委派构造函数">委派构造函数</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/24227.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="多线程">多线程</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/63561.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="类型转换">类型转换</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/5b46547.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="weak_ptr">weak_ptr</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/78b58054.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="shared_ptr">shared_ptr</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39842.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="unique_ptr">unique_ptr</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39842.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="std::move和std::forword">std::move和std::forword</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/1199.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="nullptr">nullptr</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/330a6169.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="lambda表达式">lambda表达式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64202.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="move">move</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/2ecd4e0f.html"
+           data-tag="框架,实习"
+           data-author="" >
+            <span class="post-title" title="基于xfx torm的学习开发和容器化打包部署">基于xfx torm的学习开发和容器化打包部署</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/13592136.html"
+           data-tag="实习,WebAssembly"
+           data-author="" >
+            <span class="post-title" title="WebAssembly与Rust实践">WebAssembly与Rust实践</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/f113fd4.html"
+           data-tag="实习,WebAssembly"
+           data-author="" >
+            <span class="post-title" title="WebAssembly与Go实践">WebAssembly与Go实践</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 框架 "
+           href="/p/14433829.html"
+           data-tag="框架"
+           data-author="" >
+            <span class="post-title" title="torm框架学习">torm框架学习</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/a9a8d1fe.html"
+           data-tag="实习,WebAssembly"
+           data-author="" >
+            <span class="post-title" title="wasm">wasm</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/eefe591f.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="进程与线程">进程与线程</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/932d7faf.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="纤程（Fiber）与协程（Routine）">纤程（Fiber）与协程（Routine）</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/b21cb050.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络通信故障排查常用命令">网络通信故障排查常用命令</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/28384.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="死锁">死锁</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/9ee71673.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Linux线程同步对象">Linux线程同步对象</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/9ee71673.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Linux线程同步对象">Linux线程同步对象</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/26649.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux文件管理">Linux文件管理</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/4551.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux简介">Linux简介</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/56191.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux用户和权限">Linux用户和权限</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/13375.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux基本命令">Linux基本命令</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/b21cb050.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="IO多路复用">IO多路复用</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/53ad465c.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="进程通信">进程通信</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/1f84997a.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="源码文件">源码文件</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/19cd4605.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="程序实体">程序实体</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/6e2bd130.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="zorm学习">zorm学习</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/8ca6511d.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go工作区">Go工作区</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/cacc0385.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="database/sql">database/sql</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/d080713b.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go学习">Go学习</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/d080713b.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go进程的优雅退出">Go进程的优雅退出</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/50254.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="设计模式简介">设计模式简介</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/96cd2f17.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="封装抽象继承多态">封装抽象继承多态</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/122fc4b2.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="UML类图">UML类图</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/39554.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="适配器模式">适配器模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/58978.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="门面模式">门面模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/3892.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="装饰者模式">装饰者模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/44993.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="组合模式">组合模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/27560.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="桥模式">桥模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/65163.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="享元模式">享元模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/48003.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="代理模式">代理模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/29711.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="建造者模式">建造者模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/39856.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="构建器模式">构建器模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/46132.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="单例模式">单例模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/22548.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="原型模式">原型模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/59316.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="factory模式">factory模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/5265.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="访问器模式">访问器模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/28241.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="迭代器模式">迭代器模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/50156.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="解析器模式">解析器模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/7738.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="观察者模式">观察者模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/52113.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="职责链模式">职责链模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/58639.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="策略模式">策略模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/14565.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="模板模式">模板模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/39447.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="状态模式">状态模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/56214.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="备忘录模式">备忘录模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/22977.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="命令模式">命令模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/55487.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="中介者模式">中介者模式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/31805.html"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="Redis常见命令">Redis常见命令</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/5455.html"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="SpringDataRedis">SpringDataRedis</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/26793.html"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="Jedis">Jedis</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/28345.html"
+           data-tag="NoSQL"
+           data-author="" >
+            <span class="post-title" title="NoSQL">NoSQL</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/40758.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="触发器">触发器</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/21631.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="锁">锁</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/e16fda58.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="表空间回收">表空间回收</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/3825.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="视图">视图</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/35621.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="约束">约束</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/11557.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="索引">索引</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/41558.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="日志类型">日志类型</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/27905.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="存储引擎">存储引擎</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/64451.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="存储过程">存储过程</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/19503.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="多表查询">多表查询</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/a3a0c28e.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="分库分表">分库分表</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/29900.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL">SQL</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/21513.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="函数">函数</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/14751.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="事务隔离级别">事务隔离级别</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/1692.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="优化">优化</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/33810.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="事务三种提交问题">事务三种提交问题</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/62546.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="事务">事务</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/305947d.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="一些优化方面">一些优化方面</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/c04d0f5c.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="主备">主备</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/294fcea.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="应急提高性能的方法">应急提高性能的方法</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/df9a61f7.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="索引">索引</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/de74da3e.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="表存储格式">表存储格式</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/62812.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="InnoDB引擎">InnoDB引擎</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/39914.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="B+树和B树的区别">B+树和B树的区别</span>
+            <span class="post-date" title="2023-12-28 14:18:51">2023/12/28</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-计算机通信与网络/单个服务的基本结构" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">单个服务的基本结构</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="计算机通信与网络">计算机通信与网络</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-08-04 18:01:36'>2023-12-28 14:18</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:29.2k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                Comment:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E4%B8%AA%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-text">单个服务的基本结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E7%BB%84%E4%BB%B6%E7%9A%84%E6%95%88%E7%8E%87%E9%97%AE%E9%A2%98"><span class="toc-text">网络通信组件的效率问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E6%95%88%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-text">高效网络通信框架的设计原则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%BD%E9%87%8F%E5%B0%91%E7%AD%89%E5%BE%85"><span class="toc-text">尽量少等待</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%BD%E9%87%8F%E5%87%8F%E5%B0%91%E5%81%9A%E6%97%A0%E7%94%A8%E5%8A%9F%E7%9A%84%E6%97%B6%E9%97%B4"><span class="toc-text">尽量减少做无用功的时间</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E7%BD%91%E7%BB%9C%E4%BA%8B%E4%BB%B6%E7%9A%84%E9%AB%98%E6%95%88%E5%81%9A%E6%B3%95"><span class="toc-text">检测网络事件的高效做法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%A2%AB%E5%8A%A8%E5%85%B3%E9%97%AD%E4%B8%8E%E4%B8%BB%E5%8A%A8%E5%85%B3%E9%97%AD"><span class="toc-text">连接的被动关闭与主动关闭</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%95%BF%E8%BF%9E%E6%8E%A5%E5%92%8C%E7%9F%AD%E8%BF%9E%E6%8E%A5"><span class="toc-text">长连接和短连接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BB%93%E6%9E%84"><span class="toc-text">原始的服务器结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E8%BF%9E%E6%8E%A5%E5%AF%B9%E5%BA%94%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-text">一个连接对应一个线程模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#one-thread-one-loop%E6%80%9D%E6%83%B3"><span class="toc-text">one thread one loop思想</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#one-thread-one-loop%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-text">one thread one loop程序的基本结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%86%E5%B7%A5"><span class="toc-text">线程的分工</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%94%A4%E9%86%92%E6%9C%BA%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">唤醒机制的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%94%A4%E9%86%92%E6%9C%BA%E5%88%B6%E5%9C%A8Linux%E4%B8%8A%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">唤醒机制在Linux上的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%94%A4%E9%86%92socket%E5%9C%A8Windows%E4%B8%8A%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">唤醒socket在Windows上的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#handle-other-things%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E9%80%BB%E8%BE%91"><span class="toc-text">handle_other_things方法的实现逻辑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%A6%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="toc-text">带定时器的程序结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#one-thread-one-loop%E7%9A%84%E6%95%88%E7%8E%87%E4%BF%9D%E9%9A%9C"><span class="toc-text">one thread one loop的效率保障</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%81%9A%E6%B3%95"><span class="toc-text">收发数据的正确做法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%94%B6%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-text">如何收取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE"><span class="toc-text">如何发送数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E5%A4%9A%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%97%B6%E5%88%A9%E7%94%A8%E4%B8%80%E4%B8%AAsocket%E6%94%B6%EF%BC%88%E5%8F%91%EF%BC%89%E6%95%B0%E6%8D%AE"><span class="toc-text">不要多个线程同时利用一个socket收（发）数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E3%80%81%E6%8E%A5%E6%94%B6%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%A6%81%E7%82%B9"><span class="toc-text">发送、接收缓冲区的设计要点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%8F%91%E9%80%81%E7%BC%93%E5%86%B2%E5%8C%BA%E5%92%8C%E6%8E%A5%E6%94%B6%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="toc-text">为什么需要发送缓冲区和接收缓冲区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%8F%91%E9%80%81%E7%BC%93%E5%86%B2%E5%8C%BA%E5%92%8C%E6%8E%A5%E6%94%B6%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="toc-text">如何设计发送缓冲区和接收缓冲区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E6%97%B6%E5%AF%B9%E7%AB%AF%E4%B8%80%E7%9B%B4%E4%B8%8D%E6%8E%A5%E6%94%B6%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">服务端发送数据时对端一直不接收的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%E4%B8%AD%E7%9A%84%E5%AE%9A%E6%97%B6%E5%99%A8%E8%AE%BE%E8%AE%A1"><span class="toc-text">后端服务中的定时器设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-text">最简单的定时器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="toc-text">定时器设计的基本思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E9%80%BB%E8%BE%91%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">定时器逻辑的性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BC%98%E5%8C%96"><span class="toc-text">定时器对象集合的数据结构优化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%97%B6%E9%97%B4%E7%9A%84%E7%BC%93%E5%AD%98"><span class="toc-text">对时间的缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E6%97%B6%E6%98%AF%E5%90%A6%E4%B8%80%E5%AE%9A%E8%A6%81%E5%8D%95%E7%8B%AC%E5%BC%80%E7%BA%BF%E7%A8%8B"><span class="toc-text">处理业务数据时是否一定要单独开线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E4%BE%B5%E5%85%A5%E5%BC%8F%E7%BB%93%E6%9E%84%E4%B8%8E%E4%BE%B5%E5%85%A5%E5%BC%8F%E7%BB%93%E6%9E%84"><span class="toc-text">非侵入式结构与侵入式结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E4%BE%B5%E5%85%A5%E5%BC%8F%E7%BB%93%E6%9E%84"><span class="toc-text">非侵入式结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%B5%E5%85%A5%E5%BC%8F%E7%BB%93%E6%9E%84"><span class="toc-text">侵入式结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">方法一</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6%E6%9C%89%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9D%97%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E7%BB%8F%E5%85%B8%E7%BB%93%E6%9E%84"><span class="toc-text">带有网络通信模块的服务器的经典结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BD%95%E8%A6%81%E5%B0%86listenfd%E8%AE%BE%E7%BD%AE%E6%88%90%E9%9D%9E%E9%98%BB%E5%A1%9E%E6%A8%A1%E5%BC%8F"><span class="toc-text">为何要将listenfd设置成非阻塞模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eone-thread-one-loop%E7%BB%93%E6%9E%84%E7%9A%84%E7%BB%8F%E5%85%B8%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BB%93%E6%9E%84"><span class="toc-text">基于one thread one loop结构的经典服务器结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88"><span class="toc-text">服务器的性能瓶颈</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-5 i,
+    .toc-level-5 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="单个服务的基本结构"><a href="#单个服务的基本结构" class="headerlink" title="单个服务的基本结构"></a>单个服务的基本结构</h1><p>我们通常希望服务器程序能满足高性能、高并发的要求，那什么是高性能、高并发呢？从技术角度来讲，服务器程序的“高性能”指服务器程序能流畅、低延迟地应答客户端的各类请求；“高并发”指服务器程序可以在同一时间支持较多的客户端连接和数据请求。如果一个服务器程序只能简单地接受 n 个客户端连接请求（n 可能很大），但不能同时流畅地处理这些客户端请求，就算不上高性能、高并发。如何将单个服务的性能做到最优呢？一个服务的性能不仅取决于<br>服务所在机器的硬件配置（内存、CPU、磁盘、网络带宽等），还取决于软件层面上服务器程序的逻辑结构设计。</p>
+<h2 id="网络通信组件的效率问题"><a href="#网络通信组件的效率问题" class="headerlink" title="网络通信组件的效率问题"></a>网络通信组件的效率问题</h2><p>一个服务器程序要对外提供服务，就需要与外部程序通信，这些外部程序往往是分散在不同机器上的不同进程（即客户端），一般采用网络通信（一般用得最多的是socket通信）。因此网络通信组件是服务器程序的基础组件，其设计得好坏直接影响服务器对外服务的能力</p>
+<h3 id="高效网络通信框架的设计原则"><a href="#高效网络通信框架的设计原则" class="headerlink" title="高效网络通信框架的设计原则"></a>高效网络通信框架的设计原则</h3><p>业务的不同导致网络通信框架在一些细节上的设计略有不同，但网络通信框架的设计方法大多是通用的、有规律可循的.</p>
+<h4 id="尽量少等待"><a href="#尽量少等待" class="headerlink" title="尽量少等待"></a>尽量少等待</h4><p>目前，流行的网络通信框架虽然有很多，例如libevent、libuv、Boost Asio等，但实现这些网络通信框架的技术手段往往大同小异。一个好的网络通信框架至少要解决以下 7个问题。</p>
+<ul>
+<li><p>如何检测有新的客户端连接到来？</p>
+<ul>
+<li>WebSocket 服务器可以使用监听套接字来侦听传入的连接请求。当有新的客户端连接请求到达时，服务器会触发相应的事件或回调函数，从而可以检测到新的客户端连接。</li>
+</ul>
+</li>
+<li><p>如何接受客户端的连接请求？</p>
+<ul>
+<li>服务器端可以使用网络编程库或框架提供的接口来接受客户端的连接请求。通常会使用类似 <code>accept()</code> 函数的方法来接受传入的连接请求，并创建一个新的套接字与客户端进行通信。</li>
+</ul>
+</li>
+<li><p>如何检测客户端是否有数据发送过来？</p>
+<ul>
+<li>WebSocket 服务器可以使用非阻塞 I&#x2F;O 或事件驱动的方式来检测客户端是否有数据发送过来。这可以通过轮询套接字状态、使用事件监听器或回调函数等方式来实现。</li>
+</ul>
+</li>
+<li><p>如何接收客户端发送的数据？</p>
+<ul>
+<li>一旦服务器检测到客户端有数据发送过来，服务器可以读取套接字接收缓冲区中的数据来接收客户端发送的数据。这可以使用类似 <code>recv()</code> 函数的方法来接收数据。</li>
+</ul>
+</li>
+<li><p>如何检测异常的客户端连接？检测到之后，如何处理？</p>
+<ul>
+<li>WebSocket 服务器可以使用心跳机制或超时检测来监测客户端连接的异常。如果服务器检测到连接异常，例如连接断开或超时，可以根据具体情况进行处理，例如关闭对应的套接字和释放相关资源。</li>
+</ul>
+</li>
+<li><p>如何向客户端发送数据？</p>
+<ul>
+<li>WebSocket 服务器可以使用类似 <code>send()</code> 函数的方法将数据发送给客户端。服务器将数据写入套接字发送缓冲区，待下一次发送操作时会将数据传输给客户端。</li>
+</ul>
+</li>
+<li><p>如何在客户端发送完数据后关闭连接？</p>
+<ul>
+<li>服务器可以发送关闭帧（Close Frame）给客户端来请求关闭连接。发送关闭帧后，服务器等待客户端响应关闭帧，确认连接关闭后，服务器可以关闭对应的套接字和释放相关资源。</li>
+</ul>
+</li>
+</ul>
+<p>这些操作可以根据所使用的编程语言、网络库或框架的特定接口来实现。具体实现方式可能会有所差异，请参考相应的文档或参考示例代码来进行具体操作。<br>有网络编程基础的读者，都能解决上面的一些问题。例如：对第1、3个问题，使用I&#x2F;O Multiplexing（之后简称“I&#x2F;O复用”）技术的select、poll、epoll等相关套接字函数；对第2个问题，使用socketAPI accept函数；对第4个问题，使用recv函数；对第6个问题，使用send函数。的确如此，这些基础的socket API构成了网络通信的基础，无论网络通信框架设计得如何巧妙，都是利用这些基础的socketAPI构建出来的。<br>所以如何巧妙组织这些基础的 socket API，成为解决问题的关键。服务器的高性能、高并发实际上只是一个技术实现所达到的效果而已，不管怎样，从程序设计的角度来说，高性能、高并发服务只是一个或一组程序。一般来说，能尽量满足尽量少等待原则的程序就是高性能的（高效的）。这里说的“高性能”不是指“忙得忙死、闲得闲死”，而是都可以闲着，但只要有“活儿干”，尽量一起干以达到工作效率最优。<br>这里举几个工作效率不是最优的网络通信的例子：</p>
+<ul>
+<li>默认情况下，在recv函数没有数据时，线程会阻塞在recv函数调用处；</li>
+<li>默认情况下，如果TCP窗口不是足够大，则数据无法发出，send函数也会阻塞当前调用线程；</li>
+<li>默认情况下，connect函数发起连接时会有一定时长的阻塞；</li>
+<li>向对端发送一段数据，接着使用recv函数接收对端的应答数据，如果对端一直不应答，当前调用线程就会阻塞在recv函数调用处。<br>以上例子所展现的都不是高效网络编程方式，因为它们都不满足尽量少等待原则。在网络通信中，有些等待不是必需的。那么，有没有一种方法，使上述过程不需要等待？最好是不仅不需要等待，而且在网络操作完成时能通知我们，利用等待的时间让程序做其他事情。答案是肯定的，使用I&#x2F;O复用技术即可。</li>
+</ul>
+<h4 id="尽量减少做无用功的时间"><a href="#尽量减少做无用功的时间" class="headerlink" title="尽量减少做无用功的时间"></a>尽量减少做无用功的时间</h4><p>目前Windows支持的I&#x2F;O复用技术有select、WSAAsyncSelect、WSAEventSelect和IOCP （完成端口），Linux支持的I&#x2F;O复用技术有select、poll和epoll模型。前面已经详细介绍过这些I&#x2F;O复用函数的用法，这里讨论一些深层次的内容。以上列举的I&#x2F;O复用函数可以分为以下两个级别。</p>
+<ul>
+<li>第1级别：select和poll。</li>
+<li>第2级别：WSAAsyncSelect、WSAEventSelect、IOCP、epoll。</li>
+</ul>
+<p>这种划分级别的依据是什么呢？<br>先来分析第1级别的函数。select和poll函数在本质上还是在一定时间内主动查询在一组 socket句柄（一个或是多个）上是否有网络事件（可读事件、可写事件或出错事件等），也就是说，我们必须每隔一段时间就主动做这些检测操作。如果在这段时间内检测到一些网络事件，检测操作消耗的时间就没有白费；如果在这段时间内没有事件呢？那就相当于做了无用功，是对系统资源的一种浪费。原因是，假设一个服务器有多个连接，在CPU 时间片有限的情况下，我们花费了一定时间检测一部分 socket的网络事件，却发现什么事件都没有，而我们在这段时间内可能有其他事情需要处理，那我们为什么要花时间去做这种检测呢？把这个时间用在我们需要做的事情上不是更好吗？所以对于服务器网络通信组件来说，要想高效，就应该尽量避免花时间主动查询一些socket是否有网络事件，而是等到这些socket有网络事件时让系统主动通知我们，我们再去处理。这就是第2级别的函数做的事情。<br>第2级别的函数相当于变主动查询为被动通知，即网络事件发生时，系统会通知我们处理。只不过第 2 级别的函数通知我们的方式各不相同，WSAAsyncSelect 函数利用Windows窗口消息队列的事件机制将通知发给我们设置的窗口过程函数，IOCP模型利用GetQueuedCompletionStatus 函数从挂起状态唤醒并返回，epoll 模型利用 epoll_wait 函数返回就绪事件。例如，connect函数发起连接时，如果将连接socket设置为非阻塞模式，程序就不需要等待 connect 函数的返回结果，可以立即返回；等连接完成之后，WSAAsyncSelect 函数会产生FD_CONNECT事件，告知我们连接是否成功，epoll模型会生成EPOLLOUT事件通知我们。又例如，socket有数据可读时，WSAAsyncSelect函数会产生FD_READ事件，epoll模型会产生EPOLLIN事件，等等。<br>总之，对网络通信组件的性能有高要求时，尽量不要主动查询各个 socket事件，而是等待操作系统通知我们。基于上面的讨论，这里提出第 2个原则：尽量减少做无用功的时间。在服务程序资源足够的情况下，这样做可能体现不出什么优势，但是对于有大量的任务要处理、需要支持高并发服务的情况，这样做优势很明显。<br>对于高性能的服务，同样是I&#x2F;O复用API，为什么不使用select、poll函数了。另外，使用I&#x2F;O复用API，如果某个socket失效，就应该及时从I&#x2F;O复用API上移除该socket，否则可能造成死循环或者浪费CPU检测周期的问题</p>
+<h2 id="检测网络事件的高效做法"><a href="#检测网络事件的高效做法" class="headerlink" title="检测网络事件的高效做法"></a>检测网络事件的高效做法</h2><p>根据上文介绍的两个原则，我们在高性能服务器设计中一般将socket设置成非阻塞模式，利用I&#x2F;O复用函数检测各个 socket上的事件（读、写、出错等事件）。当然，阻塞的socket通信模式并非一无是处。<br>下面回答本章开头提出的7个问题。</p>
+<p>对于第1、2个问题，在默认情况下，如果没有新的客户端连接请求，则对监听socket （调用bind和 listen函数的 socket）调用accept函数会阻塞调用线程，使用 I&#x2F;O复用函数以后，如果epoll_wait 函数检测到监听 socket 有 EPOLLIN 事件，或者WSAAsyncSelect函数检测到有 FD_ACCEPT 事件，就表明此时有新连接到来，再调用 accept 函数就不会阻塞调用线程了。</p>
+<p>对于第 3、4 个问题，调用 accept 函数返回的新 socket 也应该被设置成非阻塞模式，而且应该在 epoll_wait 或 WSAAsyncSelect函数报告这个 socket 有可读事件时收取数据，这样才不会做无用功。那么一次性收取多少数据合适呢？可以根据自己的实际需求来决定，甚至可以在一个循环中反复调用recv（或read）函数。对于非阻塞模式的socket，如果没有数据可读，则 recv （或 read）函数会立即返回（返回值是-1），此时得到的错误码EWOULDBLOCK（或EAGAIN）表明当前已经没有数据了。代码示例如下：</p>
+<pre><code>bool CMySocket::Recv() &#123;
+    int nRet = 0;
+    while (true) &#123;
+        char buff[512];
+        nRet = recv(m_hSocket, buff, 512, 0);
+        if (nRet == SOCKET_ERROR) &#123;
+            // 调用 recv 函数，直到错误码是 WSAEWOULDBLOCK
+            if (errno == WSAEWOULDBLOCK) &#123;
+                break;
+            &#125; else &#123;
+                return false;
+            &#125;
+        &#125; else if (nRet &lt; 0) &#123;
+            return false;
+        &#125; else if (nRet == 0) &#123;
+            break;
+        &#125;
+        m_strRecvBuf.append(buff, nRet);
+    &#125;
+    return true;
+&#125;
+</code></pre>
+<p>对于第5个问题，同样，若I&#x2F;O复用函数（如epoll_wait、WSAAsyncSelect）收到异常事件（如 EPOLLERR）或关闭事件（如FD_CLOSE）的通知，我们就知道有异常产生了，对异常的处理一般是关闭相应的socket。另外，如果send&#x2F;recv（或 read&#x2F;write）函数操作某个socket时返回0，则一般可以认为对端关闭了连接，对于本端，此时这路连接也没有存在的必要了，我们可以关闭本端对应的socket。需要说明的是，TCP连接是状态机，I&#x2F;O复用函数一般无法检测出两个端点之间路由错误导致的链路问题，所以对于这种情形，我们需要通过定时器结合心跳包来检测。</p>
+<p>对于第6个问题，向客户端发送数据比收取数据稍微麻烦一点，也是需要讲究技巧的。对于epoll模型的水平触发模式（LevelTrigger），我们首先不能像检测读事件一样一开始就注册检测写事件标志，因为一旦注册了检测写事件标志，则在一般情况下，只要对端正常收取数据，对应的socket就通常是可写的，这会导致频繁触发写事件通知。但并不是每次有写事件触发时都有数据要发送，所以正确的做法是：在epoll模型水平触发模式下，如果有数据要发送，则先调用send或write函数尝试直接发送；如果发送不了或者只发送出去部分数据，则将剩余的数据先缓存起来（需要一个缓冲区来存放剩余的数据，即“发送缓冲区”），再为该socket注册检测写事件标志，等下次写事件触发时再发送剩余的数据；如果剩下的数据还是不能完全发送完，则继续等待下一次写事件触发通知，在下一次写事件触发通知后，继续发送数据。如此反复，直到所有数据都发送出去为止。一旦所有数据都发送出去了，就及时为 socket 移除检测写事件标志，避免再次触发无用的写事件通知。上面提到的发送缓冲区不仅用来存放本次没有发送完的数据，还用来存放发送过程中上层传来的需要发送的新数据。为了保证顺序，新数据应该被追加在当前剩余数据的后面。每次有写事件触发时，我们都应该按数据的先后依次从发送缓冲区中取出再发送，即“先来的数据先发送，后来的数据后发送”。</p>
+<p>对于第7个问题，比较难处理，因为这里的“发送完”不一定是真的发送完，发送数据用的send或write函数即使返回成功，也只能说明向操作系统网络协议栈里面写入数据成功，并不代表数据被成功发送到网络。至于最后操作系统协议栈中的数据能否被发送出去及何时被发送出去，很难判断，发送出去后对方是否收到，就更难判断了。所以，我们目前只能简单地认为 send或者write函数返回我们期望的字节数时，就算数据发送完成。在这种情形下发送“完”数据后，就可以关闭连接了。当然，我们也可以使用 shutdown函数达到“半关闭”效果（即只关闭socket的发送或接收通道）。socket有个linger选项，可以设置某个socket在关闭时，剩下的数据最多可以逗留的时间。如果在逗留的时间内数据还不能完全发送出去，那剩余的数据就真的被操作系统丢弃了。</p>
+<h3 id="连接的被动关闭与主动关闭"><a href="#连接的被动关闭与主动关闭" class="headerlink" title="连接的被动关闭与主动关闭"></a>连接的被动关闭与主动关闭</h3><p>在实际应用中，连接的被动关闭指我们检测到了连接的异常事件（例如，触发EPOLLERR事件、send&#x2F;recv函数返回0使对端关闭连接），这时这路连接已经没有存在的必要了，需要被迫关闭连接。而主动关闭连接指我们主动调用close&#x2F;closesocket函数关闭socket来关闭某个连接，例如客户端向服务端发送了非法数据（如网络攻击中的一些刺探性数据包），这时服务端出于安全考虑，需要主动关闭与该客户端的连接</p>
+<h4 id="长连接和短连接"><a href="#长连接和短连接" class="headerlink" title="长连接和短连接"></a>长连接和短连接</h4><p>网络通信双方之间的连接根据保持状态分为长连接和短连接，长连接指长时间保持通信双方的连接状态，是相对于短连接而言的。<br>长连接操作通常为：连接→数据传输→保持连接→数据传输→保持连接→……→关闭连接，在没有数据交换时需要定时发送保活心跳包，以维持连接状态。长连接主要用于通信双方频繁通信的场景中，缺点是通信双方要增加相应的逻辑维护连接的状态，连接信息本身也需要一定的系统消耗；优点是可以进行实时数据交换。<br>短连接操作通常为：连接→数据传输→关闭连接，在没有数据交换时直接关闭连接即可。短连接一般用于数据传输完成后即可关闭或者对通信双方的状态信息实时性要求不高的场景中。例如We b服务器一般使用短连接与浏览器通信，在We b服务器将页面信息发送给浏览器后即可关闭连接，在需要时可再次建立连接。短连接的优点是通信双方无须长时间维护连接状态信息，可节省连接资源；缺点是如果传输数据的频率较高，则可能需要频繁建立和关闭连接，也无法实时推送消息。<br>“We b服务器一般使用短连接与浏览器通信”严格来讲是不准确的，在一些HTTP 通信中，通信双方可能会接受对端 HTTP 包头中keepalive 选项的建议，在多次通信之间保持连接状态。<br>另外，虽然在大多数场景下HTTP通信双方都使用短链接，不支持服务端的消息推送，但HTTP 2.0协议标准就支持服务端的推送。</p>
+<h2 id="原始的服务器结构"><a href="#原始的服务器结构" class="headerlink" title="原始的服务器结构"></a>原始的服务器结构</h2><p>单个服务器的结构是随着业务需求的升级而不断演进的。原始的服务器结构，是创建好监听socket，在一个循环里面接受新的连接并产生对应的客户端fd，然后利用这个客户端fd与客户端通信（收发数据）。在一个循环里面接受新的连接并产生对应的客户端 fd，然后利用这个客户端 fd与客户端通信的示例代码如下</p>
+<pre><code>    #include &lt;sys/types.h&gt;
+    #include &lt;sys/socket.h&gt;
+    #include &lt;arpa/inet.h&gt;
+    #include &lt;unistd.h&gt;
+    #include &lt;iostream&gt;
+    #include &lt;string.h&gt;
+
+    int main() &#123;
+        // 1. 创建一个监听socket
+        int listenfd = socket(AF_INET, SOCK_STREAM, 0);
+        if (listenfd == -1) &#123;
+            std::cout &lt;&lt; &quot;create listen socket error.&quot; &lt;&lt; std::endl;
+            return -1;
+        &#125;
+
+        // 2. 初始化服务器地址
+        struct sockaddr_in bindaddr;
+        memset(&amp;bindaddr, 0, sizeof(bindaddr));
+        bindaddr.sin_family = AF_INET;
+        bindaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+        bindaddr.sin_port = htons(3000);
+
+        if (bind(listenfd, (struct sockaddr*)&amp;bindaddr, sizeof(bindaddr)) == -1) &#123;
+            std::cout &lt;&lt; &quot;bind listen socket error.&quot; &lt;&lt; std::endl;
+            return -1;
+        &#125;
+
+        // 3. 启动监听
+        if (listen(listenfd, SOMAXCONN) == -1) &#123;
+            std::cout &lt;&lt; &quot;listen error.&quot; &lt;&lt; std::endl;
+            return -1;
+        &#125;
+
+        while (true) &#123;
+            struct sockaddr_in clientaddr;
+            socklen_t clientaddrlen = sizeof(clientaddr);
+
+            // 4. 接受客户端连接
+            int clientfd = accept(listenfd, (struct sockaddr*)&amp;clientaddr, &amp;clientaddrlen);
+            if (clientfd == -1) &#123;
+                std::cout &lt;&lt; &quot;accept error.&quot; &lt;&lt; std::endl;
+                continue;
+            &#125;
+
+            char recvBuf[32] = &#123;0&#125;;
+
+            // 5. 从客户端接收数据
+            int ret = recv(clientfd, recvBuf, sizeof(recvBuf) - 1, 0);
+            if (ret &gt; 0) &#123;
+                std::cout &lt;&lt; &quot;recv data from client, data: &quot; &lt;&lt; recvBuf &lt;&lt; std::endl;
+
+                // 6. 将收到的数据原封不动地发送给客户端
+                ret = send(clientfd, recvBuf, strlen(recvBuf), 0);
+                if (ret != strlen(recvBuf)) &#123;
+                    std::cout &lt;&lt; &quot;send data error.&quot; &lt;&lt; std::endl;
+                &#125; else &#123;
+                    std::cout &lt;&lt; &quot;send data to client successfully, data: &quot; &lt;&lt; recvBuf &lt;&lt; std::endl;
+                &#125;
+            &#125; else if (ret == 0) &#123;
+                std::cout &lt;&lt; &quot;client disconnected.&quot; &lt;&lt; std::endl;
+        &#125; else &#123;
+            std::cout &lt;&lt; &quot;recv data error.&quot; &lt;&lt; std::endl;
+        &#125;
+
+        close(clientfd);
+    &#125;
+
+    // 7. 关闭监听socket
+    close(listenfd);
+
+    return 0;
+&#125;
+</code></pre>
+<p>将以上代码抽出主干部分并整理成如下伪代码：</p>
+<pre><code>int main
+&#123;
+    //1.初始化阶段
+    while (true)
+    &#123;
+        //2.利用accept函数接受连接,产生客户端fd
+        //3.利用步骤2中的fd与某个客户万通信
+    &#125;
+    //4.资源清理
+    return 0;
+&#125;
+</code></pre>
+<p>在以上流程中，程序在每轮循环中都只能处理一个客户端连接请求，要处理下一个客户端连接请求，就必须等当前操作完成后进入下一轮循环才行。采用这种结构的缺点很明显：不支持并发，更不支持高并发。</p>
+<h2 id="一个连接对应一个线程模型"><a href="#一个连接对应一个线程模型" class="headerlink" title="一个连接对应一个线程模型"></a>一个连接对应一个线程模型</h2><p>因为原始的服务器结构不支持并发，所以随着计算机引入多线程模型，软件开发者想出了另一种服务器结构，即为每一个客户端连接都创建一个线程，这样多个线程就可以并行执行，在每个独立的线程中为对应的客户端提供服务。示例代码如下：</p>
+<pre><code>// 监听线程
+UINT WINAPI MyMainThread(LPVOID lpVoid)
+&#123;
+    SOCKET sListenSocket = reinterpret_cast&lt;SOCKET&gt;(lpVoid);
+    SOCKET sClientSocket;
+
+    while (true)
+    &#123;
+        // 等待客户连接
+        sockaddr_in clientAddr;
+        int clientAddrLength = sizeof(clientAddr);
+
+        sClientSocket = accept(sListenSocket, reinterpret_cast&lt;struct sockaddr*&gt;(&amp;clientAddr), &amp;clientAddrLength);
+        if (sClientSocket == INVALID_SOCKET)
+            break;
+
+        LOG_NORMAL(&quot;New client connected: %s:%d&quot;, inet_ntoa(clientAddr.sin_addr), ntohs(clientAddr.sin_port));
+
+        // 启动客户端线程
+        UINT nThreadID;
+        HANDLE hThread = reinterpret_cast&lt;HANDLE&gt;(_beginthreadex(NULL, 0, MyChildThread, reinterpret_cast&lt;LPVOID&gt;(sClientSocket), 0, &amp;nThreadID));
+
+        CloseHandle(hThread);
+    &#125;
+
+    closesocket(sListenSocket);
+
+    return 0;
+&#125;
+
+// 接收数据线程
+UINT WINAPI MyChildThread(LPVOID lpVoid)
+&#123;
+    SOCKET sClientSocket = reinterpret_cast&lt;SOCKET&gt;(lpVoid);
+    CLIENT_ITEM clientItem = &#123; 0 &#125;;
+
+    int nCmd = HandleClientMain(sClientSocket, clientItem);
+    LOG_NORMAL(&quot;Client cmd: %d&quot;, nCmd);
+
+    if (nCmd == -1)
+    &#123;
+        closesocket(sClientSocket);
+    &#125;
+    else if (nCmd == CONN_MAIN)
+    &#123;
+        LoginTrans(sClientSocket, &amp;clientItem);
+    &#125;
+    else
+    &#123;
+        InterTrans(sClientSocket, &amp;clientItem, nCmd);
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<p>如以上代码所示，在某个线程MyMainThread中（可以是主线程，也可以是非主线程）调用 accept 函数接受客户端连接，在连接建立后，为每个新连接都创建一个工作线程（MyChildThread）。当然，为了让工作线程正常处理所负责的连接上的来往数据，这里利用线程函数参数将 socket句柄传给工作线程（注意以上代码中创建线程的_beginthreadex函数的第4个参数sClientSocket）。显然，这种一个连接一个线程的做法也不支持高并发，当连接数达到一定量时，会创建很多 MyChildThread 线程，CPU 在线程之间的切换也是一笔不小的开销，CPU 时间片最后都浪费在各个线程之间的切换上了，严重影响程序的执行效率。</p>
+<h2 id="one-thread-one-loop思想"><a href="#one-thread-one-loop思想" class="headerlink" title="one thread one loop思想"></a>one thread one loop思想</h2><p>基于Reactor模式，这里引出one thread one loop（一个线程对应一个循环）思想。</p>
+<h3 id="one-thread-one-loop程序的基本结构"><a href="#one-thread-one-loop程序的基本结构" class="headerlink" title="one thread one loop程序的基本结构"></a>one thread one loop程序的基本结构</h3><p>one thread one loop中的线程指的是网络线程，也就是说，在每个网络线程函数里面都有一个循环（loop），每个循环的流程都如下所示，因此每个网络线程都做着同样的事情。这个循环流程如下：</p>
+<pre><code>#include &lt;pthread.h&gt;
+
+// 线程函数
+void* threadFunc(void* thread_arg)
+&#123;
+    // 这里做一些需要的初始化工作
+
+    bool exitFlag = false;
+
+    while (!exitFlag)
+    &#123;
+        // 步骤一: 利用select/poll/epoll等I/O复用技术分离出读写事件
+        // TODO: 在这里处理读写事件
+
+        // 步骤二: 处理读事件或写事件
+        // TODO: 在这里处理读事件或写事件
+
+        // 步骤三: 做其他事情
+        // TODO: 在这里做其他事情
+
+        // 这里做一些清理工作
+        // TODO: 在这里进行清理工作
+    &#125;
+
+    return NULL;
+&#125;
+</code></pre>
+<p>关键部分是线程函数里面的 while循环部分，步骤一利用I&#x2F;O复用技术分离出 socket读写事件；步骤二处理读事件和写事件，需要注意的是，在Linux上除了socket对象，其他类型的对象（如管道、文件句柄）也可以被挂到I&#x2F;O复用函数上。这里暂时先讨论socket对象，以处理读事件为例进行说明</p>
+<ul>
+<li>对于监听socket，我们认为处理监听socket的读事件一般就是接受新连接等操作，我们不仅可以接受新连接，还可以多做一点事情，例如将accept函数返回的客户端socket绑定到I&#x2F;O复用函数上，以及创建连接对象等。</li>
+<li>对于普通的 socket，在不考虑出错的情况下，处理普通socket的读事件实际上就是调用recv或者read函数收取数据，或者进一步对收到的数据进行解包，并做一些业务逻辑处理。举个例子，假设收到的数据经解包后是登录请求，则可以接着处理这些登录请求，并应答客户端。在这种场景下，处理读事件实际上包括收数据、解包、处理数据、应答客户端这4个步骤。<br>处理socket的写事件，一般是做发送数据操作。</li>
+</ul>
+<h3 id="线程的分工"><a href="#线程的分工" class="headerlink" title="线程的分工"></a>线程的分工</h3><p>根据上文介绍的线程函数中的循环结构，服务端为了能流畅处理多个客户端连接请求，一般在某个线程 A 里面调用 accept 函数产生新的客户端连接并生成相应的 socket，然后将这些新连接的 socket传递给另外数个工作线程 B1、B2、B3、B4 等，这些工作线程负责处理这些新连接上的网络 I&#x2F;O 事件（即收发数据），这些工作线程还同时处理系统中的另一些事务。在实际开发中，线程 A 往往对应进程的主线程，为了叙述方便，在下文中除了特别强调，否则将A线程称为主线程，将B1、B2、B3、B4等称为工作线程。将工作线程的代码框架用伪代码表示如下</p>
+<pre><code>while (!m bouitElag)
+&#123;
+    epoll_or_select_func();
+    handle_io_events():
+    handle_other_things;
+&#125;
+</code></pre>
+<p>在 epoll_or_select_func（）中通过select&#x2F;poll&#x2F;epoll等I&#x2F;O复用函数去检测 socket上的网络事件，若检测到这些事件，则下一步调用handle_io_events（）处理这些事件（一般是收发数据），在做完之后可能还要处理其他任务，这时调用handle_other_things（）即可。主线程（线程A）和工作线程（线程B1、B2、B3、B4等）分工策略的优点如下。</p>
+<ul>
+<li>线程 A 只需处理新来的连接即可，不用处理普通 socket的网络 I&#x2F;O 事件。如果在线程A里面既处理新连接又处理网络I&#x2F;O事件，则可能由于线程忙于处理网络I&#x2F;O事件，无法及时处理新的客户端连接请求。</li>
+<li>线程A接受连接产生新的 socket，我们可以根据一定的负载均衡策略，将这些socket分配给各个工作线程。round robin（轮询策略）是其中一种很简便、常用的策略，该策略在不考虑中途有连接断开的情况下将 A线程产生的新 socket 依次分配给各个工作线程，将第1个分配给B1，将再来的一个分配给B2，再将一个分配给B3……如此反复。线程 A 会记录各个工作线程上的 socket 数量，这样可以平衡资源利用率，避免一些工作线程“忙死”而另一些工作线程“闲死”的情况出现。</li>
+<li>在工作线程不满负载的情况下，可以让工作线程处理其他任务。例如现在有 4个工作线程，但只有3个连接，工作线程B4就可以在handle_other_things（）中处理其他任务。</li>
+</ul>
+<p>在上述 while 循环里面，epoll_or_selec_func（）中的 poll、select、epoll_wait 等函数一般设置了一个超时时间。如果将超时时间设置为0，那么在没有任何网络I&#x2F;O事件和其他任务需要处理的情况下，这些工作线程实际上会空转，白白浪费了 CPU时间片。如果将超时时间设置为大于0，则在没有网络I&#x2F;O事件但handle_other_things（）中有其他任务需要处理时，poll、select、epoll_wait等函数会在挂起指定时间后才能返回，导致handle_other_things（）中的任务不能及时执行。那这里该怎么设置I&#x2F;O复用函数的超时时间呢？<br>其实解决问题的思路不在于超时时间的设置，我们想达到的效果是：如果没有网络I&#x2F;O事件和其他任务要处理，那么这些工作线程最好直接挂起而不是空转；如果有其他任务要处理，那么这些工作线程要能立刻处理这些任务，而不是在 poll、select、epoll_wait等函数处挂起指定时间后才处理其他任务。<br>解决方案是，我们仍然会给poll、select、epoll_wait等函数设置一定的超时时间（大于0），但对于handle_other_things函数的执行，会采取一种特殊的唤醒策略。以Linux的epoll_wait函数为例，不管在epollfd上有没有socket fd，我们都会为epollfd挂载一个特殊的fd，这个fd被称为wakeup fd（唤醒fd）。当我们有其他任务需要立即处理时（也就是需要handle_other_thing（）立刻执行时），向这个唤醒fd上随便写入1字节的内容，这个唤醒fd就立即变成可读的了，epoll_wait函数会立即被唤醒并返回，接下来就可以马上执行<br>handle_other_thing 函数了，这样其他任务就可以得到立即处理；反之，在没有其他任务也没有网络I&#x2F;O事件时，epoll_or_select_func函数就挂在那里什么也不做。poll、select函数的处理策略与epoll_wait相同</p>
+<h3 id="唤醒机制的实现"><a href="#唤醒机制的实现" class="headerlink" title="唤醒机制的实现"></a>唤醒机制的实现</h3><p>本节讲解唤醒机制的实现。</p>
+<h4 id="唤醒机制在Linux上的实现"><a href="#唤醒机制在Linux上的实现" class="headerlink" title="唤醒机制在Linux上的实现"></a>唤醒机制在Linux上的实现</h4><p>唤醒机制在Linux上的实现方式有以下几种。</p>
+<ul>
+<li><p>使用管道fd（pipe）<br>创建一个管道，将管道的一端（管道fd中的一个）绑定到epollfd上，需要唤醒时，向管道的另一端（管道fd中的另一个）写入1字节，工作线程会被立即唤醒。创建管道的相关API函数如下：</p>
+<p>  #include &lt;unistd.h&gt;<br>  #include &lt;fcntl.h&gt;<br>  int pipe(int pipefd[2]);<br>  int pipe2(int piperd[2], int flags);</p>
+</li>
+<li><p>使用Linux 2.6新增的eventfd<br>eventfd的使用方法与管道fd一样，将调用eventfd函数返回的eventfd绑定到epollfd上，需要唤醒时，向这个eventfd上写入一字节，I&#x2F;O复用函数会被立即唤醒。创建eventfd函数签名如下：</p>
+<p>  #include &lt;sys&#x2F;eventfd.h&gt;<br>  int eventfd(unsigned int initval, int flags);</p>
+</li>
+<li><p>使用socketpair<br>socketpair 是一对相互连接的socket，相当于服务端和客户端的两个端点，每一端都可以读写数据，向其中一端写入数据后，就可以从另一端读取数据了。创建socketpair的函数签名如下：</p>
+</li>
+</ul>
+<pre><code class="cpp">#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+
+int socketpair(int domain, int type, int protocol, int sv[2]);
+</code></pre>
+<ul>
+<li><code>domain</code>：指定协议域，常见的值包括 <code>AF_UNIX</code>（Unix 域套接字）和 <code>AF_INET</code>（IPv4 套接字）等。</li>
+<li><code>type</code>：指定 socket 类型，常见的值包括 <code>SOCK_STREAM</code>（字节流套接字）和 <code>SOCK_DGRAM</code>（数据报套接字）等。</li>
+<li><code>protocol</code>：指定协议，通常传递 <code>0</code> 表示由系统自动选择合适的协议。</li>
+<li><code>sv[2]</code>：用于存储创建的两个 socket 文件描述符的数组。<code>sv[0]</code> 是服务端的 socket 文件描述符，<code>sv[1]</code> 是客户端的 socket 文件描述符。<br>调用这个函数返回的两个文件描述符是 sv[0]和 sv[1]，即socketpair函数的第 4个参数是一个输出参数，向 sv[0]、sv[1]中的任何一个 fd 写入字节后，就可以从另一个 fd 中读取写入的字节了。我们将读取方的fd绑定到epollfd上，在需要时向写入方的fd写入1字节，工作线程就会立即被唤醒。注意：与创建普通socket稍微不同的是，使用socketpair函数创<br>建socketpair时，必须将第1个参数domain设置为AF_UNIX。</li>
+</ul>
+<h4 id="唤醒socket在Windows上的实现"><a href="#唤醒socket在Windows上的实现" class="headerlink" title="唤醒socket在Windows上的实现"></a>唤醒socket在Windows上的实现</h4><p>在 Windows上使用 select 函数作为 I&#x2F;O 复用函数时，由于Windows的 select 函数只支持绑定套接字这种类型的句柄，因此在Windows上一般只能模仿Linux创建socketpair的思路，即手动创建两个 socket；然后调用connect、accept 函数建立一个连接，相当于将其中一个socket作为客户端socket（用来调用connect函数的socket），去连接某个监听socket，将另外一个socket作为监听端接受连接后（调用accept函数）返回的socket；然后将读取数据的那一端的socket绑定到select函数上并检测其可读事件。当然，这种创建<br>唤醒socket的做法同样适用于Linux。如下图所示，在以上一段文字中共有3个socket：一端调用connect函数发起连接请求的socket（记为socketA）；另一端的监听socket（记为socketB）；利用 socketB 调用 accept 函数返回的socket（记为 socketC）。其中的 socketA 和socketC就是唤醒socket（在Linux上称之为唤醒fd）。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pCQxReS.png" alt="pCQxReS.png"></p>
+<p>创建唤醒fd（socket）的具体实现如下：</p>
+<pre><code>#ifdef _WIN32
+bool EventLoop::createWakeupFd()
+&#123;
+    m_wakeupFdListen = sockets::createOrDie();
+    m_wakeupFdSend = sockets::CreateOrDie();
+
+    // 在 Windows 上需要创建一对 socket
+    struct sockaddr_in bindaddr;
+    bindaddr.sin_family = AF_INET;
+    bindaddr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+    bindaddr.sin_port = 0;
+
+    sockets::setReuseAddr(m_wakeupFdListen, true);
+    sockets::bindOrDie(m_wakeupFdListen, bindaddr);
+    sockets::listenOrDie(m_wakeupFdListen);
+
+    struct sockaddr_in serveraddr;
+    int serveraddrlen = sizeof(serveraddr);
+
+    if (getsockname(m_wakeupFdListen, (struct sockaddr*)&amp;serveraddr, &amp;serveraddrlen) &lt; 0)
+    &#123;
+        // 让程序挂掉
+        LOGF(&quot;Unable to bind address info, EventLoop: 0x%lx&quot;, this);
+        return false;
+    &#125;
+
+    int useport = ntohs(serveraddr.sin_port);
+    LOGD(&quot;wakeup fd use port: %d&quot;, useport);
+
+    if (::connect(m_wakeupFdSend, (struct sockaddr*)&amp;serveraddr, sizeof(serveraddr)) &lt; 0)
+    &#123;
+        // 让程序挂掉
+        LOGF(&quot;Unable to connect to wakeup peer, EventLoop: 0x%lx&quot;, this);
+        return false;
+    &#125;
+
+    struct sockaddr_in clientaddr;
+    socklen_t clientaddrlen = sizeof(clientaddr);
+    m_wakeupFdRecv = ::accept(m_wakeupFdListen, (struct sockaddr*)&amp;clientaddr, &amp;clientaddrlen);
+
+    if (m_wakeupFdRecv &lt; 0)
+    &#123;
+        // 让程序挂掉
+        LOGF(&quot;Unable to accept wakeup peer, EventLoop: 0x%lx&quot;, this);
+        return false;
+    &#125;
+
+    sockets::setNonBlockAndCloseOnExec(m_wakeupFdSend);
+    sockets::setNonBlockAndCloseOnExec(m_wakeupFdRecv);
+
+#else
+    // 在 Linux 上只需要一个 eventfd 就可以实现读写
+    m_wakeupFd = ::eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
+
+    if (m_wakeupFd &lt; 0)
+    &#123;
+        // 让程序挂掉
+        LOGF(&quot;Unable to create wakeup eventfd, EventLoop: 0x%lx&quot;, this);
+        return false;
+    &#125;
+
+#endif
+    return true;
+&#125;
+</code></pre>
+<p>在以上代码中有一个实现细节需要注意：在 Windows 上，作为服务端的一方，创建一个监听socket（代码中的m_wakeupFdListen）后，需要调用bind函数绑定特定的IP和端口号，这里不要使用一个固定的端口号。一旦使用固定的端口号，服务在某个机器上运行时就可能会因为端口号已经被占用，导致bind函数调用失败，无法创建出唤醒socket，进而影响程序的功能。唤醒 fd 是程序的关键，所以在以上代码中，createWakeupfd 函数中的任意一步操作失败，都会导致唤醒fd无法创建，主动打印一条Fatal级别的日志并让程序退出，这表明<br>关键性的初始化步骤无法完成。所以，我们将端口号设置为 0，操作系统会为我们分配一个可用的端口号。但主动连接的一方调用connect函数时需要指定明确的 IP 地址和端口号，这时调用 getsockname 函数获取操作系统为 bind函数分配的端口号就可以了。整个流程图如下图<br>所示。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pCQzpS1.png" alt="pCQzpS1.png"></p>
+<p>唤醒函数的实现如下：</p>
+<pre><code>bool EventLoop::wakeup()
+&#123;
+    uint64_t one = 1;
+
+#ifdef _WIN32
+    int32_t n = sockets::write(m_wakeupFdSend, reinterpret_cast&lt;char*&gt;(&amp;one), sizeof(one));
+#else
+    int32_t n = sockets::write(m_wakeupFd, reinterpret_cast&lt;char*&gt;(&amp;one), sizeof(one));
+#endif
+
+    if (n != sizeof(one))
+    &#123;
+#ifdef _WIN32
+        DWORD error = ::WSAGetLastError();
+        LOGSYSERR(&quot;EventLoop::wakeup() writes %d bytes instead of 8, fd:%d, error: %d&quot;, n, m_wakeupFdSend, static_cast&lt;int32_t&gt;(error));
+#else
+        int error = errno;
+        LOGSYSERR(&quot;EventLoop::wakeup() writes %d bytes instead of 8, fd:%d, error: %d, errorinfo: %s&quot;, n, m_wakeupFd, error, strerror(error));
+#endif
+        return false;
+    &#125;
+
+    return true;
+&#125;
+</code></pre>
+<p>无论使用哪种类型的fd作为唤醒fd，一定要在唤醒后及时将唤醒fd中的数据读出来，即消耗掉这个fd中的数据，否则fd会因为有数据不断触发读事件，失去唤醒的作用。<br>从唤醒fd中读取数据：</p>
+<pre><code>bool EventLoop::handleRead()
+&#123;
+    uint64_t one = 1;
+
+#ifdef _WIN32
+    int32_t n = sockets::read(m_wakeupFdRecv, reinterpret_cast&lt;char*&gt;(&amp;one), sizeof(one));
+#else
+    int32_t n = sockets::read(m_wakeupFd, reinterpret_cast&lt;char*&gt;(&amp;one), sizeof(one));
+#endif
+
+    if (n != sizeof(one))
+    &#123;
+#ifdef _WIN32
+        DWORD error = ::WSAGetLastError();
+        LOGSYSERR(&quot;EventLoop::wakeup() read %d bytes instead of 8, fd:%d, error:%d&quot;,
+                n, m_wakeupFdRecv, static_cast&lt;int32_t&gt;(error));
+#else
+        int error = errno;
+        LOGSYSERR(&quot;EventLoop::wakeup() read %d bytes instead of 8, fd:%d, error:%d, errorinfo: %s&quot;,
+                n, m_wakeupFd, error, strerror(error));
+#endif
+        return false;
+    &#125;
+
+    return true;
+&#125;
+</code></pre>
+<p>可以在唤醒fd的读事件触发后调用唤醒fd读取数据函数EventLoop：：handleRead（）。</p>
+<h4 id="handle-other-things方法的实现逻辑"><a href="#handle-other-things方法的实现逻辑" class="headerlink" title="handle_other_things方法的实现逻辑"></a>handle_other_things方法的实现逻辑</h4><p>在了解唤醒机制之后，我们来看一下 handle_other_things 方法的实现逻辑。handle_other_things方法可以被设计成从其他任务集合中取出任务来执行的方法：</p>
+<pre><code>void EventLoop::handle_other_things()
+&#123;
+    std::vector&lt;otherThingFunctor&gt; otherThingFunctors;
+    m_callingPendingFunctors = true;
+
+    &#123;
+        // 这对大括号用于减少锁m_mutex的范围
+        std::unique_lock&lt;std::mutex&gt; lock(m_mutex);
+        otherThingFunctors.swap(m_pendingOtherThingFunctors);
+    &#125;
+
+    size_t thingCount = otherThingFunctors.size();
+    for (size_t i = 0; i &lt; thingCount; ++i)
+    &#123;
+        otherThingFunctors[i]();
+    &#125;
+
+    m_callingPendingFunctors = false;
+&#125;
+</code></pre>
+<p>m_pendingOtherThingFunctors是一个类成员变量，为一个存放其他任务的集合，这里使用了std：：vector，工作线程本身会从这个容器中取出任务来执行，我们将任务封装成一个个函数对象（OtherThingFunctor），从容器中取出后直接执行即可。这里使用了一个特殊的小技巧：为了减小锁对象m_mutex（也是成员变量）加锁的范围，并提高程序执行效率，这里使用了一个局部变量otherThingFunctors 将成员变量 m_pendingOtherThingFunctors中的数据倒换进这个局部变量中。添加“other_things”时，可以在任意线程中添加，也就是说，可以在网络线程之外的线程中添加任务，因此可能涉及多个线程同时操作 m_pendingOtherThingFunctors对象，所以需要对其进行加锁保护。添加other_things的代码如下：</p>
+<pre><code>void EventLoop::queueInLoop(const Functor&amp; cb)
+&#123;
+    &#123;
+        // 这对大括号用于减少锁m_mutex的范围
+        std::unique_lock&lt;std::mutex&gt; lock(m_mutex);
+        m_pendingOtherThingFunctors.push_back(cb);
+    &#125;
+
+    // 如果在其他线程调用了这个函数，
+    // 则立即尝试唤醒 handle_other_things 方法所在的线程
+    if (!isInLoopThread() || m_callingPendingFunctors)
+    &#123;
+        wakeup();
+    &#125;
+&#125;
+</code></pre>
+<p>最后，在某些业务场景中，other_things 可能有多种类型，因此可以存在多个handle_other_things方法，程序结构演变如下：</p>
+<pre><code>while (!m_bQuitFlag)
+&#123;
+    epoll_or_select_func();  // 执行事件监听，等待事件发生
+
+    handle_io_events();  // 处理IO事件
+
+    handle_other_things1();  // 处理其他事情1
+
+    handle_other_things2();  // 处理其他事情2
+
+    handle_other_things3();  // 处理其他事情3
+
+    // 根据实际需要，可以有更多的 handle_other_things() 函数调用
+&#125;
+</code></pre>
+<p>另外，handle_other_things（）系列的方法可以在one thread one loop结构中的while循环内部的任意位置，不一定非要放在handle_io_events 函数后面，我们有时也称<br>handle_other_things（）为钩子函数（Hook Functions），例如：</p>
+<pre><code>while (!m_bQuitFlag)
+&#123;
+    handle_other_things1();  // 处理其他事情1
+
+    epoll_or_select_func();  // 执行事件监听，等待事件发生
+
+    handle_other_things2();  // 处理其他事情2
+
+    handle_io_events();  // 处理IO事件
+
+    handle_other_things3();  // 处理其他事情3
+
+    // 根据实际需要，可以有更多的 handle_other_things() 函数调用
+&#125;
+</code></pre>
+<h4 id="带定时器的程序结构"><a href="#带定时器的程序结构" class="headerlink" title="带定时器的程序结构"></a>带定时器的程序结构</h4><p>如果想在one thread one loop结构的线程中做一些定时任务，则需要定时器功能，我们可以在线程循环执行流中加上检测和处理定时器事件的逻辑，通常将其放在程序循环执行流的第1步。加上定时器逻辑后，程序结构如下：</p>
+<pre><code>while (!m_bQuitFlag)
+&#123;
+    check_and_handle_timers();  // 检查和处理定时器事件
+
+    epoll_or_select_func();  // 执行事件监听，等待事件发生
+
+    handle_io_events();  // 处理IO事件
+
+    handle_other_things();  // 处理其他事情
+&#125;
+</code></pre>
+<p>这里需要注意的是，在 epoll_or_select_func（）中使用的 I&#x2F;O复用函数的超时时间要尽量不大于check_and_handle_timers（）中所有定时器的最小时间间隔，以免定时器的逻辑处理延迟较大。</p>
+<h4 id="one-thread-one-loop的效率保障"><a href="#one-thread-one-loop的效率保障" class="headerlink" title="one thread one loop的效率保障"></a>one thread one loop的效率保障</h4><p>在整个 loop 结构中，为了保证各个步骤高效执行，除了epoll_or_select_func 步骤中的I&#x2F;O复用函数可能会造成等待，在任何其他步骤中都不能有阻塞整个流程或者耗时的操作。如果业务决定了在定时器逻辑（对应check_and_handle_timers函数）、读写事件处理逻辑（对应 handle_io_events 函数）或其他自定义逻辑（对应handle_other_things 函数）中有耗时的操作，就需要再开新的业务线程去处理这些耗时的操作，I&#x2F;O线程（loop所在的线程）本身不能处理耗时的操作。业务线程在处理耗时操作完毕后，可以将处理结果或者数据通过特定方式返回给I&#x2F;O线程.</p>
+<h2 id="收发数据的正确做法"><a href="#收发数据的正确做法" class="headerlink" title="收发数据的正确做法"></a>收发数据的正确做法</h2><p>在网络通信中，我们可能既要通过 socket 发送数据，也要通过socket 收取数据。那么，一般的网络通信框架是如何收发数据的呢？<br>注意，这里讨论的是基于先使用I&#x2F;O复用函数（select、poll、epoll等）判断 socket 读写事件再来收发数据，其他情形比较简单，不再赘述。<br>以服务端为例，服务端接受客户端连接后，会产生一个与客户端连接对应的 socket （在Linux上也叫作fd，为了叙述方便，下文称之为clientfd），我们可以通过这个clientfd收取从客户端发来的数据，也可以通过这个clientfd将数据发往客户端。但是收与发在操作流程上是有明显区别的。</p>
+<h3 id="如何收取数据"><a href="#如何收取数据" class="headerlink" title="如何收取数据"></a>如何收取数据</h3><p>对于收取数据，在接受连接并得到clientfd后，我们会将该clientfd绑定到相应的I&#x2F;O复用函数上并监听其可读事件。不同I&#x2F;O复用函数的可读事件标志不一样，例如对于poll模型，可读标志是POLLIN；对于epoll模型，可读事件标志是EPOLLIN。在可读事件触发后，我们调用 recv函数从 clientfd上收取数据（这里不考虑出错情况），根据不同的业务需求，我们可能会收取部分数据或一次性收完所有数据。我们会将收取到的数据放入接收缓冲区，然后做解包操作。这就是收取数据的全部流程。对于使用epoll的LT模式（水平触发模式），我们可以在每次读事件触发后都只收取部分数据；但对于 ET模式（边缘触发模式），我们必须在每次读事件触发后都将fd上的数据全部收完。收完数据的标志是recv或read函数返回-1，错误码errno等于EWOULDBLOCK （EAGAIN，这两个宏的值一样）。这就是收取数据的正确做法</p>
+<h3 id="如何发送数据"><a href="#如何发送数据" class="headerlink" title="如何发送数据"></a>如何发送数据</h3><p>对于发送数据，使用epoll的ET模式这种场景除外，使用epoll的LT模式或者其他I&#x2F;O 复用函数时，我们通常都不会一开始就为clientfd 注册监听可写事件的标志，这是因为只要对端正常收取数据，就一般不会出现因 TCP窗口太小导致本端 send或 write函数无法写成功的问题。因此在大多数情况下，本端的clientfd都是可写的,如果注册了监听可写事件标志，则会导致可写事件通知一直触发，而此时不一定有数据需要发送。所以，如果有数据需要发送，则一般都是先调用send或者write函数直接发送，如果在发送过程中 send 函数或 write 函数返回-1，并且错误码是 EWOULDBLOCK（或 EAGAIN），则表明此时 TCP 窗口已经太小，数据已经无法再发送。如果仍然有剩下的部分数据未发送，我们才会为clientfd注册监听可写事件标志，并将剩余的数据存入自定义的socket发送缓冲区（应用层设计的socket发送缓冲区）中，等到写事件触发后再接着将发送缓冲区中剩余的数据发送出去。如果仍然有部分数据不能发送出去，则继续注册监听可写事件标志，当已经无数据需要发送时，应该立即移除对写事件的监听。这是目前主流网络库的做法。<br>如果在监听写事件期间，业务层又产生了新的数据需要发送，我们就需要将这些新来的数据放到刚才剩余的待发数据的后面，即下次写事件触发后，先发送旧的数据再接着发送后来的新数据。<br>直接尝试发送消息的处理逻辑如下：</p>
+<pre><code>void Tcpconnection::sendMessage(const void* data, size_t len) &#123;
+    int32_t nwrote = 0;
+    size_t remaining = len;
+    bool faultError = false;
+
+    // 当前未监听可写事件，并且发送缓冲区中没有遗留数据
+    if (!m_channel-&gt;isWriting() &amp;&amp; m_outputBuffer.readableBytes() == 0) &#123;
+        // 直接发送数据
+        nwrote = sockets::write(m_channel-&gt;fd(), data, len);
+        if (nwrote &gt;= 0) &#123;
+            remaining = len - nwrote;
+        &#125;
+    &#125; else &#123;
+        nwrote = 0;
+    &#125;
+
+    // 错误码不等于 EWOULDBLOCK，说明发送出错
+    if (errno != EWOULDBLOCK) &#123;
+        if (errno == EPIPE || errno == ECONNRESET) &#123;
+            faultError = true;
+        &#125;
+    &#125;
+
+    // 发送未出错且还有剩余字节未发送出去
+    if (!faultError &amp;&amp; remaining &gt; 0) &#123;
+        // 将剩余部分加入发送缓冲区中
+        m_outputBuffer.append(static_cast&lt;const char*&gt;(data) + nwrote, remaining);
+        if (!m_channel-&gt;isWriting()) &#123;
+            // 注册可写事件
+            m_channel-&gt;enableWriting();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>当数据不能一次性全部发送出去时，为相应的client注册监听写事件标志。写事件触发后的处理逻辑如下：</p>
+<pre><code>void Tcpconnection::handleWrite() &#123;
+    // 将发送缓冲区中的数据发送出去
+    int32_t n = sockets::write(m_channel-&gt;fd(), m_outputBuffer.peek(), m_outputBuffer.readableBytes());
+
+    if (n &gt; 0) &#123;
+        // 发送了多少数据，就从发送缓冲区中移除多少数据
+        m_outputBuffer.retrieve(n);
+
+        // 如果发送缓冲区中已经没有剩余数据，则移除监听可写事件
+        if (m_outputBuffer.readableBytes() == 0) &#123;
+            // 移除监听可写事件
+            m_channel-&gt;disableWriting();
+        &#125;
+    &#125; else &#123;
+        // 发送数据出错处理
+        handleClose();
+    &#125;
+&#125;
+</code></pre>
+<p>使用epoll LT模式注册监听一次写事件后，在写事件触发时会尝试继续发送数据，如果此时数据还不能全部发送完，就不用再次注册监听写事件标志了，因为上次注册的监听写事件标志继续有效；对于epoll ET模式，先注册监听写事件标志，写事件触发后，会尝试继续发送数据，如果此时数据还不能全部发送完，则需要再次注册监听写事件标志，以便让写事件下次再触发（给予再次发送数据的机会）。当然，这只是理论情况，在实际开发中，对于一段数据反复发送都不能完全发送完的场景（例如对端先不收，后面每隔很长时间再收1字节），我们就可以设置一个最大发送次数或最大发送总时间限制，超过这些限制后，我们可以认为对端出了问题，应该立即清空发送缓冲区并关闭相应的连接。<br>这里总结检测一个fd的读写事件的区别。</p>
+<ul>
+<li>使用select、poll或epoll LT模式时，可以直接为待检测fd注册监听读事件标志。</li>
+<li>使用select、poll或epoll LT模式时，不要直接为待检测fd注册监听可写事件标志，应该先尝试发送数据，若 TCP 窗口太小发不出去，则再为待检测 fd 注册监听可写事件标志，一旦数据发送完，就应该立即移除监听写事件标志。</li>
+<li>使用epoll ET模式时，如果需要发送数据，则每次都要为fd注册监听写事件标志。对于监听fd，一般只监听其读事件，监听fd没有写事件处理逻辑。</li>
+</ul>
+<h3 id="不要多个线程同时利用一个socket收（发）数据"><a href="#不要多个线程同时利用一个socket收（发）数据" class="headerlink" title="不要多个线程同时利用一个socket收（发）数据"></a>不要多个线程同时利用一个socket收（发）数据</h3><p>TCP 通信是全双工的，收取数据和发送数据是独立的，所以利用同一个 socket 收取数据和发送数据不会相互影响。这里建议不要多个线程同时利用一个socket收取数据（或发送数据），指的不是说收取数据和发送数据必须被放在同一个线程里面进行，相反，在实际开发中，有不少应用对同一个 socket收取数据使用一个线程，发送数据使用另一个线程，但是需要额外做一些工作以同步收发两个线程中socket的出错状态。但是一定不要多个线程同时使用一个 socket发送数据，或者多个线程同时使用一个socket收取数据。<br>TCP数据是有序的，以发送数据为例，如果多个线程同时对一个socket调用send函数，最终对端收到的数据顺序就无法保证了。例如现在有 3 个线程分别要发送 A、B、C三个数据块，对端期望收到的顺序是 A、B、C，但由于发送端使用了 3 个线程发送，所以对端收到的数据顺序不一定是A、B、C，除非使用一定的线程同步策略让三个线程按A、B、C 的顺序发送数据，但这种同步策略是非常麻烦的，而且没有必要。与其写这样的逻辑，还不如将其放在一个线程中操作。<br>同理，对于收取数据，多个线程会同时调用 recv 函数，每个线程都可能收取部分数据，那么最终按什么顺序将这些数据还原成发送端发送的数据顺序呢？<br>不仅是socket，管道亦如此，不建议多个线程同时在同一个管道上进行读操作（或写操作）。<br>那么“我们平时所说的多线程上传或者下载文件，不是多线程同时对一个文件内容做读写吗？”这是不一样的，多线程上传或下载文件的原理是将文件按一定的大小切割成不同的内容块，<br>然后开启多个连接，每个线程都操作一个连接对指定编号的文件内容块进行读写操作，在各个线程都完工后，按内容编号将文件重新组织起来。这在本质上并不是多个线程同时操作一个socket，而是每个线程都只操作属于自己的文件块</p>
+<h2 id="发送、接收缓冲区的设计要点"><a href="#发送、接收缓冲区的设计要点" class="headerlink" title="发送、接收缓冲区的设计要点"></a>发送、接收缓冲区的设计要点</h2><h3 id="为什么需要发送缓冲区和接收缓冲区"><a href="#为什么需要发送缓冲区和接收缓冲区" class="headerlink" title="为什么需要发送缓冲区和接收缓冲区"></a>为什么需要发送缓冲区和接收缓冲区</h3><p>网络层在发送数据的过程中，由于 TCP 窗口太小，会导致数据无法发送出去，而上层可能不断产生新的数据，此时就需要将数据先存储起来，以便等socket可写时再次发送，这个存储数据的地方就叫作发送缓冲区。对于接收缓冲区也是一样的道理，在收到数据后，我们可以直接对其进行解包，但是这样做并不好，有三个理由。</p>
+<ul>
+<li>理由一：除去一些通用协议格式（例如HTTP），大多数业务使用的都是自定义协议格式，也就是说对一个数据包里面数据格式的解读应该是业务层应该做的。不同的业务一般有不同的协议格式，协议格式与具体的业务有关，网络通信层一般不知道也不需要知道上层协议数据的具体格式。为了让网络层更加通用，网络通信层应该与业务层解耦。</li>
+<li>理由二：即使知道协议格式，由于TCP是流式协议，某一次收到的数据长度也不一定够一个完整的包大小，此时需要一个地方将这些不完整的数据先缓存起来，以便等数据足够一个包大小时再处理。</li>
+<li>理由三：即便接收到的数据足够一个包，但出于一些特殊的业务逻辑要求，我们仍需将收到的数据暂时缓存起来，等满足一定条件时再取出来处理。</li>
+</ul>
+<p>鉴于以上理由，我们的网络层确实需要一个接收缓冲区，将收取的数据按需存放在该缓冲区里面，交由专门的业务线程或者业务逻辑从接收缓冲区中取出数据，并解包处理业务。</p>
+<h3 id="如何设计发送缓冲区和接收缓冲区"><a href="#如何设计发送缓冲区和接收缓冲区" class="headerlink" title="如何设计发送缓冲区和接收缓冲区"></a>如何设计发送缓冲区和接收缓冲区</h3><p>根据前面的描述，无论是发送缓冲区还是接收缓冲区，一般都建议将其设计成一个内存连续的存储容器<br>当然，我们也可以将发送缓冲区和接受缓冲区设计成不连续的内存，例如链表结构，每个链表的节点都是一个存储数据的内存块。这种设计在存取数据时相对麻烦。<br>在通常情况下，发送缓冲区和接收缓冲区根据功能至少需要提供两类接口，即存数据的接口和取数据的接口。对于发送缓冲区，由于上层交给网络层的数据是有序的，所以若某次需要发送的数据未发完，则其剩余的数据一定排在后续产生的数据前面；对于接收缓冲区，由于其不断从socket上读取数据，所以后面读到的数据一定排在前面读到的数据后面。<br>另外，应该将发送缓冲区和接收缓冲区的容量设置成多大呢？预分配的内存太小时可能不够用，太大时可能造成浪费，所以答案是像std：：string、vector 一样，设计出一个容量可以动态增加的结构，按需分配，容量不够时可以扩展容量。既然是用于收发数据的缓冲区，所以我们可能需要向其中写入或者从其中读取各种数据类型，例如char、short、int32、int64、string等，这是我们在设计缓冲区对象时需要考虑的情形，也就是说，需要缓冲区结构提供写入和读取这些数据类型的接口。<br>对于接收缓冲区，我们可能需要从接收缓冲区中寻找特殊的标志，例如若某个业务的数据包以“\n”为结束标志，我们就需要在其中寻找“\n”标志以确定缓冲区中的数据长度是否至少足够一个包的长度。<br>下图演示了一种缓冲区设计结构，这种结构的缓冲区在创建时会自动分配一块固定大小的内存，如下图所示。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClivBq.png" alt="pClivBq.png"></p>
+<p>在这个结构中，内存是连续的，而且由预留空间和存储数据的空间组成。其中，预留空间可以做一些特殊用途使用，例如存储一些元数据信息等，预留空间的大小可以被设置为0，它不是必需的；存储数据的空间由于同时提供读数据和写数据功能，所以分别使用一个读指针和写指针来标明读写位置。当缓冲区是空的时，读写指针的位置相同。在写入一段数据后，该缓冲区的结构如下图所示。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClixH0.png" alt="pClixH0.png"></p>
+<p>此时该缓冲区中已存储数据的范围是读指针位置～写指针位置的区间，下一次需要读取数据时，应该从缓冲区的读指针位置开始读，最大可以读取的数据长度等于写指针位置减去读指针位置的值。假设读取了n字节，n小于最大可读取数据的长度，则该缓冲区结构如下图所示</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClFi34.png" alt="pClFi34.png"></p>
+<p>下一次写数据时会从写指针的位置继续写。为了更清楚地说明问题，假设预留的空间大小为prependableBytes，读指针使用readerIndex，写指针使用writerIndex，总缓冲区长度为size，现在需要写入m字节，则会有以下几种情形。</p>
+<ul>
+<li>当 m≤size-writerIndex时（即将写入的数据长度小于或等于写指针位置到缓冲区结束位置），可以直接在writerIndex位置写入。</li>
+<li>当 m&gt;size-writerIndex 时，从 writerIndex 位置一直到缓冲区结束位置的内容已经不够写入了，可以对当前缓冲区未充分利用的内存进行整理。哪里有未充分使用的内存呢？为了充分利用空间，我们不会一开始就扩容，而是把未利用的空间充分利用，方法是：从预留空间结束位置到读指针之前的位置，该空间的数据已经被读取，先将读指针位置挪到预留空间结束处（即起始位置），然后将原来读指针之后的数据也挪到起始位置，最后将写指针向前挪到数据结束的位置。挪动后的缓冲区结构如下图所示。</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClFFgJ.png" alt="pClFFgJ.png"></p>
+<p>挪动之后，如果剩余空间足够写入 m字节的数据，则在新的writerIndex位置写入；如果挪动之后，剩余的空间仍然不够写入 m字节，则需要重新扩展缓冲区，即新建一个更大的缓冲区，将现有的缓冲区结构和数据复制过去。扩容示意图如下所示。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClFVD1.png" alt="pClFVD1.png"></p>
+<p>关于接收缓冲区和发送缓冲区，需要另外强调几点。</p>
+<ul>
+<li>对于服务端程序来说，由于需要同时服务多个客户端，而每一路连接都会有一个接收缓冲区和发送缓冲区（per-socket buffer），所以不同连接从socket上读取出来但还没有被业务处理的数据，会被放在自己对应的接收缓冲区中；因TCP窗口太小暂时发不出去的数据，会被存放在自己所属连接的发送缓冲区中。服务进程、网络通信组件、连接对象和发送缓冲区、接收缓冲区的关系示意图如下图所示。</li>
+<li>缓冲区的容量上限一般是有限制的，尤其对于服务程序，由于需要支持多个连接，所以为了节约内存，每个连接的接收缓冲区和发送缓冲区的初始容量一般都不会设置得很大。在缓冲区容量不足时应按需扩展，但一定要设置一个上限值，且这个上限值一般不会太大。</li>
+</ul>
+<p>对于发送缓冲区，如果较长时间内发送缓冲区中的数据都未发送出去，我们就可以认为这路连接出问题了，可以将该缓冲区回收并关闭连接。<br>同理，对于接收缓冲区，如果接收缓冲区中的数据一直滞留甚至积压，我们就要好好检查自己处理数据的逻辑是否有问题，看看为何不能及时处理数据。当然，在实际开发中还会遇到这样一种情况：对端短时间内向服务端发送了大量数据，此时我们需要做一个限制策略，例如3秒内某路连接接收缓冲区中的数据已经达到30MB，这时可以设置一个标志，不再从该路连接的 socket上继续读取数据，直到接收缓冲区中的数据被处理掉一部分，再清除该标志，以便继续从该连接的 socket上收取数据。这是一种常见的对单个连接限流的策略。</p>
+<h3 id="服务端发送数据时对端一直不接收的问题"><a href="#服务端发送数据时对端一直不接收的问题" class="headerlink" title="服务端发送数据时对端一直不接收的问题"></a>服务端发送数据时对端一直不接收的问题</h3><p>这类问题一般出现在跨部门尤其是与外部开发人员合作时。假设现在有这样一种情形：我们的服务器对外提供服务，已经规定好协议格式，客户端由外部人员开发。<br>我们的服务端在向对端（客户端）发送数据时，对端可能因为一些问题（可能是逻辑bug或者其他一些问题）一直不从socket上收取数据，但服务端可能会定期产生一些数据发送给客户端，在发送一段时间后，由于 TCP 窗口太小，导致数据发送不出去，这样待发送的数据会在服务端相应连接的发送缓冲区中积压很久。如果我们不做任何处理，则服务很快会因为内存耗尽而被操作系统杀死。对于这种情况，一般建议从以下两方面增加防御措施。</p>
+<ul>
+<li><p>为每路连接的发送缓冲区大小设置上限（如 2MB，可以根据单个数据包的大小和业务情况来定），设置方法在上文中已经介绍过了。当某路连接上的数据发送不出去时，在将数据存入发送缓冲区前，先判断缓冲区的最大剩余空间（包括允许扩容后的容量），如果剩余空间已经小于我们要放入的数据大小，也就是说缓冲区中的数据大小超过了我们规定的缓冲区容量上限，我们就认为该连接出了问题，关闭该路连接并回收相应的资源（如清空缓冲区、回收套接字资源等）即可。示例代码如下</p>
+<pre><code class="cpp">size_t remainingLen = m_outputBuffer.remainingBytes();
+
+// 如果加入缓冲区中的数据长度超出了发送缓冲区的最大剩余量
+if (remainingLen &lt; dataToAppend.length()) &#123;
+    // 关闭连接
+    forceClose();
+    return;
+&#125;
+
+m_outputBuffer.append(static_cast&lt;const char*&gt;(dataToAppend.c_str()), dataToAppend.length());
+</code></pre>
+</li>
+<li><p>如果因为一些原因（可能是逻辑bug）导致一部分数据已经被积压在发送缓冲区中一段时间了，此后服务端未产生新的待发送的数据，此时发送缓冲区的数据容量未超过缓冲区上限。对此种情形若不做任何处理，发送缓冲区的数据就会一直积压，白白浪费系统资源。对于这种情形，我们一般会设置一个定时器，每隔一段时间（如6秒）检查一下在各路连接的发送缓冲区中是否还有数据未发送出去，也就是说，如果一个连接超过一定时间还存在未发送出去的数据，我们也认为该路连接出现问题，需要关闭该路连接并回收相应的资源（如清空缓冲区、回收套接字资源等）。示例代码如下   </p>
+<pre><code class="cpp">// 每 3 秒检测一次
+const int SESSION_CHECK_INTERVAL = 6000;
+setTimer(SESSION_CHECK_TIMER_ID, SESSION_CHECK_INTERVAL);
+
+void CSessionManager::OnTimer() &#123;
+    for (auto iter = m_mapSession.begin(); iter != m_mapSession.end(); ++iter) &#123;
+        if (!CheckSession(iter-&gt;second)) &#123;
+            // 关闭 session，回收相关的资源
+            iter-&gt;second-&gt;ForceClose();
+            iter = m_mapSession.erase(iter);
+        &#125;
+    &#125;
+&#125;
+
+// 检测在相应连接的发送缓冲区中是否还有未发送的数据
+bool CSessionManager::CheckSession(CSession* pSession) &#123;
+    return pSession-&gt;GetConnection().m_outputBuffer.IsEmpty();
+&#125;
+</code></pre>
+</li>
+</ul>
+<p>以上代码每隔6秒就会检测所有Session对应的Connection对象，如果发现发送缓冲区非空，则说明该连接的发送缓冲区中的数据已驻留6秒，将关闭该连接并清理资源。</p>
+<h2 id="后端服务中的定时器设计"><a href="#后端服务中的定时器设计" class="headerlink" title="后端服务中的定时器设计"></a>后端服务中的定时器设计</h2><p>定时器模块是后端服务常用的功能之一，用于周期性地执行某些任务的场景中。设计定时器模块的方法很多，但关键是定时器的效率问题。让我们先从最简单的开始。</p>
+<h3 id="最简单的定时器"><a href="#最简单的定时器" class="headerlink" title="最简单的定时器"></a>最简单的定时器</h3><p>一个最简单的定时器功能可以按如下思路实现：</p>
+<pre><code>void* threadFunc(void* arg) &#123;
+    while (mbRunning) &#123;
+        // Sleep for 3 seconds
+        sleep(3);
+
+        // Check heartbeat for all sessions
+        checkSessionHeartbeat();
+    &#125;
+
+    return NULL;
+&#125;
+</code></pre>
+<p>以上代码在一个独立的线程中每隔3秒对所有Session做一次心跳检测。这是一个非常简单的实现逻辑，有些读者可能会觉得这样做有点“简单粗暴”。其实，这段代码来源于一个真实的商业项目，至今仍然工作得很好。在一些特殊场景下，我们确实可以按这种思路来实现定时器，只不过可能将sleep函数换成一些可以设置超时或等待时间的、让线程挂起或等待的函数（如select、poll等）。但是上述实现定时器的方法适用场景太少，one thread one loop结构中的定时器才是重点.</p>
+<h3 id="定时器设计的基本思路"><a href="#定时器设计的基本思路" class="headerlink" title="定时器设计的基本思路"></a>定时器设计的基本思路</h3><p>根据实际的场景需求，我们的定时器对象一般需要一个唯一标识、过期时间、重复次数、定时器到期时触发的动作，因此一个定时器对象可以被设计成如下结构</p>
+<pre><code>typedef std::function&lt;void()&gt; TimerCallback;
+
+class Timer &#123;
+public:
+    Timer();
+    ~Timer();
+
+    void run(TimerCallback callback);
+
+    // Other implementations will be gradually completed in the following text...
+
+private:
+    int64_t m_id;
+    time_t m_expiredTime;
+    int32_t m_repeatedTimes;
+    TimerCallback m_callback;
+&#125;;
+</code></pre>
+<p>注意，正如前面强调，在定时器回调函数 m_callback中不能有耗时或者阻塞线程的操作，如果存在这种操作，则为了不影响整个循环流的执行，需要将这些耗时或者阻塞的操作移到其他线程中。<br>使用定时器的one thread one loop结构如下：</p>
+<pre><code>while (!m_bQuitFlag) &#123;
+    checkAndHandleTimers();
+    epollOrSelectFunc();
+    handleIOEvents();
+    handleOtherThings();
+&#125;
+</code></pre>
+<p>我们在 check_and_handle_timers 函数中对各个定时器对象进行了处理（检测是否到期，如果到期，则调用相应的定时器函数完成定时任务）。先从最简单的情形开始讨论，将定时器对象放在一个std：：list对象中</p>
+<pre><code>// Assuming the definition of Timer class
+void EventLoop::checkAndHandleTimers() &#123;
+    for (auto it = m_listTimers.begin(); it != m_listTimers.end(); ) &#123;
+        Timer* timer = *it;
+        
+        // Check if the timer has expired
+        if (timer-&gt;isExpired()) &#123;
+            timer-&gt;run();
+            ++it;
+        &#125; else &#123;
+            ++it;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>为了方便管理所有定时器对象，我们可以专门新建一个TimerManager类对定时器对象进行管理，该对象提供了增加、移除和判断定时器是否到期等的接口：</p>
+<pre><code>class TimerManager &#123;
+public:
+    TimerManager();
+    ~TimerManager();
+
+    int64_t addTimer(int32_t repeatedTimes, int64_t interval, const TimerCallback&amp; timerCallback);
+    bool removeTimer(int64_t timerId);
+    void checkAndHandleTimers();
+
+private:
+    std::list&lt;Timer*&gt; m_listTimers;
+&#125;;
+</code></pre>
+<p>check_and_handle_timers函数的实现如下：</p>
+<pre><code>void EventLoop::checkAndHandleTimers() &#123;
+    m_timerManager.checkAndHandleTimers();
+&#125;
+</code></pre>
+<p>addTimer、removeTimer、checkAndHandleTimers的实现如下：</p>
+<pre><code>int64_t TimerManager::addTimer(int32_t repeatedTimes, int64_t interval, const TimerCallback&amp; timerCallback) &#123;
+    Timer* pTimer = new Timer(repeatedTimes, interval, timerCallback);
+    m_listTimers.push_back(pTimer);
+    return pTimer-&gt;getId();
+&#125;
+
+bool TimerManager::removeTimer(int64_t timerId) &#123;
+    for (auto iter = m_listTimers.begin(); iter != m_listTimers.end(); ++iter) &#123;
+        if ((*iter)-&gt;getId() == timerId) &#123;
+            delete *iter;
+            m_listTimers.erase(iter);
+            return true;
+        &#125;
+    &#125;
+    return false;
+&#125;
+
+void TimerManager::checkAndHandleTimers() &#123;
+    for (auto iter = m_listTimers.begin(); iter != m_listTimers.end();) &#123;
+        if ((*iter)-&gt;isExpired()) &#123;
+            (*iter)-&gt;run();
+            if ((*iter)-&gt;getRepeatedTimes() &lt;= 0) &#123;
+                Timer* deletedTimer = *iter;
+                iter = m_listTimers.erase(iter);
+                delete deletedTimer;
+                continue;
+            &#125;
+        &#125;
+        ++iter;
+    &#125;
+&#125;
+</code></pre>
+<p>在向 addTimer 函数传递必要的参数后创建一个 Timer 对象，并返回唯一标识该定时器对象的ID，后续就可以通过定时器ID操作这个定时器对象了。这里的定时器ID使用了一个单调递增的int64_t类型的整数，我们也可以使用其他类型，例如uid，只要能唯一区分每个定时器对象即可。当然，在这里的设计逻辑中，可能存在多个线程多个EventLoop，每个 EventLoop 都含有一个 m_timerManager 对象，但我们希望所有定时器 ID 都能够全局唯一，所以这里每次生成定时器ID 时都使用了一个整型原子变量的ID基数，将它设置为Timer对象的静态成员变量，在每次需要生成新的定时器ID时都将其递增1即可。这里利用C++11的std：：mutex对s_initialId进行保护：</p>
+<p>完整代码：<br>Timer.h</p>
+<pre><code>#ifndef __TIMER_H__
+#define __TIMER_H__
+
+#include &lt;functional&gt;
+
+typedef std::function&lt;void()&gt; TimerCallback;
+
+class Timer
+&#123;
+public:
+    /**
+    * @param repeatedTimes 定时器重复次数，设置为-1表示一直重复下去
+    * @param interval      下一次触发的时间间隔
+    * @param timerCallback 定时器触发后的回调函数
+    */
+    Timer(int32_t repeatedTimes, int64_t interval, const TimerCallback&amp; timerCallback);
+    ~Timer();
+
+    int64_t getId() const
+    &#123;
+        return m_id;
+    &#125;
+
+    int64_t getExpiredTime() const
+    &#123;
+        return m_expiredTime;
+    &#125;
+
+    bool isExpired();
+
+    int32_t getRepeatedTimes() const
+    &#123;
+        return m_repeatedTimes;
+    &#125;
+
+    void run();
+
+    //其他实现暂且省略
+
+private:
+    //定时器的id，唯一标识一个定时器
+    int64_t                     m_id;
+    //定时器的到期时间
+    time_t                      m_expiredTime;
+    //定时器重复触发的次数
+    int32_t                     m_repeatedTimes;
+    //定时器触发后的回调函数
+    TimerCallback               m_callback;
+    //触发时间间隔                
+    int64_t                     m_interval;
+
+    //定时器id基准值
+    static std::atomic&lt;int&gt;     s_initialId;
+&#125;;
+
+
+#endif //!__TIMER_H__
+</code></pre>
+<p>Timer.cpp</p>
+<pre><code>#include &quot;Timer.h&quot;
+#include &lt;time.h&gt;
+
+std::atomic&lt;int&gt; Timer::s_initialId = 0;
+
+Timer::Timer(int32_t repeatedTimes, int64_t interval, const TimerCallback&amp; timerCallback)
+&#123;
+    m_repeatedTimes = repeatedTimes;
+    m_interval = interval;
+
+    //当前时间加上触发间隔得到下一次的过期时间
+    m_expiredTime = (int64_t)time(nullptr) + interval;
+
+    m_callback = timerCallback;
+
+    //生成一个唯一的id
+    ++s_initialId;
+    m_id = s_initialId;
+&#125;
+
+bool Timer::isExpired()
+&#123;
+    int64_t now = time(nullptr);
+    return now &gt;= m_expiredTime;
+&#125;
+
+void Timer::run()
+&#123;
+    m_callback();
+
+    if (m_repeatedTimes &gt;= 1)
+    &#123;
+        --m_repeatedTimes;
+    &#125;
+
+    m_expiredTime += m_interval;
+&#125;
+</code></pre>
+<p>TimerManager.h</p>
+<pre><code>#ifndef __TIMER_MANAGER_H__
+#define __TIMER_MANAGER_H__
+
+#include &lt;stdint.h&gt;
+#include &lt;list&gt;
+
+#include &quot;Timer.h&quot;
+
+//std::list&lt;Timer*&gt; m_listTimers;
+
+// void EventLoop::check_and_handle_timers()
+// &#123;
+//     for (auto&amp; timer : m_listTimers)
+//     &#123;
+//         if (timer-&gt;isExpired())
+//         &#123;
+//             timer-&gt;run();
+//         &#125;
+//     &#125;
+// &#125;
+
+
+struct TimerCompare  
+&#123;  
+    bool operator () (const Timer* lhs, const Timer* rhs)  
+    &#123;  
+        return lhs-&gt;getExpiredTime() &lt;  rhs-&gt;getExpiredTime();
+    &#125;
+&#125;; 
+
+void defaultTimerCallback()
+&#123;
+
+&#125;
+
+class TimerManager
+&#123;
+public:
+    TimerManager() = default;
+    ~TimerManager() = default;
+
+    /** 添加定时器
+    * @param repeatedCount 重复次数
+    * @param 触发间隔
+    * @
+    * @return 返回创建成功的定时器id
+    */
+    int64_t addTimer(int32_t repeatedCount, int64_t interval, const TimerCallback&amp; timerCallback);
+
+    /** 移除指定id的定时器
+    * @param timerId 待移除的定时器id
+    * @return 成功移除定时器返回true，反之返回false
+    */
+    bool removeTimer(int64_t timerId);
+
+    /** 检测定时器是否到期，如果到期则触发定时器函数
+    */
+    void checkAndHandleTimers();
+
+
+private:
+    std::list&lt;Timer*&gt; m_listTimers;
+
+&#125;;
+
+#endif //!__TIMER_MANAGER_H__
+</code></pre>
+<p>TimerManager.cpp</p>
+<pre><code>#include &quot;TimerManager.h&quot;
+    
+int64_t TimerManager::addTimer(int32_t repeatedCount, int64_t interval, const TimerCallback&amp; timerCallback)
+&#123;
+    Timer* pTimer = new Timer(repeatedCount, interval, timerCallback);
+
+    m_listTimers.push_back(pTimer);
+
+    //对定时器对象按过期时间从小到大排序
+    m_listTimers.sort(TimerCompare());
+
+    return pTimer-&gt;getId();
+&#125;
+
+bool TimerManager::removeTimer(int64_t timerId)
+&#123;
+    for (auto iter = m_listTimers.begin(); iter != m_listTimers.end(); ++iter)
+    &#123;
+        if ((*iter)-&gt;getId() == timerId)
+        &#123;
+                m_listTimers.erase(iter);
+                return true;
+        &#125;
+    &#125;
+
+    return false;
+&#125;
+
+void TimerManager::checkAndHandleTimers()
+&#123;
+    //遍历过程中是否调整了部分定时器的过期时间
+    bool adjusted = false;
+    Timer* deletedTimer;   
+    for (auto iter = m_listTimers.begin(); iter != m_listTimers.end(); )
+    &#123;
+        if ((*iter)-&gt;isExpired())
+        &#123;
+            (*iter)-&gt;run();
+            
+            if ((*iter)-&gt;getRepeatedTimes() == 0)
+            &#123;
+                //定时器不需要再触发时从集合中移除该对象
+                deletedTimer = *iter;
+                iter = m_listTimers.erase(iter);
+                delete deletedTimer;
+                continue;
+            &#125;
+            else 
+            &#123;
+                ++iter;
+                //标记下集合中有定时器调整了过期时间
+                adjusted = true;
+            &#125;
+        &#125;
+        else
+        &#123;
+            //找到大于当前系统时间的定时器对象就不需要继续往下检查了，退出循环
+            break;
+        &#125;// end if      
+    &#125;// end for-loop
+
+    //由于调整了部分定时器的过期时间，需要重新排序一下
+    if (adjusted)
+    &#123;
+        m_listTimers.sort(TimerCompare());
+    &#125;
+&#125;
+</code></pre>
+<p>以上就是定时器的基本设计思路，我们一定要明白在这个流程中一个定时器对象具有哪些属性，以及如何管理定时器对象。当然，这里自顶向下一共有三层，分别是 EventLoop、TimerManager、Timer，其中TimerManager 对象不是必需的，在一些设计中直接用EventLoop封装的相应方法对Timer对象进行管理。理解one thread one loop中定时器的设计思路之后，我们来看看上述定时器实现中的性能问题</p>
+<h3 id="定时器逻辑的性能优化"><a href="#定时器逻辑的性能优化" class="headerlink" title="定时器逻辑的性能优化"></a>定时器逻辑的性能优化</h3><p>上述定时器实现存在严重的性能问题，即每次检测定时器对象是否触发时都要遍历整个定时器集合，移除定时器对象时也需要遍历整个定时器集合。我们其实可以将定时器对象按过期时间从小到大排序，这样检测定时器对象时，只要从最小过期时间开始检测即可，一旦找到过期时间大于当前时间的定时器对象，就不需要继续检测后面的定时器对象了。</p>
+<h4 id="定时器对象集合的数据结构优化"><a href="#定时器对象集合的数据结构优化" class="headerlink" title="定时器对象集合的数据结构优化"></a>定时器对象集合的数据结构优化</h4><p>我们可以在每次将定时器对象添加到集合时都自动进行排序，如果仍然使用 std：：list作为定时器集合，则可以给 std：：list 自定义一个排序函数（从小到大排序），代码实现如下：</p>
+<pre><code>// Timer.h
+class Timer &#123;
+public:
+    // Other member functions and variables
+    
+    int64_t getExpiredTime() const &#123;
+        return m_expiredTime;
+    &#125;
+    
+    // Other member functions
+&#125;;
+
+// TimerManager.h
+struct TimerCompare &#123;
+    bool operator()(const Timer* lhs, const Timer* rhs) const &#123;
+        return lhs-&gt;getExpiredTime() &lt; rhs-&gt;getExpiredTime();
+    &#125;
+&#125;;
+
+class TimerManager &#123;
+public:
+    // Other member functions and variables
+    
+private:
+    std::list&lt;Timer*&gt; m_listTimers;
+    std::priority_queue&lt;Timer*, std::vector&lt;Timer*&gt;, TimerCompare&gt; m_timerQueue;
+    // Other member variables
+&#125;;
+</code></pre>
+<p>每次添加定时器时都调用自定义排序函数对象 TimerCompare</p>
+<pre><code>int64_t TimerManager::addTimer(int32_t repeatedCount, int64_t interval, const TimerCallback&amp; timerCallback) &#123;
+    Timer* pTimer = new Timer(repeatedCount, interval, timerCallback);
+    m_listTimers.push_back(pTimer);
+    
+    // Sort the timer objects based on their expired time in ascending order
+    m_listTimers.sort(TimerCompare());
+    
+    return pTimer-&gt;getId();
+&#125;
+</code></pre>
+<p>将定时器对象按过期时间从小到大排好序后，检测各个定时器对象是否触发时不用再遍历整个定时器对象集合，只要从过期时间最小的定时器对象开始检测，一直找到过期时间大于当前系统时间的定时器对象就可以停止检测了，实现逻辑如下：</p>
+<p>在以上代码中有个细节需要注意：假设现在的系统时刻是now，定时器集合中定时器的过期时间从小到大依次为t1、t2、t3、t4、t5……tn，假设t4 &lt; now &lt; t5，即此刻t1、t2、t3、t4对应的定时器会触发，触发后，会从t1、t2、t3、t4中减去相应的时间间隔，更新后的t1′、t2′、t3′、t4′就不一定小于 t5～tn了，因此需要再次对定时器集合进行排序。但是存在一种情形：t1～t5触发后对应的触发次数正好变为0，因此需要从定时器列表中移除它们，在这种情形下就不需要对定时器列表进行排序了。因此以上代码使用了一个adjusted变<br>量记录是否有过期时间被更新且未被从列表中移除的定时器对象，如果有，则之后再次对定时器集合进行排序。上述设计虽然解决了定时器遍历效率低下的问题，但是无法解决移除一个定时器时仍然需要遍历的问题，使用链表结构的std：：list插入非常方便，但定位某个具体元素的效率较低。我们可以将std：：list 转换成 std：：map，当然，我们仍然需要对 std：：map 中的定时器对象按过期时间进行自定义排序。</p>
+<pre><code>void TimerManager::checkAndHandleTimers() &#123;
+    bool adjusted = false;
+    Timer* deletedTimer;
+    
+    for (auto iter = m_listTimers.begin(); iter != m_listTimers.end();) &#123;
+        if ((*iter)-&gt;isExpired()) &#123;
+            // Execute the timer task in the run function, which may adjust the expired time
+            (*iter)-&gt;run();
+            
+            if ((*iter)-&gt;getRepeatedTimes() &lt;= 0) &#123;
+                // Remove the timer object from the collection if it doesn&#39;t need to trigger anymore
+                deletedTimer = *iter;
+                iter = m_listTimers.erase(iter);
+                delete deletedTimer;
+                continue;
+            &#125;
+            else &#123;
+                ++iter;
+                // Mark the flag as adjusted if the expired time of a timer is adjusted during the iteration
+                adjusted = true;
+            &#125;
+        &#125;
+        else &#123;
+            // If a timer object with an expired time greater than the current system time is found,
+            // there is no need to continue checking, exit the loop
+            break;
+        &#125;
+    &#125;
+    
+    // Since some timer objects&#39; expired times have been adjusted, it&#39;s necessary to re-sort the collection
+    if (adjusted) &#123;
+        m_listTimers.sort(TimerCompare());
+    &#125;
+&#125;
+</code></pre>
+<p>为了提高定时器的效率，我们一般采用两种常用的方法：时间轮和时间堆。<br>时间轮的基本思想是将现在时刻t加上一个时间间隔interval，以interval为步长，将各个定时器对象的过期时间按步长分布在不同的时间槽（time slot）中，当在一个时间槽中出现多个定时器对象时，这些定时器对象按加入槽的顺序串成链表，时间轮的示意图如下所示。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClAyNV.png" alt="pClAyNV.png"></p>
+<p>因为每个时间槽的时间间隔都是一定的，因此对时间轮中的定时器对象的检测会有两种方法。</p>
+<ul>
+<li>在每次检测时都判断当前系统时间处于哪个时间槽中，比该槽序号小的槽中的所有定时器都已到期，执行对应的定时器函数之后，移除不需要重新触发的定时器，或重新计算需要下一次触发的定时器对象的时间并重新计算，将其移到新的时间槽中。这适用于oneloop one thread结构。</li>
+<li>在每次检测时都假设当前时间与之前相比跳动了一个时间轮的间隔，适用场景较少，不适用于one loop one thread结构。时间轮实际上是将一个链表按时间分组，这虽然提高了一些效率，但还是存在问题，尤其是某个时间槽对应的链表较长时。时间堆指利用数据结构中小根堆（Min Heap）到期时间的大小来组织定时器对象，如下图所示，图中小根堆的各个节点都代表一个定时器对象，它们按过期时间从小到大排列。使用小根堆在管理定时器对象和执行效率上都要优于前面方案中的 std：：list 和std：：map，这是目前一些主流网络库中涉及定时器部分的实现，例如Libevent。笔者在实际项目中会使用 stl 提供的优先队列即 std：：priority_queue 作为定时器的实现，使用std：：priority_queue 的排序方式是从小到大，这是因为 std：：priority 从小到大排序时，其内部实现的数据结构也是小根堆。</li>
+</ul>
+<h3 id="对时间的缓存"><a href="#对时间的缓存" class="headerlink" title="对时间的缓存"></a>对时间的缓存</h3><p>在使用定时器功能时，免不了要使用获取操作系统时间的函数，而在大多数操作系统上，获取系统时间的函数都属于系统调用，一次系统调用相于one thread one loop结构中的其他逻辑来说可能耗时更多。因此为了提高效率，在一些对时间要求精度不是特别高的情况下，我们可能会缓存一些时间，在较近的下次如果需要系统时间，则可以使用上次缓存的时间，而不是再次调用获取系统时间的函数。目前有不少网络库和商业服务在定时器逻辑这一块都使用了这一策略</p>
+<pre><code>while (!m_bQuitFlag) &#123;
+    // Get the system time and cache it for later use
+    auto cachedTime = get_system_time_and_cache();
+
+    // Perform some quick operations using the cached system time
+    do_something_quickly_with_system_timer();
+
+    // Use the cached time to check and handle timers
+    use_cached_time_to_check_and_handle_timers();
+
+    epoll_or_select_func();
+
+    handle_io_events();
+    handle_other_things();
+&#125;
+</code></pre>
+<p>最后总结一下：定时器的实现原理和逻辑并不复杂，关键点是如何为定时器对象集合设计出高效的数据结构，使每次从定时器集合中增加、删除、修改和遍历定时器对象时都更高效。另外，为了进一步提高定时器逻辑的执行效率，在某些场景下，我们可以利用上次缓存的系统时间来避免再一次调用获取时间的系统API的开销。定时器的设计还有其他一些需要考虑的问题，例如定时器逻辑如何解决服务器机器时间被人为提前或者延后，以及定时器事件的时间精度等，可以自行研究和解决。</p>
+<h2 id="处理业务数据时是否一定要单独开线程"><a href="#处理业务数据时是否一定要单独开线程" class="headerlink" title="处理业务数据时是否一定要单独开线程"></a>处理业务数据时是否一定要单独开线程</h2><p>一个loop的主要结构一般如下：</p>
+<pre><code>while (!m_bQuitFlag) &#123;
+    epoll_or_select_func();
+
+    handle_io_events();
+
+    handle_other_things();
+&#125;
+</code></pre>
+<p>对于一些业务逻辑处理较简单、不会太耗时的应用来说，handle_io_events方法除了可以用来收发数据，也可以直接用来做业务逻辑处理。在这种情形下，handle_io_events方法的逻辑结构如下</p>
+<pre><code>void handle_io_events() &#123;
+    // 收发数据
+    recv_or_send_data();
+
+    // 解包并处理数据
+    decode_packages_and_process();
+&#125;
+</code></pre>
+<p>其中，在recv_or_send_data方法中调用send&#x2F;recv API进行网络数据收发操作。以收数据为例，收完数据并将其存入接收缓冲区后，接下来进行解包处理，然后进行业务处理。比如对于一个登录数据包的处理，其业务一般是验证登录的账户和密码是否正确并记录其登录行为等。从程序函数调用堆栈来看，这些业务处理逻辑其实是直接在网络收发数据线程中处理的，即网络线程调用 handle_io_events 方法，在 handle_io_events 方法中调用decode_packages_and_process方法，在decode_packages_and_process方法中做具体的业务逻辑处理，示意图如下。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClEFgg.png" alt="pClEFgg.png"></p>
+<p>为了让网络层与业务层脱耦，在网络层中通常会提供一些回调函数的接口，我们可以将这些回调函数指向具体的业务处理函数。以libevent网络库的用法为例：</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;event2/event.h&gt;
+#include &lt;event2/listener.h&gt;
+#include &lt;event2/bufferevent.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;arpa/inet.h&gt;
+
+#define PORT 8080
+
+// 自定义的连接回调函数
+void listener_cb(struct evconnlistener* listener, evutil_socket_t fd, struct sockaddr* addr, int socklen, void* arg) &#123;
+    // 处理新的连接
+    printf(&quot;New connection accepted.\n&quot;);
+    // ...
+&#125;
+
+// 自定义的信号回调函数
+void signal_cb(evutil_socket_t sig, short events, void* arg) &#123;
+    // 处理信号事件
+    printf(&quot;Signal event received.\n&quot;);
+    // ...
+&#125;
+
+int main(int argc, char** argv) &#123;
+    struct event_base* base;
+    struct evconnlistener* listener;
+    struct event* signal_event;
+    struct sockaddr_in sin;
+
+    base = event_base_new();
+    memset(&amp;sin, 0, sizeof(sin));
+    sin.sin_family = AF_INET;
+    sin.sin_port = htons(PORT);
+
+    // 创建监听器并绑定回调函数
+    listener = evconnlistener_new_bind(base, listener_cb, (void*)base,
+        LEV_OPT_REUSEABLE | LEV_OPT_CLOSE_ON_FREE, -1, (struct sockaddr*)&amp;sin, sizeof(sin));
+    if (!listener) &#123;
+        fprintf(stderr, &quot;Could not create a listener!\n&quot;);
+        return 1;
+    &#125;
+
+    // 创建信号事件并添加回调函数
+    signal_event = evsignal_new(base, SIGINT, signal_cb, (void*)base);
+    if (!signal_event || event_add(signal_event, NULL) &lt; 0) &#123;
+        fprintf(stderr, &quot;Could not create/add a signal event!\n&quot;);
+        return 1;
+    &#125;
+
+    // 启动事件循环
+    event_base_dispatch(base);
+
+    // 释放资源
+    evconnlistener_free(listener);
+    event_free(signal_event);
+    event_base_free(base);
+
+    printf(&quot;Done.\n&quot;);
+    return 0;
+&#125;
+</code></pre>
+<p>以上代码根据libevent自带的helloworld示例修改而来，其中listener_cb和signal_cb是自定义的回调函数，有相应的事件触发后，libevent的事件循环会调用我们设置的回调，在这些回调函数中，我们可以编写自己的业务逻辑代码。<br>这种基本的服务器结构如下图所示。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClEw8O.png" alt="pClEw8O.png"></p>
+<p>以上示意图展示了这个结构的基本逻辑，在这结构的基础上可以延伸出很多变体。在解包、业务逻辑处理部分（位于handle_io_events（）的decode_packages_and_process方法中），如果业务逻辑处理过程比较耗时（例如，从数据库取大量数据、写文件），就会导致网络线程在这些操作上停留时间很长，很久以后才能执行下一次循环，影响网络事件的检测和数据收发的及时性，导致整个程序的效率低下。<br>因此对于这种情形，我们需要将业务处理逻辑单独拆分出来交给另外的业务工作线程处理，业务工作线程可以是单独一个线程，也可以是含有一组线程的线程池，业务数据从网络线程组流向业务线程组。这样的程序结构如下图所示</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClE02D.png" alt="pClE02D.png"></p>
+<p>在上图中，对于网络线程将业务数据包交给业务线程的流程，可以使用一个共享的业务数据队列来实现，此时网络线程是生产者，业务线程从业务数据队列中取出任务去处理，业务线程是消费者。业务线程在处理完成后如需将结果数据发送出去，则再将数据交给网络线程。这时，经过处理的数据会从业务线程再次流向网络线程，那么如何将数据从业务线程交给网络线程呢？以发送数据为例，一般有三种方法。</p>
+<ul>
+<li>直接调用相应的发送数据的方法，如果我们的网络线程本身也会调用这些发送数据的方法，那么此时网络线程和业务线程可能同时对发送数据的方法进行调用，相当于多个线程同时调用 socket send 函数，这样可能导致同一个连接上的数据顺序有问题。此时应该利用锁机制，保证同一时刻只有一个线程可以调用发送数据的方法。这里给出一段伪代码，假设TcpConnection对象表示某路连接，则无论是网络线程还是业务线程，在处理完数据后需要发送数据时都会调用TcpConnection：：sendData 方法，TcpConnection：：sendData方法的实现如下<pre><code class="cpp">#include &lt;mutex&gt;
+#include &lt;string&gt;
+
+class Tcpconnection &#123;
+public:
+    void sendData(const std::string&amp; data) &#123;
+        std::lock_guard&lt;std::mutex&gt; scoped_lock(m_mutexForConnection);
+        // 在这里调用 socket 的 send 函数
+        // ...
+    &#125;
+
+private:
+    std::mutex m_mutexForConnection;
+&#125;;
+</code></pre>
+</li>
+</ul>
+<p>但是，该方法在设计上存在不足之处，即发送数据应该是网络层的事情，不能由其他模块（这里指业务线程）越俎代庖。</p>
+<ul>
+<li>在存在定时器结构的情况下，业务线程可以将需要发送的数据放入另一个共享区域中（例如相应的 TcpConnection对象的一个成员变量中），定时器定时将其从这个共享区域中取出来，再发送出去。该方法的优点是网络线程做了它该做的事情，缺点是需要添加定时器，程序逻辑变得复杂，而且定时器每隔一段时间才会触发，发送的数据可能会有一定的延迟。</li>
+<li>利用线程执行流中的handle_other_things方法，这个函数可以在需要执行时通过唤醒机制唤醒。业务线程将数据放入某个共享区域中作为“其他事情”，然后在handle_other_things 函数中执行数据的发送。如果读到这里时仍能思路清晰，则说明读者已经大致明白一个不错的服务器框架的实现方式了。</li>
+</ul>
+<p>在实际应用中，很多程序的业务逻辑处理其实是不耗时的，也就是说，这些业务逻辑的处理速度很快。由于CPU核数有限，所以在线程数量超过CPU数量时，各个线程（网络线程和业务线程）也不是真正地并行执行，即使开了一组业务线程也不一定真正地并发执行。在这种业务逻辑处理不耗时的情况下，可以在网络线程里面直接处理业务逻辑，这样并不会影响网络线程的执行效率。前面讲到，在handle_io_events方法中会直接处理业务逻辑，如果在处理业务逻辑时会产生新的任务，则可以将这些新任务作为“其他事情”投递给网络线程，最终的网络线程的handle_other_things方法会处理这些新任务。此时的服务器程序结构如下图所示。再次强调：利用 handle_io_events 或 handle_other_things 方法处理业务逻辑，仅适用于业务逻辑中不会有耗时操作的场景，如果在handle_io_events方法或handle_other_things方法中有耗时操作，则还需要单独开业务线程。虽然线程数量超过 CPU数量时，各个线程不会真正并行，但那是操作系统线程调度的事情，做应用层开发时不必关心这一点。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClEgat.png" alt="pClEgat.png"></p>
+<h2 id="非侵入式结构与侵入式结构"><a href="#非侵入式结构与侵入式结构" class="headerlink" title="非侵入式结构与侵入式结构"></a>非侵入式结构与侵入式结构</h2><p>在通常情况下，一个后端服务器的结构是无法固定下来的，因为我们不知道在服务的技术框架上面会搭建什么业务，结构随着业务的不同而不同。如果是这样的话，我们是不是就无法讨论和抽象出一个可以适用于大多数业务场景的服务程序结构了呢？其实未必，大多数服务都会与其他服务或客户端进行网络通信，那么这个服务一定包含网络通信模块。这样的话，网络通信模块将是不同业务的服务都有的一部分。以此为支点，我们尝试继续探究一套适用于大多数业务的通用程序结构。<br>在假设网络通信框架结构确定的情况下，根据通信数据从网络框架中流入流出的情况，我们将服务程序的结构分为非侵入式结构和侵入式结构两种</p>
+<h3 id="非侵入式结构"><a href="#非侵入式结构" class="headerlink" title="非侵入式结构"></a>非侵入式结构</h3><p>非侵入式结构更简单一点，我们先来讨论它。非侵入式，指的是一个服务中的所有通信或业务数据都在网络通信框架内部流动，也就是说没有外部数据源注入网络通信模块或从网络通信模块中流出。举个例子，一个IM服务程序，在通常情况下，无论是单聊消息还是群聊消息，其核心业务本身的数据流都是在网络通信模块内部流动的。单聊时，A用户向B用户发送一条消息，实际上消息流是从A用户的Connection对象传递到B用户的Connection 对象上的，然后通过 B 的Connection 对象的发送方法将数据发送出去。群聊也一样，数据从一个用户的Connection对象同时传递给其他多个用户的Connection对象。无论是哪种情况，这些Connection对象都是网络通信模块的内部结构</p>
+<h3 id="侵入式结构"><a href="#侵入式结构" class="headerlink" title="侵入式结构"></a>侵入式结构</h3><p>如果有外部消息流入网络通信模块或从网络通信模块流出，就相当于有外部消息“侵入”网络通信结构，我们把这种服务器结构称为侵入式服务结构，示意图如下所示。<br>侵入式服务器的结构除网络通信组件外，其他组件的结构设计可以多种多样。来看两种通用结构。</p>
+<ul>
+<li><p>通用结构一：业务线程（或称数据源线程）将数据处理后交给网络通信组件发送。</p>
+</li>
+<li><p>通用结构二：网络解包后需要将任务交给专门的业务线程处理，处理完后需要再次通过网络通信组件发送出去。<br>通用结构一其实是通用结构二的后半部分，因此这里重点讨论通用结构二。<br>在one thread one loop思想下，每个网络线程的基本结构都如下</p>
+<p>  while (!m_bouitFlag) {<br>  epoll_or_select_func();<br>  handle_io_events();<br>  handle_other_things();<br>  }</p>
+</li>
+</ul>
+<p>若handle_io_events收完网络数据后解包，则由于解包后得到的任务处理逻辑比较耗时，所以需要把这些任务交给专门的业务线程处理。业务线程可以是一组工作的消费者线程，我们可以将这些任务放在某个队列中。这里网络组件的线程（网络线程）是生产者，业务工作线程是消费者，我们可以使用互斥体、临界区（CriticalSection，Windows系统特有）或条件变量等技术协调生产者和消费者，也就是说会涉及一个公共队列系统。这是一种常用的实现，数据会从网络组件流向业务组件。<br>接下来，如果业务组件需要对处理后的数据做网络通信操作，则此时如何将处理后的数据由业务组件交给网络组件呢？一般有两种方法，下面会详细讲解这两种方法</p>
+<h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>直接通过某些标识（如业务对应的socket fd、sessionID 等）找到这些数据在网络组件中对应的session，利用这些session将数据直接发送出去。<br>例如，在某个场景下，业务组件在处理完数据后需要将这些数据发送给所有用户，示例代码如下：</p>
+<pre><code>void WebSocketSessionManager::pushDataToAll(const std::string&amp; dataToPush) &#123;
+    std::lock_guard&lt;std::mutex&gt; scoped_lock(m_mutexForSession);
+    for (auto&amp; session : m_mapsessions) &#123;
+        session.second-&gt;pushSomeData(dataToPush);
+    &#125;
+&#125;
+</code></pre>
+<p>在以上代码中，业务组件只要拿到网路组件管理所有 session 的对象WebSocketSessionManager即可，然后利用WebSocketSessionManager对象的pushDataToAll方法将数据发送给所有用户。dataToPush 是需要发送给所有用户的数据，因此在pushDataToAll 方法中遍历所有 Session 对象（Session 对象被记录在 m_mapSessions 中）并通过Session对象挨个发送dataToPush。如果业务组件处理后的数据是发送给某个用户的，则示例代码如下：</p>
+<pre><code>bool WebsocketSessionManager::pushDataToSingle(const std::string&amp; accountID, const std::string&amp; dataToPush) &#123;
+    std::lock_guard&lt;std::mutex&gt; scoped_lock(m_mutexForSession);
+    for (auto&amp; session : m_mapsessions) &#123;
+        if (session.second-&gt;isAccountIDMatched(accountID)) &#123;
+            session.second-&gt;pushSomeData(dataToPush);
+            return true;
+        &#125;
+    &#125;
+    return false;
+&#125;
+</code></pre>
+<p>以上代码中的业务组件根据数据中的accountID定位到网络组件中的具体session，然后将数据发送给该session对应的用户。这是业务组件处理完数据后向网络线程传送数据的常用方法，但存在如下两个缺点。<br>缺点一<br>这里从调用关系来看，实际上是业务线程调用网络线程相关的接口函数发送数据的，也就是说，其本质上是业务组件直接发起的网络操作。如果按功能来划分，则发送数据应该属于网络线程的功能，业务线程不应该发送数据。由于Session对象属于网络线程（网络线程管理着Session对象的生命周期），而这里的业务线程直接操作了Session对象，因此在以上示例代码中使用了 mutex（成员变量m_mutexForSession）在相应的发送函数中对Session对象集合m_mapSessions进行保护。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClVki6.png" alt="pClVki6.png"></p>
+<p>虽然这种做法不太合理，但实际上很多服务程序都在这么做：当业务组件调用这些发送方法时，通过 mutex将这些session锁定。然而这样做存在一个效率问题，这里还是以上面向所有用户发送数据的示例来说明这个问题：</p>
+<pre><code>void WebSocketSessionManager::pushDataToAll(const std::string&amp; dataToPush) &#123;
+    std::lock_guard&lt;std::mutex&gt; scoped_lock(m_mutexForSession);
+    for (auto&amp; session : m_mapSessions) &#123;
+        session.second-&gt;pushSomeData(dataToPush);
+    &#125;
+&#125;
+</code></pre>
+<p>这段代码实际上调用了每个session对象的pushSomeData方法（加粗代码行），如果Session对象的pushSomeData方法耗时较长（耗时较长是相对来说的，在实际开发中要避免让这个函数耗时过长），则由于记录 Session对象的 m_mapSessions对象此时正被业务模块（业务线程）使用，所以如果网络线程想修改m_mapSessions对象，就必须等业务线程调用WebSocketSessionManager：：pushDataToAll函数结束，这可能会影响网络线程的执行效率。因此有些开发者会这么设计：</p>
+<pre><code>void WebSocketSessionManager::pushDataToAll(const std::string&amp; dataToPush) &#123;
+    std::map&lt;int64_t, BusinessSession*&gt; mapLocalSessions;
+    &#123;
+        std::lock_guard&lt;std::mutex&gt; scoped_lock(m_mutexForSession);
+        // 从m_mapSessions拷贝session对象指针到mapLocalSessions
+        mapLocalSessions = m_mapSessions;
+    &#125;
+    
+    // 这里使用mapLocalSessions，让网络线程继续操作m_mapSessions
+    for (auto&amp; session : mapLocalSessions) &#123;
+        session.second-&gt;pushSomeData(dataToPush);
+    &#125;
+&#125;
+</code></pre>
+<p>以上代码使用了一个临时变量 mapLocalSessions 将在m_mapSessions 中记录的Session指针复制一份出来，这样的话，m_mutexForSession锁保护的范围就大幅度减小了，业务线程可以尽快释放对m_mapSessions的占用，网络线程可以很快地使用m_mapSessions。<br>这个看似很不错的设计方案，却存在着严重的错误：记录在m_mapSessions 和mapLocalSessions 中的各个Session指针都指向一个对象，倘若此时某个连接断开，网络线程就会销毁 m_mapSessions中相应的 Session 对象，然而业务线程还可能拿着这个Session对象的指针继续操作（这里是发数据），此时这个指针已经是一个野指针了，所以会导致程序崩溃。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClVMdI.png" alt="pClVMdI.png"></p>
+<p>有的读者会说，在mapLocalSessions中记录的Session对象不要使用原始指针，可以使用一个智能指针，但该智能指针不管理该Session的生命周期，如下所示：</p>
+<pre><code>std: :map&lt;int64_t,std::weak_ptr&lt;BusinessSession&gt;&gt; mapLocalSessions;
+</code></pre>
+<p>在决定是否使用一个Session对象前，这样做可以及时发现该Session对象是否有效，但若业务线程正在使用某个 Session 对象，进入session.second-&gt;pushSomeData函数后，Session被网络线程回收了，则业务线程访问该Session对象的任何成员变量时都会因访问非法内存而导致程序崩溃。所以，这是不正确的设计，在这种场景下千万不要使用这种减小<br>锁范围的技术。为保证性能，应该尽量让session.second-&gt;pushSomeData函数的实现逻辑运行起来更快一点。</p>
+<p>缺点二<br>方法一在一些场景中存在严重错误，假设我们的服务存在如下两条信息流。</p>
+<ul>
+<li>信息流一：业务组件产生的数据需要发送。</li>
+<li>信息流二：网络线程本身与客户端或者下游服务交互后产生的数据也要发送。<br>这两类数据如果被发送给同一个连接，但这两类数据有一定的顺序要求，则这样会很糟糕：因为在这样的设计中，业务线程会间接使用某个Session发送数据，网络线程会直接使用同一个Session发送数据，相当于多个线程同时调用send函数在同一个socket上发送数据，这样的话，每个单独的数据包不一定会出错，但是多个数据包之间的顺序就可能不正确了。来看一个交易系统的行情推送服务，在客户端订阅了某类行情信息后，行情推送服务的网络模块会通过一个内部的 RPC 请求服务去拉取一个全量数据t并推送给客户端，同时行情推送服务的业务模块会从RocketMQ中取出增量数据t1、d2、t3、d4等（t系列增量数据用于改造全量数据t），然后侵入网络组件发送给客户端。客户端在收到增量数据后会以全量数据为基础，对全量数据进行增删改操作，也就是说在用户未收到全量数据之前，会丢弃其收到的增量数据（业务场景决定客户端无法在收到全量数据之前对增量数据进行缓存）。但在被丢弃的增量数据中可能有一部分属于这个全量数据，客户端在收到全量数据后再利用后续新收到的增量数据去改造全量数据，这样改造后的全量数据就可能不正确了</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClV3Jf.png" alt="pClV3Jf.png"></p>
+<p>这就是方法一不适用的场景，即侵入网络组件的其他组件产生的数据有多个源，且多个源有顺序要求。反过来说，如果侵入网络组件产生的数据源只有一个，或者有多个数据源但数据源之间的数据没有顺序依赖，则这种设计是适用的。<br>方法一不适用的场景示意图如下</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClV8W8.png" alt="pClV8W8.png"></p>
+<p>那么对于有多个数据源且数据源之间的数据有顺序依赖的情况，有没有办法继续使用方法一呢？有：可以在多个数据源处理完数据后，交给一个专门将数据源排序的组件，再由排序组件统一调用网络组件的数据发送模块。需要注意的是，也要将网络组件内部产生的需要发送的数据交给排序组件。示意图如下</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClVJSS.png" alt="pClVJSS.png"></p>
+<p>对这种场景可以举一个例子，我们在做交易系统的行情推送服务时，由于推送的数据有多个来源，有的来源于RocketMQ模块，有的来源于管理后台接口，有的来源于网络通信模块内部，所以需要将这三类数据按一定的顺序发送给用户。笔者就是采用以上示意图展示的结构来设计的，对其中的排序组件使用了一个队列，让来自不同数据源的数据按一定顺序进入队列中，排序组件从队列中挨个取出排好序的数据，接着调用网络通信组件的数据发送模块进行发送。</p>
+<p>方法二<br>方法一是在业务组件里面直接调用网络组件的，有点越俎代庖。<br>方法二是将业务组件需要发送的数据交给网络组件自己去发送的，常用的实现方法是将对应的数据加入数据所属的那个连接的网络线程中。再来看看这个结构：</p>
+<pre><code>while (!m_bQuitFlag) &#123;
+    epoll_or_select_func();
+    handle_io_events();
+    handle_other_things();
+&#125;
+</code></pre>
+<p>可以使用另一个队列，业务组件将数据交给这个队列，然后告知对应的网络组件中的线程需要收取任务并执行。这个逻辑在前面介绍过了，即利用唤醒机制执行handle_other_things函数。这里给出一种实现，业务组件调用 EventLoop：：runInLoop 方法将数据交给队列，EventLoop：：runInLoop方法的实现如下：</p>
+<pre><code>void EventLoop::runInLoop(const Functor&amp; taskCallback) &#123;
+    if (isInLoopThread()) &#123;
+        taskCallback();
+    &#125; else &#123;
+        queueInLoop(taskCallback);
+    &#125;
+&#125;
+</code></pre>
+<p>以上代码中的taskCallback是需要执行的任务，由于业务线程和网络线程不是同一个线程，因此会执行EventLoop：：queueInLoop方法，这样任务就被放到EventLoop的成员变量m_pendingFunctors容器中了，然后调用唤醒函数 wakeup。EventLoop：：queueInLoop方法的实现如下：</p>
+<pre><code>void EventLoop::queueInLoop(const Functor&amp; taskCallback) &#123;
+    std::unique_lock&lt;std::mutex&gt; lock(m_mutex);
+    m_pendingFunctors.push_back(taskCallback);
+    if (!isInLoopThread() || m_doingOtherThings) &#123;
+        wakeup();
+    &#125;
+&#125;
+</code></pre>
+<p>通过这个流程，可以让网络组件本身去发送业务组件交给它的数据。<br>希望读者能深刻理解侵入式服务结构和非侵入式服务结构的特点和细节，以及侵入式服务结构中网络组件与业务组件交换数据的两种方法，根据实际业务设计出高质量的服务框架。</p>
+<h2 id="带有网络通信模块的服务器的经典结构"><a href="#带有网络通信模块的服务器的经典结构" class="headerlink" title="带有网络通信模块的服务器的经典结构"></a>带有网络通信模块的服务器的经典结构</h2><p>我们将监听 socket称为 listenfd，将由调用accept函数返回的 socket称为clientfd。</p>
+<h3 id="为何要将listenfd设置成非阻塞模式"><a href="#为何要将listenfd设置成非阻塞模式" class="headerlink" title="为何要将listenfd设置成非阻塞模式"></a>为何要将listenfd设置成非阻塞模式</h3><p>我们知道，如果需要使用I&#x2F;O复用函数统一管理各个fd，则需要将clientfd设置成非阻塞模式，那么 listenfd 一定要被设置成非阻塞模式吗？答案是不一定——只要不用 I&#x2F;O复用函数去管理 listenfd就可以了。如果 listenfd 不被设置成非阻塞模式，那么 accept 函数在没有新连接时就会阻塞。<br>1.结构一：listenfd为阻塞模式，为listenfd独立分配一个接受连接线程有很多服务程序结构确实采用了阻塞模式的 listenfd，为了不让accept函数在没有连接时因阻塞对程序的其他逻辑执行流造成影响，我们通常将 accept函数放在一个独立的线程中。这个线程的伪代码如下：</p>
+<pre><code>void* acceptThreadFunc(void* param) &#123;
+    // 可以在这里做一些初始化工作
+    
+    while (!退出标志) &#123;
+        struct sockaddr_in clientAddr;
+        socklen_t clientAddrLen = sizeof(clientAddr);
+        
+        // 没有连接时，线程会被阻塞在 accept 函数处
+        int clientFd = accept(listenFd, (struct sockaddr*)&amp;clientAddr, &amp;clientAddrLen);
+        if (clientFd == -1) &#123;
+            // 出错了，可以在此做一些清理资源动作，例如关闭 listenFd
+            break;
+        &#125;
+        
+        // 将 clientFd 交给其他 I/O 线程的工作复用函数
+        // 由于跨线程操作，所以需要使用锁对公共操作的资源进行保护
+    &#125;
+    
+    return nullptr;
+&#125;
+</code></pre>
+<p>其他I&#x2F;O线程的结构依旧是利用I&#x2F;O复用函数处理clientfd的onethread one loop结构，这里以epoll_wait为例：</p>
+<pre><code>void* ioThreadFunc(void* param) &#123;
+    // 可以在这里做一些初始化工作
+    
+    while (!退出标志) &#123;
+        epoll_event epollEvents[1024];
+        
+        // 所有 clientFd 都被挂载到 epollFd，由 epoll_wait 统一检测读写事件
+        int numEvents = epoll_wait(epollFd, epollEvents, 1024, 1000);
+        
+        // 在 epoll_wait 返回时处理对应 clientFd 上的读写事件
+        
+        // 其他一些操作
+    &#125;
+    
+    return nullptr;
+&#125;
+</code></pre>
+<p>当然，这里的I&#x2F;O线程可以存在多个，结构示意图如下。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClVTSO.png" alt="pClVTSO.png"></p>
+<p>将clientfd从accept_thread_func交给io_thread_func的方法也有很多，这里以使用一个互斥锁进行实现为例：</p>
+<pre><code>std::vector&lt;int&gt; g_vecClientfds;
+std::mutex g_clientfdMutex;
+
+void* acceptThreadFunc(void* param) &#123;
+    // 可以在这里做一些初始化工作
+    
+    while (!退出标志) &#123;
+        struct sockaddr_in clientaddr;
+        socklen_t clientaddrlen = sizeof(clientaddr);
+        
+        // 没有连接时，线程会被阻塞在 accept 函数处
+        int clientfd = accept(listenfd, (struct sockaddr*)&amp;clientaddr, &amp;clientaddrlen);
+        
+        if (clientfd != -1) &#123;
+            // 出错了，可以在此做一些清理资源动作，例如关闭 listenfd
+            break;
+        &#125;
+        
+        // 将 clientfd 交给其他 I/O 线程的复用函数
+        // 由于是跨线程操作，所以需要使用锁对公共操作的资源进行保护
+        std::lock_guard&lt;std::mutex&gt; scopedLock(g_clientfdMutex);
+        g_vecClientfds.push_back(clientfd);
+    &#125;
+&#125;
+
+void ioThreadFunc(void* param) &#123;
+    // 可以在这里做一些初始化工作
+    
+    while (退出标志) &#123;
+        epoll_event epoll_events[1024];
+        
+        // 将所有 clientfd 都挂载到 epollfd，由 epoll_wait 统一检测读写事件
+        int numEvents = epoll_wait(epollfd, epoll_events, 1024, 1000);
+        
+        // 在 epoll_wait 返回时处理对应 clientfd 的读写事件
+        
+        // 其他一些操作
+        
+        // 从共享变量 g_vecClientfds 中取出新的 clientfd
+        retrieveNewClientfds(epollfd);
+    &#125;
+&#125;
+
+void retrieveNewClientfds(int epollfd) &#123;
+    std::lock_guard&lt;std::mutex&gt; scopedLock(g_clientfdMutex);
+    
+    if (!g_vecClientfds.empty()) &#123;
+        // 遍历 g_vecClientfds 取出各个 fd，设置 fd 挂载到所在线程的 epollfd 上
+        // 在全部取出后，清空 g_vecClientfds
+        for (auto&amp; fd : g_vecClientfds) &#123;
+            // 设置 fd 挂载到 epollfd 上的操作
+        &#125;
+        
+        g_vecClientfds.clear();
+    &#125;
+&#125;
+</code></pre>
+<p>注意，在以上代码中由于要求 clientfd 是非阻塞模式的，所以将设置 clientfd 为非阻塞模式的逻辑放在accept_thread_func或io_thread_func中均可。<br>以上代码有点效率问题：某个时刻accept_thread_func向g_vecClientfds中添加了一个clientfd，如果此时io_thread_func函数正阻塞在epoll_wait处，我们就要唤醒epoll_wait</p>
+<p>结构二：listenfd为阻塞模式，使用同一个one thread oneloop结构处理listenfd的事件<br>单独为listenfd分配一个线程毕竟是对资源的一种浪费，有读者可能想到这样一种方案：listenfd虽然被设置为阻塞模式，但可以将listenfd挂载到某个loop的epollfd上，在epoll_wait返回且listenfd上有读事件时，调用accept函数就不会阻塞了。伪代码如下：</p>
+<pre><code>void* ioThreadFunc(void* param) &#123;
+    // 可以在这里做一些初始化工作
+    
+    while (退出标志) &#123;
+        epoll_event epoll_events[1024];
+        
+        // listenfd 和 clientfd 都被挂载到 epollfd 中，由 epoll_wait 统一检测读写事件
+        int numEvents = epoll_wait(epollfd, epoll_events, 1024, 1000);
+        
+        if (如果在 listenfd 上有事件) &#123;
+            // 此时调用 accept 函数就不会阻塞
+            int clientfd = accept(listenfd, ...);
+            
+            // 对 clientfd 做进一步处理
+            // 其他一些操作
+        &#125;
+        
+        // 其他一些操作
+    &#125;
+&#125;
+</code></pre>
+<p>如以上代码所示，在这种情况下确实可以将listenfd设置成阻塞模式，调用accept函数时也不会造成流程阻塞。但这样的设计存在严重的效率问题：在每一轮循环中一次只能接受一个连接（每次循环都仅调用了一次accept函数），如果客户端的连接数较多，则这种处理速度可能跟不上客户端的连接请求速度，所以要在一个循环里面处理accept函数，但实际情形是我们无法确定下一轮调用accept函数时，在backlog队列中是否还有新连接，如果没有，则由于listenfd是阻塞模式，所以调用accept函数会阻塞。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClZA7n.png" alt="pClZA7n.png"></p>
+<p>结构三：listenfd为非阻塞模式，使用同一个one thread oneloop结构处理listenfd的事件<br>将listenfd设置为非阻塞模式后，我们就不会有以上窘境了。伪代码如下：</p>
+<pre><code>void* io_thread_func(void* param) &#123;
+    // 可以在这里做一些初始化工作
+    
+    while (退出标志) &#123;
+        epoll_event epoll_events[1024];
+        
+        // listenfd 和 clientfd 都被挂载到 epollfd 中，由 epoll_wait 统一检测读写事件
+        int numEvents = epoll_wait(epollfd, epoll_events, 1024, 1000);
+        
+        if (如果在 listenfd 上有事件) &#123;
+            while (true) &#123;
+                // 此时调用 accept 函数就不会阻塞
+                int clientfd = accept(listenfd, ...);
+                
+                if (clientfd == -1) &#123;
+                    // 错误码是 EWOULDBLOCK，说明此时已经没有新连接了
+                    // 可以退出内层的 while 循环
+                    if (errno == EWOULDBLOCK)
+                        break;
+                    
+                    // 被信号中断时重新调用一次 accept 函数即可
+                    else if (errno == EINTR)
+                        continue;
+                    
+                    else &#123;
+                        // 对其他情况都认为出错
+                        // 做一次错误处理逻辑
+                    &#125;
+                &#125;
+                
+                else &#123;
+                    // 正常接受连接
+                    // 对 clientfd 做进一步处理
+                    // 结束内层的 if
+                &#125;
+            &#125;
+        &#125;
+        
+        // 其他一些操作
+        // 结束外层的 while 循环
+    &#125;
+&#125;
+</code></pre>
+<p>将 listenfd 设置成非阻塞模式还有一个好处：我们可以自己定义在一次 listenfd 读事件处理中最多接受多少连接，该逻辑也很容易实现，将以上代码中内层while循环的判断条件从true改成判定特定的次数即可：</p>
+<pre><code>void* io_thread_func(void* param) &#123;
+    // 可以在这里做一些初始化工作
+    
+    // 每次处理的最大连接数量
+    const int MAX_ACCEPTS_PER_CALL = 200;
+    // 当前数量
+    int currentAccept = 0;
+    
+    while (退出标志) &#123;
+        epoll_event epoll_events[1024];
+        
+        // 将 listenfd 和 clientfd 都挂载到 epollfd 上，由 epoll_wait 统一检测读写事件
+        int numEvents = epoll_wait(epollfd, epoll_events, 1024, 1000);
+        
+        if (listenfd 上有事件) &#123;
+            currentAccept = 0;
+            
+            while (currentAccept &lt; MAX_ACCEPTS_PER_CALL) &#123;
+                // 此时调用 accept 函数不会阻塞
+                int clientfd = accept(listenfd, ...);
+                
+                if (clientfd == -1) &#123;
+                    // 错误码是 EWOULDBLOCK，说明此时已经没有新连接了
+                    // 可以退出内层的 while 循环了
+                    if (errno == EWOULDBLOCK)
+                        break;
+                    
+                    // 被信号中断时重新调用一次 accept 函数即可
+                    else if (errno == EINTR)
+                        continue;
+                    
+                    else &#123;
+                        // 对其他情况认为出错
+                        // 做一次错误处理逻辑
+                    &#125;
+                &#125;
+                
+                else &#123;
+                    // 累加处理数量
+                    ++currentAccept;
+                    
+                    // 正常接受连接
+                    // 对 clientfd 做进一步处理
+                    // 结束内层的 if
+                &#125;
+            &#125;
+        &#125;
+        
+        // 其他操作
+        // 结束外层的 while 循环
+    &#125;
+&#125;
+</code></pre>
+<h3 id="基于one-thread-one-loop结构的经典服务器结构"><a href="#基于one-thread-one-loop结构的经典服务器结构" class="headerlink" title="基于one thread one loop结构的经典服务器结构"></a>基于one thread one loop结构的经典服务器结构</h3><p>理解listenfd为什么被建议设置成非阻塞模式后，我们将listenfd挂载到某个loop所属的epollfd上与clientfd统一处理就没有疑问了。接下来进一步讨论这一结构。<br>1.listenfd单独使用一个loop，clientfd被分配至其他loop这在实际商业服务器中是比较常用的一个结构，listenfd被单独挂载到一个线程 loop的epollfd上（这个线程一般是主线程），为了表述方便，我们将这个线程称为主线程，将对应的 loop称为主loop。产生新的 clientfd并将其按一定的策略挂载到其他线程 loop的epollfd上，我们将这些线程称为工作线程，将对应的loop称为工作loop。<br>例如使用轮询策略（round robin），我们可以将clientfd均匀地分配给其他工作线程，如下图所示</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClZehV.png" alt="pClZehV.png"></p>
+<p>对轮询策略可以做一些优化：将clientfd挂载到各个工作loop上之后，由于连接断开时，工作loop会移除连接对应的clientfd，所以在一段时间后，各个工作loop上的clientfd数量都可能不一样，会出现数量差别很大的极端情况，因此主 loop 在分配新产生的clientfd时可以先查询各个工作loop上当前实际的clientfd数量，把当前新产生的clientfd分配给持有clientfd最少的工作loop，如下图所示</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClZu1U.md.png" alt="pClZu1U.md.png"></p>
+<p>当然，我们也可以根据一定的策略比重分配 clientfd。假设现在有 4 个工作线程（对应 4 个工作 loop），其分配比重为 1：4：4：1，在程序运行一段时间后没有断开连接的情况，则这4个工作loop上的clientfd数量比例在理论上应该也是1：4：4：1。2.listenfd不单独使用一个loop，将所有clientfd都按一定策略分配给各个loop</p>
+<p>对于一些建立和断开连接操作不是很频繁的场景，实际上没必要让listenfd单独使用一个线程，因为如果在这种场景下让listenfd单独使用一个Loop，这个线程在大多数情况下就可能处于空闲状态，而负责clientfd的其他线程可能比较忙碌，例如对于用户量较大的即时通信服务器、实时对战类型的游戏服务器，接受连接并不是高频操作，连接上的数据收发操作才是高频操作。如果采用listernfd单独使用一个线程的策略，则不仅浪费资源，效率也不高，所以应该让listenfd所在的线程也参与clientfd读写事件的处理。</p>
+<p><img src="https://s1.ax1x.com/2023/06/17/pClZlnJ.md.png" alt="pClZlnJ.md.png"></p>
+<p>3.listenfd和所有clientfd均使用一个Loop<br>这是上述情形的特例，一般用于整个 loop 都是高效的内存操作的情形，例如Redis-server的I&#x2F;O线程情形，即单线程I&#x2F;O情形。事实上，本章介绍的one thread one loop思想及clientfd在多个loop之间的分配策略同样适用于多进程模型，例如Nginx，只不过在像Nginx这样的服务中使用单个进程来接受和处理连接后，主线程变成了主进程（Master Process），工作线程变成了工作进程（WorkerProcess），原来在同一个进程地址空间中可直接将一个clientfd数据投递给其他线程的方式，变成了利用进程通信技术将clientfd从主进程传递给工作进程。不管怎样，无论是主进程还是工作进程中的主线程结构、loop结构，这些进程中的主线程都是one thread one loop结构</p>
+<h3 id="服务器的性能瓶颈"><a href="#服务器的性能瓶颈" class="headerlink" title="服务器的性能瓶颈"></a>服务器的性能瓶颈</h3><p>从线程维度来看，可以分为网路线程和业务处理线程，其中网络线程的执行逻辑一般比较固定，业务线程的执行逻辑则随着业务的不同而不同。<br>在机器物理资源有限的情况下，我们假定某个服务线程数量也是有限的。为了合理分配线程资源，让程序性能最大化，我们需要找到程序的性能瓶颈在哪里。按照业务类型的不同，我们一般将服务器程序归为两类：I&#x2F;O密集型和计算密集型。</p>
+<ul>
+<li>I&#x2F;O密集型指在程序业务上没有复杂的计算或者耗时的业务逻辑要处理，在大多数情况下是频繁的网络收发操作，这类服务有IM服务、交易系统中的行情推送服务、实时对战游戏的服务等。</li>
+<li>计算密集型指在程序业务逻辑中存在耗时的计算，这类服务有数据处理服务、调度服务等。如果服务是I&#x2F;O密集型的，我们就需要将线程数量向网络通信组件倾斜，反过来，如果服务是计算密集型的，我们就应该将线程数量向业务模块倾斜。假设现在的总线程数量是 10 个，那么对于 I&#x2F;O 密集型服务，我们的网络线程数量可以被设置为大于 5，而业务线程数量<br>小于5；反过来，对于计算密集型服务，我们可以将网络线程数量设置为小于5，业务线程数量大于5，具体数量可以根据网络通信逻辑与业务处理逻辑在整个服务中的资源占用比例决定，谁的占用资源率大，倾斜给谁的线程数量就应该越多。</li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3366576307@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '9863a58d805d69a19ec3',
+            clientSecret: 'eec6c8ede04bbc286f4410646f54282eafb3b33f',
+            repo: 'talkFile.github.io',
+            owner: 'whl963854',
+            admin: ['whl963854'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2022 whl
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #c1bfc1;
+    }
+    
+    
+    .nav-right nav a.hover > span{
+        color: #ffffff !important;
+    }
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div class="mobile-menus-out" >
+
+</div>
+<div class="mobile-menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/whl963854">github</a>
+    
+</div>
+
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 0;">
+<div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483671599&auto=1&height=66"></iframe>
+</div>
+
+
+
+
+<!--以下代码是为了支持随时拖动音乐控件的位置，如没有需求，可去掉下面代码-->
+<script>
+var $DOC = $(document)
+$('#musicMouseDrag').on('mousedown', function (e) {
+// 阻止文本选中
+$DOC.bind("selectstart", function () {
+return false;
+});
+$('#musicDragArea').css('height', '100%');
+var $moveTarget = $('#musicMouseDrag');
+$moveTarget.css('border', '1px dashed grey')
+var div_x = e.pageX - $moveTarget.offset().left;
+var div_y = e.pageY - $moveTarget.offset().top;
+$DOC.on('mousemove', function (e) {
+var targetX = e.pageX - div_x;
+var targetY = e.pageY - div_y;
+targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+$moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+}).on('mouseup', function () {
+$DOC.unbind("selectstart");
+$DOC.off('mousemove')
+$DOC.off('mouseup')
+$moveTarget.css('border', 'none')
+$('#musicDragArea').css('height', '10px');
+})
+})
+</script>
+</html>
