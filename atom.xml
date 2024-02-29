@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-01-27T02:49:40.459Z</updated>
+  <updated>2024-02-21T06:27:29.225Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>人性的弱点</title>
+    <link href="http://example.com/p/109e75d5.html"/>
+    <id>http://example.com/p/109e75d5.html</id>
+    <published>2024-02-21T06:20:11.539Z</published>
+    <updated>2024-02-21T06:27:29.225Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="成功的捷径"><a href="#成功的捷径" class="headerlink" title="成功的捷径"></a>成功的捷径</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;成功的捷径&quot;&gt;&lt;a href=&quot;#成功的捷径&quot; class=&quot;headerlink&quot; title=&quot;成功的捷径&quot;&gt;&lt;/a&gt;成功的捷径&lt;/h1&gt;</summary>
+      
+    
+    
+    
+    <category term="own" scheme="http://example.com/categories/own/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>怎么让别人喜欢你</title>
@@ -441,32 +463,6 @@
     
     
     <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>零钱兑换</title>
-    <link href="http://example.com/p/61401.html"/>
-    <id>http://example.com/p/61401.html</id>
-    <published>2023-12-29T10:39:51.401Z</published>
-    <updated>2023-08-04T10:01:36.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><pre><code>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。你可以认为每种硬币的数量是无限的。</code></pre><h3 id="输入用例"><a href="#输入用例" class="headerlink" title="输入用例"></a>输入用例</h3><pre><code>输入：coins = [1, 2, 5], amount = 11输出：3 解释：11 = 5 + 5 + 1</code></pre><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><h4 id="一-暴力法"><a href="#一-暴力法" class="headerlink" title="一 暴力法"></a>一 暴力法</h4><pre><code>—略—</code></pre><h4 id="二-动态规划"><a href="#二-动态规划" class="headerlink" title="二 动态规划"></a>二 动态规划</h4><pre><code>其实这道题很明显就满足最优子结构性，如果想用最少的硬币兑换money，这对硬币的子集的总金额所需硬币数一定是最少的，否则用更少的硬币替换这个子集的硬币，则总money所需硬币数一定比原来少。现在的问题是如何获得状态方程。假设硬币的金额有m1,m2...mx,需要兑换的总金额为money，金额为money的硬币数存在f[money]中，那么f[money]一定可以由f[money-m1]+1,f[money-m2]+1...f[money-mx]+1中的一个或者多个组成，上面已经说明最优子结构，这样，我们只需要找f[money-m1],f[money-m2]...f[money-mx]中的最小值。问题不断分解，分解到f[m1],f[m2]...f[mx]这些确定值上面（都为1）。按照这个思路，我们反向进行迭代最终就可以求得f[money];    </code></pre><h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5><pre><code>class Solution &#123;public:    int coinChange(vector&lt;int&gt;&amp; coins, int amount) &#123;        int Max = amount + 1;        vector&lt;int&gt; dp(amount + 1, Max);        dp[0] = 0;        for (int i = 1; i &lt;= amount; ++i) &#123;            for (int j = 0; j &lt; (int)coins.size(); ++j) &#123;                if (coins[j] &lt;= i) &#123;                    dp[i] = min(dp[i], dp[i - coins[j]] + 1);                &#125;            &#125;        &#125;        return dp[amount] &gt; amount ? -1 : dp[amount];    &#125;&#125;;</code></pre><p>作者：LeetCode-Solution<br>链接：<a href="https://leetcode.cn/problems/coin-change/solution/322-ling-qian-dui-huan-by-leetcode-solution/">https://leetcode.cn/problems/coin-change/solution/322-ling-qian-dui-huan-by-leetcode-solution/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。
-
-计算并返回</summary>
-      
-    
-    
-    
-    <category term="题解" scheme="http://example.com/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="动态规划" scheme="http://example.com/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
   </entry>
   
