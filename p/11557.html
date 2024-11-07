@@ -1,0 +1,3865 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>索引 | Hexo</title>
+  <meta name="keywords" content=" MySQL ">
+  <meta name="description" content="索引 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="手机拍摄在手机厂商们不断地努力下，面对绝大部分场景，我们只需轻轻触碰快门按钮，即可获得一张成像质量不错的照片。按快门这个动作非常简单，但是我们很多时候追求的并不仅仅是看起来清楚的照片，我们需要一张高质量、具有一定美感和故事的照片。照片不仅用作自己欣赏，更是我们表达自我的方式。虽然手机的相机操作界面看上去很简洁，但里面仍然提供了不少的功能，例如画幅选择、连拍、曝光、对焦、变焦、锁焦、闪光灯等等。 拍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手机拍摄">
+<meta property="og:url" content="http://example.com/p/4dca9730.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="手机拍摄在手机厂商们不断地努力下，面对绝大部分场景，我们只需轻轻触碰快门按钮，即可获得一张成像质量不错的照片。按快门这个动作非常简单，但是我们很多时候追求的并不仅仅是看起来清楚的照片，我们需要一张高质量、具有一定美感和故事的照片。照片不仅用作自己欣赏，更是我们表达自我的方式。虽然手机的相机操作界面看上去很简洁，但里面仍然提供了不少的功能，例如画幅选择、连拍、曝光、对焦、变焦、锁焦、闪光灯等等。 拍">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s21.ax1x.com/2024/10/01/pA3QTYT.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/10/01/pA3Q7fU.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/10/01/pA3QbpF.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/11/07/pAyADSA.png">
+<meta property="og:image" content="c:/Users/22537/AppData/Roaming/Typora/typora-user-images/image-20241107233248306.png">
+<meta property="og:image" content="c:/Users/22537/AppData/Roaming/Typora/typora-user-images/image-20241107233331722.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/11/07/pAy697n.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/11/07/pAy6it0.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/11/07/pAy6FhV.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/11/07/pAy6ApT.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/11/07/pAy6E1U.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/11/07/pAy6WEn.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/11/07/pAy6cuQ.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/11/07/pAy6gBj.png">
+<meta property="og:image" content="c:/Users/22537/AppData/Roaming/Typora/typora-user-images/image-20241107235512547.png">
+<meta property="og:image" content="c:/Users/22537/AppData/Roaming/Typora/typora-user-images/image-20241107235423476.png">
+<meta property="article:published_time" content="2024-10-01T05:20:42.801Z">
+<meta property="article:modified_time" content="2024-11-07T15:55:56.149Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s21.ax1x.com/2024/10/01/pA3QTYT.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>John Doe</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/whl963854"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:2253798970@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2253798970&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+    <a class="more-menus">更多菜单</a>
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(275)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="操作系统">
+                        
+                        操作系统
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="读书笔记">
+                        
+                        读书笔记
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="后端">
+                        
+                        后端
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="计算机通信与网络">
+                        
+                        计算机通信与网络
+                        <small>(22)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="面经">
+                        
+                        面经
+                        <small>(15)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="设计模式">
+                        
+                        设计模式
+                        <small>(27)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="算法与数据结构">
+                        
+                        算法与数据结构
+                        <small>(9)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="题解">
+                        
+                        题解
+                        <small>(27)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="cpp">
+                        
+                        cpp
+                        <small>(90)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Database">
+                        
+                        Database
+                        <small>(27)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Git">
+                        
+                        Git
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="go">
+                        
+                        go
+                        <small>(11)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Linux">
+                        
+                        Linux
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="others">
+                        
+                        others
+                        <small>(17)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="own">
+                        
+                        own
+                        <small>(9)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+                <a class="dynamic-menu "
+                   target="_blank"
+                        
+                   href="https://github.com/whl963854">github</a>
+        
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  "
+               target="_blank"
+                    
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="275">
+<input type="hidden" id="yelog_site_word_count" value="720.4k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>编码规范</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>标准库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>陈硕</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>创建型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态规划</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>华为可信课程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>剑指offer</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>结构型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>框架</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>蓝桥</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>码题集</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>软工</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>实习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>现代cpp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>行为型模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>字节</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>c++11</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>c++17</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>c++20</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cpp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cpp17</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cpp20</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>csp</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>go</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>leetcode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>math</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NoSQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Redis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>STL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WebAssembly</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>wps</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All own "
+           href="/p/4dca9730.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="手机拍摄">手机拍摄</span>
+            <span class="post-date" title="2024-10-01 13:20:42">2024/10/01</span>
+        </a>
+        
+        
+        <a  class="All 读书笔记 "
+           href="/p/40998eb9.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="谁动了我的奶酪">谁动了我的奶酪</span>
+            <span class="post-date" title="2024-09-16 09:39:39">2024/09/16</span>
+        </a>
+        
+        
+        <a  class="All own "
+           href="/p/40680c84.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="职业素养">职业素养</span>
+            <span class="post-date" title="2024-08-21 23:04:09">2024/08/21</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/f08fc2eb.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="cpp三种编程范式">cpp三种编程范式</span>
+            <span class="post-date" title="2024-08-07 23:31:05">2024/08/07</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/74032a66.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="开发者测试">开发者测试</span>
+            <span class="post-date" title="2024-08-07 23:20:42">2024/08/07</span>
+        </a>
+        
+        
+        <a  class="All own "
+           href="/p/3f43dc72.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="英语学习">英语学习</span>
+            <span class="post-date" title="2024-05-02 15:28:40">2024/05/02</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/7beec643.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="边缘计算">边缘计算</span>
+            <span class="post-date" title="2024-03-02 14:25:21">2024/03/02</span>
+        </a>
+        
+        
+        <a  class="All own "
+           href="/p/109e75d5.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="人性的弱点">人性的弱点</span>
+            <span class="post-date" title="2024-02-21 14:20:11">2024/02/21</span>
+        </a>
+        
+        
+        <a  class="All own "
+           href="/p/b31106bd.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="怎么让别人喜欢你">怎么让别人喜欢你</span>
+            <span class="post-date" title="2024-01-25 11:39:45">2024/01/25</span>
+        </a>
+        
+        
+        <a  class="All own "
+           href="/p/2524b632.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="经典话术">经典话术</span>
+            <span class="post-date" title="2024-01-24 20:33:55">2024/01/24</span>
+        </a>
+        
+        
+        <a  class="All own "
+           href="/p/4e328d4b.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="职业规划">职业规划</span>
+            <span class="post-date" title="2024-01-22 14:08:21">2024/01/22</span>
+        </a>
+        
+        
+        <a  class="All own "
+           href="/p/54a91907.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="财富课">财富课</span>
+            <span class="post-date" title="2024-01-21 18:55:16">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/f5437bc6.html"
+           data-tag="陈硕"
+           data-author="" >
+            <span class="post-title" title="陈硕网络编程">陈硕网络编程</span>
+            <span class="post-date" title="2024-01-21 10:22:25">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/9039d1e3.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="连接无效">连接无效</span>
+            <span class="post-date" title="2024-01-10 23:31:19">2024/01/10</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/85cb9c0c.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="优雅地关闭还是粗暴地关闭">优雅地关闭还是粗暴地关闭</span>
+            <span class="post-date" title="2024-01-10 22:15:01">2024/01/10</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/5550bb23.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="TIME_WAIT">TIME_WAIT</span>
+            <span class="post-date" title="2024-01-10 17:30:38">2024/01/10</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/c5176eb2.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="select">select</span>
+            <span class="post-date" title="2024-01-10 17:16:12">2024/01/10</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/f6491cfb.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络编程">网络编程</span>
+            <span class="post-date" title="2024-01-10 16:45:41">2024/01/10</span>
+        </a>
+        
+        
+        <a  class="All 后端 "
+           href="/p/5af0150b.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="后端存储">后端存储</span>
+            <span class="post-date" title="2024-01-09 20:10:47">2024/01/09</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/53d0684b.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Linux">Linux</span>
+            <span class="post-date" title="2024-01-07 21:31:49">2024/01/07</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/6b4c4334.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="古诗鉴赏">古诗鉴赏</span>
+            <span class="post-date" title="2023-12-31 14:27:15">2023/12/31</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/7206c742.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="秒杀系统">秒杀系统</span>
+            <span class="post-date" title="2023-12-30 14:30:42">2023/12/30</span>
+        </a>
+        
+        
+        <a  class="All own "
+           href="/p/2c060800.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="如何学习">如何学习</span>
+            <span class="post-date" title="2023-12-29 19:44:29">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/43256.html"
+           data-tag="csp"
+           data-author="" >
+            <span class="post-title" title="防疫大数据">防疫大数据</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/59129.html"
+           data-tag="csp"
+           data-author="" >
+            <span class="post-title" title="寻宝大作战">寻宝大作战</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/40034.html"
+           data-tag="csp"
+           data-author="" >
+            <span class="post-title" title="非零段划分">非零段划分</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/52292.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="香槟塔">香槟塔</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/61401.html"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="零钱兑换">零钱兑换</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/61876.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="超过一半的数字">超过一半的数字</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/35775.html"
+           data-tag="蓝桥"
+           data-author="" >
+            <span class="post-title" title="统计子矩阵">统计子矩阵</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/65488.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="779 第k个语法符号">779 第k个语法符号</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/12758.html"
+           data-tag="码题集"
+           data-author="" >
+            <span class="post-title" title="棘手怀念摧毁">棘手怀念摧毁</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/53127.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="最长字符串链">最长字符串链</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/52608.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="最长回文子串">最长回文子串</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/1868.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="日期差值">日期差值</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/14283.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="无重复字符的最长子串">无重复字符的最长子串</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/64084.html"
+           data-tag="字节"
+           data-author="" >
+            <span class="post-title" title="数组游戏">数组游戏</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/34639.html"
+           data-tag="剑指offer"
+           data-author="" >
+            <span class="post-title" title="数组中数字出现的个数">数组中数字出现的个数</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/38710.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="括号生成">括号生成</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/59828.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="把数组排成最小的数">把数组排成最小的数</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/3457.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="字典序的第k大数字">字典序的第k大数字</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/20114.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="同构字符串">同构字符串</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/967.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="反转链表">反转链表</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/881199c7.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="反转单词">反转单词</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/39967.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="匹配子序列的单词数">匹配子序列的单词数</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/49651.html"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="前k个高频词">前k个高频词</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/63859.html"
+           data-tag="math"
+           data-author="" >
+            <span class="post-title" title="全排列">全排列</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/9616.html"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="买卖股票1">买卖股票1</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/9615.html"
+           data-tag="动态规划"
+           data-author="" >
+            <span class="post-title" title="买卖股票1">买卖股票1</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 题解 "
+           href="/p/47143.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Easy Strings Merging">Easy Strings Merging</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/bdbd2d9.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="计网">计网</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/410e30c.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腾讯安全">腾讯安全</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/3a9ea38.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腾讯天美">腾讯天美</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/d809ecd7.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="腾讯云智">腾讯云智</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/b7e144d1.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法">算法</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/158ea4f5.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="百度">百度</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/158ea4f5.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="百度">百度</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/bccf711e.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="滴滴秋储">滴滴秋储</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/d04bd5bc.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="操作系统">操作系统</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/26e6c52c.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="招商银行">招商银行</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/c2f2ffeb.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="快手">快手</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/7d1900d6.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="字节提前批">字节提前批</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/d9f4dee9.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="中望软件">中望软件</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/9520183a.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="mysql">mysql</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 面经 "
+           href="/p/caeaa4a1.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="cpp">cpp</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/d0681926.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="通信的三种方式">通信的三种方式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/485abdb0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络通信协议设计">网络通信协议设计</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/2f9ed4ad.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络边缘">网络边缘</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/a5662a20.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络库的分层设计">网络库的分层设计</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/e431c708.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="本地套接字">本地套接字</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/73d6ffa7.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="服务器开发中的常用模块设计">服务器开发中的常用模块设计</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/8f29bb10.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络编程应该掌握的socket函数">网络编程应该掌握的socket函数</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/1bcba982.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="套接字编程">套接字编程</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/db446a40.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="单个服务的基本结构">单个服务的基本结构</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/5447b09e.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebSocket协议">WebSocket协议</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/6a48eebc.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="UDP">UDP</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/d6bcf660.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="TCP连接">TCP连接</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/c5176eb2.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RPC">RPC</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/4d69f701.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Reactor模式">Reactor模式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/36b011d7.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="http和https">http和https</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/ea0da367.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="理解HTTP">理解HTTP</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 计算机通信与网络 "
+           href="/p/e431c708.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="七层协议">七层协议</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/789273fd.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="libevent可执行文件生成">libevent可执行文件生成</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/2362a8ea.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链表">链表</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/1f4ac2fb.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="栈">栈</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/15bc60d.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="最短路径">最短路径</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/c517589e.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="并查集">并查集</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/56030.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="带权并查集">带权并查集</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/ea4681d0.html"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="二叉树的遍历">二叉树的遍历</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/587dffa2.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="TB级数据排序">TB级数据排序</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 算法与数据结构 "
+           href="/p/37489.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="排序">排序</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/39432f30.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="kubernetes介绍">kubernetes介绍</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/14433829.html"
+           data-tag="框架"
+           data-author="" >
+            <span class="post-title" title="torm框架学习">torm框架学习</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/eefe591f.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="进程与线程">进程与线程</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/b21cb050.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="网络通信故障排查常用命令">网络通信故障排查常用命令</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/fec99276.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/2f57a694.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="正则表达式">正则表达式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/0.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/2ecd4e0f.html"
+           data-tag="实习,框架"
+           data-author="" >
+            <span class="post-title" title="基于xfx torm的学习开发和容器化打包部署">基于xfx torm的学习开发和容器化打包部署</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/f9cb768.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="写作">写作</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/bf55081a.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="WebAssembly跨语言调用">WebAssembly跨语言调用</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/13592136.html"
+           data-tag="实习,WebAssembly"
+           data-author="" >
+            <span class="post-title" title="WebAssembly与Rust实践">WebAssembly与Rust实践</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/f113fd4.html"
+           data-tag="实习,WebAssembly"
+           data-author="" >
+            <span class="post-title" title="WebAssembly与Go实践">WebAssembly与Go实践</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/a9a8d1fe.html"
+           data-tag="实习,WebAssembly"
+           data-author="" >
+            <span class="post-title" title="wasm">wasm</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/3b2bd29.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust简单入门">Rust简单入门</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/39432f30.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="kubernetes介绍">kubernetes介绍</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/f255ffad.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="docker">docker</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/284ab3e9.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bufferevent">bufferevent</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/26649.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux文件管理">Linux文件管理</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/4551.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux简介">Linux简介</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/56191.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux用户和权限">Linux用户和权限</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Linux "
+           href="/p/13375.html"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux基本命令">Linux基本命令</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/932d7faf.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="纤程（Fiber）与协程（Routine）">纤程（Fiber）与协程（Routine）</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/28384.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="死锁">死锁</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/9ee71673.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Linux线程同步对象">Linux线程同步对象</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/9ee71673.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Linux线程同步对象">Linux线程同步对象</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/p/b21cb050.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="IO多路复用">IO多路复用</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/53ad465c.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="进程通信">进程通信</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/19cd4605.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="程序实体">程序实体</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/1f84997a.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="源码文件">源码文件</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/6e2bd130.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="zorm学习">zorm学习</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/cacc0385.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="database/sql">database/sql</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/17f45348.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="mod">mod</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/d080713b.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go进程的优雅退出">Go进程的优雅退出</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/f0317f09.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go泛型运用">Go泛型运用</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/8ca6511d.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go工作区">Go工作区</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/d080713b.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="Go学习">Go学习</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All go "
+           href="/p/15a4d7c.html"
+           data-tag="go"
+           data-author="" >
+            <span class="post-title" title="goroutine">goroutine</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Git "
+           href="/p/e69805ba.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git开发环境应用">git开发环境应用</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Git "
+           href="/p/1.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git学习">git学习</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Git "
+           href="/p/5226.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git常用方法">git常用方法</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/58978.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="门面模式">门面模式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/39554.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="适配器模式">适配器模式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/3892.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="装饰者模式">装饰者模式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/44993.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="组合模式">组合模式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/27560.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="桥模式">桥模式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/48003.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="代理模式">代理模式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/65163.html"
+           data-tag="结构型模式"
+           data-author="" >
+            <span class="post-title" title="享元模式">享元模式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/39856.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="构建器模式">构建器模式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/29711.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="建造者模式">建造者模式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/22548.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="原型模式">原型模式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/46132.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="单例模式">单例模式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/59316.html"
+           data-tag="创建型模式"
+           data-author="" >
+            <span class="post-title" title="factory模式">factory模式</span>
+            <span class="post-date" title="2023-12-29 18:39:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/28241.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="迭代器模式">迭代器模式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/5265.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="访问器模式">访问器模式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/50156.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="解析器模式">解析器模式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/7738.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="观察者模式">观察者模式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/52113.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="职责链模式">职责链模式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/58639.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="策略模式">策略模式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/39447.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="状态模式">状态模式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/14565.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="模板模式">模板模式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/56214.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="备忘录模式">备忘录模式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/22977.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="命令模式">命令模式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/55487.html"
+           data-tag="行为型模式"
+           data-author="" >
+            <span class="post-title" title="中介者模式">中介者模式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/50254.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="设计模式简介">设计模式简介</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/96cd2f17.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="封装抽象继承多态">封装抽象继承多态</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 设计模式 "
+           href="/p/8d659c8b.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="UML图">UML图</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/31805.html"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="Redis常见命令">Redis常见命令</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/5455.html"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="SpringDataRedis">SpringDataRedis</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/28345.html"
+           data-tag="NoSQL"
+           data-author="" >
+            <span class="post-title" title="NoSQL">NoSQL</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/26793.html"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="Jedis">Jedis</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/21631.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="锁">锁</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/40758.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="触发器">触发器</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/3825.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="视图">视图</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/e16fda58.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="表空间回收">表空间回收</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/35621.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="约束">约束</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/11557.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="索引">索引</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/41558.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="日志类型">日志类型</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/64451.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="存储过程">存储过程</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/27905.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="存储引擎">存储引擎</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/19503.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="多表查询">多表查询</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/29900.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL">SQL</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/a3a0c28e.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="分库分表">分库分表</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/21513.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="函数">函数</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/1692.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="优化">优化</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/14751.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="事务隔离级别">事务隔离级别</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/33810.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="事务三种提交问题">事务三种提交问题</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/62546.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="事务">事务</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/c04d0f5c.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="主备">主备</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/305947d.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="一些优化方面">一些优化方面</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/294fcea.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="应急提高性能的方法">应急提高性能的方法</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/de74da3e.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="表存储格式">表存储格式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/df9a61f7.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="索引">索引</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/62812.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="InnoDB引擎">InnoDB引擎</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All Database "
+           href="/p/39914.html"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="B+树和B树的区别">B+树和B树的区别</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/53dbe2a2.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="C++进程优雅退出">C++进程优雅退出</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/43574.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="链接编译联编">链接编译联编</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/5958.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="谓词">谓词</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/d33db4ae.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="生命周期和编程范式">生命周期和编程范式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/14976.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="虚函数表">虚函数表</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/28877bf.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="异常处理">异常处理</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/83d613f6.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="序列化和反序列化">序列化和反序列化</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/c082d8df.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="常量变量">常量变量</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/ddc66992.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="字面量">字面量</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/b63369e3.html"
+           data-tag="标准库"
+           data-author="" >
+            <span class="post-title" title="字符串处理">字符串处理</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/1690d21b.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="函数式编程">函数式编程</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/45788.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="内建函数对象">内建函数对象</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/23999.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="金山训练营第一周">金山训练营第一周</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/80c02825.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="static">static</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/80c02825.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="new/delete  malloc/free 区别">new/delete  malloc/free 区别</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/397.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="define、const、typedef、inline">define、const、typedef、inline</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/2.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/87fdbf5e.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="cpp面向对象">cpp面向对象</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64590.html"
+           data-tag="wps"
+           data-author="" >
+            <span class="post-title" title="c++编码规范">c++编码规范</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/ee3dbaf8.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="cpp内存管理">cpp内存管理</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/43341.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="cpp代码到exe">cpp代码到exe</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/8a6d8fe.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="cmake基础">cmake基础</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/b2513043.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="线程的基本操作">线程的基本操作</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/28630.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="编译时常量的使用">编译时常量的使用</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/226.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="线程池">线程池</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/af951d26.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="线程局部存储">线程局部存储</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/5639.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="类型推断">类型推断</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/acd745d4.html"
+           data-tag="c++17"
+           data-author="" >
+            <span class="post-title" title="注解标签">注解标签</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/a44af387.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="模板元编程">模板元编程</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/aebf582b.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="整型变量的原子操作">整型变量的原子操作</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/52505.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="并发">并发</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64657.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="左值引用和右值引用">左值引用和右值引用</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/f7f57f41.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="多线程使用锁经验总结">多线程使用锁经验总结</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/e1bf1f97.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="多线程与资源同步">多线程与资源同步</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/54280.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="初始化变量">初始化变量</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/10970.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="内存">内存</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/6239.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="与时间有关的程序">与时间有关的程序</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/9fa70a35.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SFINAE">SFINAE</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/57725.html"
+           data-tag="现代cpp"
+           data-author="" >
+            <span class="post-title" title="lambda的使用">lambda的使用</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/a70da3b7.html"
+           data-tag="cpp"
+           data-author="" >
+            <span class="post-title" title="C++新特性">C++新特性</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/4071de72.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++11/14/17线程同步对象">C++11/14/17线程同步对象</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/814162d0.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="初始化方式">初始化方式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39885.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="表达式与变量">表达式与变量</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/29637.html"
+           data-tag="华为可信课程,编码规范"
+           data-author="" >
+            <span class="post-title" title="类与函数">类与函数</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/22884.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="安全编码与未定义行为">安全编码与未定义行为</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/41521.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="代码风格规定">代码风格规定</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/46257.html"
+           data-tag="华为可信课程"
+           data-author="" >
+            <span class="post-title" title="lambda、资源管理与杂项">lambda、资源管理与杂项</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/54708.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="vector">vector</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/58909.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="string">string</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/9423.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="STL">STL</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64038.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="stack">stack</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/41872.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="queue">queue</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/22700.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="set/multiset">set/multiset</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/37043.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="map/multimap">map/multimap</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/51768.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="Hashtable">Hashtable</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39907.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="List">List</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/42201.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="deque">deque</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/20982.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用拷贝和替换算法">常用拷贝和替换算法</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/29759.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用排序算法">常用排序算法</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/35802.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用集合算法">常用集合算法</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/41195.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="常用算术生成算法">常用算术生成算法</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/31381.html"
+           data-tag="STL"
+           data-author="" >
+            <span class="post-title" title="STL常用算法">STL常用算法</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64016.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="变参模板">变参模板</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/6511.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="Template Template Parameter">Template Template Parameter</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/57245.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="RvalueReference">RvalueReference</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/4097.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="Otherthings">Otherthings</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/45839.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="Alias Template">Alias Template</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/324821f5.html"
+           data-tag="c++20"
+           data-author="" >
+            <span class="post-title" title="jthread">jthread</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/7082d49f.html"
+           data-tag="cpp20"
+           data-author="" >
+            <span class="post-title" title="concepts">concepts</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/53866983.html"
+           data-tag="cpp17"
+           data-author="" >
+            <span class="post-title" title="结构化绑定">结构化绑定</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/2cf69f40.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="迭代器">迭代器</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/27999.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="移动语义">移动语义</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/7296bf5f.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="特种成员函数的生成机制">特种成员函数的生成机制</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/8398734e.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="枚举类">枚举类</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/47718.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="智能指针">智能指针</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/3763.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="左值右值">左值右值</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/50074.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="完美转发">完美转发</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/19966.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="委派构造函数">委派构造函数</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/24227.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="多线程">多线程</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/63561.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="类型转换">类型转换</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/5b46547.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="weak_ptr">weak_ptr</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39842.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="unique_ptr">unique_ptr</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/78b58054.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="shared_ptr">shared_ptr</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/1199.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="nullptr">nullptr</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39842.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="std::move和std::forword">std::move和std::forword</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/64202.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="move">move</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/330a6169.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="lambda表达式">lambda表达式</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All cpp "
+           href="/p/39842.html"
+           data-tag="c++11"
+           data-author="" >
+            <span class="post-title" title="unique_ptr">unique_ptr</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All others "
+           href="/p/5a5d8509.html"
+           data-tag="软工"
+           data-author="" >
+            <span class="post-title" title="某些小项目">某些小项目</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/p/16107.html"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2023-12-29 18:39:50">2023/12/29</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-DataBase/MySQL/索引" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">索引</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Database">Database</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">MySQL</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-08-04 18:01:36'>2023-12-29 18:39</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:5.6k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                Comment:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-text">索引</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84"><span class="toc-text">索引结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#B-Tree"><span class="toc-text">B-Tree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-Tree-1"><span class="toc-text">B+Tree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash"><span class="toc-text">Hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-text">面试题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%88%86%E7%B1%BB"><span class="toc-text">索引分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-text">思考题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-text">性能分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%A7%E8%A1%8C%E9%A2%91%E6%AC%A1"><span class="toc-text">查看执行频次</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%85%A2%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97"><span class="toc-text">慢查询日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#profile"><span class="toc-text">profile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#explain"><span class="toc-text">explain</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99"><span class="toc-text">使用规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80%E6%B3%95%E5%88%99"><span class="toc-text">最左前缀法则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E6%83%85%E5%86%B5"><span class="toc-text">索引失效情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-%E6%8F%90%E7%A4%BA"><span class="toc-text">SQL 提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E7%B4%A2%E5%BC%95%E5%92%8C%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95"><span class="toc-text">普通索引和唯一索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#change-buffer-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">change buffer 的使用场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95-amp-%E5%9B%9E%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="toc-text">覆盖索引&amp;回表查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BC%80%E7%B4%A2%E5%BC%95"><span class="toc-text">前缀索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%88%97%E7%B4%A2%E5%BC%95-amp-%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95"><span class="toc-text">单列索引&amp;联合索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-text">设计原则</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-5 i,
+    .toc-level-5 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><p>索引是帮助 MySQL 高效获取数据的<strong>有序</strong>的<strong>数据结构</strong>。在数据之外，数据库系统还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据，这样就可以在这些数据结构上实现高级查询算法，这种数据结构就是索引。</p>
+<p><strong>分类</strong><br>按「数据结构」分类：B+tree索引、Hash索引、Full-text索引。<br>按「物理存储」分类：聚簇索引（主键索引）、二级索引（辅助索引）。<br>按「字段特性」分类：主键索引、唯一索引、普通索引、前缀索引。<br>按「字段个数」分类：单列索引、联合索引。</p>
+<p><strong>✅ 优点</strong></p>
+<ul>
+<li>索引能够提高数据检索的效率，降低数据库的IO成本。</li>
+<li>通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性，创建唯一索引</li>
+<li>在使用分组和排序子句进行数据检索时，同样可以显著减少查询中分组和排序的时间</li>
+<li>加速两个表之间的连接，一般是在外键上创建索引</li>
+</ul>
+<p><strong>❌ 缺点</strong></p>
+<ul>
+<li>需要占用物理空间,建立的索引越多需要的空间越大</li>
+<li>创建索引和维护索引要耗费时间，这种时间随着数据量的增加而增加</li>
+<li>会降低表的增删改的效率，因为每次增删改索引需要进行动态维护，导致时间变长</li>
+</ul>
+<h2 id="索引结构"><a href="#索引结构" class="headerlink" title="索引结构"></a>索引结构</h2><table>
+<thead>
+<tr>
+<th>索引结构</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>B+Tree</td>
+<td>最常见的索引类型，大部分引擎都支持B+树索引</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>底层数据结构是用哈希表实现，只有精确匹配索引列的查询才有效，不支持范围查询</td>
+</tr>
+<tr>
+<td>R-Tree(空间索引)</td>
+<td>空间索引是 MyISAM 引擎的一个特殊索引类型，主要用于地理空间数据类型，通常使用较少</td>
+</tr>
+<tr>
+<td>Full-Text(全文索引)</td>
+<td>是一种通过建立倒排索引，快速匹配文档的方式，类似于 Lucene, Solr, ES</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>索引</th>
+<th>InnoDB</th>
+<th>MyISAM</th>
+<th>Memory</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>B+Tree索引</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>Hash索引</td>
+<td>不支持</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>R-Tree索引</td>
+<td>不支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>Full-text</td>
+<td>5.6版本后支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+</tbody></table>
+<h3 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h3><p><img src="https://dhc.pythonanywhere.com/media/editor/%E4%BA%8C%E5%8F%89%E6%A0%91_20220316153214227108.png" alt="二叉树" title="二叉树"></p>
+<p>二叉树的缺点可以用红黑树来解决：<br><img src="https://dhc.pythonanywhere.com/media/editor/%E7%BA%A2%E9%BB%91%E6%A0%91_20220316163142686602.png" alt="红黑树" title="红黑树"><br>红黑树也存在大数据量情况下，层级较深，检索速度慢的问题。</p>
+<p>为了解决上述问题，可以使用 B-Tree 结构。<br>B-Tree (多路平衡查找树) 以一棵最大度数（max-degree，指一个节点的子节点个数）为5（5阶）的 b-tree 为例（每个节点最多存储4个key，5个指针）</p>
+<p><img src="https://dhc.pythonanywhere.com/media/editor/B-Tree%E7%BB%93%E6%9E%84_20220316163813441163.png" alt="B-Tree结构" title="B-Tree结构"></p>
+<blockquote>
+<p>B-Tree 的数据插入过程动画参照：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Kr4y1i7ru?p=68">https://www.bilibili.com/video/BV1Kr4y1i7ru?p=68</a><br>演示地址：<a target="_blank" rel="noopener" href="https://www.cs.usfca.edu/~galles/visualization/BTree.html">https://www.cs.usfca.edu/~galles/visualization/BTree.html</a></p>
+</blockquote>
+<h3 id="B-Tree-1"><a href="#B-Tree-1" class="headerlink" title="B+Tree"></a>B+Tree</h3><p>结构图：</p>
+<p><img src="https://dhc.pythonanywhere.com/media/editor/B+Tree%E7%BB%93%E6%9E%84%E5%9B%BE_20220316170700591277.png" alt="B+Tree结构图" title="B+Tree结构图"></p>
+<blockquote>
+<p>演示地址：<a target="_blank" rel="noopener" href="https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html">https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html</a></p>
+</blockquote>
+<p>与 B-Tree 的区别：</p>
+<ul>
+<li>所有的数据都会出现在叶子节点</li>
+<li>叶子节点形成一个单向链表</li>
+</ul>
+<p>MySQL 索引数据结构对经典的 B+Tree 进行了优化。在原 B+Tree 的基础上，增加一个指向相邻叶子节点的链表指针，就形成了带有顺序指针的 B+Tree，提高区间访问的性能。<br>每个结点默认分配16KB大小<br><img src="https://dhc.pythonanywhere.com/media/editor/%E7%BB%93%E6%9E%84%E5%9B%BE_20220316171730865611.png" alt="MySQL B+Tree 结构图" title="MySQL B+Tree 结构图"></p>
+<p>自增主键是指自增列上定义的主键，在建表语句中一般是这么定义的： NOT NULL PRIMARY KEY AUTO_INCREMENT。插入新记录的时候可以不指定 ID 的值，系统会获取当前 ID 最大值加 1 作为下一条记录的 ID 值。也就是说，自增主键的插入数据模式，正符合了我们前面提到的递增插入的场景。每次插入一条新记录，都是追加操作，都不涉及到挪动其他记录，也不会触发叶子节点的分裂。</p>
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><p>哈希索引就是采用一定的hash算法，将键值换算成新的hash值，映射到对应的槽位上，然后存储在hash表中。<br>如果两个（或多个）键值，映射到一个相同的槽位上，他们就产生了hash冲突（也称为hash碰撞），可以通过链表来解决。</p>
+<p><img src="https://dhc.pythonanywhere.com/media/editor/Hash%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%9B%BE_20220317143226150679.png" alt="Hash索引原理图" title="Hash索引原理图"></p>
+<p>特点：</p>
+<ul>
+<li>Hash索引只能用于对等比较（&#x3D;、in），不支持范围查询（betwwn、&gt;、&lt;、…）</li>
+<li>无法利用索引完成排序操作</li>
+<li>查询效率高，通常只需要一次检索就可以了，效率通常要高于 B+Tree 索引</li>
+</ul>
+<p>存储引擎支持：</p>
+<ul>
+<li>Memory</li>
+<li>InnoDB: 具有自适应hash功能，hash索引是存储引擎根据 B+Tree 索引在指定条件下自动构建的</li>
+</ul>
+<h3 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h3><ol>
+<li>为什么 InnoDB 存储引擎选择使用 B+Tree 索引结构？</li>
+</ol>
+<ul>
+<li>相对于二叉树，层级更少，搜索效率高</li>
+<li>对于 B-Tree，无论是叶子节点还是非叶子节点，都会保存数据，这样导致一页中存储的键值减少，指针也跟着减少，要同样保存大量数据，只能增加树的高度，导致性能降低</li>
+<li>B+Tree非叶子结点不存储data,只存储索引（冗余），可以在同一节点放更多索引，进而缩小树的高度</li>
+<li>叶子结点使用指针连接（B-tree没有），提高区间访问的性能</li>
+<li>相对于 Hash 索引，B+Tree 支持范围匹配及排序操作</li>
+</ul>
+<h2 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h2><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>含义</th>
+<th>特点</th>
+<th>关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>主键索引</td>
+<td>针对于表中主键创建的索引</td>
+<td>默认自动创建，只能有一个</td>
+<td>PRIMARY</td>
+</tr>
+<tr>
+<td>唯一索引</td>
+<td>避免同一个表中某数据列中的值重复</td>
+<td>可以有多个</td>
+<td>UNIQUE</td>
+</tr>
+<tr>
+<td>常规索引</td>
+<td>快速定位特定数据</td>
+<td>可以有多个</td>
+<td></td>
+</tr>
+<tr>
+<td>全文索引</td>
+<td>全文索引查找的是文本中的关键词，而不是比较索引中的值</td>
+<td>可以有多个</td>
+<td>FULLTEXT</td>
+</tr>
+</tbody></table>
+<p>在 InnoDB 存储引擎中，根据索引的存储形式，又可以分为以下两种：</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>含义</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>聚集索引(Clustered Index)</td>
+<td>将数据存储与索引放一块，索引结构的叶子节点保存了行数据</td>
+<td>必须有，而且只有一个</td>
+</tr>
+<tr>
+<td>二级索引(Secondary Index)</td>
+<td>将数据与索引分开存储，索引结构的叶子节点关联的是对应的主键</td>
+<td>可以存在多个</td>
+</tr>
+</tbody></table>
+<p>演示图：</p>
+<p><img src="https://dhc.pythonanywhere.com/media/editor/%E5%8E%9F%E7%90%86%E5%9B%BE_20220318194454880073.png" alt="大致原理" title="大致原理"><br><img src="https://dhc.pythonanywhere.com/media/editor/%E6%BC%94%E7%A4%BA%E5%9B%BE_20220319215403721066.png" alt="演示图" title="演示图"></p>
+<p>聚集索引选取规则：</p>
+<ul>
+<li>如果存在主键，主键索引就是聚集索引</li>
+<li>如果不存在主键，将使用第一个唯一(UNIQUE)索引作为聚集索引</li>
+<li>如果表没有主键或没有合适的唯一索引，则 InnoDB 会自动生成一个 rowid 作为隐藏的聚集索引</li>
+</ul>
+<p>所以建议InnoDB必须建主键，并且推荐使用整形的自增主键。否则Mysql需要帮你维护一个rowid，耗费性能，同时整型比较的效率更高，占用内存更小。自增可以保证节点分裂的次数减少。</p>
+<h3 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h3><p>1. 以下 SQL 语句，哪个执行效率高？为什么？</p>
+<pre><code>select * from user where id = 10;
+select * from user where name = &#39;Arm&#39;;
+</code></pre>
+<p>– 备注：id为主键，name字段创建的有索引</p>
+<pre><code>答：第一条语句，因为第二条需要回表查询，相当于两个步骤。
+</code></pre>
+<p>2. InnoDB 主键索引的 B+Tree 高度为多少？</p>
+<pre><code>答：假设一行数据大小为1k，一页中可以存储16行这样的数据。InnoDB 的指针占用6个字节的空间，
+主键假设为bigint，占用字节数为8.
+可得公式：n * 8 + (n + 1) * 6 = 16 * 1024，其中 8 表示 bigint 占用的字节数，n 表示当前节点存储的key的数量，
+(n + 1) 表示指针数量（比key多一个）。算出n约为1170。
+
+如果树的高度为2，那么他能存储的数据量大概为：1171 * 16 = 18736；
+如果树的高度为3，那么他能存储的数据量大概为：1171 * 1171 * 16 = 21939856。
+
+另外，如果有成千上万的数据，那么就要考虑分表。
+</code></pre>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>创建索引：</p>
+<pre><code>CREATE [ UNIQUE | FULLTEXT ] INDEX index_name ON table_name (index_col_name, ...);
+</code></pre>
+<p>如果不加 CREATE 后面不加索引类型参数，则创建的是常规索引</p>
+<p>查看索引：</p>
+<pre><code>SHOW INDEX FROM table_name;
+</code></pre>
+<p>删除索引：</p>
+<pre><code>DROP INDEX index_name ON table_name;
+</code></pre>
+<p>案例：</p>
+<p>– name字段为姓名字段，该字段的值可能会重复，为该字段创建索引</p>
+<pre><code>create index idx_user_name on tb_user(name);
+</code></pre>
+<p>– phone手机号字段的值非空，且唯一，为该字段创建唯一索引</p>
+<pre><code>create unique index idx_user_phone on tb_user (phone);
+</code></pre>
+<p>– 为profession, age, status创建联合索引</p>
+<pre><code>create index idx_user_pro_age_stat on tb_user(profession, age, status);
+</code></pre>
+<p>– 为email建立合适的索引来提升查询效率</p>
+<pre><code>create index idx_user_email on tb_user(email);
+</code></pre>
+<p>– 删除索引</p>
+<pre><code>drop index idx_user_email on tb_user;
+</code></pre>
+<h2 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h2><h3 id="查看执行频次"><a href="#查看执行频次" class="headerlink" title="查看执行频次"></a>查看执行频次</h3><p>查看当前数据库的 INSERT, UPDATE, DELETE, SELECT 访问频次：</p>
+<pre><code>SHOW GLOBAL STATUS LIKE &#39;Com_______&#39;; 或者 SHOW SESSION STATUS LIKE &#39;Com_______&#39;;
+</code></pre>
+<p>例：</p>
+<pre><code>show global status like &#39;Com_______&#39;
+</code></pre>
+<h3 id="慢查询日志"><a href="#慢查询日志" class="headerlink" title="慢查询日志"></a>慢查询日志</h3><p>慢查询日志记录了所有执行时间超过指定参数（long_query_time，单位：秒，默认10秒）的所有SQL语句的日志。<br>MySQL的慢查询日志默认没有开启，需要在MySQL的配置文件（&#x2F;etc&#x2F;my.cnf）中配置如下信息：<br>开启慢查询日志开关</p>
+<pre><code>slow_query_log=1
+</code></pre>
+<p>设置慢查询日志的时间为2秒，SQL语句执行时间超过2秒，就会视为慢查询，记录慢查询日志</p>
+<pre><code>long_query_time=2
+</code></pre>
+<p>更改后记得重启MySQL服务，日志文件位置：&#x2F;var&#x2F;lib&#x2F;mysql&#x2F;localhost-slow.log</p>
+<p>查看慢查询日志开关状态：</p>
+<pre><code>show variables like &#39;slow_query_log&#39;;
+</code></pre>
+<h3 id="profile"><a href="#profile" class="headerlink" title="profile"></a>profile</h3><p>show profile 能在做SQL优化时帮我们了解时间都耗费在哪里。通过have_profiling 参数，能看到当前 MySQL 是否支持 profile 操作：</p>
+<pre><code>SELECT @@have_profiling;
+</code></pre>
+<p>profiling 默认关闭，可以通过set语句在session&#x2F;global级别开启 profiling：</p>
+<pre><code>SET profiling = 1;
+</code></pre>
+<p>查看所有语句的耗时：</p>
+<pre><code>show profiles;
+</code></pre>
+<p>查看指定query_id的SQL语句各个阶段的耗时：</p>
+<pre><code>show profile for query query_id;
+</code></pre>
+<p>查看指定query_id的SQL语句CPU的使用情况</p>
+<pre><code>show profile cpu for query query_id;
+</code></pre>
+<h3 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h3><p>EXPLAIN 或者 DESC 命令获取 MySQL 如何执行 SELECT 语句的信息，包括在 SELECT 语句执行过程中表如何连接和连接的顺序。<br>语法：</p>
+<pre><code>直接在select语句之前加上关键字 explain / desc
+EXPLAIN SELECT 字段列表 FROM 表名 HWERE 条件;
+</code></pre>
+<p>EXPLAIN 各字段含义：</p>
+<ul>
+<li>id：select 查询的序列号，表示查询中执行 select 子句或者操作表的顺序（id相同，执行顺序从上到下；id不同，值越大越先执行）</li>
+<li>select_type：表示 SELECT 的类型，常见取值有 SIMPLE（简单表，即不适用表连接或者子查询）、PRIMARY（主查询，即外层的查询）、UNION（UNION中的第二个或者后面的查询语句）、SUBQUERY（SELECT&#x2F;WHERE之后包含了子查询）等</li>
+<li>type：表示连接类型，性能由好到差的连接类型为 NULL、system、const、eq_ref、ref、range、index、all</li>
+<li>possible_key：可能应用在这张表上的索引，一个或多个</li>
+<li>Key：实际使用的索引，如果为 NULL，则没有使用索引</li>
+<li>Key_len：表示索引中使用的字节数，该值为索引字段最大可能长度，并非实际使用长度，在不损失精确性的前提下，长度越短越好</li>
+<li>rows：MySQL认为必须要执行的行数，在InnoDB引擎的表中，是一个估计值，可能并不总是准确的</li>
+<li>filtered：表示返回结果的行数占需读取行数的百分比，filtered的值越大越好</li>
+</ul>
+<h2 id="使用规则"><a href="#使用规则" class="headerlink" title="使用规则"></a>使用规则</h2><h3 id="最左前缀法则"><a href="#最左前缀法则" class="headerlink" title="最左前缀法则"></a>最左前缀法则</h3><p>如果索引关联了多列（联合索引），要遵守最左前缀法则，最左前缀法则指的是查询从索引的最左列开始，并且不跳过索引中的列。<br>如果跳跃某一列，索引将部分失效（后面的字段索引失效）。</p>
+<p>联合索引中，出现范围查询（&lt;, &gt;），范围查询右侧的列索引失效。可以用&gt;&#x3D;或者&lt;&#x3D;来规避索引失效问题。</p>
+<h3 id="索引失效情况"><a href="#索引失效情况" class="headerlink" title="索引失效情况"></a>索引失效情况</h3><ol>
+<li>在索引列上进行运算操作，索引将失效。如：explain select * from tb_user where substring(phone, 10, 2) &#x3D; ‘15’;这里对phone进行操作了</li>
+<li>字符串类型字段使用时，不加引号，索引将失效。如：explain select * from tb_user where phone &#x3D; 17799990015;，此处phone的值没有加引号进行了隐式类型转换。</li>
+<li>模糊查询中，如果仅仅是尾部模糊匹配，索引不会是失效；如果是头部模糊匹配，索引失效。如：explain select * from tb_user where profession like ‘%工程’;，前后都有 % 也会失效。</li>
+<li>用 or 分割开的条件，如果 or 其中一个条件的列没有索引，那么涉及的索引都不会被用到。</li>
+<li>如果 MySQL 评估使用索引比全表更慢，则不使用索引。</li>
+</ol>
+<h3 id="SQL-提示"><a href="#SQL-提示" class="headerlink" title="SQL 提示"></a>SQL 提示</h3><p>是优化数据库的一个重要手段，简单来说，就是在SQL语句中加入一些人为的提示来达到优化操作的目的。</p>
+<p>例如，使用索引：</p>
+<pre><code>explain select * from tb_user use index(idx_user_pro) where profession=&quot;软件工程&quot;;
+</code></pre>
+<p>不使用哪个索引：</p>
+<pre><code>explain select * from tb_user ignore index(idx_user_pro) where profession=&quot;软件工程&quot;;
+</code></pre>
+<p>必须使用哪个索引：</p>
+<pre><code>explain select * from tb_user force index(idx_user_pro) where profession=&quot;软件工程&quot;;
+</code></pre>
+<p>use 是建议，实际使用哪个索引 MySQL 还会自己权衡运行速度去更改，force就是无论如何都强制使用该索引。</p>
+<h3 id="普通索引和唯一索引"><a href="#普通索引和唯一索引" class="headerlink" title="普通索引和唯一索引"></a>普通索引和唯一索引</h3><p>在说明普通索引和唯一索引对更新语句性能的影响这个问题，先介绍一下 change buffer。</p>
+<p>当需要更新一个数据页时，如果数据页在内存中就直接更新，而如果这个数据页还没有在内存中的话，在不影响数据一致性的前提下，InooDB 会将这些更新操作缓存在 change buffer 中，这样就不需要从磁盘中读入这个数据页了。在下次查询需要访问这个数据页的时候，将数据页读入内存，然后执行 change buffer 中与这个页有关的操作。通过这种方式就能保证这个数据逻辑的正确性。</p>
+<p>虽然名字叫作 change buffer，实际上它是<strong>可持久化</strong>的数据。也就是说，change buffer 在内存中有拷贝，也会被写入到磁盘上。</p>
+<p>将 change buffer 中的操作应用到原数据页，得到最新结果的过程称为 merge。除了访问这个数据页会触发 merge 外，系统有后台线程会定期 merge。在数据库正常关闭（shutdown）的过程中，也会执行 merge 操作。</p>
+<p>显然，如果能够将更新操作先记录在 change buffer，减少读磁盘，语句的执行速度会得到明显的提升。而且，数据读入内存是需要占用 buffer pool 的，所以这种方式还能够避免占用内存，提高内存利用率。</p>
+<p>对于唯一索引来说，所有的更新操作都要先判断这个操作是否违反唯一性约束。比如，要插入 (4,400) 这个记录，就要先判断现在表中是否已经存在 k&#x3D;4 的记录，而这必须要将数据页读入内存才能判断。如果都已经读入到内存了，那直接更新内存会更快，就没必要使用 change buffer 了。因此，唯一索引的更新就不能使用 change buffer，实际上也只有普通索引可以使用。</p>
+<p>change buffer 用的是 buffer pool 里的内存，因此不能无限增大。change buffer 的大小，可以通过参数 innodb_change_buffer_max_size 来动态设置。这个参数设置为 50 的时候，表示 change buffer 的大小最多只能占用 buffer pool 的 50%。</p>
+<p>如果要在这张表中插入一个新记录 (4,400) 的话，InnoDB 的处理流程是怎样的。</p>
+<p>第一种情况是，这个记录要更新的目标页在内存中。这时，InnoDB 的处理流程如下：</p>
+<ul>
+<li>对于唯一索引来说，找到 3 和 5 之间的位置，判断到没有冲突，插入这个值，语句执行结束；</li>
+<li>对于普通索引来说，找到 3 和 5 之间的位置，插入这个值，语句执行结束。</li>
+</ul>
+<p>这样看来，普通索引和唯一索引对更新语句性能影响的差别，只是一个判断，只会耗费微小的 CPU 时间。</p>
+<p>第二种情况是，这个记录要更新的目标页不在内存中。这时，InnoDB 的处理流程如下：</p>
+<ul>
+<li>对于唯一索引来说，需要将数据页读入内存，判断到没有冲突，插入这个值，语句执行结束；</li>
+<li>对于普通索引来说，则是将更新记录在 change buffer，语句执行就结束了。</li>
+</ul>
+<p>将数据从磁盘读入内存涉及随机 IO 的访问，是数据库里面成本最高的操作之一。change buffer 因为减少了随机磁盘访问，所以对更新性能的提升是会很明显的。</p>
+<h4 id="change-buffer-的使用场景"><a href="#change-buffer-的使用场景" class="headerlink" title="change buffer 的使用场景"></a>change buffer 的使用场景</h4><p>上面介绍了使用 change buffer 对更新过程的加速作用以及change buffer 只限于用在普通索引的场景下，而不适用于唯一索引。那么，现在有一个问题就是：普通索引的所有场景，使用 change buffer 都可以起到加速作用吗？</p>
+<p>因为 merge 的时候是真正进行数据更新的时刻，而 change buffer 的主要目的就是将记录的变更动作缓存下来，所以在一个数据页做 merge 之前，change buffer 记录的变更越多（也就是这个页面上要更新的次数越多），收益就越大。</p>
+<p>因此，对于写多读少的业务来说，页面在写完以后马上被访问到的概率比较小，此时 change buffer 的使用效果最好。这种业务模型常见的就是账单类、日志类的系统。</p>
+<p>反过来，假设一个业务的更新模式是写入之后马上会做查询，那么即使满足了条件，将更新先记录在 change buffer，但之后由于马上要访问这个数据页，会立即触发 merge 过程。这样随机访问 IO 的次数不会减少，反而增加了 change buffer 的维护代价。所以，对于这种业务模式来说，change buffer 反而起到了副作用。</p>
+<h3 id="覆盖索引-amp-回表查询"><a href="#覆盖索引-amp-回表查询" class="headerlink" title="覆盖索引&amp;回表查询"></a>覆盖索引&amp;回表查询</h3><p>尽量使用覆盖索引（查询使用了索引，并且需要返回的列，在该索引中已经全部能找到），减少 select *当中的* 的使用。</p>
+<p>explain 中 extra 字段含义：</p>
+<ul>
+<li>using index condition：查找使用了索引，但是需要回表查询数据</li>
+<li>using where; using index;：查找使用了索引，但是需要的数据都在索引列中能找到，所以不需要回表查询</li>
+</ul>
+<p>如果在聚集索引中直接能找到对应的行，则直接返回行数据，只需要一次查询，哪怕是select *；如果在辅助索引中找聚集索引，如select id, name from xxx where name&#x3D;’xxx’;，也只需要通过辅助索引(name)查找到对应的id，返回name和name索引对应的id即可，只需要一次查询；如果是通过辅助索引查找其他字段，则需要回表查询，如select id, name, gender from xxx where name&#x3D;’xxx’;</p>
+<p>所以尽量不要用select *，容易出现回表查询，降低效率，除非有联合索引包含了所有字段</p>
+<p><strong>面试题</strong><br>一张表，有四个字段（id, username, password, status），由于数据量大，需要对以下SQL语句进行优化，该如何进行才是最优方案：<br>select id, username, password from tb_user where username&#x3D;’itcast’;</p>
+<pre><code>解：给username和password字段建立联合索引，则不需要回表查询，直接覆盖索引
+</code></pre>
+<h3 id="前缀索引"><a href="#前缀索引" class="headerlink" title="前缀索引"></a>前缀索引</h3><p>当字段类型为字符串（varchar, text等）时，有时候需要索引很长的字符串，这会让索引变得很大，查询时，浪费大量的磁盘IO，影响查询效率，此时可以只降字符串的一部分前缀，建立索引，这样可以大大节约索引空间，从而提高索引效率。</p>
+<p>语法：create index idx_xxxx on table_name(columnn(n));<br>前缀长度：可以根据索引的选择性来决定，而选择性是指不重复的索引值（基数）和数据表的记录总数的比值，索引选择性越高则查询效率越高，唯一索引的选择性是1，这是最好的索引选择性，性能也是最好的。<br>求选择性公式：</p>
+<pre><code>select count(distinct email) / count(*) from tb_user;
+select count(distinct substring(email, 1, 5)) / count(*) from tb_user;
+</code></pre>
+<p>show index 里面的sub_part可以看到接取的长度</p>
+<p>使用前缀索引就用不上覆盖索引对查询性能的优化了</p>
+<h3 id="单列索引-amp-联合索引"><a href="#单列索引-amp-联合索引" class="headerlink" title="单列索引&amp;联合索引"></a>单列索引&amp;联合索引</h3><p>单列索引：即一个索引只包含单个列<br>联合索引：即一个索引包含了多个列<br>在业务场景中，如果存在多个查询条件，考虑针对于查询字段建立索引时，建议建立联合索引，而非单列索引。</p>
+<p>单列索引情况：</p>
+<pre><code>explain select id, phone, name from tb_user where phone = &#39;17799990010&#39; and name = &#39;韩信&#39;;
+</code></pre>
+<p>这句只会用到phone索引字段</p>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>多条件联合查询时，MySQL优化器会评估哪个字段的索引效率更高，会选择该索引完成本次查询</li>
+</ul>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><ol>
+<li>针对于数据量较大，且查询比较频繁的表建立索引</li>
+<li>针对于常作为查询条件（where）、排序（order by）、分组（group by）操作的字段建立索引</li>
+<li>尽量选择区分度高的列作为索引，尽量建立唯一索引，区分度越高，使用索引的效率越高</li>
+<li>如果是字符串类型的字段，字段长度较长，可以针对于字段的特点，建立前缀索引</li>
+<li>尽量使用联合索引，减少单列索引，查询时，联合索引很多时候可以覆盖索引，节省存储空间，避免回表，提高查询效率</li>
+<li>要控制索引的数量，索引并不是多多益善，索引越多，维护索引结构的代价就越大，会影响增删改的效率</li>
+<li>如果索引列不能存储NULL值，请在创建表时使用NOT NULL约束它。当优化器知道每列是否包含NULL值时，它可以更好地确定哪个索引最有效地用于查询</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2253798970@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '9863a58d805d69a19ec3',
+            clientSecret: 'eec6c8ede04bbc286f4410646f54282eafb3b33f',
+            repo: 'talkFile.github.io',
+            owner: 'whl963854',
+            admin: ['whl963854'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2024 whl
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #c1bfc1;
+    }
+    
+    
+    .nav-right nav a.hover > span{
+        color: #ffffff !important;
+    }
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div class="mobile-menus-out" >
+
+</div>
+<div class="mobile-menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/whl963854">github</a>
+    
+</div>
+
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 0;">
+<div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483671599&auto=1&height=66"></iframe>
+</div>
+
+
+
+
+<!--以下代码是为了支持随时拖动音乐控件的位置，如没有需求，可去掉下面代码-->
+<script>
+var $DOC = $(document)
+$('#musicMouseDrag').on('mousedown', function (e) {
+// 阻止文本选中
+$DOC.bind("selectstart", function () {
+return false;
+});
+$('#musicDragArea').css('height', '100%');
+var $moveTarget = $('#musicMouseDrag');
+$moveTarget.css('border', '1px dashed grey')
+var div_x = e.pageX - $moveTarget.offset().left;
+var div_y = e.pageY - $moveTarget.offset().top;
+$DOC.on('mousemove', function (e) {
+var targetX = e.pageX - div_x;
+var targetY = e.pageY - div_y;
+targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+$moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+}).on('mouseup', function () {
+$DOC.unbind("selectstart");
+$DOC.off('mousemove')
+$DOC.off('mouseup')
+$moveTarget.css('border', 'none')
+$('#musicDragArea').css('height', '10px');
+})
+})
+</script>
+</html>
